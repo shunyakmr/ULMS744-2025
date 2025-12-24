@@ -41,7 +41,7 @@ website:
   sidebar:
     style: floating
     collapse-level: 2
-    logo: assets/MAINLOGO.jpg
+    logo: assets/ULMS562-logo.svg
     tools:
       - icon: github
         href: https://github.com/shunyakmr/course-template

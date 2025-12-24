@@ -1,13 +1,12 @@
 ---
-title: "ULMSXXX: " 
-subtitle: "University of Liverpool Management School"
+title: "Business Analytics for Organisations"
 ---
 
 ```{r}
 #| echo: false
 #| cache: True
 #| out.width: "100%"
-# knitr::include_graphics('image/big-front-page.jpg')
+knitr::include_graphics('image/UoL Zoom Backgrounds_20225.jpg')
 ```
 
 ## Welcome! {.unnumbered}

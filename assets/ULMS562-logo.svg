@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="323"
+   height="195"
+   viewBox="0 0 85.46047 51.593813"
+   version="1.1"
+   id="svg1"
+   inkscape:export-filename="ShunyaLogo.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="85.460472"
+       height="51.593815"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g2"
+       transform="matrix(6.8510554,0,0,6.8510554,-82.330371,-47.853757)">
+      <g
+         id="g3"
+         transform="translate(0.30895484)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.0894753;stroke-dasharray:none"
+           x="12.195905"
+           y="10.300226"
+           id="text1"><tspan
+             sodipodi:role="line"
+             id="tspan1"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:poppins;-inkscape-font-specification:poppins;fill:none;stroke:#009cdd;stroke-width:0.0894753;stroke-dasharray:none;stroke-opacity:1"
+             x="12.195905"
+             y="10.300226">ULMS</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.29824px;font-family:poppins;-inkscape-font-specification:poppins;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#009cdd;fill-opacity:1;stroke:none;stroke-width:0.358188;stroke-opacity:1"
+           x="15.704468"
+           y="13.643996"
+           id="text2"><tspan
+             sodipodi:role="line"
+             id="tspan2"
+             style="stroke-width:0.358188"
+             x="15.704468"
+             y="13.643996">562</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
