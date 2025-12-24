@@ -1,0 +1,61 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - assets/*
+  
+lang: en
+
+execute:
+  freeze: false
+  cache: false
+
+format:
+  html:
+      theme:
+        light: 
+          - flatly
+          - scss/custom.scss
+        dark:
+          - darkly
+          - scss/custom.scss
+      css: assets/styles.css
+      callout-appearance: simple
+      toc: true
+      toc-depth: 4
+      smooth-scroll: true
+      highlight-style: atom-one
+      number-sections: true
+      number-depth: 4
+      pagetitle: "{{< var meta.title >}}"
+
+website:
+  repo-url: https://github.com/shunyakmr/course-template
+  repo-actions: [issue]
+  page-navigation: true
+  page-footer:
+    center: "Footer. Available under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)."
+  search:
+    location: sidebar
+    type: overlay
+  sidebar:
+    style: floating
+    collapse-level: 2
+    logo: assets/MAINLOGO.jpg
+    tools:
+      - icon: github
+        href: https://github.com/shunyakmr/course-template
+    contents:
+      - section: "Module Overview"
+        contents:
+          text: "Welcome"
+          file: 00-index.qmd
+      - section: "Section Name"
+        contents:
+        - 01-insert.qmd
+      - section: "Additional Resources"
+        contents:
+        - 0N-resources.qmd
+  
+editor: visual
+

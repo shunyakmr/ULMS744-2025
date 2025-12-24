@@ -1,0 +1,8 @@
+# global variables
+
+meta:
+  title: TITLE
+
+urls:
+  u01: "01-insert.html"
+  u0N: "0N-resources.html"

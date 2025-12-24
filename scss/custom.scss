@@ -1,0 +1,70 @@
+/*-- scss:defaults --*/
+
+/* Define your blue (change this one value if needed) */
+$blue-main: #009CDD; 
+
+/* Bootstrap core colour system */
+$primary:   $blue-main;
+$secondary: $blue-main;
+$success:   $blue-main;
+$info:      $blue-main;
+$warning:   $blue-main;
+$danger:    $blue-main;
+
+/* Typography */
+$font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+/* Optional: helps Poppins read nicely */
+$line-height-base: 1.65;
+$headings-font-weight: 600;
+
+/*-- scss:rules --*/
+
+/* Sidebar hover */
+#quarto-sidebar .sidebar-navigation a:hover {
+  background-color: rgba($primary, 0.12);
+}
+
+/* Sidebar active page */
+#quarto-sidebar .sidebar-item.active > a {
+  background-color: rgba($primary, 0.18);
+  border-left: 4px solid $primary;
+}
+
+/* Links (extra safety) */
+a {
+  color: $primary;
+}
+a:hover {
+  color: darken($primary, 10%);
+}
+
+/* Helper mixin: consistent callout styling */
+@mixin callout-theme($c) {
+  border-left: 4px solid $c;
+  background-color: rgba($c, 0.07);
+
+  .callout-title-container,
+  .callout-icon-container {
+    color: $c;
+  }
+}
+
+/* Per-type colours */
+.callout.callout-note       { @include callout-theme(#009CDD); }  // blue
+.callout.callout-tip        { @include callout-theme(#00AB8E); }  // teal
+.callout.callout-important  { @include callout-theme(#212B58); }  // navy
+.callout.callout-warning    { @include callout-theme(#F4B400); }  // amber
+.callout.callout-caution    { @include callout-theme(#EF426F); }  // pink/red
+.callout.callout-danger     { @include callout-theme(#D7263D); }  // deeper red
+
+/* Dark mode: slightly stronger background for contrast */
+body.quarto-dark .callout {
+  background-color: transparent; /* reset, then per-type rules below apply */
+}
+body.quarto-dark .callout.callout-note       { background-color: rgba(#009CDD, 0.14); }
+body.quarto-dark .callout.callout-tip        { background-color: rgba(#00AB8E, 0.14); }
+body.quarto-dark .callout.callout-important  { background-color: rgba(#212B58, 0.14); }
+body.quarto-dark .callout.callout-warning    { background-color: rgba(#F4B400, 0.14); }
+body.quarto-dark .callout.callout-caution    { background-color: rgba(#EF426F, 0.14); }
+body.quarto-dark .callout.callout-danger     { background-color: rgba(#D7263D, 0.14); }
