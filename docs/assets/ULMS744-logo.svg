@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="323"
+   height="195"
+   viewBox="0 0 85.46047 51.593813"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <g
+       id="g2"
+       transform="matrix(6.8510554,0,0,6.8510554,-82.330371,-47.853757)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:Poppins;-inkscape-font-specification:'Poppins Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.0894753;stroke-dasharray:none"
+         x="12.50486"
+         y="10.300226"
+         id="text1"><tspan
+           id="tspan1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:poppins;-inkscape-font-specification:poppins;fill:none;stroke:#ef426f;stroke-width:0.0894753;stroke-dasharray:none;stroke-opacity:1"
+           x="12.50486"
+           y="10.300226">ULMS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.29824px;font-family:poppins;-inkscape-font-specification:poppins;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#ef426f;fill-opacity:1;stroke:none;stroke-width:0.35819299;stroke-opacity:1;stroke-dasharray:none"
+         x="16.013422"
+         y="13.643996"
+         id="text2"><tspan
+           id="tspan2"
+           style="stroke-width:0.35819299;stroke-dasharray:none;fill:#ef426f;fill-opacity:1"
+           x="16.013422"
+           y="13.643996">744</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,82 +1,5 @@
 [
   {
-    "objectID": "0N-resources.html",
-    "href": "0N-resources.html",
-    "title": "Additional Resources",
-    "section": "",
-    "text": "[Free themes for Bootstrap] (https://bootswatch.com/)",
-    "crumbs": [
-      "Additional Resources",
-      "Additional Resources"
-    ]
-  },
-  {
-    "objectID": "00-index.html#welcome",
-    "href": "00-index.html#welcome",
-    "title": "Business Analytics for Organisations",
-    "section": "Welcome!",
-    "text": "Welcome!\nThis module is designed for…",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#key-details",
-    "href": "00-index.html#key-details",
-    "title": "Business Analytics for Organisations",
-    "section": "Key Details",
-    "text": "Key Details\nShunya Kimura will be taking weeks A – Z.\n(INSERT HEAD SHOT)\nContact: s.kimura@liverpool.ac.uk\nBook a meeting (link to Bookings with me)\nThe module is also supported by XYZ who will be… They offer their own office hours for additional support outside of the lectures/seminars, they’ll let you know when they take place.\nKeep an eye on the module announcements page (append link) for further updates and consult Canvas (append link) for all essential module information, including key details about assessment submission etc.",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#timetable",
-    "href": "00-index.html#timetable",
-    "title": "Business Analytics for Organisations",
-    "section": "Timetable",
-    "text": "Timetable\nTo access all recordings of the lectures click here (append link) (you need to go via Canvas).\nLinks to slides are provided with each week’s materials.\nThe topics covered over the next X weeks are:\n\n\n\n\nWeek Beginning\nTheme\nTopic\n\n\n\n\n1\n26th Jan.\nSection1\nWeek 1\n\n\n2\n\nSection1\n\n\n\n3\n\nSection1\nWeek 1\n\n\n4\n\nSection1\n\n\n\n5\n\nSection1\nWeek 1\n\n\n\n\nReading week\nReading week\n\n\n6\n\nSection1\nComing soon…",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#assessments",
-    "href": "00-index.html#assessments",
-    "title": "Business Analytics for Organisations",
-    "section": "Assessments",
-    "text": "Assessments\nThe assessment is… word counts… deadlines…\nPlease include the word count at the top of the essay and submit your essay using your candidate number as the filename. Please check the Management School essay submission checklist and penalties for late submission and exceeding word limits. You will find useful guidance for writing and presenting essays on the Management School student website. These guidelines are designed to help you, and you should read them carefully and do your best to follow them. Good essays give clear and focused answers to the question asked, they have clear structures, and they will be adequately and appropriately referenced. They do not provide a vague and unstructured discussion of the topic.\nPlagiarism is taken extremely seriously and can disqualify you from the module (for details of what constitutes plagiarism see …).  If you are in doubt about any of this, ask us. This is a reminder that there are also very clear guidelines on the use of AI. See here (append some link).\nClick here to see two past assessment examples (append link). One scored in the high 70s, the other in the mid 60s. I will talk through these in class.",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#help-support",
-    "href": "00-index.html#help-support",
-    "title": "Business Analytics for Organisations",
-    "section": "Help & Support",
-    "text": "Help & Support\nFor specific assistance with this module, you can:\n\nRefer to the Canvas (append link) assessment tab for queries about module assessments.\nAsk a question at the end of lectures or during the computer practicals.\nBook into the Office Hours (append link).",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#acknowledgements",
-    "href": "00-index.html#acknowledgements",
-    "title": "Business Analytics for Organisations",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. Elements of this workbook are partially based on and modified from:\n\nINSERT ANY MATERIAL HERE\n\nThis year’s workbook takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation 2023-2024 workbook by Justin van Dijk",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
     "objectID": "01-insert.html",
     "href": "01-insert.html",
     "title": "TITLE",
@@ -96,6 +19,61 @@
     "crumbs": [
       "Section Name",
       "TITLE"
+    ]
+  },
+  {
+    "objectID": "00-index.html#welcome",
+    "href": "00-index.html#welcome",
+    "title": "Sports Analytics in Practice",
+    "section": "Welcome!",
+    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the R (coding) seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#key-details",
+    "href": "00-index.html#key-details",
+    "title": "Sports Analytics in Practice",
+    "section": "1 Key Details",
+    "text": "1 Key Details\nShunya Kimura will be taking Semester 2 Weeks 07 – 11.\nContact: s.kimura@liverpool.ac.uk (book a meeting) (link to Bookings with me)\nThe module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he’ll let you know when they take place.\nKeep an eye on the module announcements page for further updates and consult Canvas for all essential module information, including lecture slides/recordings, reading lists and key details about assignments submission etc. This workbook is designed primarily to support the seminar sessions, and it contains the key materials, exercises and guidance that we will work through during seminars.",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#timetable",
+    "href": "00-index.html#timetable",
+    "title": "Sports Analytics in Practice",
+    "section": "Timetable",
+    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTheme\nTopic\n\n\n\n\n\n\nReading week\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nIntro to Essentials Markdown? Install stuff?\nGetting Started\n\n\n8\n16\\(^{th}\\) Mar.\nSQL ? Markdown ?\nWould be good to do API here… So that they can do data viz as homework…\n\n\n\n\nEaster period\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nAutomatic Data Collection\nCreating Charts (API)\n\n\n10\n20\\(^{th}\\)Apr.\nMaking Interactive Data Product\nShinylive for R (Application)\n\n\n11\n27\\(^{th}\\) Apr.\nBuilding a Portfolio\nQuarto GitHub Pages",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#help-support",
+    "href": "00-index.html#help-support",
+    "title": "Sports Analytics in Practice",
+    "section": "Help & Support",
+    "text": "Help & Support\nFor specific assistance with this module, you can:\n\nRefer to the Canvas assignments tab for queries about module assignments\nAsk a question at the end of lectures or during the seminars\nBook into the Office Hours (link to Bookings with me)",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#acknowledgements",
+    "href": "00-index.html#acknowledgements",
+    "title": "Sports Analytics in Practice",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. It takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2024 workbook by James Cheshire\nThe GEOG0051: Mining Social and Geographic Datasets 2020 materials by Stephen Law\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
     ]
   }
 ]

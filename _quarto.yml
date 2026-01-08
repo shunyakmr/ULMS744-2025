@@ -30,7 +30,7 @@ format:
       pagetitle: "{{< var meta.title >}}"
 
 website:
-  repo-url: https://github.com/shunyakmr/course-template
+  repo-url: https://github.com/shunyakmr/ULMS744-2025
   repo-actions: [issue]
   page-navigation: true
   page-footer:
@@ -41,10 +41,10 @@ website:
   sidebar:
     style: floating
     collapse-level: 2
-    logo: assets/ULMS562-logo.svg
+    logo: assets/ULMS744-logo.svg
     tools:
       - icon: github
-        href: https://github.com/shunyakmr/course-template
+        href: https://github.com/shunyakmr/ULMS744-2025
     contents:
       - section: "Module Overview"
         contents:
@@ -55,7 +55,7 @@ website:
         - 01-insert.qmd
       - section: "Additional Resources"
         contents:
-        - 0N-resources.qmd
+        - 01-insert.qmd
   
 editor: visual
 

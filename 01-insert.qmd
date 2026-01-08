@@ -7,22 +7,26 @@ title: "TITLE"
 ::: callout-tip
 TIPS!
 :::
+
 ::: callout-note
 TIPS!
 :::
+
 ::: callout-important
 TIPS!
 :::
+
 ::: callout-warning
 TIPS!
 :::
+
 ::: callout-caution
 TIPS!
 :::
+
 ::: callout-danger
 TIPS!
 :::
-
 
 ```{r}
 #| echo: false

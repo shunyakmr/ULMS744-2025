@@ -1,76 +1,57 @@
 ---
-title: "Business Analytics for Organisations"
+title: "Sports Analytics in Practice"
 ---
 
 ```{r}
 #| echo: false
 #| cache: True
 #| out.width: "100%"
-knitr::include_graphics('image/UoL Zoom Backgrounds_20225.jpg')
+knitr::include_graphics('image/UoL Zoom Backgrounds_20226.jpg')
 ```
 
 ## Welcome! {.unnumbered}
 
-This module is designed for...
+Welcome to the course website dedicated to the ULMS744 module: *Sports Analytics in Practice*! On this site, you will find the **R (coding) seminar materials**. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.
 
-## Key Details {.unnumbered}
+## Key Details
 
-Shunya Kimura will be taking **weeks A -- Z**.
+Shunya Kimura will be taking **Semester 2 Weeks 07 -- 11**.
 
-(INSERT HEAD SHOT)
+**Contact**: s.kimura\@liverpool.ac.uk (book a meeting) (link to Bookings with me)
 
-**Contact**: s.kimura\@liverpool.ac.uk
+The module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he'll let you know when they take place.
 
-Book a meeting (link to Bookings with me)
-
-The module is also supported by XYZ who will be... They offer their own office hours for additional support outside of the lectures/seminars, they’ll let you know when they take place.
-
-Keep an eye on the module announcements page (append link) for further updates and consult Canvas (append link) for all essential module information, including key details about assessment submission etc.
+Keep an eye on the [module announcements](https://canvas.liverpool.ac.uk/courses/85669/announcements) page for further updates and consult [Canvas](https://canvas.liverpool.ac.uk/courses/85669) for all essential module information, including lecture [slides](https://canvas.liverpool.ac.uk/courses/85669/modules)/[recordings](https://canvas.liverpool.ac.uk/courses/85669/external_tools/2009), reading lists and key details about [assignments](https://canvas.liverpool.ac.uk/courses/85669/assignments) submission etc. **This workbook is designed primarily to support the seminar sessions**, and it contains the key materials, exercises and guidance that we will work through during seminars.
 
 ## Timetable {.unnumbered}
 
-To access all recordings of the lectures click here (append link) (you need to go via Canvas).
+Seminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:
 
-Links to slides are provided with each week’s materials.
-
-The topics covered over the next X weeks are:
-
-|     | Week Beginning | Theme            | Topic                          |
-|-----|----------------|:-----------------|--------------------------------|
-| 1   | 26th Jan.      | Section1         | [Week 1]({{< var urls.u01 >}}) |
-| 2   |                | Section1         |                                |
-| 3   |                | Section1         | [Week 1]({{< var urls.u01 >}}) |
-| 4   |                | Section1         |                                |
-| 5   |                | Section1         | [Week 1]({{< var urls.u01 >}}) |
-|     |                | **Reading week** | **Reading week**               |
-| 6   |                | Section1         | Coming soon...                 |
-
-## Assessments {.unnumbered}
-
-The assessment is... word counts... deadlines...
-
-Please include the word count at the top of the essay and submit your essay using your candidate number as the filename. Please check the Management School essay submission checklist and penalties for late submission and exceeding word limits. You will find useful guidance for writing and presenting essays on the Management School student website. These guidelines are designed to help you, and you should read them carefully and do your best to follow them. Good essays give clear and focused answers to the question asked, they have clear structures, and they will be adequately and appropriately referenced. They do not provide a vague and unstructured discussion of the topic.
-
-Plagiarism is taken extremely seriously and can disqualify you from the module (for details of what constitutes plagiarism see ...).  If you are in doubt about any of this, ask us. This is a reminder that there are also very clear guidelines on the use of AI. See here (append some link).
-
-Click here to see two past assessment examples (append link). One scored in the high 70s, the other in the mid 60s. I will talk through these in class.
+| No. | Week Beginning | Theme | Topic |
+|--------|-------------|:-----------------------------|-------------------|
+|  |  | **Reading week** | **Reading week** |
+| 7 | 9$^{th}$ Mar. | Intro to Essentials Markdown? Install stuff? | [Getting Started]({{< var urls.u01 >}}) |
+| **8** | [16$^{th}$ Mar.]{.mark} | SQL ? Markdown ? | Would be good to do API here... So that they can do data viz as homework... |
+|  |  | **Easter period** | **Easter period** |
+| **9** | [13$^{th}$ Apr.]{.mark} | Automatic Data Collection | [Creating Charts]({{< var urls.u01 >}}) (API) |
+| **10** | [20]{.mark}$^{th}$[Apr.]{.mark} | Making Interactive Data Product | Shinylive for R (Application) |
+| 11 | 27$^{th}$ Apr. | Building a Portfolio | Quarto \times GitHub Pages |
 
 ## Help & Support {.unnumbered}
 
 For specific assistance with this module, you can:
 
--   Refer to the Canvas (append link) assessment tab for queries about module assessments.
+-   Refer to the [Canvas assignments](https://canvas.liverpool.ac.uk/courses/85669/assignments) tab for queries about module assignments
 
--   Ask a question at the end of lectures or during the computer practicals.
+-   Ask a question at the end of lectures or during the seminars
 
--   Book into the Office Hours (append link).
+-   Book into the Office Hours (link to Bookings with me)
 
 ## Acknowledgements {.unnumbered}
 
-This workbook is created using the [Quarto](https://quarto.org/) publishing system. Elements of this workbook are partially based on and modified from:
+This workbook is created using the [Quarto](https://quarto.org/) publishing system. It takes inspiration and design elements from:
 
--   INSERT ANY MATERIAL HERE
-
-This year's workbook takes inspiration and design elements from:
-
--   The [GEOG0030: Geocomputation 2023-2024](https://jtvandijk.github.io/GEOG0030_20232024/) workbook by [Justin van Dijk](https://www.mappingdutchman.com)
+-   The [GEOG0030: Geocomputation](https://jtvandijk.github.io/GEOG0030/00-index.html) workbook by [Justin van Dijk](https://www.mappingdutchman.com)
+-   The [POLS0010: Data Analysis 2024](https://jcheshire.com/pols0010-data-analysis-2024/) workbook by [James Cheshire](https://jcheshire.com/)
+-   The [GEOG0051: Mining Social and Geographic Datasets 2020](https://www.ucl.ac.uk/module-catalogue/modules/mining-social-and-geographic-datasets-GEOG0051) materials by [Stephen Law](https://profiles.ucl.ac.uk/21695-stephen-law)
+-   The [POLS0010: Data Analysis 2019](https://www.dropbox.com/scl/fi/8ryqys1qxtdkiximp9mkh/POLS0010-Course-Outline-2023-24.pdf?rlkey=x1p3r7kwjplf1rokxo5gu5p4e&e=1&dl=0) materials by [Tom O'Grady](https://tomogradypolitics.wordpress.com/)
