@@ -1,24 +1,7 @@
 # TITLE: ELABORATE
 
 This GitHub repository generates the course handbook, which can be found at:  
-**https://shunyakmr.github.io/course-template/**
-
-## Setup Instructions
-
-When creating a new course from this template:
-
-1. **Update `_variables.yml`**
-   - Add course-specific URLs
-   - Update course title and details
-
-2. **Update `_quarto.yml`**
-   - Configure website settings
-   - Add navigation structure
-
-3. **Update this README**
-   - Replace `TITLE` with course code
-   - Replace `ELABORATE` with full course name
-   - Remove tis section
+**https://shunyakmr.github.io/ULMS744-2025/**
 
 ## License
 
