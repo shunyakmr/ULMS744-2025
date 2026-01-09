@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-start.html" rel="next">
+<link href="./03-api.html" rel="next">
+<link href="./01-start.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,35 +75,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -278,7 +250,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-index.html">Module Overview</a></li><li class="breadcrumb-item"><a href="./00-index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-start.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="./02-quarto.html">2. Integrated Data Publishing with Quarto</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -315,7 +287,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00-index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./00-index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -338,7 +310,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-quarto.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2. Integrated Data Publishing with Quarto</span></a>
   </div>
 </li>
@@ -389,11 +361,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
-  <li><a href="#key-details" id="toc-key-details" class="nav-link" data-scroll-target="#key-details">Key Details</a></li>
-  <li><a href="#timetable" id="toc-timetable" class="nav-link" data-scroll-target="#timetable">Timetable</a></li>
-  <li><a href="#help-support" id="toc-help-support" class="nav-link" data-scroll-target="#help-support">Help &amp; Support</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#heading" id="toc-heading" class="nav-link active" data-scroll-target="#heading"><span class="header-section-number">1</span> HEADING</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -401,9 +369,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./00-index.html">Module Overview</a></li><li class="breadcrumb-item"><a href="./00-index.html">Welcome</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-start.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="./02-quarto.html">2. Integrated Data Publishing with Quarto</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Sports Analytics in Practice</h1>
+<h1 class="title">2. Integrated Data Publishing with Quarto</h1>
 </div>
 
 
@@ -420,94 +388,61 @@ window.Quarto = {
 </header>
 
 
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="image/UoL Zoom Backgrounds_20226.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
+<section id="heading" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="heading"><span class="header-section-number">1</span> HEADING</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>TIPS!</p>
 </div>
 </div>
 </div>
-<section id="welcome" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome!</h2>
-<p>Welcome to the course website dedicated to the ULMS744 module: <em>Sports Analytics in Practice</em>! On this site, you will find the <strong>coding seminar materials</strong>. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.</p>
-</section>
-<section id="key-details" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="key-details">Key Details</h2>
-<p>Shunya Kimura will be taking <strong>Semester 2 Weeks 07 – 11</strong>.</p>
-<p><strong>Contact</strong>: s.kimura@liverpool.ac.uk (<a href="https://outlook.office.com/bookwithme/user/7c4dd5b5714749a782d4dba134872023@liverpool.ac.uk?anonymous&amp;ismsaljsauthenabled&amp;ep=plink">book a meeting</a>)</p>
-<p>The module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he’ll let you know when they take place.</p>
-<p>Keep an eye on the <a href="https://canvas.liverpool.ac.uk/courses/85669/announcements">module announcements</a> page for further updates and consult <a href="https://canvas.liverpool.ac.uk/courses/85669">Canvas</a> for all essential module information, including lecture <a href="https://canvas.liverpool.ac.uk/courses/85669/modules">slides</a>/<a href="https://canvas.liverpool.ac.uk/courses/85669/external_tools/2009">recordings</a>, reading lists and key details about <a href="https://canvas.liverpool.ac.uk/courses/85669/assignments">assignments</a> submission etc. <strong>This workbook is designed primarily to support the seminar sessions</strong>, and it contains the key materials, exercises and guidance that we will work through during seminars.</p>
-</section>
-<section id="timetable" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="timetable">Timetable</h2>
-<p>Seminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>No.</th>
-<th>Week Beginning</th>
-<th>Topic</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td><strong>Reading week</strong></td>
-</tr>
-<tr class="even">
-<td>7</td>
-<td>9<span class="math inline">\(^{th}\)</span> Mar.</td>
-<td><a href="01-insert.html">Getting Started</a></td>
-</tr>
-<tr class="odd">
-<td><strong>8</strong></td>
-<td><mark>16<span class="math inline">\(^{th}\)</span> Mar.</mark></td>
-<td>Integrated Data Publishing with Quarto</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td><strong>Easter period</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>9</strong></td>
-<td><mark>13<span class="math inline">\(^{th}\)</span> Apr.</mark></td>
-<td>API &amp; Data Sourcing</td>
-</tr>
-<tr class="even">
-<td><strong>10</strong></td>
-<td><mark>20</mark><span class="math inline">\(^{th}\)</span><mark>Apr.</mark></td>
-<td>Interactive Dashboards with Shinylive for R</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>27<span class="math inline">\(^{th}\)</span> Apr.</td>
-<td>The Professional Portfolio</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="help-support" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="help-support">Help &amp; Support</h2>
-<p>For specific assistance with this module, you can:</p>
-<ul>
-<li><p>Refer to the <a href="https://canvas.liverpool.ac.uk/courses/85669/assignments">Canvas assignments</a> tab for queries about module assignments</p></li>
-<li><p>Ask a question at the end of lectures or during the seminars</p></li>
-<li><p>Book into the Office Hours (link to Bookings with me)</p></li>
-</ul>
-</section>
-<section id="acknowledgements" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>This workbook is created using the <a href="https://quarto.org/">Quarto</a> publishing system. It takes inspiration and design elements from:</p>
-<ul>
-<li>The <a href="https://jtvandijk.github.io/GEOG0030/00-index.html">GEOG0030: Geocomputation</a> workbook by <a href="https://www.mappingdutchman.com">Justin van Dijk</a></li>
-<li>The <a href="https://jcheshire.com/pols0010-data-analysis-2024/">POLS0010: Data Analysis 2024</a> workbook by <a href="https://jcheshire.com/">James Cheshire</a></li>
-<li>The <a href="https://www.ucl.ac.uk/module-catalogue/modules/mining-social-and-geographic-datasets-GEOG0051">GEOG0051: Mining Social and Geographic Datasets 2020</a> materials by <a href="https://profiles.ucl.ac.uk/21695-stephen-law">Stephen Law</a></li>
-<li>The <a href="https://www.dropbox.com/scl/fi/8ryqys1qxtdkiximp9mkh/POLS0010-Course-Outline-2023-24.pdf?rlkey=x1p3r7kwjplf1rokxo5gu5p4e&amp;e=1&amp;dl=0">POLS0010: Data Analysis 2019</a> materials by <a href="https://tomogradypolitics.wordpress.com/">Tom O’Grady</a></li>
-</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>TIPS!</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>TIPS!</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>TIPS!</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>TIPS!</p>
+</div>
+</div>
+</div>
+<div class="callout-danger">
+<p>TIPS!</p>
+</div>
 
 
 </section>
@@ -928,10 +863,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./01-start.html" class="pagination-link" aria-label="1. Getting Started">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Getting Started</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-start.html" class="pagination-link" aria-label="1. Getting Started">
-        <span class="nav-page-text">1. Getting Started</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-api.html" class="pagination-link" aria-label="3. API &amp; Data Sourcing">
+        <span class="nav-page-text">3. API &amp; Data Sourcing</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

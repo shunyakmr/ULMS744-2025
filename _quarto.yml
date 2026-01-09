@@ -50,12 +50,16 @@ website:
         contents:
           text: "Welcome"
           file: 00-index.qmd
-      - section: "Section Name"
+      - section: "Reproducible Workflows for Sports Analytics"
         contents:
-        - 01-insert.qmd
+        - 01-start.qmd
+        - 02-quarto.qmd
+        - 03-api.qmd
+        - 04-shiny.qmd
+        - 05-portfolio.qmd
       - section: "Additional Resources"
         contents:
-        - 01-insert.qmd
+        - 09-project.qmd
   
 editor: visual
 

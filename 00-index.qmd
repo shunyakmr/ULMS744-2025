@@ -11,13 +11,13 @@ knitr::include_graphics('image/UoL Zoom Backgrounds_20226.jpg')
 
 ## Welcome! {.unnumbered}
 
-Welcome to the course website dedicated to the ULMS744 module: *Sports Analytics in Practice*! On this site, you will find the **R (coding) seminar materials**. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.
+Welcome to the course website dedicated to the ULMS744 module: *Sports Analytics in Practice*! On this site, you will find the **coding seminar materials**. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.
 
-## Key Details
+## Key Details {.unnumbered}
 
 Shunya Kimura will be taking **Semester 2 Weeks 07 -- 11**.
 
-**Contact**: s.kimura\@liverpool.ac.uk (book a meeting) (link to Bookings with me)
+**Contact**: s.kimura\@liverpool.ac.uk ([book a meeting](https://outlook.office.com/bookwithme/user/7c4dd5b5714749a782d4dba134872023@liverpool.ac.uk?anonymous&ismsaljsauthenabled&ep=plink))
 
 The module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he'll let you know when they take place.
 
@@ -27,15 +27,15 @@ Keep an eye on the [module announcements](https://canvas.liverpool.ac.uk/courses
 
 Seminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:
 
-| No. | Week Beginning | Theme | Topic |
-|--------|-------------|:-----------------------------|-------------------|
-|  |  | **Reading week** | **Reading week** |
-| 7 | 9$^{th}$ Mar. | Intro to Essentials Markdown? Install stuff? | [Getting Started]({{< var urls.u01 >}}) |
-| **8** | [16$^{th}$ Mar.]{.mark} | SQL ? Markdown ? | Would be good to do API here... So that they can do data viz as homework... |
-|  |  | **Easter period** | **Easter period** |
-| **9** | [13$^{th}$ Apr.]{.mark} | Automatic Data Collection | [Creating Charts]({{< var urls.u01 >}}) (API) |
-| **10** | [20]{.mark}$^{th}$[Apr.]{.mark} | Making Interactive Data Product | Shinylive for R (Application) |
-| 11 | 27$^{th}$ Apr. | Building a Portfolio | Quarto \times GitHub Pages |
+| No. | Week Beginning | Topic |
+|------------------------|------------------------|------------------------|
+|  |  | **Reading week** |
+| 7 | 9$^{th}$ Mar. | [Getting Started]({{< var urls.u01 >}}) |
+| **8** | [16$^{th}$ Mar.]{.mark} | Integrated Data Publishing with Quarto |
+|  |  | **Easter period** |
+| **9** | [13$^{th}$ Apr.]{.mark} | API & Data Sourcing |
+| **10** | [20]{.mark}$^{th}$[Apr.]{.mark} | Interactive Dashboards with Shinylive for R |
+| 11 | 27$^{th}$ Apr. | The Professional Portfolio |
 
 ## Help & Support {.unnumbered}
 

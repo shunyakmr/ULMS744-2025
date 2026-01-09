@@ -1,24 +1,68 @@
 [
   {
-    "objectID": "01-insert.html",
-    "href": "01-insert.html",
-    "title": "TITLE",
+    "objectID": "09-project.html",
+    "href": "09-project.html",
+    "title": "Individual Coursework Hints",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
-      "Section Name",
-      "TITLE"
+      "Additional Resources",
+      "Individual Coursework Hints"
     ]
   },
   {
-    "objectID": "01-insert.html#heading",
-    "href": "01-insert.html#heading",
-    "title": "TITLE",
+    "objectID": "09-project.html#heading",
+    "href": "09-project.html#heading",
+    "title": "Individual Coursework Hints",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
-      "Section Name",
-      "TITLE"
+      "Additional Resources",
+      "Individual Coursework Hints"
+    ]
+  },
+  {
+    "objectID": "04-shiny.html",
+    "href": "04-shiny.html",
+    "title": "4. Interactive Dashboards with Shinylive for R",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "4. Interactive Dashboards with Shinylive for R"
+    ]
+  },
+  {
+    "objectID": "04-shiny.html#heading",
+    "href": "04-shiny.html#heading",
+    "title": "4. Interactive Dashboards with Shinylive for R",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "4. Interactive Dashboards with Shinylive for R"
+    ]
+  },
+  {
+    "objectID": "01-start.html",
+    "href": "01-start.html",
+    "title": "1. Getting Started",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "1. Getting Started"
+    ]
+  },
+  {
+    "objectID": "01-start.html#heading",
+    "href": "01-start.html#heading",
+    "title": "1. Getting Started",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "1. Getting Started"
     ]
   },
   {
@@ -26,7 +70,7 @@
     "href": "00-index.html#welcome",
     "title": "Sports Analytics in Practice",
     "section": "Welcome!",
-    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the R (coding) seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.",
+    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the coding seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -36,8 +80,8 @@
     "objectID": "00-index.html#key-details",
     "href": "00-index.html#key-details",
     "title": "Sports Analytics in Practice",
-    "section": "1 Key Details",
-    "text": "1 Key Details\nShunya Kimura will be taking Semester 2 Weeks 07 – 11.\nContact: s.kimura@liverpool.ac.uk (book a meeting) (link to Bookings with me)\nThe module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he’ll let you know when they take place.\nKeep an eye on the module announcements page for further updates and consult Canvas for all essential module information, including lecture slides/recordings, reading lists and key details about assignments submission etc. This workbook is designed primarily to support the seminar sessions, and it contains the key materials, exercises and guidance that we will work through during seminars.",
+    "section": "Key Details",
+    "text": "Key Details\nShunya Kimura will be taking Semester 2 Weeks 07 – 11.\nContact: s.kimura@liverpool.ac.uk (book a meeting)\nThe module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he’ll let you know when they take place.\nKeep an eye on the module announcements page for further updates and consult Canvas for all essential module information, including lecture slides/recordings, reading lists and key details about assignments submission etc. This workbook is designed primarily to support the seminar sessions, and it contains the key materials, exercises and guidance that we will work through during seminars.",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -48,7 +92,7 @@
     "href": "00-index.html#timetable",
     "title": "Sports Analytics in Practice",
     "section": "Timetable",
-    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTheme\nTopic\n\n\n\n\n\n\nReading week\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nIntro to Essentials Markdown? Install stuff?\nGetting Started\n\n\n8\n16\\(^{th}\\) Mar.\nSQL ? Markdown ?\nWould be good to do API here… So that they can do data viz as homework…\n\n\n\n\nEaster period\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nAutomatic Data Collection\nCreating Charts (API)\n\n\n10\n20\\(^{th}\\)Apr.\nMaking Interactive Data Product\nShinylive for R (Application)\n\n\n11\n27\\(^{th}\\) Apr.\nBuilding a Portfolio\nQuarto GitHub Pages",
+    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nGetting Started\n\n\n8\n16\\(^{th}\\) Mar.\nIntegrated Data Publishing with Quarto\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nAPI & Data Sourcing\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive for R\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -74,6 +118,72 @@
     "crumbs": [
       "Module Overview",
       "Welcome"
+    ]
+  },
+  {
+    "objectID": "03-api.html",
+    "href": "03-api.html",
+    "title": "3. API & Data Sourcing",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "3. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "03-api.html#heading",
+    "href": "03-api.html#heading",
+    "title": "3. API & Data Sourcing",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "3. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "02-quarto.html",
+    "href": "02-quarto.html",
+    "title": "2. Integrated Data Publishing with Quarto",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. Integrated Data Publishing with Quarto"
+    ]
+  },
+  {
+    "objectID": "02-quarto.html#heading",
+    "href": "02-quarto.html#heading",
+    "title": "2. Integrated Data Publishing with Quarto",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. Integrated Data Publishing with Quarto"
+    ]
+  },
+  {
+    "objectID": "05-portfolio.html",
+    "href": "05-portfolio.html",
+    "title": "5. The Professional Porfolio",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "5. The Professional Porfolio"
+    ]
+  },
+  {
+    "objectID": "05-portfolio.html#heading",
+    "href": "05-portfolio.html#heading",
+    "title": "5. The Professional Porfolio",
+    "section": "",
+    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "5. The Professional Porfolio"
     ]
   }
 ]
