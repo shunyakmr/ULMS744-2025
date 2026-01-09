@@ -1,5 +1,5 @@
 ---
-title: "2. Integrated Data Publishing with Quarto"
+title: "2. API & Data Sourcing"
 ---
 
 ## HEADING

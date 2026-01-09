@@ -1,5 +1,5 @@
 ---
-title: "3. API & Data Sourcing"
+title: "3. Interactive Dashboards with Shinylive I"
 ---
 
 ## HEADING

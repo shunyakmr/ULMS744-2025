@@ -22,47 +22,47 @@
     ]
   },
   {
-    "objectID": "04-shiny.html",
-    "href": "04-shiny.html",
-    "title": "4. Interactive Dashboards with Shinylive for R",
+    "objectID": "02-api.html",
+    "href": "02-api.html",
+    "title": "2. API & Data Sourcing",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "4. Interactive Dashboards with Shinylive for R"
+      "2. API & Data Sourcing"
     ]
   },
   {
-    "objectID": "04-shiny.html#heading",
-    "href": "04-shiny.html#heading",
-    "title": "4. Interactive Dashboards with Shinylive for R",
+    "objectID": "02-api.html#heading",
+    "href": "02-api.html#heading",
+    "title": "2. API & Data Sourcing",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "4. Interactive Dashboards with Shinylive for R"
+      "2. API & Data Sourcing"
     ]
   },
   {
-    "objectID": "01-start.html",
-    "href": "01-start.html",
-    "title": "1. Getting Started",
+    "objectID": "03-shiny1.html",
+    "href": "03-shiny1.html",
+    "title": "3. Interactive Dashboards with Shinylive I",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "1. Getting Started"
+      "3. Interactive Dashboards with Shinylive I"
     ]
   },
   {
-    "objectID": "01-start.html#heading",
-    "href": "01-start.html#heading",
-    "title": "1. Getting Started",
+    "objectID": "03-shiny1.html#heading",
+    "href": "03-shiny1.html#heading",
+    "title": "3. Interactive Dashboards with Shinylive I",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "1. Getting Started"
+      "3. Interactive Dashboards with Shinylive I"
     ]
   },
   {
@@ -92,7 +92,7 @@
     "href": "00-index.html#timetable",
     "title": "Sports Analytics in Practice",
     "section": "Timetable",
-    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nGetting Started\n\n\n8\n16\\(^{th}\\) Mar.\nIntegrated Data Publishing with Quarto\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nAPI & Data Sourcing\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive for R\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
+    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nAPI & Data Sourcing\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nInteractive Dashboards with Shinylive I\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive II\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -121,47 +121,47 @@
     ]
   },
   {
-    "objectID": "03-api.html",
-    "href": "03-api.html",
-    "title": "3. API & Data Sourcing",
+    "objectID": "04-shiny2.html",
+    "href": "04-shiny2.html",
+    "title": "4. Interactive Dashboards with Shinylive II",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "3. API & Data Sourcing"
+      "4. Interactive Dashboards with Shinylive II"
     ]
   },
   {
-    "objectID": "03-api.html#heading",
-    "href": "03-api.html#heading",
-    "title": "3. API & Data Sourcing",
+    "objectID": "04-shiny2.html#heading",
+    "href": "04-shiny2.html#heading",
+    "title": "4. Interactive Dashboards with Shinylive II",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "3. API & Data Sourcing"
+      "4. Interactive Dashboards with Shinylive II"
     ]
   },
   {
-    "objectID": "02-quarto.html",
-    "href": "02-quarto.html",
-    "title": "2. Integrated Data Publishing with Quarto",
+    "objectID": "01-start.html",
+    "href": "01-start.html",
+    "title": "1. Foundations of Reproducible Analytics",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "2. Integrated Data Publishing with Quarto"
+      "1. Foundations of Reproducible Analytics"
     ]
   },
   {
-    "objectID": "02-quarto.html#heading",
-    "href": "02-quarto.html#heading",
-    "title": "2. Integrated Data Publishing with Quarto",
+    "objectID": "01-start.html#heading",
+    "href": "01-start.html#heading",
+    "title": "1. Foundations of Reproducible Analytics",
     "section": "",
     "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
-      "2. Integrated Data Publishing with Quarto"
+      "1. Foundations of Reproducible Analytics"
     ]
   },
   {

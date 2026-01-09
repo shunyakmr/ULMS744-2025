@@ -53,9 +53,9 @@ website:
       - section: "Reproducible Workflows for Sports Analytics"
         contents:
         - 01-start.qmd
-        - 02-quarto.qmd
-        - 03-api.qmd
-        - 04-shiny.qmd
+        - 02-api.qmd
+        - 03-shiny1.qmd
+        - 04-shiny2.qmd
         - 05-portfolio.qmd
       - section: "Additional Resources"
         contents:
