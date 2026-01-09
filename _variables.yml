@@ -4,4 +4,8 @@ meta:
   title: ULMS744
 
 urls:
-  u01: "01-insert.html"
+  u01: "01-start.html"
+  u02: "02-quarto.html"
+  u03: "03-api.html"
+  u04: "04-shiny.html"
+  u05: "05-portfolio.html"

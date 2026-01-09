@@ -31,11 +31,11 @@ Seminars for this module run on the highlighted week below. The topics covered o
 |------------------------|------------------------|------------------------|
 |  |  | **Reading week** |
 | 7 | 9$^{th}$ Mar. | [Getting Started]({{< var urls.u01 >}}) |
-| **8** | [16$^{th}$ Mar.]{.mark} | Integrated Data Publishing with Quarto |
+| **8** | [16$^{th}$ Mar.]{.mark} | [Integrated Data Publishing with Quarto]({{< var urls.u02 >}}) |
 |  |  | **Easter period** |
-| **9** | [13$^{th}$ Apr.]{.mark} | API & Data Sourcing |
-| **10** | [20]{.mark}$^{th}$[Apr.]{.mark} | Interactive Dashboards with Shinylive for R |
-| 11 | 27$^{th}$ Apr. | The Professional Portfolio |
+| **9** | [13$^{th}$ Apr.]{.mark} | [API & Data Sourcing]({{< var urls.u03 >}}) |
+| **10** | [20$^{th}$Apr.]{.mark} | [Interactive Dashboards with Shinylive for R]({{< var urls.u04 >}}) |
+| 11 | 27$^{th}$ Apr. | [The Professional Portfolio]({{< var urls.u05 >}}) |
 
 ## Help & Support {.unnumbered}
 
