@@ -2,35 +2,4 @@
 title: "4. Interactive Dashboards with Shinylive II"
 ---
 
-## HEADING
-
-::: callout-tip
-TIPS!
-:::
-
-::: callout-note
-TIPS!
-:::
-
-::: callout-important
-TIPS!
-:::
-
-::: callout-warning
-TIPS!
-:::
-
-::: callout-caution
-TIPS!
-:::
-
-::: callout-danger
-TIPS!
-:::
-
-```{r}
-#| echo: false
-#| cache: True
-#| out.width: "100%"
-# knitr::include_graphics('image/IMAGE.jpg')
-```
+## Released in Week 9...

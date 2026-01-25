@@ -6,12 +6,18 @@ title: "Sports Analytics in Practice"
 #| echo: false
 #| cache: True
 #| out.width: "100%"
-knitr::include_graphics('image/UoL Zoom Backgrounds_20226.jpg')
+knitr::include_graphics('images/UoL Zoom Backgrounds_20226.jpg')
 ```
 
 ## Welcome! {.unnumbered}
 
 Welcome to the course website dedicated to the ULMS744 module: *Sports Analytics in Practice*! On this site, you will find the **coding seminar materials**. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.
+
+## Pre-requisites {.unnumbered}
+
+This module builds directly on the ULMS725 module: *Introduction to Programming and Analysis*, extending the programming and analytical skills introduced there into more applied contexts. 
+
+Students are therefore expected to have access to a functioning installation of R (version 4.5+) and to be comfortable with core R workflows. This includes skills such as installing/ using packages, importing/ manipulating datasets and restructuring data for analysis.
 
 ## Key Details {.unnumbered}
 

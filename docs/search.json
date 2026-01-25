@@ -4,65 +4,21 @@
     "href": "09-project.html",
     "title": "Individual Coursework Hints",
     "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "text": "Watch This Space by reganography",
     "crumbs": [
       "Additional Resources",
       "Individual Coursework Hints"
     ]
   },
   {
-    "objectID": "09-project.html#heading",
-    "href": "09-project.html#heading",
+    "objectID": "09-project.html#released-soon",
+    "href": "09-project.html#released-soon",
     "title": "Individual Coursework Hints",
     "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
+    "text": "Watch This Space by reganography",
     "crumbs": [
       "Additional Resources",
       "Individual Coursework Hints"
-    ]
-  },
-  {
-    "objectID": "02-api.html",
-    "href": "02-api.html",
-    "title": "2. API & Data Sourcing",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "02-api.html#heading",
-    "href": "02-api.html#heading",
-    "title": "2. API & Data Sourcing",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "03-shiny1.html",
-    "href": "03-shiny1.html",
-    "title": "3. Interactive Dashboards with Shinylive I",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "3. Interactive Dashboards with Shinylive I"
-    ]
-  },
-  {
-    "objectID": "03-shiny1.html#heading",
-    "href": "03-shiny1.html#heading",
-    "title": "3. Interactive Dashboards with Shinylive I",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "3. Interactive Dashboards with Shinylive I"
     ]
   },
   {
@@ -71,6 +27,17 @@
     "title": "Sports Analytics in Practice",
     "section": "Welcome!",
     "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the coding seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#pre-requisites",
+    "href": "00-index.html#pre-requisites",
+    "title": "Sports Analytics in Practice",
+    "section": "Pre-requisites",
+    "text": "Pre-requisites\nThis module builds directly on the ULMS725 module: Introduction to Programming and Analysis, extending the programming and analytical skills introduced there into more applied contexts.\nStudents are therefore expected to have access to a functioning installation of R (version 4.5+) and to be comfortable with core R workflows. This includes skills such as installing/ using packages, importing/ manipulating datasets and restructuring data for analysis.",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -118,72 +85,6 @@
     "crumbs": [
       "Module Overview",
       "Welcome"
-    ]
-  },
-  {
-    "objectID": "04-shiny2.html",
-    "href": "04-shiny2.html",
-    "title": "4. Interactive Dashboards with Shinylive II",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "4. Interactive Dashboards with Shinylive II"
-    ]
-  },
-  {
-    "objectID": "04-shiny2.html#heading",
-    "href": "04-shiny2.html#heading",
-    "title": "4. Interactive Dashboards with Shinylive II",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "4. Interactive Dashboards with Shinylive II"
-    ]
-  },
-  {
-    "objectID": "01-start.html",
-    "href": "01-start.html",
-    "title": "1. Foundations of Reproducible Analytics",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "1. Foundations of Reproducible Analytics"
-    ]
-  },
-  {
-    "objectID": "01-start.html#heading",
-    "href": "01-start.html#heading",
-    "title": "1. Foundations of Reproducible Analytics",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "1. Foundations of Reproducible Analytics"
-    ]
-  },
-  {
-    "objectID": "05-portfolio.html",
-    "href": "05-portfolio.html",
-    "title": "5. The Professional Porfolio",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "5. The Professional Porfolio"
-    ]
-  },
-  {
-    "objectID": "05-portfolio.html#heading",
-    "href": "05-portfolio.html#heading",
-    "title": "5. The Professional Porfolio",
-    "section": "",
-    "text": "TIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\n\n\n\n\n\nTIPS!\n\n\n\n\nTIPS!",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "5. The Professional Porfolio"
     ]
   }
 ]
