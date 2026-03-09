@@ -1,24 +1,89 @@
 /*-- scss:defaults --*/
 
-/* Define your blue (change this one value if needed) */
-$blue-main: #EF426F; 
+/* Define your accent colour (change this one value per project) */
+$accent: #EF426F;
 
 /* Bootstrap core colour system */
-$primary:   $blue-main;
-$secondary: $blue-main;
-$success:   $blue-main;
-$info:      $blue-main;
-$warning:   $blue-main;
-$danger:    $blue-main;
+$primary:   $accent;
+$secondary: $accent;
+$success:   $accent;
+$info:      $accent;
+$warning:   $accent;
+$danger:    $accent;
 
 /* Typography */
 $font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+$presentation-heading-font: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
 /* Optional: helps Poppins read nicely */
 $line-height-base: 1.65;
 $headings-font-weight: 600;
 
+/* Reveal / presentation sizing */
+$presentation-font-size-root: 28px;       // body base
+$presentation-h3-font-size: 34px;         // slide title (h3)
+
 /*-- scss:rules --*/
+
+/* Global slide line spacing */
+.reveal .slides section,
+.reveal .slides section p,
+.reveal .slides section li,
+.reveal .slides section div,
+.reveal .slides section span {
+  line-height: 1.5 !important;
+}
+
+/* Code blocks: inherit slide font size */
+.reveal pre,
+.reveal code {
+  font-size: 0.95em;
+  line-height: inherit;
+}
+
+.reveal ul,
+.reveal ul ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* First-level bullets */
+.reveal ul > li {
+  position: relative;
+  padding-left: 1.1em;
+}
+
+.reveal ul > li::before {
+  content: "> ";
+  position: absolute;
+  left: 0;
+  color: $primary;
+  font-weight: 700;
+}
+
+/* Second-level bullets */
+.reveal ul ul > li {
+  position: relative;
+  padding-left: 1.6em;
+}
+
+.reveal ul ul > li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: $primary;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* Non-bold slide titles */
+.reveal .not-bold h3,
+.reveal h3.not-bold {
+  font-weight: 400 !important;
+}
+
+.small-code { font-size: 0.5em; }
 
 /* Sidebar hover */
 #quarto-sidebar .sidebar-navigation a:hover {
@@ -68,3 +133,19 @@ body.quarto-dark .callout.callout-important  { background-color: rgba(#212B58, 0
 body.quarto-dark .callout.callout-warning    { background-color: rgba(#F4B400, 0.14); }
 body.quarto-dark .callout.callout-caution    { background-color: rgba(#EF426F, 0.14); }
 body.quarto-dark .callout.callout-danger     { background-color: rgba(#D7263D, 0.14); }
+
+/* Mark highlight */
+.mark,
+mark {
+  background-color: rgba($accent, 0.25);
+  color: #000;
+  padding: 0.1em 0.2em;
+  border-radius: 0.15em;
+}
+
+/* Dark mode highlight */
+body.quarto-dark .mark,
+body.quarto-dark mark {
+  background-color: rgba($accent, 0.35);
+  color: #fff;
+}

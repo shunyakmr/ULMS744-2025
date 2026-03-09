@@ -1,5 +1,0 @@
----
-title: "1. Foundations of Reproducible Analytics"
----
-
-## Released in Week 6 (Reading Week)...

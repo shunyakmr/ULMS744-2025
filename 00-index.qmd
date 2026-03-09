@@ -15,7 +15,7 @@ Welcome to the course website dedicated to the ULMS744 module: *Sports Analytics
 
 ## Pre-requisites {.unnumbered}
 
-This module builds directly on the ULMS725 module: *Introduction to Programming and Analysis*, extending the programming and analytical skills introduced there into more applied contexts. 
+This module builds directly on the ULMS725 module: *Introduction to Programming and Analysis*, extending the programming and analytical skills introduced there into more applied contexts.
 
 Students are therefore expected to have access to a functioning installation of R (version 4.5+) and to be comfortable with core R workflows. This includes skills such as installing/ using packages, importing/ manipulating datasets and restructuring data for analysis.
 
@@ -51,11 +51,15 @@ For specific assistance with this module, you can:
 
 -   Ask a question at the end of lectures or during the seminars
 
--   Book into the Office Hours (link to Bookings with me)
+-   Book into the Office Hours: \[[link](https://outlook.office.com/bookwithme/user/7c4dd5b5714749a782d4dba134872023@liverpool.ac.uk?anonymous&ismsaljsauthenabled&ep=plink)\]
 
 ## Acknowledgements {.unnumbered}
 
-This workbook is created using the [Quarto](https://quarto.org/) publishing system. It takes inspiration and design elements from:
+This workbook is created using the [Quarto](https://quarto.org/) publishing system. Elements of this workbook are partially based on and modified from:
+
+-   The [ULMS562: Business Analytics for Organisations 2025-2026](https://shunyakmr.github.io/ULMS562-2025/00-index.html) workbook by [Shunya Kimura](https://www.liverpool.ac.uk/people/shunya-kimura)
+
+This year's workbook also takes inspiration and design elements from:
 
 -   The [GEOG0030: Geocomputation](https://jtvandijk.github.io/GEOG0030/00-index.html) workbook by [Justin van Dijk](https://www.mappingdutchman.com)
 -   The [POLS0010: Data Analysis 2024](https://jcheshire.com/pols0010-data-analysis-2024/) workbook by [James Cheshire](https://jcheshire.com/)

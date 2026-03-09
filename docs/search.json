@@ -22,6 +22,17 @@
     ]
   },
   {
+    "objectID": "slides/w7-slides-lecture.html#section-1",
+    "href": "slides/w7-slides-lecture.html#section-1",
+    "title": "Week 7 Lecture",
+    "section": "Section 1",
+    "text": "Section 1",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "1. Foundations of Reproducible Analytics"
+    ]
+  },
+  {
     "objectID": "00-index.html#welcome",
     "href": "00-index.html#welcome",
     "title": "Sports Analytics in Practice",
@@ -70,7 +81,7 @@
     "href": "00-index.html#help-support",
     "title": "Sports Analytics in Practice",
     "section": "Help & Support",
-    "text": "Help & Support\nFor specific assistance with this module, you can:\n\nRefer to the Canvas assignments tab for queries about module assignments\nAsk a question at the end of lectures or during the seminars\nBook into the Office Hours (link to Bookings with me)",
+    "text": "Help & Support\nFor specific assistance with this module, you can:\n\nRefer to the Canvas assignments tab for queries about module assignments\nAsk a question at the end of lectures or during the seminars\nBook into the Office Hours: [link]",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -81,7 +92,7 @@
     "href": "00-index.html#acknowledgements",
     "title": "Sports Analytics in Practice",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. It takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2024 workbook by James Cheshire\nThe GEOG0051: Mining Social and Geographic Datasets 2020 materials by Stephen Law\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
+    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. Elements of this workbook are partially based on and modified from:\n\nThe ULMS562: Business Analytics for Organisations 2025-2026 workbook by Shunya Kimura\n\nThis year’s workbook also takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2024 workbook by James Cheshire\nThe GEOG0051: Mining Social and Geographic Datasets 2020 materials by Stephen Law\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
     "crumbs": [
       "Module Overview",
       "Welcome"

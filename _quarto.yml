@@ -52,11 +52,12 @@ website:
           file: 00-index.qmd
       - section: "Reproducible Workflows for Sports Analytics"
         contents:
-        - 01-start.qmd
-        - 02-api.qmd
-        - 03-shiny1.qmd
-        - 04-shiny2.qmd
-        - 05-portfolio.qmd
+        - text: "1. Foundations of Reproducible Analytics"
+          file: slides/w7-slides-lecture.qmd
+        - workbooks/02-api.qmd
+        - workbooks/03-shiny1.qmd
+        - workbooks/04-shiny2.qmd
+        - workbooks/05-portfolio.qmd
       - section: "Additional Resources"
         contents:
         - 09-project.qmd

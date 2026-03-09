@@ -1,5 +1,0 @@
----
-title: "3. Interactive Dashboards with Shinylive I"
----
-
-## Released in Week 8...

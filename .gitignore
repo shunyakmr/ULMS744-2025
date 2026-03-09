@@ -1,10 +1,30 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-
+# Quarto
 /.quarto/
-
 **/*.quarto_ipynb
-
 /.luarc.json
+
+# Data (keep out of version control)
+data/
+
+# Assignments (private)
+assignments/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code (local dev config)
+.claude/
+
+# undone parts
+workbooks/02-api.qmd
+workbooks/03-shiny1.qmd
+workbooks/04-shiny2.qmd
+workbooks/05-portfolio.qmd
+09-project.qmd
