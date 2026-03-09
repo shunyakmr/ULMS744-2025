@@ -17,6 +17,7 @@ This repository generates the course handbook for the ULMS744 module at the Univ
 ## Built with
 
 - [Quarto](https://quarto.org/) publishing system
+- [Reveal.js](https://revealjs.com/) lecture slides (via Quarto)
 - [R](https://www.r-project.org/) (version 4.5+)
 
 ## License

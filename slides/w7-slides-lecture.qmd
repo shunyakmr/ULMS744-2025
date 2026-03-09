@@ -6,58 +6,10 @@ format:
     incremental: true
     slide-number: true
     slide-level: 3
-    output-file: "w7-slides-lecture.html"
     theme: ../scss/custom.scss
     revealjs-plugins:
       - pointer
     echo: true
 ---
 
-### Sports Analytics in Practice {.not-bold}
-
-#### Foundations of Reproducible Analytics
-
-![](../images/UoL%20Zoom%20Backgrounds_20226.jpg){.stretch fig-align="center"}
-
-### Module Outline
-
-```{=html}
-<div style="width:100%; font-family:Poppins,sans-serif; font-size:0.82em; margin-top:2em;">
-
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
-      <span style="width:3.2em; font-weight:700; color:#EF426F;">W7</span>
-      <span style="font-weight:600;">Foundations of Reproducible Analytics</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:3.2em; font-weight:600; color:#aaa;">W8</span>
-      <span>API &amp; Data Sourcing</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:3.2em; font-weight:600; color:#aaa;">W9</span>
-      <span>Interactive Dashboards with Shinylive I</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:3.2em; font-weight:600; color:#aaa;">W10</span>
-      <span>Interactive Dashboards with Shinylive II</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; color:#555;">
-      <span style="width:3.2em; font-weight:600; color:#aaa;">W11</span>
-      <span>The Professional Portfolio</span>
-    </div>
-
-</div>
-```
-
-### This Week
-
--   TODO
-
-## Section 1
-
-### Slide Title
-
-Content here
-
-::: notes
-Speaker notes here.
-:::
+## Slides Released Soon...

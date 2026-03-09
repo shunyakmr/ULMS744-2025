@@ -22,11 +22,11 @@
     ]
   },
   {
-    "objectID": "slides/w7-slides-lecture.html#section-1",
-    "href": "slides/w7-slides-lecture.html#section-1",
+    "objectID": "slides/w7-slides-lecture.html#slides-released-soon",
+    "href": "slides/w7-slides-lecture.html#slides-released-soon",
     "title": "Week 7 Lecture",
-    "section": "Section 1",
-    "text": "Section 1",
+    "section": "Slides Released Soon…",
+    "text": "Slides Released Soon…",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
       "1. Foundations of Reproducible Analytics"
@@ -97,5 +97,19 @@
       "Module Overview",
       "Welcome"
     ]
+  },
+  {
+    "objectID": "slides/placeholder.html#module-overview",
+    "href": "slides/placeholder.html#module-overview",
+    "title": "Week 7 Lecture",
+    "section": "Module Overview",
+    "text": "Module Overview"
+  },
+  {
+    "objectID": "slides/placeholder.html#foundations-of-reproducible-analytics",
+    "href": "slides/placeholder.html#foundations-of-reproducible-analytics",
+    "title": "Week 7 Lecture",
+    "section": "Foundations of Reproducible Analytics",
+    "text": "Foundations of Reproducible Analytics"
   }
 ]
