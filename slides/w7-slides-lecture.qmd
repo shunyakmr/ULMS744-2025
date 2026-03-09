@@ -6,6 +6,7 @@ format:
     incremental: true
     slide-number: true
     slide-level: 3
+    output-file: "w7-slides-lecture.html"
     theme: ../scss/custom.scss
     revealjs-plugins:
       - pointer
