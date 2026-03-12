@@ -4,7 +4,7 @@ meta:
   title: ULMS744
 
 urls:
-  u01: "slides/w7-slides-lecture.html"
+  u01: "workbooks/01-setup.html"
   u02: "workbooks/02-api.html"
   u03: "workbooks/03-shiny1.html"
   u04: "workbooks/04-shiny2.html"

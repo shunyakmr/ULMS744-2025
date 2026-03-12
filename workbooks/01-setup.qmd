@@ -1,0 +1,356 @@
+---
+title: "1. Foundations of Reproducible Analytics"
+format:
+  html:
+    other-links:
+      - text: Lecture Slides
+        icon: file-slides
+        href: ../slides/w7-slides-lecture.html
+---
+
+In this five-week seminar block, we will build a complete sports analytics workflow in public, using **NBA basketball as the shared worked example**. By the end of the block, you will have a live dashboard on GitHub Pages and a repository that shows your project process clearly.
+
+This week is about foundations. We are not analysing data yet. We are making sure your tools, folders and version control are in place so that the later analytical work runs smoothly.
+
+We will:
+
+1.  install the package stack for the seminar block;
+2.  create a clean RStudio project;
+3.  connect that project to GitHub;
+4.  make and push a first commit.
+
+::: callout-note
+The seminar example is basketball, but the workflow is broader than basketball. Good setup, good file structure and good version control are transferable to any sport analytics project.
+:::
+
+## Key Terms
+
+Before we start, it helps to separate three terms that sound similar but do different jobs.
+
+-   **Git** is the version-control software installed on your computer. It tracks changes to files over time.
+-   **GitHub** is the website that hosts Git repositories online, so you can back up your work, share it, and submit it publicly.
+-   **GitHub Pages** is GitHub's web publishing service. Later in the module, you will use it to publish a website version of your project, such as a dashboard or portfolio page.
+
+In short: Git tracks your work locally, GitHub stores and shares it online, and GitHub Pages turns part of that online repository into a website.
+
+## Why This Matters
+
+Analysts do not work in isolated scripts. They work in projects that need to be:
+
+-   reproducible;
+-   easy to revisit;
+-   easy to share;
+-   easy to extend into reports, dashboards and published outputs.
+
+Git and GitHub are therefore part of the analytical workflow, not an optional extra.
+
+## Pre-Class Checklist
+
+Before the seminar, make sure that:
+
+-   [x] **R 4.5** or later is installed;
+-   [x] **RStudio** opens normally;
+-   [x] **Git** is installed on your machine \[[link](https://git-scm.com/install/)\];
+-   [x] in RStudio, `Tools -> Global Options -> Git/SVN` shows a detected Git executable;
+-   [x] you have a GitHub account;
+-   [x] you can access the internet from your machine.
+
+::: callout-tip
+As a student, you can apply to **GitHub Education**. Follow the application steps at this link: \[[link](https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student)\]. This will grant you access to additional features that may become useful later in the module.
+:::
+
+## Initial Setup
+
+### Step 1: Install the Core Packages
+
+Run the following in the RStudio Console.
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+install.packages("tidyverse")
+install.packages("hoopR")
+install.packages("sportyR")
+install.packages("plotly")
+install.packages("ggrepel")
+install.packages("shiny")
+install.packages("shinylive")
+install.packages("usethis")
+install.packages("gitcreds")
+```
+
+Then verify that the key packages load.
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+library(tidyverse)
+library(hoopR)
+library(sportyR)
+library(plotly)
+library(shiny)
+```
+
+::: callout-warning
+If package installation fails, read the error carefully before retrying. Most problems come from a missing system dependency, a permissions issue, or an interrupted download.
+:::
+
+### Step 2: Create the Project
+
+An **RStudio Project** keeps all of the files for one piece of work together in one folder. The file with the `.Rproj` extension stores the project settings, and opening that file tells RStudio, "this is the working directory for this project".
+
+Create a new RStudio project:
+
+1.  `File -> New Project -> New Directory -> New Project`
+2.  project name: `nba-analytics`
+3.  tick `Create a git repository`
+4.  for the location, choose your **OneDrive** folder
+5.  inside OneDrive, create a folder called `ULMS744` if you do not already have one
+6.  create `nba-analytics` inside that `ULMS744` folder
+
+So the project should live in a location similar to:
+
+``` text
+OneDrive/
+└── ULMS744/
+    └── nba-analytics/
+```
+
+This matters because you need a folder structure you can find quickly, back up easily, and reuse throughout the module.
+
+Let's go through how to open this project together. First, quit your session by going to `File -> Close Project`. Whenever you want to start your new R session, go to `File -> Open Project` and then navigate to the folder where you saved your project. Once you open that folder, click the `.Rproj` file (in our case, you should see a file called `nba-analytics.Rproj` in the folder). Now we're ready!
+
+::: callout-note
+Once you open a project, you should see the **file panel** update automatically.
+:::
+
+Then create the project folders we will use throughout the block (paste below in the RStudio Console).
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+dir.create("data")
+dir.create("scripts")
+dir.create("output")
+dir.create("app")
+```
+
+Your project should now look like this:
+
+``` text
+nba-analytics/
+├── app/
+├── data/
+├── output/
+├── scripts/
+├── nba-analytics.Rproj
+└── .gitignore
+```
+
+### Step 3: Create a Simple README
+
+A `README.md` file is the short front-page description of a project. When someone opens your repository on GitHub, the README is usually the first thing they see. It should explain, in plain language, what the project is and what it is for.
+
+In the **Files** pane in RStudio:
+
+1.  click `New File`
+2.  choose `Text File`
+3.  save it as `README.md`
+4.  copy and paste the text below into the file
+
+``` md
+# NBA Analytics Workflow
+
+A seminar project for ULMS744: Sports Analytics in Practice.
+
+This project uses NBA basketball as a worked example to build a reproducible sports analytics workflow in R.
+
+Tools used: tidyverse, hoopR, sportyR, plotly, Shiny, and Shinylive.
+```
+
+### Step 4: Check `.gitignore`
+
+The `.gitignore` file tells Git which files it should **not** track. This is useful for temporary files, machine-specific files, and files that would create clutter or problems if uploaded to GitHub.
+
+In the **Files** pane in RStudio:
+
+1.  click `Open File`
+2.  choose `.gitignore`
+3.  copy and paste the text below into the file
+
+``` text
+.Rhistory
+.Rdata
+.RData
+.Ruserdata
+.DS_Store
+Thumbs.db
+*.zip
+*.gz
+```
+
+::: callout-note
+What do these entries mean, and why ignore them?
+
+-   `.Rhistory` is a record of commands typed in the R console.
+-   `.Rdata` and `.RData` are saved R workspace files.
+-   `.Ruserdata` stores user-specific session settings.
+-   `.DS_Store` is a hidden macOS system file.
+-   `Thumbs.db` is a hidden Windows system file.
+-   `*.zip` and `*.gz` mean any compressed archive with those endings.
+
+We ignore these files because they are usually temporary, computer-specific, or not part of the main project deliverable. Keeping them out of the repository makes the project cleaner and reduces the chance of uploading unnecessary files to GitHub.
+:::
+
+### Step 5: Create the GitHub Repository
+
+**GitHub** is a website that hosts Git repositories online. It gives you a **remote repository**, meaning a copy of your project that lives on the web rather than only on your own computer.
+
+A **repository** or **repo** is the full project folder that Git tracks over time, including its files and version history.
+
+On GitHub:
+
+1.  create a new repository called `nba-analytics` \[[how-to guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)\];
+2.  make it `Public`;
+3.  do **not** add a README or `.gitignore` on GitHub.
+
+At this point you will have:
+
+-   a **local repository** on your computer inside your RStudio project folder;
+-   a **remote repository** on GitHub.
+
+The local repository is where you do the work. The remote repository is the online copy that you push to GitHub so it can be backed up, shared, and submitted as part of your portfolio.
+
+### Step 6: Authenticate and Connect
+
+Create a Personal Access Token:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+usethis::create_github_token()
+```
+
+This will open GitHub in your browser so that you can create a **Personal Access Token (PAT)**. A PAT is like a password that allows RStudio and Git to talk securely to your GitHub account.
+
+After GitHub shows you the token:
+
+1.  copy the token immediately;
+2.  return to RStudio;
+3.  run the command below in the **Console**;
+4.  paste the token when R asks for it;
+5.  press Enter.
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+gitcreds::gitcreds_set()
+```
+
+This stores the token securely on your computer so that Git can authenticate when you push to GitHub.
+
+Then open the **Terminal** tab inside RStudio and add the remote repository, replacing `YOUR-USERNAME`.
+
+::: callout-important
+For command-line steps in this workbook, use the **Terminal tab inside RStudio**.
+
+![Terminal tab shown inside the red box.](/images/terminal.png)
+:::
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+git remote add origin https://github.com/YOUR-USERNAME/nba-analytics.git
+git branch -M main
+```
+
+This command links your local repository to the remote repository on GitHub. After that, your local project and the online project can talk to each other.
+
+### Step 7: Make Your First Commit
+
+In Git, **staging** means telling Git, "these are the files I want to include in my next save point". You can think of the staging area as a waiting area for changes that are ready to be recorded.
+
+A **commit** is that recorded save point. It is a snapshot of your project at a particular moment, together with a short message explaining what you did.
+
+For this first commit, you want to include the files you have just created for the project setup.
+
+Then commit with the message:
+
+``` text
+Initial project setup
+```
+
+In simple terms, the workflow is:
+
+1.  **stage** the files, meaning choose what will go into the snapshot;
+2.  **commit** the files, meaning save that snapshot into the Git history;
+3.  **push** the commit, meaning send that saved snapshot to GitHub.
+
+In the **RStudio Terminal**, the commands for your first commit are:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+git add .
+git commit -m "Initial project setup"
+git push -u origin main
+```
+
+What each command does:
+
+-   `git add .` stages all current files in the project folder for the next commit.
+-   `git commit -m "Initial project setup"` creates the snapshot and gives it a message.
+-   `git push -u origin main` uploads that commit to GitHub and connects your local `main` branch to the remote one.
+
+Push to GitHub and verify that the repository is visible online. Once this is done, you have created both the local project history and the remote online copy of that history.
+
+![Your new repository should now look like this.](/images/github-page-initial.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+## Independent Practice
+
+Complete the following:
+
+1.  create `scripts/00-setup.R`;
+2.  add the `library()` calls for the main packages;
+3.  commit and push that file.
+
+```{r}
+#| eval: false
+#| filename: "scripts/00-setup.R"
+
+library(tidyverse)
+library(hoopR)
+library(sportyR)
+library(plotly)
+library(shiny)
+library(shinylive)
+```
+
+## Common Issues
+
+| Problem | Solution |
+|------------------------------------|------------------------------------|
+| Git pane not visible | Check `Tools -> Global Options -> Git/SVN` and confirm Git is installed |
+| `fatal: not a git repository` | Recreate the project with `Create a git repository` ticked, or run `git init` in the project |
+| Push rejected | Check the remote URL and PAT |
+| Package install fails | Restart R and retry; check for operating-system-specific setup issues |
+
+## Before You Go
+
+Well done for getting through to the end! 🚀
+
+Today you:
+
+-   installed the course package stack;
+-   created the shared project structure;
+-   connected the project to GitHub;
+-   made the first public commit.
+
+Next week we will use `hoopR` to source real NBA data, inspect it, and save cleaned datasets for later visualisation and dashboard work.
