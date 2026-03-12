@@ -3,6 +3,13 @@ project:
   output-dir: docs
   resources:
     - assets/*
+  render:
+    - 00-index.qmd
+    - slides/w7-slides-lecture.qmd
+    - workbooks/02-api.qmd
+    - workbooks/03-shiny1.qmd
+    - workbooks/04-shiny2.qmd
+    - workbooks/05-portfolio.qmd
   
 lang: en
 
@@ -58,9 +65,5 @@ website:
         - workbooks/03-shiny1.qmd
         - workbooks/04-shiny2.qmd
         - workbooks/05-portfolio.qmd
-      - section: "Additional Resources"
-        contents:
-        - 09-project.qmd
   
 editor: visual
-

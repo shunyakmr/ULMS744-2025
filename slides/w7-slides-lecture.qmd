@@ -13,4 +13,95 @@ format:
     echo: true
 ---
 
-## Slides Released Soon...
+### Sports Analytics in Practice (Part 2) {.not-bold}
+
+#### Welcome
+
+![](../images/UoL%20Zoom%20Backgrounds_20226.jpg){.stretch fig-align="center"}
+
+### Before We Start
+
+![](/images/QRCode%20for%20ULMS744%20Mid-term%20Feedback.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" fig-align="center"}
+
+## Module Overview
+
+### Module Aims (Part 2)
+
+-   Build robust and reproducible project workflows.
+-   Source and manage sports data responsibly.
+-   Communicate findings clearly with visual and interactive outputs.
+-   Produce work that can be presented professionally.
+
+### Module Outline
+
+```{=html}
+<div style="width:100%; font-family:Poppins,sans-serif; font-size:0.98em; margin-top:2em;">
+
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
+      <span style="width:3.2em; font-weight:700; color:#EF426F;">W7</span>
+      <span style="font-weight:600;">Foundations of Reproducible Analytics</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W8</span>
+      <span>API &amp; Data Sourcing</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W9</span>
+      <span>Interactive Dashboards with Shinylive I</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W10</span>
+      <span>Interactive Dashboards with Shinylive II</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W11</span>
+      <span>The Professional Portfolio</span>
+    </div>
+
+</div>
+```
+
+### Module Structure
+
+-   This part of the module consists of five lectures (Thursday afternoon): two two-hour lectures (Weeks 7 and 11) and three one-hour lectures (Weeks 8, 9 and 10). All are delivered in-person.
+-   There are three two-hour seminars held weekly on Friday afternoons in Weeks 8, 9 and 10.
+-   Instructions for the seminar are published on the dedicated [ULMS744 workbook](https://shunyakmr.github.io/ULMS744-2025/).
+
+### Workbook
+
+![](/images/workbook-intro.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+### Practicalities
+
+-   Lecture slides will be made available on Canvas before each lecture. Lectures are recorded using **Panopto**.
+-   During the seminars you are generally expected to work independently through the exercises in the workbook with the opportunity to ask questions.
+
+### Communication
+
+-   All important information will be communicated through **Canvas**.
+-   For specific questions on the module, my Office Hours are scheduled on Monday 1.30pm – 2.30pm and Wednesday 3.30pm – 4.30pm. Slots can be booked through [Microsoft Bookings](https://outlook.office.com/bookwithme/user/7c4dd5b5714749a782d4dba134872023@liverpool.ac.uk?anonymous&ismsaljsauthenabled&ep=plink).
+
+### Assignments
+
+-   **Individual case study report** (max 20 pages; 70%): you will source sports data from the web and develop a data dashboard, which will be hosted on GitHub as part of a professional portfolio. You will also submit a comprehensive report detailing your findings, methodology and supporting code. **Deadline: May 13, 2026.**
+-   Specific guidance will be announced in Canvas approx. 4 weeks prior to each deadline.
+
+### Troubleshooting
+
+-   Ask a question at the end of a lecture.
+-   Ask a question during a seminar.
+-   Google is your friend! Some AI tools might also be useful (e.g., MS Copilot, Claude, ChatGPT) but ask questions wisely!
+
+### Questions?
+
+```{=html}
+<div style="position:relative; height:460px;">
+  <div style="position:absolute; top:58%; left:50%; transform:translate(-50%, -50%); text-align:center; width:70%;">
+    <p style="font-size:1.2em; margin-bottom:0.5em;"><strong>Shunya Kimura</strong></p>
+    <p style="font-size:1em; margin-bottom:0;">s.kimura@liverpool.ac.uk</p>
+  </div>
+  <div style="position:absolute; right:0; bottom:-42px; line-height:0;">
+    <img src="../assets/ULMS744-logo.svg" alt="ULMS744 logo" style="width:220px; max-width:100%;">
+  </div>
+</div>
+```

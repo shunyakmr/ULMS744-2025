@@ -13,6 +13,8 @@ knitr::include_graphics('images/UoL Zoom Backgrounds_20226.jpg')
 
 Welcome to the course website dedicated to the ULMS744 module: *Sports Analytics in Practice*! On this site, you will find the **coding seminar materials**. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.
 
+This revised seminar block uses **basketball as the common worked example** while preparing you to transfer the same workflow to a different sport in the assignment.
+
 ## Pre-requisites {.unnumbered}
 
 This module builds directly on the ULMS725 module: *Introduction to Programming and Analysis*, extending the programming and analytical skills introduced there into more applied contexts.
@@ -37,11 +39,12 @@ Seminars for this module run on the highlighted week below. The topics covered o
 |----------------------|----------------------|----------------------------|
 |  |  | **Reading week** |
 | 7 | 9$^{th}$ Mar. | [Foundations of Reproducible Analytics]({{< var urls.u01 >}}) |
-| **8** | [16$^{th}$ Mar.]{.mark} | [API & Data Sourcing]({{< var urls.u02 >}}) |
+| **8** | [16$^{th}$ Mar.]{.mark} | [Setup, GitHub & Project Structure]({{< var urls.u02 >}}) |
 |  |  | **Easter period** |
-| **9** | [13$^{th}$ Apr.]{.mark} | [Interactive Dashboards with Shinylive I]({{< var urls.u03 >}}) |
-| **10** | [20$^{th}$Apr.]{.mark} | [Interactive Dashboards with Shinylive II]({{< var urls.u04 >}}) |
-| 11 | 27$^{th}$ Apr. | [The Professional Portfolio]({{< var urls.u05 >}}) |
+| **9** | [13$^{th}$ Apr.]{.mark} | [Sourcing Sports Data from an API]({{< var urls.u03 >}}) |
+| **10** | [20$^{th}$Apr.]{.mark} | [Visualising Sports Data & Introduction to Shiny]({{< var urls.u04 >}}) |
+| 11 | 27$^{th}$ Apr. | [Building Your Shinylive Dashboard]({{< var urls.u05 >}}) |
+| 12 | 4$^{th}$ May | Deploying to GitHub Pages |
 
 ## Help & Support {.unnumbered}
 

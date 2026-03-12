@@ -1,7 +1,0 @@
----
-title: "Individual Coursework Hints"
----
-
-## Released Soon...
-
-![Watch This Space by reganography](images/watch-this-space.jpg){width="520"}

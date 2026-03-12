@@ -104,6 +104,17 @@ a:hover {
   color: darken($primary, 10%);
 }
 
+/* Highlight bold text in slides */
+.reveal strong,
+.reveal b {
+  background-color: rgba($accent, 0.22);
+  color: inherit;
+  padding: 0.04em 0.18em;
+  border-radius: 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 /* Helper mixin: consistent callout styling */
 @mixin callout-theme($c) {
   border-left: 4px solid $c;
@@ -148,4 +159,9 @@ body.quarto-dark .mark,
 body.quarto-dark mark {
   background-color: rgba($accent, 0.35);
   color: #fff;
+}
+
+body.quarto-dark .reveal strong,
+body.quarto-dark .reveal b {
+  background-color: rgba($accent, 0.32);
 }

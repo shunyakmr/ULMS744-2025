@@ -1,32 +1,10 @@
 [
   {
-    "objectID": "09-project.html",
-    "href": "09-project.html",
-    "title": "Individual Coursework Hints",
-    "section": "",
-    "text": "Watch This Space by reganography",
-    "crumbs": [
-      "Additional Resources",
-      "Individual Coursework Hints"
-    ]
-  },
-  {
-    "objectID": "09-project.html#released-soon",
-    "href": "09-project.html#released-soon",
-    "title": "Individual Coursework Hints",
-    "section": "",
-    "text": "Watch This Space by reganography",
-    "crumbs": [
-      "Additional Resources",
-      "Individual Coursework Hints"
-    ]
-  },
-  {
-    "objectID": "slides/w7-slides-lecture.html#slides-released-soon",
-    "href": "slides/w7-slides-lecture.html#slides-released-soon",
+    "objectID": "slides/w7-slides-lecture.html#module-overview",
+    "href": "slides/w7-slides-lecture.html#module-overview",
     "title": "Week 7 Lecture",
-    "section": "Slides Released Soon…",
-    "text": "Slides Released Soon…",
+    "section": "Module Overview",
+    "text": "Module Overview",
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
       "1. Foundations of Reproducible Analytics"
@@ -37,7 +15,7 @@
     "href": "00-index.html#welcome",
     "title": "Sports Analytics in Practice",
     "section": "Welcome!",
-    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the coding seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.",
+    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the coding seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.\nThis revised seminar block uses basketball as the common worked example while preparing you to transfer the same workflow to a different sport in the assignment.",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -70,7 +48,7 @@
     "href": "00-index.html#timetable",
     "title": "Sports Analytics in Practice",
     "section": "Timetable",
-    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nAPI & Data Sourcing\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nInteractive Dashboards with Shinylive I\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive II\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
+    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nSetup, GitHub & Project Structure\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nSourcing Sports Data from an API\n\n\n10\n20\\(^{th}\\)Apr.\nVisualising Sports Data & Introduction to Shiny\n\n\n11\n27\\(^{th}\\) Apr.\nBuilding Your Shinylive Dashboard\n\n\n12\n4\\(^{th}\\) May\nDeploying to GitHub Pages",
     "crumbs": [
       "Module Overview",
       "Welcome"
