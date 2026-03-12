@@ -125,7 +125,7 @@
     "href": "00-index.html#timetable",
     "title": "Sports Analytics in Practice",
     "section": "Timetable",
-    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nSetup, GitHub & Project Structure\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nSourcing Sports Data from an API\n\n\n10\n20\\(^{th}\\)Apr.\nVisualising Sports Data & Introduction to Shiny\n\n\n11\n27\\(^{th}\\) Apr.\nBuilding Your Shinylive Dashboard\n\n\n12\n4\\(^{th}\\) May\nDeploying to GitHub Pages",
+    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nAPI & Data Sourcing\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nInteractive Dashboards with Shinylive I\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive II\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
     "crumbs": [
       "Module Overview",
       "Welcome"
@@ -147,7 +147,7 @@
     "href": "00-index.html#acknowledgements",
     "title": "Sports Analytics in Practice",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. Elements of this workbook are partially based on and modified from:\n\nThe ULMS562: Business Analytics for Organisations 2025-2026 workbook by Shunya Kimura\n\nThis year’s workbook also takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2024 workbook by James Cheshire\nThe GEOG0051: Mining Social and Geographic Datasets 2020 materials by Stephen Law\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
+    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. Elements of this workbook are partially based on and modified from:\n\nThe ULMS562: Business Analytics for Organisations 2025-2026 workbook by Shunya Kimura\n\nThis year’s workbook also takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
     "crumbs": [
       "Module Overview",
       "Welcome"

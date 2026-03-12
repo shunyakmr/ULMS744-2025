@@ -39,12 +39,11 @@ Seminars for this module run on the highlighted week below. The topics covered o
 |----------------------|----------------------|----------------------------|
 |  |  | **Reading week** |
 | 7 | 9$^{th}$ Mar. | [Foundations of Reproducible Analytics]({{< var urls.u01 >}}) |
-| **8** | [16$^{th}$ Mar.]{.mark} | [Setup, GitHub & Project Structure]({{< var urls.u02 >}}) |
+| **8** | [16$^{th}$ Mar.]{.mark} | [API & Data Sourcing]({{< var urls.u02 >}}) |
 |  |  | **Easter period** |
-| **9** | [13$^{th}$ Apr.]{.mark} | [Sourcing Sports Data from an API]({{< var urls.u03 >}}) |
-| **10** | [20$^{th}$Apr.]{.mark} | [Visualising Sports Data & Introduction to Shiny]({{< var urls.u04 >}}) |
-| 11 | 27$^{th}$ Apr. | [Building Your Shinylive Dashboard]({{< var urls.u05 >}}) |
-| 12 | 4$^{th}$ May | Deploying to GitHub Pages |
+| **9** | [13$^{th}$ Apr.]{.mark} | [Interactive Dashboards with Shinylive I]({{< var urls.u03 >}}) |
+| **10** | [20$^{th}$Apr.]{.mark} | [Interactive Dashboards with Shinylive II]({{< var urls.u04 >}}) |
+| 11 | 27$^{th}$ Apr. | [The Professional Portfolio]({{< var urls.u05 >}}) |
 
 ## Help & Support {.unnumbered}
 
@@ -65,6 +64,4 @@ This workbook is created using the [Quarto](https://quarto.org/) publishing syst
 This year's workbook also takes inspiration and design elements from:
 
 -   The [GEOG0030: Geocomputation](https://jtvandijk.github.io/GEOG0030/00-index.html) workbook by [Justin van Dijk](https://www.mappingdutchman.com)
--   The [POLS0010: Data Analysis 2024](https://jcheshire.com/pols0010-data-analysis-2024/) workbook by [James Cheshire](https://jcheshire.com/)
--   The [GEOG0051: Mining Social and Geographic Datasets 2020](https://www.ucl.ac.uk/module-catalogue/modules/mining-social-and-geographic-datasets-GEOG0051) materials by [Stephen Law](https://profiles.ucl.ac.uk/21695-stephen-law)
 -   The [POLS0010: Data Analysis 2019](https://www.dropbox.com/scl/fi/8ryqys1qxtdkiximp9mkh/POLS0010-Course-Outline-2023-24.pdf?rlkey=x1p3r7kwjplf1rokxo5gu5p4e&e=1&dl=0) materials by [Tom O'Grady](https://tomogradypolitics.wordpress.com/)
