@@ -6,6 +6,7 @@ project:
   render:
     - 00-index.qmd
     - slides/w7-slides-lecture.qmd
+    - slides/w8-slides-lecture.qmd
     - workbooks/01-setup.qmd
     - workbooks/02-api.qmd
     - workbooks/03-shiny1.qmd

@@ -1,0 +1,350 @@
+---
+format:
+  revealjs:
+    title: "Week 8 Lecture"
+    subtitle: "Dr Shunya Kimura <br> skimura@liverpool.ac.uk"
+    incremental: true
+    slide-number: true
+    slide-level: 3
+    output-file: "w8-slides-lecture.html"
+    theme: ../scss/custom.scss
+    revealjs-plugins:
+      - pointer
+    echo: true
+---
+
+### Sports Analytics in Practice {.not-bold}
+
+#### API & Data Sourcing
+
+![](/images/UoL%20Zoom%20Backgrounds_20226.jpg){.stretch fig-align="center"}
+
+### Module Outline
+
+```{=html}
+<div style="width:100%; font-family:Poppins,sans-serif; font-size:0.98em; margin-top:2em;">
+
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W7</span>
+      <span>Foundations of Reproducible Analytics</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
+      <span style="width:3.2em; font-weight:700; color:#EF426F;">W8</span>
+      <span style="font-weight:600;">API &amp; Data Sourcing</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W9</span>
+      <span>Interactive Dashboards with Shinylive I</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W10</span>
+      <span>Interactive Dashboards with Shinylive II</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W11</span>
+      <span>The Professional Portfolio</span>
+    </div>
+
+</div>
+```
+
+### Last Week
+
+-   Installed the package stack for this block.
+-   Created an RStudio project with a clean folder structure.
+-   Connected the project to GitHub.
+-   Made and pushed a first commit.
+
+## Quick Recap
+
+### Go To Workbook...
+
+![](/images/workbook-recap.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+::: notes
+Go through recap and setting up the shortcut ./\_publish.sh
+:::
+
+## This Week
+
+### Our Plan
+
+-   Understand what an API is and why it matters.
+-   Use the `hoopR` package to pull NBA data.
+-   Inspect, clean and summarise raw data.
+-   Save prepared datasets for later weeks.
+
+## What Is an API?
+
+### The Short Answer
+
+-   **API** stands for **Application Programming Interface**.
+-   It is a structured way for one piece of software to request data from another.
+-   Instead of downloading a file manually, your R script asks a server to send the data directly.
+
+### Why Analysts Care
+
+-   Manual downloads are **not reproducible**. You cannot re-run them automatically.
+-   APIs give you a **programmatic, repeatable** path to fresh data.
+-   Most modern sports data platforms expose their data through APIs.
+
+### The Mental Model
+
+```{=html}
+<div style="display:flex; flex-direction:column; align-items:center; gap:0.3em; margin-top:1em; font-size:1.05em;">
+
+  <div style="padding:0.5em 2em; background:#264653; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
+    1. Your R script calls a function
+  </div>
+
+  <div style="font-size:1.5em; color:#888;">↓</div>
+
+  <div style="padding:0.5em 2em; background:#2a9d8f; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
+    2. The function sends an API request
+  </div>
+
+  <div style="font-size:1.5em; color:#888;">↓</div>
+
+  <div style="padding:0.5em 2em; background:#e76f51; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
+    3. The server returns the data
+  </div>
+
+  <div style="font-size:1.5em; color:#888;">↓</div>
+
+  <div style="padding:0.5em 2em; background:#EF426F; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
+    4. You get a data frame in R
+  </div>
+
+</div>
+```
+
+### Everyday Analogies
+
+-   A weather app on your phone uses an API to get forecast data.
+-   When you search for flights, the site queries airline APIs behind the scenes.
+-   APIs are just **structured conversations** between machines.
+
+## SportsDataVerse
+
+### What Is It?
+
+#### <https://r.sportsdataverse.org/>
+
+-   **SportsDataVerse** is a collection of open-source R and Python packages for accessing sports data.
+-   Each package wraps an API for a specific sport or data source.
+-   The API calls are hidden behind simple R functions.
+
+### Key Packages
+
+![R Packages in the SportDataverse](/images/sdv-wall.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" fig-align="left"}
+
+```{=html}
+<div style="width:100%; font-family:Poppins,sans-serif; font-size:0.95em; margin-top:1.5em;">
+
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
+      <span style="width:9em; font-weight:700; color:#EF426F;">hoopR</span>
+      <span>NBA and men's college basketball</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:9em; font-weight:600; color:#aaa;">wehoop</span>
+      <span>WNBA and women's college basketball</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:9em; font-weight:600; color:#aaa;">nflverse</span>
+      <span>NFL play-by-play and roster data</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:9em; font-weight:600; color:#aaa;">baseballr</span>
+      <span>MLB Statcast and FanGraphs data</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; color:#555;">
+      <span style="width:9em; font-weight:600; color:#aaa;">worldfootballR</span>
+      <span>Football (soccer) data from FBref, Transfermarkt, etc.</span>
+    </div>
+
+</div>
+```
+
+### Why hoopR?
+
+#### <https://hoopr.sportsdataverse.org/>
+
+-   Rich, publicly available NBA data with no authentication required.
+-   Clean R functions that return ready-to-use data frames.
+-   The workflow pattern transfers to any sport — only the package and column names change.
+
+## Reading the Documentation
+
+### The Documentation Habit
+
+-   Before you call a function, **read its documentation**.
+-   The documentation tells you:
+    -   what data sources are accessible;
+    -   what **functions** exist to call them;
+    -   what **parameters** (inputs) each function accepts;
+    -   what kind of data it **returns**.
+
+### Start with the Package Website
+
+-   Every SportsDataVerse package has a documentation website.
+-   It gives you the big picture: what data is available, what functions to use, and how to get started.
+-   For hoopR: <https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html>
+
+### Then Check Individual Functions in R
+
+-   Once you know which function you want, use `?` in the RStudio Console:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+?load_nba_team_box
+```
+
+-   The help page shows the **Usage**, **Arguments** and **Value** sections.
+-   **Arguments** = the parameters you can set when calling the function.
+-   **Value** = what the function gives back (usually a data frame).
+
+### What You Learn from the Docs
+
+-   `load_nba_team_box()` has one key parameter: `seasons`.
+-   `seasons` accepts a **numeric vector** — you can request one season or several.
+-   The function returns a data frame with **one row per team per game**.
+-   Knowing this before you run the code saves trial and error.
+
+### The Same Pattern, Different Sport
+
+-   For football, the `worldfootballR` package works the same way.
+-   Start with the Transfermarkt documentation: <https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html>
+-   Then check individual functions in R with `?tm_player_market_values`.
+-   You would discover parameters like `country_name`, `start_year` and `league_url`.
+-   The documentation tells you which values are valid for each parameter.
+
+### General Workflow
+
+```{=html}
+<div style="display:flex; flex-direction:column; align-items:center; gap:0.2em; margin-top:0.8em; font-size:0.95em;">
+
+  <div style="padding:0.4em 1.5em; background:#264653; color:white; border-radius:8px; text-align:center; width:80%;">
+    1. Browse the <strong>package website</strong> — what data &amp; functions are available?
+  </div>
+
+  <div style="font-size:1.3em; color:#888;">↓</div>
+
+  <div style="padding:0.4em 1.5em; background:#2a9d8f; color:white; border-radius:8px; text-align:center; width:80%;">
+    2. Check <code style="background:rgba(255,255,255,0.2); padding:0.1em 0.3em; border-radius:3px;">?function_name</code> in R — read the <strong>Arguments</strong>
+  </div>
+
+  <div style="font-size:1.3em; color:#888;">↓</div>
+
+  <div style="padding:0.4em 1.5em; background:#e76f51; color:white; border-radius:8px; text-align:center; width:80%;">
+    3. Choose your parameter values (e.g. season, league)
+  </div>
+
+  <div style="font-size:1.3em; color:#888;">↓</div>
+
+  <div style="padding:0.4em 1.5em; background:#EF426F; color:white; border-radius:8px; text-align:center; width:80%;">
+    4. Call the function and inspect the result
+  </div>
+
+</div>
+```
+
+## Good Practice in Data-Sourcing
+
+### Pull → Inspect → Summarise → Save
+
+-   This is the core data-sourcing habit for the module.
+-   It applies to **any** sport and **any** data package.
+
+### Step 1: Pull
+
+-   Load your packages and call the data-sourcing function.
+-   Use the parameters you identified from the documentation.
+-   The result is a **data frame** — typically one row per event, match, or game.
+
+### Step 2: Inspect
+
+-   Before doing anything else, check what you received.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+dim(data)       # how many rows and columns?
+names(data)     # what are the column names?
+glimpse(data)   # what types and values does each column have?
+```
+
+-   You can also click the data frame in the **Environment** panel to browse it visually.
+-   **Never** summarise before you have inspected.
+
+### Step 3: Summarise
+
+-   Filter the data to the subset you need (e.g. regular season, a specific league).
+-   Use `group_by()` to split by team, player, driver, etc.
+-   Use `summarise()` to collapse each group into one row of aggregated statistics.
+-   Use `mutate()` to create new columns from the summary (e.g. win percentage).
+-   Choose the variables that matter for **your** sport and **your** analysis.
+
+### Step 4: Save
+
+-   Save your prepared data so you do not need to re-run API calls every time.
+-   `.rds` preserves R objects exactly (column types, factor levels, everything).
+-   `.csv` is universal and can be opened in Excel, Python, or any other tool.
+-   Use both: `.rds` for your own workflow, `.csv` for sharing.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+saveRDS(my_data, "data/my_prepared_data.rds")
+write_csv(my_data, "data/my_prepared_data.csv")
+```
+
+## Applying This Workflow
+
+### The Pattern Is Transferable
+
+-   The specific functions and column names change from sport to sport.
+-   The **workflow** does not:
+    1.  Read the documentation.
+    2.  Choose your parameters.
+    3.  Pull → Inspect → Summarise → Save.
+-   For your assignment, you will do exactly this with a sport of your choosing.
+
+## Version Control
+
+### Save and Publish Your Work
+
+-   After each meaningful piece of work, commit and push.
+-   Use `_publish.sh` to do it in one step:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+./_publish.sh "Your commit message here"
+```
+
+-   Write a commit message that describes **what** you did, not just "update".
+
+## Homework
+
+### Go To Workbook...
+
+![](/images/workbook-hw.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+### Questions?
+
+```{=html}
+<div style="position:relative; height:460px;">
+  <div style="position:absolute; top:58%; left:50%; transform:translate(-50%, -50%); text-align:center; width:70%;">
+    <p style="font-size:1.2em; margin-bottom:0.5em;"><strong>Shunya Kimura</strong></p>
+    <p style="font-size:1em; margin-bottom:0;">s.kimura@liverpool.ac.uk</p>
+  </div>
+  <div style="position:absolute; right:0; bottom:-42px; line-height:0;">
+    <img src="../assets/ULMS744-logo.svg" alt="ULMS744 logo" style="width:220px; max-width:100%;">
+  </div>
+</div>
+```

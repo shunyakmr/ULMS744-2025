@@ -1,5 +1,468 @@
 ---
 title: "2. API & Data Sourcing"
+format:
+  html:
+    other-links:
+      - text: Lecture Slides
+        icon: file-slides
+        href: ../slides/w8-slides-lecture.html
+    format-links: false
 ---
 
-## Released in Week 7...
+Last week, we set up the project and connected it to GitHub. This week we move into the first core analytical task: **sourcing and preparing sports data through an API workflow in R**.
+
+We will use `hoopR` to pull **NBA basketball** data. Basketball remains our common seminar example because it gives us rich public data and a clear route into visualisation and dashboard building. The workflow, however, is transferable: in another sport, the package and variables will change, but the project logic will stay the same.
+
+We will:
+
+1.  pull team and player data with `hoopR`;
+2.  inspect the returned data frames;
+3.  clean and summarise them into usable tables;
+4.  save those tables for later weeks;
+5.  commit and push the updated project.
+
+## Recap: Last Week
+
+Before we dive in, let's quickly review what we set up last week:
+
+-   [x] R, RStudio and Git are installed and working;
+-   [x] the `nba-analytics` RStudio project exists with folders `data/`, `scripts/`, `output/` and `app/`;
+-   [x] the project is connected to a GitHub repository;
+-   [x] you made and pushed your first commit.
+
+::: callout-tip
+If anything from last week is incomplete, go back to [Workbook 1](01-setup.html) and finish the setup before continuing.
+:::
+
+## A Publishing Shortcut: `_publish.sh`
+
+Last week, we committed and pushed work to GitHub using three separate Terminal commands. That works, but typing the same commands every time gets repetitive. Let's create a small shortcut script that does it all in one step.
+
+### Create the File
+
+In the **Files** pane in RStudio:
+
+1.  click `New File`
+2.  choose `Text File`
+3.  save it as `_publish.sh` in your project root (the same level as `nba-analytics.Rproj`)
+4.  paste the following into the file and save
+
+```{bash}
+#| eval: false
+#| filename: "_publish.sh"
+
+# _publish.sh — A shortcut to save and publish your work to GitHub.
+#
+# Usage (in your R terminal):
+#   ./_publish.sh "Your commit message here"
+#
+# Example:
+#   ./_publish.sh "Add cleaned NBA team and player data"
+
+git add .
+git commit -m "$1"
+git push -u origin main
+
+echo "Done! Your work has been published to GitHub."
+```
+
+### How to Use It
+
+From now on, whenever you want to save and publish your work, open the **RStudio Terminal** and run:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+./_publish.sh "Your commit message here"
+```
+
+Replace the text inside the quotes with a short description of what you did. For example:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+./_publish.sh "Add cleaned NBA team and player data"
+```
+
+That single command will stage all your changes, commit them with your message, and push everything to GitHub. You will use this throughout the rest of the module.
+
+::: callout-note
+The underscore in `_publish.sh` is intentional — it keeps the file near the top of your file list and signals that it is a helper script, not part of the main project output.
+:::
+
+## Why This Matters
+
+Analysts are often judged on whether they can obtain and prepare their own data, not only on whether they can plot a spreadsheet someone else has already cleaned.
+
+The workflow for today is:
+
+``` text
+documentation -> choose parameters -> pull -> inspect -> summarise -> save
+```
+
+That sequence is one of the key transferable habits from this module.
+
+## Initial Setup
+
+Load the libraries.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+library(tidyverse)
+library(hoopR)
+```
+
+## SportsDataverse Workflow
+
+### Reading the Documentation First
+
+Before calling any data-sourcing function, you should **read its documentation**. The documentation tells you what data sources are available, what functions to call, what parameters they accept, and what kind of data they return. This saves time and avoids guesswork.
+
+#### Start with the Package Website
+
+Every SportsDataVerse package has a documentation website. This is the best place to start because it gives you the big picture: what data sources the package can access, what functions are available, and how to get started.
+
+For `hoopR`, the getting-started guide is here: <https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html>
+
+From that page, you can see the main functions the package offers (e.g. `load_nba_team_box()`, `load_nba_player_box()`), what data they return, and how to use them. Browse the package website to discover what is available before you start writing code.
+
+#### Then Check Individual Functions in R
+
+Once you know which function you want to use, check its detailed documentation in RStudio by typing `?` followed by the function name:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+?load_nba_team_box
+```
+
+This opens the help page. The three sections to focus on are:
+
+-   **Usage** — shows the function signature and its default parameter values.
+-   **Arguments** — lists every parameter, explains what it controls, and tells you what values are valid.
+-   **Value** — describes what the function returns (usually a data frame with specific columns).
+
+#### What You Learn from the `hoopR` Docs
+
+Reading the documentation for `load_nba_team_box()`, you discover:
+
+-   It has one key parameter: `seasons`.
+-   `seasons` accepts a numeric vector — you can request a single season (e.g. `2024`) or multiple seasons (e.g. `2020:2024`).
+-   The function returns a data frame where each row is **one team's performance in one game**.
+
+Knowing this before you run the code means you can choose sensible parameter values on the first attempt.
+
+#### Example: A Football Package
+
+The same documentation habit applies to every sports data package. For example, `worldfootballR` provides football (soccer) data from sources including FBref and Transfermarkt. If you wanted to pull transfer data from Transfermarkt, you would start with the package documentation:
+
+<https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html>
+
+That page shows you which functions access Transfermarkt data, what parameters they require, and what the returned data looks like. Once you have identified the function you need, check its details in R:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+?tm_player_market_values
+```
+
+The **Arguments** section would tell you parameters like:
+
+-   `country_name` — e.g. `"England"` for the English leagues
+-   `start_year` — the year the season starts, e.g. `2023` for the 2023/24 season
+-   `league_url` — optionally, a direct Transfermarkt league URL
+
+So a call might look like:
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+epl_values <- tm_player_market_values(
+  country_name = "England",
+  start_year   = 2023
+)
+```
+
+::: callout-important
+You do not need to memorise every parameter. You need to know **where to look**: start with the package website to see what is available, then use `?function_name` in R to check the details. The documentation is always your first stop.
+:::
+
+### Step 1: Pull Team Box Score Data
+
+`load_nba_team_box()` downloads team-level box score data from ESPN via the hoopR API wrapper. Each row in the result represents one team's performance in one game, with columns for points, shooting percentages, rebounds, assists and more.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+nba_team_box <- load_nba_team_box(seasons = 2024)
+```
+
+::: callout-note
+In `hoopR`, `seasons = 2024` means the NBA season that ends in 2024, i.e. the 2023/24 season. This convention is common across SportsDataVerse packages.
+:::
+
+### Step 2: Inspect the Raw Data
+
+Never summarise a dataset before checking what it contains.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+dim(nba_team_box)
+```
+
+`dim()` returns the number of **rows** and **columns**. This tells you how large the dataset is — for example, `2460 46` would mean 2,460 rows and 46 columns.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+names(nba_team_box)
+```
+
+`names()` lists every **column name**. Scan through this to find the variables you care about (team name, score, shooting stats, etc.).
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+glimpse(nba_team_box)
+```
+
+`glimpse()` is the most informative single inspection command. It shows each column's **name**, **type** (e.g. `<chr>`, `<dbl>`) and **first few values** — all in one view.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+head(nba_team_box)
+```
+
+`head()` shows the **first six rows** of the data frame, so you can see actual data values in context.
+
+::: callout-tip
+You can also inspect a data frame by clicking its name in the **Environment** panel (top-right in RStudio). This opens a spreadsheet-style viewer where you can scroll through rows and columns, sort by clicking column headers, and search for values. It is a quick way to get a feel for the data before writing any code.
+:::
+
+Look for:
+
+-   one row per team per game;
+-   the main team identifier;
+-   score and result columns;
+-   the shooting, rebounding and possession-related variables you may want later.
+
+### Step 3: Prepare a Season-Level Team Table
+
+We want one row per team, using regular-season games only. To get there, we need to **group** the game-level rows by team and then **summarise** each group into a single row of season averages.
+
+::: callout-note
+The variables we use below (e.g. `team_score`, `field_goals_made`, `total_rebounds`) come from inspecting the data in the previous step. You will need to look at what columns are available in your data and decide which ones are useful for your summary. Use `names()` or the Environment viewer to check what is there.
+:::
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+nba_regular <- nba_team_box |>
+  filter(season_type == 2)
+
+nba_team_stats <- nba_regular |>
+  group_by(team_short_display_name) |>
+  summarise(
+    games = n(),
+    wins = sum(team_winner == TRUE, na.rm = TRUE),
+    losses = sum(team_winner == FALSE, na.rm = TRUE),
+    avg_pts = round(mean(team_score, na.rm = TRUE), 1),
+    avg_fg_pct = round(mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE), 1),
+    avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),
+    avg_rebounds = round(mean(total_rebounds, na.rm = TRUE), 1),
+    avg_assists = round(mean(assists, na.rm = TRUE), 1),
+    avg_turnovers = round(mean(turnovers, na.rm = TRUE), 1),
+    avg_steals = round(mean(steals, na.rm = TRUE), 1),
+    avg_blocks = round(mean(blocks, na.rm = TRUE), 1),
+    .groups = "drop"
+  ) |>
+  mutate(
+    win_pct = round(wins / games * 100, 1)
+  ) |>
+  arrange(desc(win_pct))
+```
+
+A few things to note about the code above:
+
+-   `group_by(team_short_display_name)` splits the data into separate groups, one per team. Everything inside `summarise()` is then calculated **within each group** rather than across the whole dataset.
+-   `summarise()` collapses each group into a single row. The columns you create inside it (e.g. `games = n()`, `avg_pts = round(mean(...))`) define what the summary table contains.
+-   `.groups = "drop"` tells R to remove the grouping structure after summarising. Without this, the data frame would remain grouped, which can cause unexpected behaviour in later operations.
+-   `mutate()` adds or modifies columns **without** changing the number of rows. Here we use it to calculate `win_pct` from the `wins` and `games` columns that `summarise()` just created.
+-   `avg_fg_pct` is calculated from `field_goals_made / field_goals_attempted * 100` because the raw data provides made and attempted counts rather than a pre-calculated percentage.
+
+Inspect the cleaned table.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+print(nba_team_stats, n = 30)
+summary(nba_team_stats)
+colSums(is.na(nba_team_stats))
+```
+
+### Step 4: Prepare a Player Table
+
+We also need a player-level table for later charts and dashboard views. The same `group_by() |> summarise()` pattern applies — this time grouping by player name and team.
+
+::: callout-note
+Again, the column names below (e.g. `points`, `rebounds`, `field_goals_made`) come from inspecting the player box score data. Run `names(nba_player_box)` or click the data frame in the Environment panel to see what columns are available, and choose the ones that are relevant to your analysis.
+:::
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+nba_player_box <- load_nba_player_box(seasons = 2024)
+
+nba_player_stats <- nba_player_box |>
+  filter(season_type == 2, minutes > 0) |>
+  group_by(athlete_display_name, team_short_display_name) |>
+  summarise(
+    games = n(),
+    avg_pts = round(mean(points, na.rm = TRUE), 1),
+    avg_rebounds = round(mean(rebounds, na.rm = TRUE), 1),
+    avg_assists = round(mean(assists, na.rm = TRUE), 1),
+    avg_fg_pct = round(mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE), 1),
+    avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),
+    avg_minutes = round(mean(minutes, na.rm = TRUE), 1),
+    .groups = "drop"
+  ) |>
+  filter(games >= 40) |>
+  arrange(desc(avg_pts))
+```
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+head(nba_player_stats, 20)
+```
+
+### Step 5: Save Reusable Data Files
+
+#### What Is an `.rds` File?
+
+An `.rds` file is R's native format for saving a single object to disk. It preserves the R object exactly — column types, factor levels, attributes and all. When you load it back with `readRDS()`, you get the same object you saved.
+
+We also save `.csv` versions because CSV is a universal format that can be opened in Excel, Python, or any other tool. Use `.rds` for your own R workflow; use `.csv` when sharing with others.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+saveRDS(nba_team_stats, "data/nba_2024_team_stats.rds")
+write_csv(nba_team_stats, "data/nba_2024_team_stats.csv")
+
+saveRDS(nba_player_stats, "data/nba_2024_player_stats.rds")
+write_csv(nba_player_stats, "data/nba_2024_player_stats.csv")
+```
+
+Check that the files exist.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+list.files("data")
+```
+
+::: callout-tip
+Saving prepared data is part of the workflow, not a tidying afterthought. It means you do not need to re-run long API calls every time you want to make a chart.
+:::
+
+## Independent Practice: Your Own Sport
+
+The basketball walkthrough above is the shared seminar example, but your **individual assignment** will ask you to source, clean and present data for a sport of your own choosing. This is a good opportunity to get a head start.
+
+### What to Do
+
+1.  **Pick a sport and a SportsDataVerse package** (or another R package that provides sports data through an API). Some options:
+
+    | Sport | Package | Documentation |
+    |------------------------|------------------------|------------------------|
+    | WNBA / women's college basketball | `wehoop` | <https://wehoop.sportsdataverse.org/> |
+    | NFL (American football) | `nflreadr` | <https://nflreadr.nflverse.com/> |
+    | MLB (baseball) | `baseballr` | <https://billpetti.github.io/baseballr/> |
+    | Football (soccer) | `worldfootballR` | <https://jaseziv.github.io/worldfootballR/> |
+    | F1 (motorsport) | `f1dataR` | <https://scasanova.github.io/f1dataR/> |
+
+2.  **Install the package** if you have not already, and load it.
+
+3.  **Read the documentation** for the main data-loading function in that package. Use `?function_name` in the Console or browse the package website. Identify:
+
+    -   what parameters the function requires;
+    -   what values are valid for each parameter;
+    -   what kind of data frame it returns.
+
+4.  **Pull one season of data** using the function and your chosen parameters.
+
+5.  **Inspect the result** using `dim()`, `names()`, `glimpse()` and `head()`.
+
+6.  **Summarise the data** into a clean table with one row per team (or per player, driver, etc.), keeping the variables you find most interesting.
+
+7.  **Save** both `.rds` and `.csv` versions to your `data/` folder.
+
+::: callout-important
+The individual assignment will ask you to do exactly this kind of work — source data from an API, prepare it, and build outputs from it. The more you practise now, the less you will need to figure out later. Think of this exercise as the first step of your assignment.
+:::
+
+### Commit and Push
+
+Once you are happy with your work, use your `_publish.sh` shortcut:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+./_publish.sh "Add data for [your sport]"
+```
+
+## Transfer Checkpoint
+
+The details are basketball-specific, but the project habit is not. For another sport, the equivalent questions would be:
+
+-   what is the raw event or match-level table?
+-   what should one cleaned team-level row represent?
+-   what should one cleaned player, driver, batter or club row represent?
+-   which variables need to be saved for charting and dashboards later?
+
+## Common Issues
+
+| Problem | Solution |
+|------------------------------------|------------------------------------|
+| `hoopR` call fails | Check your internet connection and retry |
+| Returned data frame is very wide | Use `glimpse()` and `select()` to focus on relevant variables |
+| Column names differ slightly | Check `names()` and adapt the code |
+| Missing values appear | Use `na.rm = TRUE` and inspect where they occur |
+| Package not found | Run `install.packages("package_name")` first |
+| Documentation page is empty | Try the package website instead of `?` — some packages document online only |
+
+## Before You Go
+
+Nice work! 🏀
+
+Today you:
+
+-   sourced real NBA data through an API-based workflow;
+-   learned how to read package documentation to choose the right parameters;
+-   inspected and cleaned raw team and player tables;
+-   built reusable season-level datasets;
+-   saved them for visualisation and dashboard work.
+
+Next week we will turn these saved basketball datasets into clear charts, add simple Plotly interactivity, and build the first version of the dashboard app.

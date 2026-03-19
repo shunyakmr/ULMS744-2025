@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -344,9 +379,42 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#released-in-week-7" id="toc-released-in-week-7" class="nav-link active" data-scroll-target="#released-in-week-7"><span class="header-section-number">1</span> Released in Week 7…</a></li>
+  <li><a href="#recap-last-week" id="toc-recap-last-week" class="nav-link active" data-scroll-target="#recap-last-week"><span class="header-section-number">1</span> Recap: Last Week</a></li>
+  <li><a href="#a-publishing-shortcut-_publish.sh" id="toc-a-publishing-shortcut-_publish.sh" class="nav-link" data-scroll-target="#a-publishing-shortcut-_publish.sh"><span class="header-section-number">2</span> A Publishing Shortcut: <code>_publish.sh</code></a>
+  <ul>
+  <li><a href="#create-the-file" id="toc-create-the-file" class="nav-link" data-scroll-target="#create-the-file"><span class="header-section-number">2.1</span> Create the File</a></li>
+  <li><a href="#how-to-use-it" id="toc-how-to-use-it" class="nav-link" data-scroll-target="#how-to-use-it"><span class="header-section-number">2.2</span> How to Use It</a></li>
+  </ul></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters"><span class="header-section-number">3</span> Why This Matters</a></li>
+  <li><a href="#initial-setup" id="toc-initial-setup" class="nav-link" data-scroll-target="#initial-setup"><span class="header-section-number">4</span> Initial Setup</a></li>
+  <li><a href="#sportsdataverse-workflow" id="toc-sportsdataverse-workflow" class="nav-link" data-scroll-target="#sportsdataverse-workflow"><span class="header-section-number">5</span> SportsDataverse Workflow</a>
+  <ul>
+  <li><a href="#reading-the-documentation-first" id="toc-reading-the-documentation-first" class="nav-link" data-scroll-target="#reading-the-documentation-first"><span class="header-section-number">5.1</span> Reading the Documentation First</a>
+  <ul class="collapse">
+  <li><a href="#start-with-the-package-website" id="toc-start-with-the-package-website" class="nav-link" data-scroll-target="#start-with-the-package-website"><span class="header-section-number">5.1.1</span> Start with the Package Website</a></li>
+  <li><a href="#then-check-individual-functions-in-r" id="toc-then-check-individual-functions-in-r" class="nav-link" data-scroll-target="#then-check-individual-functions-in-r"><span class="header-section-number">5.1.2</span> Then Check Individual Functions in R</a></li>
+  <li><a href="#what-you-learn-from-the-hoopr-docs" id="toc-what-you-learn-from-the-hoopr-docs" class="nav-link" data-scroll-target="#what-you-learn-from-the-hoopr-docs"><span class="header-section-number">5.1.3</span> What You Learn from the <code>hoopR</code> Docs</a></li>
+  <li><a href="#example-a-football-package" id="toc-example-a-football-package" class="nav-link" data-scroll-target="#example-a-football-package"><span class="header-section-number">5.1.4</span> Example: A Football Package</a></li>
+  </ul></li>
+  <li><a href="#step-1-pull-team-box-score-data" id="toc-step-1-pull-team-box-score-data" class="nav-link" data-scroll-target="#step-1-pull-team-box-score-data"><span class="header-section-number">5.2</span> Step 1: Pull Team Box Score Data</a></li>
+  <li><a href="#step-2-inspect-the-raw-data" id="toc-step-2-inspect-the-raw-data" class="nav-link" data-scroll-target="#step-2-inspect-the-raw-data"><span class="header-section-number">5.3</span> Step 2: Inspect the Raw Data</a></li>
+  <li><a href="#step-3-prepare-a-season-level-team-table" id="toc-step-3-prepare-a-season-level-team-table" class="nav-link" data-scroll-target="#step-3-prepare-a-season-level-team-table"><span class="header-section-number">5.4</span> Step 3: Prepare a Season-Level Team Table</a></li>
+  <li><a href="#step-4-prepare-a-player-table" id="toc-step-4-prepare-a-player-table" class="nav-link" data-scroll-target="#step-4-prepare-a-player-table"><span class="header-section-number">5.5</span> Step 4: Prepare a Player Table</a></li>
+  <li><a href="#step-5-save-reusable-data-files" id="toc-step-5-save-reusable-data-files" class="nav-link" data-scroll-target="#step-5-save-reusable-data-files"><span class="header-section-number">5.6</span> Step 5: Save Reusable Data Files</a>
+  <ul class="collapse">
+  <li><a href="#what-is-an-.rds-file" id="toc-what-is-an-.rds-file" class="nav-link" data-scroll-target="#what-is-an-.rds-file"><span class="header-section-number">5.6.1</span> What Is an <code>.rds</code> File?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#independent-practice-your-own-sport" id="toc-independent-practice-your-own-sport" class="nav-link" data-scroll-target="#independent-practice-your-own-sport"><span class="header-section-number">6</span> Independent Practice: Your Own Sport</a>
+  <ul>
+  <li><a href="#what-to-do" id="toc-what-to-do" class="nav-link" data-scroll-target="#what-to-do"><span class="header-section-number">6.1</span> What to Do</a></li>
+  <li><a href="#commit-and-push" id="toc-commit-and-push" class="nav-link" data-scroll-target="#commit-and-push"><span class="header-section-number">6.2</span> Commit and Push</a></li>
+  </ul></li>
+  <li><a href="#transfer-checkpoint" id="toc-transfer-checkpoint" class="nav-link" data-scroll-target="#transfer-checkpoint"><span class="header-section-number">7</span> Transfer Checkpoint</a></li>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">8</span> Common Issues</a></li>
+  <li><a href="#before-you-go" id="toc-before-you-go" class="nav-link" data-scroll-target="#before-you-go"><span class="header-section-number">9</span> Before You Go</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="../slides/w8-slides-lecture.html"><i class="bi bi-file-slides"></i>Lecture Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -371,8 +439,574 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="released-in-week-7" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="released-in-week-7"><span class="header-section-number">1</span> Released in Week 7…</h2>
+<p>Last week, we set up the project and connected it to GitHub. This week we move into the first core analytical task: <strong>sourcing and preparing sports data through an API workflow in R</strong>.</p>
+<p>We will use <code>hoopR</code> to pull <strong>NBA basketball</strong> data. Basketball remains our common seminar example because it gives us rich public data and a clear route into visualisation and dashboard building. The workflow, however, is transferable: in another sport, the package and variables will change, but the project logic will stay the same.</p>
+<p>We will:</p>
+<ol type="1">
+<li>pull team and player data with <code>hoopR</code>;</li>
+<li>inspect the returned data frames;</li>
+<li>clean and summarise them into usable tables;</li>
+<li>save those tables for later weeks;</li>
+<li>commit and push the updated project.</li>
+</ol>
+<section id="recap-last-week" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="recap-last-week"><span class="header-section-number">1</span> Recap: Last Week</h2>
+<p>Before we dive in, let’s quickly review what we set up last week:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">R, RStudio and Git are installed and working;</label></li>
+<li><label><input type="checkbox" checked="">the <code>nba-analytics</code> RStudio project exists with folders <code>data/</code>, <code>scripts/</code>, <code>output/</code> and <code>app/</code>;</label></li>
+<li><label><input type="checkbox" checked="">the project is connected to a GitHub repository;</label></li>
+<li><label><input type="checkbox" checked="">you made and pushed your first commit.</label></li>
+</ul>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If anything from last week is incomplete, go back to <a href="01-setup.html">Workbook 1</a> and finish the setup before continuing.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="a-publishing-shortcut-_publish.sh" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="a-publishing-shortcut-_publish.sh"><span class="header-section-number">2</span> A Publishing Shortcut: <code>_publish.sh</code></h2>
+<p>Last week, we committed and pushed work to GitHub using three separate Terminal commands. That works, but typing the same commands every time gets repetitive. Let’s create a small shortcut script that does it all in one step.</p>
+<section id="create-the-file" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="create-the-file"><span class="header-section-number">2.1</span> Create the File</h3>
+<p>In the <strong>Files</strong> pane in RStudio:</p>
+<ol type="1">
+<li>click <code>New File</code></li>
+<li>choose <code>Text File</code></li>
+<li>save it as <code>_publish.sh</code> in your project root (the same level as <code>nba-analytics.Rproj</code>)</li>
+<li>paste the following into the file and save</li>
+</ol>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_publish.sh</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _publish.sh — A shortcut to save and publish your work to GitHub.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage (in your R terminal):</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   ./_publish.sh "Your commit message here"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Example:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   ./_publish.sh "Add cleaned NBA team and player data"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Done! Your work has been published to GitHub."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="how-to-use-it" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="how-to-use-it"><span class="header-section-number">2.2</span> How to Use It</h3>
+<p>From now on, whenever you want to save and publish your work, open the <strong>RStudio Terminal</strong> and run:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./_publish.sh</span> <span class="st">"Your commit message here"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Replace the text inside the quotes with a short description of what you did. For example:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./_publish.sh</span> <span class="st">"Add cleaned NBA team and player data"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>That single command will stage all your changes, commit them with your message, and push everything to GitHub. You will use this throughout the rest of the module.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The underscore in <code>_publish.sh</code> is intentional — it keeps the file near the top of your file list and signals that it is a helper script, not part of the main project output.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="why-this-matters" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="why-this-matters"><span class="header-section-number">3</span> Why This Matters</h2>
+<p>Analysts are often judged on whether they can obtain and prepare their own data, not only on whether they can plot a spreadsheet someone else has already cleaned.</p>
+<p>The workflow for today is:</p>
+<pre class="text"><code>documentation -&gt; choose parameters -&gt; pull -&gt; inspect -&gt; summarise -&gt; save</code></pre>
+<p>That sequence is one of the key transferable habits from this module.</p>
+</section>
+<section id="initial-setup" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="initial-setup"><span class="header-section-number">4</span> Initial Setup</h2>
+<p>Load the libraries.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hoopR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="sportsdataverse-workflow" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sportsdataverse-workflow"><span class="header-section-number">5</span> SportsDataverse Workflow</h2>
+<section id="reading-the-documentation-first" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="reading-the-documentation-first"><span class="header-section-number">5.1</span> Reading the Documentation First</h3>
+<p>Before calling any data-sourcing function, you should <strong>read its documentation</strong>. The documentation tells you what data sources are available, what functions to call, what parameters they accept, and what kind of data they return. This saves time and avoids guesswork.</p>
+<section id="start-with-the-package-website" class="level4" data-number="5.1.1">
+<h4 data-number="5.1.1" class="anchored" data-anchor-id="start-with-the-package-website"><span class="header-section-number">5.1.1</span> Start with the Package Website</h4>
+<p>Every SportsDataVerse package has a documentation website. This is the best place to start because it gives you the big picture: what data sources the package can access, what functions are available, and how to get started.</p>
+<p>For <code>hoopR</code>, the getting-started guide is here: <a href="https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html" class="uri">https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html</a></p>
+<p>From that page, you can see the main functions the package offers (e.g.&nbsp;<code>load_nba_team_box()</code>, <code>load_nba_player_box()</code>), what data they return, and how to use them. Browse the package website to discover what is available before you start writing code.</p>
+</section>
+<section id="then-check-individual-functions-in-r" class="level4" data-number="5.1.2">
+<h4 data-number="5.1.2" class="anchored" data-anchor-id="then-check-individual-functions-in-r"><span class="header-section-number">5.1.2</span> Then Check Individual Functions in R</h4>
+<p>Once you know which function you want to use, check its detailed documentation in RStudio by typing <code>?</code> followed by the function name:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>?load_nba_team_box</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>This opens the help page. The three sections to focus on are:</p>
+<ul>
+<li><strong>Usage</strong> — shows the function signature and its default parameter values.</li>
+<li><strong>Arguments</strong> — lists every parameter, explains what it controls, and tells you what values are valid.</li>
+<li><strong>Value</strong> — describes what the function returns (usually a data frame with specific columns).</li>
+</ul>
+</section>
+<section id="what-you-learn-from-the-hoopr-docs" class="level4" data-number="5.1.3">
+<h4 data-number="5.1.3" class="anchored" data-anchor-id="what-you-learn-from-the-hoopr-docs"><span class="header-section-number">5.1.3</span> What You Learn from the <code>hoopR</code> Docs</h4>
+<p>Reading the documentation for <code>load_nba_team_box()</code>, you discover:</p>
+<ul>
+<li>It has one key parameter: <code>seasons</code>.</li>
+<li><code>seasons</code> accepts a numeric vector — you can request a single season (e.g.&nbsp;<code>2024</code>) or multiple seasons (e.g.&nbsp;<code>2020:2024</code>).</li>
+<li>The function returns a data frame where each row is <strong>one team’s performance in one game</strong>.</li>
+</ul>
+<p>Knowing this before you run the code means you can choose sensible parameter values on the first attempt.</p>
+</section>
+<section id="example-a-football-package" class="level4" data-number="5.1.4">
+<h4 data-number="5.1.4" class="anchored" data-anchor-id="example-a-football-package"><span class="header-section-number">5.1.4</span> Example: A Football Package</h4>
+<p>The same documentation habit applies to every sports data package. For example, <code>worldfootballR</code> provides football (soccer) data from sources including FBref and Transfermarkt. If you wanted to pull transfer data from Transfermarkt, you would start with the package documentation:</p>
+<p><a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html" class="uri">https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html</a></p>
+<p>That page shows you which functions access Transfermarkt data, what parameters they require, and what the returned data looks like. Once you have identified the function you need, check its details in R:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>?tm_player_market_values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The <strong>Arguments</strong> section would tell you parameters like:</p>
+<ul>
+<li><code>country_name</code> — e.g.&nbsp;<code>"England"</code> for the English leagues</li>
+<li><code>start_year</code> — the year the season starts, e.g.&nbsp;<code>2023</code> for the 2023/24 season</li>
+<li><code>league_url</code> — optionally, a direct Transfermarkt league URL</li>
+</ul>
+<p>So a call might look like:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>epl_values <span class="ot">&lt;-</span> <span class="fu">tm_player_market_values</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country_name =</span> <span class="st">"England"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_year   =</span> <span class="dv">2023</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You do not need to memorise every parameter. You need to know <strong>where to look</strong>: start with the package website to see what is available, then use <code>?function_name</code> in R to check the details. The documentation is always your first stop.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-1-pull-team-box-score-data" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="step-1-pull-team-box-score-data"><span class="header-section-number">5.2</span> Step 1: Pull Team Box Score Data</h3>
+<p><code>load_nba_team_box()</code> downloads team-level box score data from ESPN via the hoopR API wrapper. Each row in the result represents one team’s performance in one game, with columns for points, shooting percentages, rebounds, assists and more.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nba_team_box <span class="ot">&lt;-</span> <span class="fu">load_nba_team_box</span>(<span class="at">seasons =</span> <span class="dv">2024</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In <code>hoopR</code>, <code>seasons = 2024</code> means the NBA season that ends in 2024, i.e.&nbsp;the 2023/24 season. This convention is common across SportsDataVerse packages.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-inspect-the-raw-data" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="step-2-inspect-the-raw-data"><span class="header-section-number">5.3</span> Step 2: Inspect the Raw Data</h3>
+<p>Never summarise a dataset before checking what it contains.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(nba_team_box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>dim()</code> returns the number of <strong>rows</strong> and <strong>columns</strong>. This tells you how large the dataset is — for example, <code>2460 46</code> would mean 2,460 rows and 46 columns.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nba_team_box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>names()</code> lists every <strong>column name</strong>. Scan through this to find the variables you care about (team name, score, shooting stats, etc.).</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(nba_team_box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>glimpse()</code> is the most informative single inspection command. It shows each column’s <strong>name</strong>, <strong>type</strong> (e.g.&nbsp;<code>&lt;chr&gt;</code>, <code>&lt;dbl&gt;</code>) and <strong>first few values</strong> — all in one view.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nba_team_box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>head()</code> shows the <strong>first six rows</strong> of the data frame, so you can see actual data values in context.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>You can also inspect a data frame by clicking its name in the <strong>Environment</strong> panel (top-right in RStudio). This opens a spreadsheet-style viewer where you can scroll through rows and columns, sort by clicking column headers, and search for values. It is a quick way to get a feel for the data before writing any code.</p>
+</div>
+</div>
+</div>
+<p>Look for:</p>
+<ul>
+<li>one row per team per game;</li>
+<li>the main team identifier;</li>
+<li>score and result columns;</li>
+<li>the shooting, rebounding and possession-related variables you may want later.</li>
+</ul>
+</section>
+<section id="step-3-prepare-a-season-level-team-table" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="step-3-prepare-a-season-level-team-table"><span class="header-section-number">5.4</span> Step 3: Prepare a Season-Level Team Table</h3>
+<p>We want one row per team, using regular-season games only. To get there, we need to <strong>group</strong> the game-level rows by team and then <strong>summarise</strong> each group into a single row of season averages.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The variables we use below (e.g.&nbsp;<code>team_score</code>, <code>field_goals_made</code>, <code>total_rebounds</code>) come from inspecting the data in the previous step. You will need to look at what columns are available in your data and decide which ones are useful for your summary. Use <code>names()</code> or the Environment viewer to check what is there.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nba_regular <span class="ot">&lt;-</span> nba_team_box <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(season_type <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>nba_team_stats <span class="ot">&lt;-</span> nba_regular <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_short_display_name) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">games =</span> <span class="fu">n</span>(),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wins =</span> <span class="fu">sum</span>(team_winner <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">losses =</span> <span class="fu">sum</span>(team_winner <span class="sc">==</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pts =</span> <span class="fu">round</span>(<span class="fu">mean</span>(team_score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_fg_pct =</span> <span class="fu">round</span>(<span class="fu">mean</span>(field_goals_made <span class="sc">/</span> field_goals_attempted <span class="sc">*</span> <span class="dv">100</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_3pt_made =</span> <span class="fu">round</span>(<span class="fu">mean</span>(three_point_field_goals_made, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_rebounds =</span> <span class="fu">round</span>(<span class="fu">mean</span>(total_rebounds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_assists =</span> <span class="fu">round</span>(<span class="fu">mean</span>(assists, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_turnovers =</span> <span class="fu">round</span>(<span class="fu">mean</span>(turnovers, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_steals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(steals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_blocks =</span> <span class="fu">round</span>(<span class="fu">mean</span>(blocks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">win_pct =</span> <span class="fu">round</span>(wins <span class="sc">/</span> games <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(win_pct))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>A few things to note about the code above:</p>
+<ul>
+<li><code>group_by(team_short_display_name)</code> splits the data into separate groups, one per team. Everything inside <code>summarise()</code> is then calculated <strong>within each group</strong> rather than across the whole dataset.</li>
+<li><code>summarise()</code> collapses each group into a single row. The columns you create inside it (e.g.&nbsp;<code>games = n()</code>, <code>avg_pts = round(mean(...))</code>) define what the summary table contains.</li>
+<li><code>.groups = "drop"</code> tells R to remove the grouping structure after summarising. Without this, the data frame would remain grouped, which can cause unexpected behaviour in later operations.</li>
+<li><code>mutate()</code> adds or modifies columns <strong>without</strong> changing the number of rows. Here we use it to calculate <code>win_pct</code> from the <code>wins</code> and <code>games</code> columns that <code>summarise()</code> just created.</li>
+<li><code>avg_fg_pct</code> is calculated from <code>field_goals_made / field_goals_attempted * 100</code> because the raw data provides made and attempted counts rather than a pre-calculated percentage.</li>
+</ul>
+<p>Inspect the cleaned table.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(nba_team_stats, <span class="at">n =</span> <span class="dv">30</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nba_team_stats)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(nba_team_stats))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="step-4-prepare-a-player-table" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="step-4-prepare-a-player-table"><span class="header-section-number">5.5</span> Step 4: Prepare a Player Table</h3>
+<p>We also need a player-level table for later charts and dashboard views. The same <code>group_by() |&gt; summarise()</code> pattern applies — this time grouping by player name and team.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Again, the column names below (e.g.&nbsp;<code>points</code>, <code>rebounds</code>, <code>field_goals_made</code>) come from inspecting the player box score data. Run <code>names(nba_player_box)</code> or click the data frame in the Environment panel to see what columns are available, and choose the ones that are relevant to your analysis.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nba_player_box <span class="ot">&lt;-</span> <span class="fu">load_nba_player_box</span>(<span class="at">seasons =</span> <span class="dv">2024</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>nba_player_stats <span class="ot">&lt;-</span> nba_player_box <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(season_type <span class="sc">==</span> <span class="dv">2</span>, minutes <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(athlete_display_name, team_short_display_name) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">games =</span> <span class="fu">n</span>(),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pts =</span> <span class="fu">round</span>(<span class="fu">mean</span>(points, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_rebounds =</span> <span class="fu">round</span>(<span class="fu">mean</span>(rebounds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_assists =</span> <span class="fu">round</span>(<span class="fu">mean</span>(assists, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_fg_pct =</span> <span class="fu">round</span>(<span class="fu">mean</span>(field_goals_made <span class="sc">/</span> field_goals_attempted <span class="sc">*</span> <span class="dv">100</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_3pt_made =</span> <span class="fu">round</span>(<span class="fu">mean</span>(three_point_field_goals_made, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_minutes =</span> <span class="fu">round</span>(<span class="fu">mean</span>(minutes, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(games <span class="sc">&gt;=</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nba_player_stats, <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="step-5-save-reusable-data-files" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="step-5-save-reusable-data-files"><span class="header-section-number">5.6</span> Step 5: Save Reusable Data Files</h3>
+<section id="what-is-an-.rds-file" class="level4" data-number="5.6.1">
+<h4 data-number="5.6.1" class="anchored" data-anchor-id="what-is-an-.rds-file"><span class="header-section-number">5.6.1</span> What Is an <code>.rds</code> File?</h4>
+<p>An <code>.rds</code> file is R’s native format for saving a single object to disk. It preserves the R object exactly — column types, factor levels, attributes and all. When you load it back with <code>readRDS()</code>, you get the same object you saved.</p>
+<p>We also save <code>.csv</code> versions because CSV is a universal format that can be opened in Excel, Python, or any other tool. Use <code>.rds</code> for your own R workflow; use <code>.csv</code> when sharing with others.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(nba_team_stats, <span class="st">"data/nba_2024_team_stats.rds"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(nba_team_stats, <span class="st">"data/nba_2024_team_stats.csv"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(nba_player_stats, <span class="st">"data/nba_2024_player_stats.rds"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(nba_player_stats, <span class="st">"data/nba_2024_player_stats.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Check that the files exist.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">"data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Saving prepared data is part of the workflow, not a tidying afterthought. It means you do not need to re-run long API calls every time you want to make a chart.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="independent-practice-your-own-sport" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="independent-practice-your-own-sport"><span class="header-section-number">6</span> Independent Practice: Your Own Sport</h2>
+<p>The basketball walkthrough above is the shared seminar example, but your <strong>individual assignment</strong> will ask you to source, clean and present data for a sport of your own choosing. This is a good opportunity to get a head start.</p>
+<section id="what-to-do" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="what-to-do"><span class="header-section-number">6.1</span> What to Do</h3>
+<ol type="1">
+<li><p><strong>Pick a sport and a SportsDataVerse package</strong> (or another R package that provides sports data through an API). Some options:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sport</th>
+<th>Package</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WNBA / women’s college basketball</td>
+<td><code>wehoop</code></td>
+<td><a href="https://wehoop.sportsdataverse.org/" class="uri">https://wehoop.sportsdataverse.org/</a></td>
+</tr>
+<tr class="even">
+<td>NFL (American football)</td>
+<td><code>nflreadr</code></td>
+<td><a href="https://nflreadr.nflverse.com/" class="uri">https://nflreadr.nflverse.com/</a></td>
+</tr>
+<tr class="odd">
+<td>MLB (baseball)</td>
+<td><code>baseballr</code></td>
+<td><a href="https://billpetti.github.io/baseballr/" class="uri">https://billpetti.github.io/baseballr/</a></td>
+</tr>
+<tr class="even">
+<td>Football (soccer)</td>
+<td><code>worldfootballR</code></td>
+<td><a href="https://jaseziv.github.io/worldfootballR/" class="uri">https://jaseziv.github.io/worldfootballR/</a></td>
+</tr>
+<tr class="odd">
+<td>F1 (motorsport)</td>
+<td><code>f1dataR</code></td>
+<td><a href="https://scasanova.github.io/f1dataR/" class="uri">https://scasanova.github.io/f1dataR/</a></td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Install the package</strong> if you have not already, and load it.</p></li>
+<li><p><strong>Read the documentation</strong> for the main data-loading function in that package. Use <code>?function_name</code> in the Console or browse the package website. Identify:</p>
+<ul>
+<li>what parameters the function requires;</li>
+<li>what values are valid for each parameter;</li>
+<li>what kind of data frame it returns.</li>
+</ul></li>
+<li><p><strong>Pull one season of data</strong> using the function and your chosen parameters.</p></li>
+<li><p><strong>Inspect the result</strong> using <code>dim()</code>, <code>names()</code>, <code>glimpse()</code> and <code>head()</code>.</p></li>
+<li><p><strong>Summarise the data</strong> into a clean table with one row per team (or per player, driver, etc.), keeping the variables you find most interesting.</p></li>
+<li><p><strong>Save</strong> both <code>.rds</code> and <code>.csv</code> versions to your <code>data/</code> folder.</p></li>
+</ol>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The individual assignment will ask you to do exactly this kind of work — source data from an API, prepare it, and build outputs from it. The more you practise now, the less you will need to figure out later. Think of this exercise as the first step of your assignment.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="commit-and-push" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="commit-and-push"><span class="header-section-number">6.2</span> Commit and Push</h3>
+<p>Once you are happy with your work, use your <code>_publish.sh</code> shortcut:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./_publish.sh</span> <span class="st">"Add data for [your sport]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+</section>
+<section id="transfer-checkpoint" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="transfer-checkpoint"><span class="header-section-number">7</span> Transfer Checkpoint</h2>
+<p>The details are basketball-specific, but the project habit is not. For another sport, the equivalent questions would be:</p>
+<ul>
+<li>what is the raw event or match-level table?</li>
+<li>what should one cleaned team-level row represent?</li>
+<li>what should one cleaned player, driver, batter or club row represent?</li>
+<li>which variables need to be saved for charting and dashboards later?</li>
+</ul>
+</section>
+<section id="common-issues" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">8</span> Common Issues</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hoopR</code> call fails</td>
+<td>Check your internet connection and retry</td>
+</tr>
+<tr class="even">
+<td>Returned data frame is very wide</td>
+<td>Use <code>glimpse()</code> and <code>select()</code> to focus on relevant variables</td>
+</tr>
+<tr class="odd">
+<td>Column names differ slightly</td>
+<td>Check <code>names()</code> and adapt the code</td>
+</tr>
+<tr class="even">
+<td>Missing values appear</td>
+<td>Use <code>na.rm = TRUE</code> and inspect where they occur</td>
+</tr>
+<tr class="odd">
+<td>Package not found</td>
+<td>Run <code>install.packages("package_name")</code> first</td>
+</tr>
+<tr class="even">
+<td>Documentation page is empty</td>
+<td>Try the package website instead of <code>?</code> — some packages document online only</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="before-you-go" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="before-you-go"><span class="header-section-number">9</span> Before You Go</h2>
+<p>Nice work! 🏀</p>
+<p>Today you:</p>
+<ul>
+<li>sourced real NBA data through an API-based workflow;</li>
+<li>learned how to read package documentation to choose the right parameters;</li>
+<li>inspected and cleaned raw team and player tables;</li>
+<li>built reusable season-level datasets;</li>
+<li>saved them for visualisation and dashboard work.</li>
+</ul>
+<p>Next week we will turn these saved basketball datasets into clear charts, add simple Plotly interactivity, and build the first version of the dashboard app.</p>
 
 
 </section>
