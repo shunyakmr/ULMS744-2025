@@ -408,7 +408,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#independent-practice-your-own-sport" id="toc-independent-practice-your-own-sport" class="nav-link" data-scroll-target="#independent-practice-your-own-sport"><span class="header-section-number">6</span> Independent Practice: Your Own Sport</a>
   <ul>
   <li><a href="#what-to-do" id="toc-what-to-do" class="nav-link" data-scroll-target="#what-to-do"><span class="header-section-number">6.1</span> What to Do</a></li>
-  <li><a href="#commit-and-push" id="toc-commit-and-push" class="nav-link" data-scroll-target="#commit-and-push"><span class="header-section-number">6.2</span> Commit and Push</a></li>
+  <li><a href="#suggestions-for-football-worldfootballr" id="toc-suggestions-for-football-worldfootballr" class="nav-link" data-scroll-target="#suggestions-for-football-worldfootballr"><span class="header-section-number">6.2</span> Suggestions for Football (<code>worldfootballR</code>)</a>
+  <ul class="collapse">
+  <li><a href="#angle-1-league-overview-who-over--or-under-performed" id="toc-angle-1-league-overview-who-over--or-under-performed" class="nav-link" data-scroll-target="#angle-1-league-overview-who-over--or-under-performed"><span class="header-section-number">6.2.1</span> Angle 1: League Overview — “Who Over- or Under-Performed?”</a></li>
+  <li><a href="#angle-2-one-teams-season-how-did-their-form-change" id="toc-angle-2-one-teams-season-how-did-their-form-change" class="nav-link" data-scroll-target="#angle-2-one-teams-season-how-did-their-form-change"><span class="header-section-number">6.2.2</span> Angle 2: One Team’s Season — “How Did Their Form Change?”</a></li>
+  <li><a href="#angle-3-player-spotlight-who-stood-out" id="toc-angle-3-player-spotlight-who-stood-out" class="nav-link" data-scroll-target="#angle-3-player-spotlight-who-stood-out"><span class="header-section-number">6.2.3</span> Angle 3: Player Spotlight — “Who Stood Out?”</a></li>
+  <li><a href="#angle-4-cross-league-comparison-how-do-leagues-differ" id="toc-angle-4-cross-league-comparison-how-do-leagues-differ" class="nav-link" data-scroll-target="#angle-4-cross-league-comparison-how-do-leagues-differ"><span class="header-section-number">6.2.4</span> Angle 4: Cross-League Comparison — “How Do Leagues Differ?”</a></li>
+  </ul></li>
+  <li><a href="#commit-and-push" id="toc-commit-and-push" class="nav-link" data-scroll-target="#commit-and-push"><span class="header-section-number">6.3</span> Commit and Push</a></li>
   </ul></li>
   <li><a href="#transfer-checkpoint" id="toc-transfer-checkpoint" class="nav-link" data-scroll-target="#transfer-checkpoint"><span class="header-section-number">7</span> Transfer Checkpoint</a></li>
   <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">8</span> Common Issues</a></li>
@@ -533,6 +540,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If you get a permission error, run <code>chmod +x _publish.sh</code> in your terminal just once, and this should make <code>_publish.sh</code> executable.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="why-this-matters" class="level2" data-number="3">
@@ -621,7 +638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>epl_values <span class="ot">&lt;-</span> <span class="fu">tm_player_market_values</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country_name =</span> <span class="st">"England"</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_year   =</span> <span class="dv">2023</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_year =</span> <span class="dv">2023</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -744,19 +761,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wins =</span> <span class="fu">sum</span>(team_winner <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">losses =</span> <span class="fu">sum</span>(team_winner <span class="sc">==</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pts =</span> <span class="fu">round</span>(<span class="fu">mean</span>(team_score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_fg_pct =</span> <span class="fu">round</span>(<span class="fu">mean</span>(field_goals_made <span class="sc">/</span> field_goals_attempted <span class="sc">*</span> <span class="dv">100</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_3pt_made =</span> <span class="fu">round</span>(<span class="fu">mean</span>(three_point_field_goals_made, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_rebounds =</span> <span class="fu">round</span>(<span class="fu">mean</span>(total_rebounds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_assists =</span> <span class="fu">round</span>(<span class="fu">mean</span>(assists, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_turnovers =</span> <span class="fu">round</span>(<span class="fu">mean</span>(turnovers, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_steals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(steals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_blocks =</span> <span class="fu">round</span>(<span class="fu">mean</span>(blocks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">win_pct =</span> <span class="fu">round</span>(wins <span class="sc">/</span> games <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_fg_pct =</span> <span class="fu">round</span>(</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(field_goals_made <span class="sc">/</span> field_goals_attempted <span class="sc">*</span> <span class="dv">100</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_3pt_made =</span> <span class="fu">round</span>(<span class="fu">mean</span>(three_point_field_goals_made, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_rebounds =</span> <span class="fu">round</span>(<span class="fu">mean</span>(total_rebounds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_assists =</span> <span class="fu">round</span>(<span class="fu">mean</span>(assists, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_turnovers =</span> <span class="fu">round</span>(<span class="fu">mean</span>(turnovers, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_steals =</span> <span class="fu">round</span>(<span class="fu">mean</span>(steals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_blocks =</span> <span class="fu">round</span>(<span class="fu">mean</span>(blocks, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(win_pct))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">win_pct =</span> <span class="fu">round</span>(wins <span class="sc">/</span> games <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(win_pct))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>A few things to note about the code above:</p>
@@ -807,13 +827,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pts =</span> <span class="fu">round</span>(<span class="fu">mean</span>(points, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_rebounds =</span> <span class="fu">round</span>(<span class="fu">mean</span>(rebounds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_assists =</span> <span class="fu">round</span>(<span class="fu">mean</span>(assists, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_fg_pct =</span> <span class="fu">round</span>(<span class="fu">mean</span>(field_goals_made <span class="sc">/</span> field_goals_attempted <span class="sc">*</span> <span class="dv">100</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_3pt_made =</span> <span class="fu">round</span>(<span class="fu">mean</span>(three_point_field_goals_made, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_minutes =</span> <span class="fu">round</span>(<span class="fu">mean</span>(minutes, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(games <span class="sc">&gt;=</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_fg_pct =</span> <span class="fu">round</span>(</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(field_goals_made <span class="sc">/</span> field_goals_attempted <span class="sc">*</span> <span class="dv">100</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_3pt_made =</span> <span class="fu">round</span>(<span class="fu">mean</span>(three_point_field_goals_made, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_minutes =</span> <span class="fu">round</span>(<span class="fu">mean</span>(minutes, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(games <span class="sc">&gt;=</span> <span class="dv">40</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_pts))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="cell">
@@ -931,8 +954,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="commit-and-push" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="commit-and-push"><span class="header-section-number">6.2</span> Commit and Push</h3>
+<section id="suggestions-for-football-worldfootballr" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="suggestions-for-football-worldfootballr"><span class="header-section-number">6.2</span> Suggestions for Football (<code>worldfootballR</code>)</h3>
+<p>If you are choosing <strong>football</strong>, the <code>worldfootballR</code> package gives you access to rich data from FBref, including advanced stats like expected goals (xG). Women’s leagues are fully supported on FBref and are a great option.</p>
+<p>Before pulling data, think about what <strong>story your dashboard will tell</strong>. The data you pull now shapes the dashboard you build later. Here are four different angles to get you started — each leads to a different kind of dashboard.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Here are my recommended resources for data visualisation:</p>
+<ul>
+<li><p><strong>Fundamentals of Data Visualization</strong>&nbsp;by Claus Wilke [<a href="https://clauswilke.com/dataviz/directory-of-visualizations.html">link</a>]</p></li>
+<li><p><strong>Financial Times Visual Vocabulary</strong> [<a href="https://journalismcourses.org/wp-content/uploads/2020/07/Visual-vocabulary.pdf">link</a>]</p></li>
+<li><p><strong>R Graph Gallery</strong> [<a href="https://r-graph-gallery.com/ggplot2-package.html">link</a>]</p></li>
+<li><p><strong>ULMS562 Chatper 4</strong> by Shunya Kimura [<a href="https://shunyakmr.github.io/ULMS562-2025/seminars/04-dataviz.html">link</a>] (Python-based but has some useful videos)</p></li>
+</ul>
+</div>
+</div>
+</div>
+<section id="angle-1-league-overview-who-over--or-under-performed" class="level4" data-number="6.2.1">
+<h4 data-number="6.2.1" class="anchored" data-anchor-id="angle-1-league-overview-who-over--or-under-performed"><span class="header-section-number">6.2.1</span> Angle 1: League Overview — “Who Over- or Under-Performed?”</h4>
+<p><strong>Story</strong>: Compare all teams in a league on the required measures. Which teams scored more than their xG suggested? Which defences conceded less than expected? A league-wide view is the most direct route to the assignment measures.</p>
+<p><strong>Dashboard idea</strong>: A league table with the required stats, scatter plots of xG vs actual goals, and bar charts ranking teams.</p>
+<p>FBref’s <strong>standard</strong> stats table includes columns for goals, assists, xG, xAG, and progressive actions — most of what you need in one call. Inspect the result with <code>glimpse()</code> to see what is there.</p>
+</section>
+<section id="angle-2-one-teams-season-how-did-their-form-change" class="level4" data-number="6.2.2">
+<h4 data-number="6.2.2" class="anchored" data-anchor-id="angle-2-one-teams-season-how-did-their-form-change"><span class="header-section-number">6.2.2</span> Angle 2: One Team’s Season — “How Did Their Form Change?”</h4>
+<p><strong>Story</strong>: Pick a single team and track their results across the season. Did they start strong and fade? Did a change in tactics show up in the xG numbers? This gives you a <strong>time-series narrative</strong> and works well with line charts and rolling averages.</p>
+<p><strong>Dashboard idea</strong>: Match-by-match results for the chosen team, with filters or a team selector. Cumulative points, goals scored/conceded over time, and xG trends.</p>
+<p>This returns one row per match with columns for home/away teams, scores, and xG. From here, you can filter to one team and reshape — just as we did with the NBA team box scores.</p>
+</section>
+<section id="angle-3-player-spotlight-who-stood-out" class="level4" data-number="6.2.3">
+<h4 data-number="6.2.3" class="anchored" data-anchor-id="angle-3-player-spotlight-who-stood-out"><span class="header-section-number">6.2.3</span> Angle 3: Player Spotlight — “Who Stood Out?”</h4>
+<p><strong>Story</strong>: Compare players within a league or a team. Who created the most chances? Who outperformed their xG? A player-level focus lets you tell a <strong>scouting-style story</strong> and works well with scatter plots and ranked tables.</p>
+<p><strong>Dashboard idea</strong>: Player ranking tables, scatter plots (e.g.&nbsp;xG vs actual goals, minutes vs goal contributions), with filters for team or position.</p>
+<p>Try different <code>stat_type</code> values — <code>"standard"</code>, <code>"shooting"</code>, <code>"passing"</code>, <code>"defense"</code> — to see what player-level data is available. You can pull multiple stat types and join them together.</p>
+</section>
+<section id="angle-4-cross-league-comparison-how-do-leagues-differ" class="level4" data-number="6.2.4">
+<h4 data-number="6.2.4" class="anchored" data-anchor-id="angle-4-cross-league-comparison-how-do-leagues-differ"><span class="header-section-number">6.2.4</span> Angle 4: Cross-League Comparison — “How Do Leagues Differ?”</h4>
+<p><strong>Story</strong>: Pull the same stats for two or more leagues (e.g.&nbsp;WSL and NWSL, or Premier League and La Liga) and compare. Are goals more common in one league? Is xG higher? This creates a <strong>comparative narrative</strong> and works well with grouped bar charts and faceted plots.</p>
+<p><strong>Dashboard idea</strong>: Side-by-side league summaries, with tabs or a dropdown to switch between leagues.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><code>worldfootballR</code> pulls data by scraping FBref pages, so calls can be <strong>slow</strong> (several seconds each). This is normal. Pull the data once, save it to <code>.rds</code>, and work from the saved file afterwards — exactly the workflow we practised with basketball.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="commit-and-push" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="commit-and-push"><span class="header-section-number">6.3</span> Commit and Push</h3>
 <p>Once you are happy with your work, use your <code>_publish.sh</code> shortcut:</p>
 <div class="cell">
 <div class="code-with-filename">

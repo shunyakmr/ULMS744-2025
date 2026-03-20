@@ -92,6 +92,10 @@ That single command will stage all your changes, commit them with your message, 
 The underscore in `_publish.sh` is intentional — it keeps the file near the top of your file list and signals that it is a helper script, not part of the main project output.
 :::
 
+::: callout-warning
+If you get a permission error, run `chmod +x _publish.sh` in your terminal just once, and this should make `_publish.sh` executable.
+:::
+
 ## Why This Matters
 
 Analysts are often judged on whether they can obtain and prepare their own data, not only on whether they can plot a spreadsheet someone else has already cleaned.
@@ -186,7 +190,7 @@ So a call might look like:
 
 epl_values <- tm_player_market_values(
   country_name = "England",
-  start_year   = 2023
+  start_year = 2023
 )
 ```
 
@@ -282,7 +286,10 @@ nba_team_stats <- nba_regular |>
     wins = sum(team_winner == TRUE, na.rm = TRUE),
     losses = sum(team_winner == FALSE, na.rm = TRUE),
     avg_pts = round(mean(team_score, na.rm = TRUE), 1),
-    avg_fg_pct = round(mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE), 1),
+    avg_fg_pct = round(
+      mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE),
+      1
+    ),
     avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),
     avg_rebounds = round(mean(total_rebounds, na.rm = TRUE), 1),
     avg_assists = round(mean(assists, na.rm = TRUE), 1),
@@ -338,7 +345,10 @@ nba_player_stats <- nba_player_box |>
     avg_pts = round(mean(points, na.rm = TRUE), 1),
     avg_rebounds = round(mean(rebounds, na.rm = TRUE), 1),
     avg_assists = round(mean(assists, na.rm = TRUE), 1),
-    avg_fg_pct = round(mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE), 1),
+    avg_fg_pct = round(
+      mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE),
+      1
+    ),
     avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),
     avg_minutes = round(mean(minutes, na.rm = TRUE), 1),
     .groups = "drop"
@@ -420,6 +430,58 @@ The basketball walkthrough above is the shared seminar example, but your **indiv
 
 ::: callout-important
 The individual assignment will ask you to do exactly this kind of work — source data from an API, prepare it, and build outputs from it. The more you practise now, the less you will need to figure out later. Think of this exercise as the first step of your assignment.
+:::
+
+### Suggestions for Football (`worldfootballR`)
+
+If you are choosing **football**, the `worldfootballR` package gives you access to rich data from FBref, including advanced stats like expected goals (xG). Women's leagues are fully supported on FBref and are a great option.
+
+Before pulling data, think about what **story your dashboard will tell**. The data you pull now shapes the dashboard you build later. Here are four different angles to get you started — each leads to a different kind of dashboard.
+
+::: callout-tip
+Here are my recommended resources for data visualisation:
+
+-   **Fundamentals of Data Visualization** by Claus Wilke \[[link](https://clauswilke.com/dataviz/directory-of-visualizations.html)\]
+
+-   **Financial Times Visual Vocabulary** \[[link](https://journalismcourses.org/wp-content/uploads/2020/07/Visual-vocabulary.pdf)\]
+
+-   **R Graph Gallery** \[[link](https://r-graph-gallery.com/ggplot2-package.html)\]
+
+-   **ULMS562 Chatper 4** by Shunya Kimura \[[link](https://shunyakmr.github.io/ULMS562-2025/seminars/04-dataviz.html)\] (Python-based but has some useful videos)
+:::
+
+#### Angle 1: League Overview — "Who Over- or Under-Performed?"
+
+**Story**: Compare all teams in a league on the required measures. Which teams scored more than their xG suggested? Which defences conceded less than expected? A league-wide view is the most direct route to the assignment measures.
+
+**Dashboard idea**: A league table with the required stats, scatter plots of xG vs actual goals, and bar charts ranking teams.
+
+FBref's **standard** stats table includes columns for goals, assists, xG, xAG, and progressive actions — most of what you need in one call. Inspect the result with `glimpse()` to see what is there.
+
+#### Angle 2: One Team's Season — "How Did Their Form Change?"
+
+**Story**: Pick a single team and track their results across the season. Did they start strong and fade? Did a change in tactics show up in the xG numbers? This gives you a **time-series narrative** and works well with line charts and rolling averages.
+
+**Dashboard idea**: Match-by-match results for the chosen team, with filters or a team selector. Cumulative points, goals scored/conceded over time, and xG trends.
+
+This returns one row per match with columns for home/away teams, scores, and xG. From here, you can filter to one team and reshape — just as we did with the NBA team box scores.
+
+#### Angle 3: Player Spotlight — "Who Stood Out?"
+
+**Story**: Compare players within a league or a team. Who created the most chances? Who outperformed their xG? A player-level focus lets you tell a **scouting-style story** and works well with scatter plots and ranked tables.
+
+**Dashboard idea**: Player ranking tables, scatter plots (e.g. xG vs actual goals, minutes vs goal contributions), with filters for team or position.
+
+Try different `stat_type` values — `"standard"`, `"shooting"`, `"passing"`, `"defense"` — to see what player-level data is available. You can pull multiple stat types and join them together.
+
+#### Angle 4: Cross-League Comparison — "How Do Leagues Differ?"
+
+**Story**: Pull the same stats for two or more leagues (e.g. WSL and NWSL, or Premier League and La Liga) and compare. Are goals more common in one league? Is xG higher? This creates a **comparative narrative** and works well with grouped bar charts and faceted plots.
+
+**Dashboard idea**: Side-by-side league summaries, with tabs or a dropdown to switch between leagues.
+
+::: callout-warning
+`worldfootballR` pulls data by scraping FBref pages, so calls can be **slow** (several seconds each). This is normal. Pull the data once, save it to `.rds`, and work from the saved file afterwards — exactly the workflow we practised with basketball.
 :::
 
 ### Commit and Push
