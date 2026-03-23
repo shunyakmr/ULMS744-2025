@@ -1,0 +1,336 @@
+---
+title: "Navigating the Football Data Landscape"
+subtitle: "Leveraging StatsBombR and worldfootballR in 2026"
+format:
+  html:
+    code-fold: true
+    toc: true
+---
+
+The sports analytics ecosystem moves fast. Packages break, APIs change, and data providers adjust their terms of service. This workbook maps the football data landscape as it stands in 2026 and gives you a practical, working route into two of the most important open data sources available: **Hudl** **StatsBomb** and **FBref/Understat via worldfootballR**.
+
+We will:
+
+1.  access granular event-level data through StatsBomb's open data;
+2.  access aggregate season-wide statistics through worldfootballR;
+3.  understand the current scraping limitations that affect day-to-day work.
+
+::: callout-note
+The data access problem is real. Many tutorials written in previous years no longer work out of the box because upstream websites have added rate limits and bot detection. This workbook focuses on **what actually works today** so you can build a portfolio with confidence.
+:::
+
+## Learning Objectives
+
+By the end of this workbook, you will be able to:
+
+-   **Access granular event data** from StatsBomb's free releases, including shots, passes, and pressures with (x, y) pitch coordinates.
+-   **Access aggregate season data** from FBref/Understat through worldfootballR's pre-built loader functions.
+-   **Explain the current scraping limitations** that affect football data packages and adapt your workflow accordingly.
+
+## Setup
+
+Run the following in the RStudio Console to install the packages used in this workbook.
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+# StatsBomb's official R package
+install.packages("devtools")
+devtools::install_github("statsbomb/StatsBombR")
+
+# worldfootballR — football data from FBref, Transfermarkt, and Understat
+install.packages("worldfootballR")
+
+# Core tidyverse for wrangling and visualisation
+install.packages("tidyverse")
+```
+
+Load the libraries for the session.
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# --- Libraries ----
+library(StatsBombR)
+library(worldfootballR)
+library(tidyverse)
+```
+
+## Hudl StatsBomb: Granular Play-by-Play Data
+
+StatsBomb provides **event-level** data. Every pass, shot, dribble, pressure, and goalkeeper action is logged with (x, y) pitch coordinates. This is the gold standard for spatial football analysis: pitch maps, expected goals models, passing networks, and pressure heatmaps all start here.
+
+### What Is Available?
+
+StatsBomb's **Open Data** programme releases professional-grade match event data for selected competitions. As of 2026, the major releases include:
+
+-   **Lionel Messi's full career** across Barcelona, PSG, and Inter Miami.
+-   **FIFA World Cups** (Men's and Women's).
+-   **Arsenal's 2003–04 Invincibles** season.
+-   **FA Women's Super League** seasons.
+-   **UEFA Euro** tournaments.
+
+::: callout-warning
+StatsBomb's free data is limited to these specific releases. You cannot pull arbitrary league seasons. For full coverage, a commercial licence is required. However, the open data is more than enough for portfolio-quality work.
+:::
+
+### Pulling StatsBomb Data
+
+The workflow follows three steps: browse competitions, select matches, then pull events.
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Step 1: Browse all available free competitions
+competitions <- FreeCompetitions()
+
+# Inspect what is available
+competitions |>
+  select(competition_id, competition_name, season_name) |>
+  distinct() |>
+  head(20)
+```
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Step 2: Filter to a specific competition and pull match list
+# Example: FIFA World Cup 2022
+wc_matches <- FreeMatches(Competitions = 43) # competition_id for Men's World Cup
+
+# Inspect the match list
+wc_matches |>
+  select(
+    match_id,
+    home_team.home_team_name,
+    away_team.away_team_name,
+    match_date
+  ) |>
+  head(10)
+```
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Step 3: Pull event data for a single match
+# Pick one match_id from the list above
+events <- get.matchFree(wc_matches[1, ])
+
+# The result is a wide data frame with one row per event
+# Key columns: type.name, location, pass.end_location, shot.statsbomb_xg
+glimpse(events)
+```
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Step 4: Filter to shots and inspect spatial data
+shots <- events |>
+  filter(type.name == "Shot") |>
+  select(
+    player.name,
+    team.name,
+    location,
+    shot.end_location,
+    shot.statsbomb_xg,
+    shot.outcome.name
+  )
+
+# Each 'location' is a list of [x, y] coordinates on a 120x80 pitch
+shots
+```
+
+### Why This Matters for Your Portfolio
+
+StatsBomb data lets you demonstrate that you can:
+
+-   Parse and reshape **complex nested JSON** structures into tidy data frames.
+-   Work with **spatial coordinates** to produce pitch maps and heatmaps.
+-   Build analyses around professional metrics like **xG (expected goals)**.
+
+These are skills that football clubs, agencies, and analytics companies actively recruit for.
+
+## worldfootballR: FBref & Understat
+
+Where StatsBomb gives you event-level depth, **worldfootballR** gives you breadth. It wraps multiple upstream sources — primarily **FBref** (powered by StatsBomb aggregates) and **Understat** — into a single R interface for season-wide statistics.
+
+### FBref: Advanced Aggregate Stats
+
+FBref is the go-to source for detailed per-player and per-team season tables: shooting, passing, possession, defensive actions, and more. The data originates from StatsBomb but is presented in aggregate form (per-90 rates, totals, percentiles) rather than event-level.
+
+### Understat: xG-Focused Match and Shot Data
+
+Understat provides its own **expected goals (xG)** model with match-level and shot-level data. It is a useful complement to FBref when you want shot maps or match-by-match xG timelines without needing the full granularity of StatsBomb events.
+
+::: callout-warning
+### Coverage Is Limited to Top Leagues
+
+Both FBref and Understat focus on **major European leagues** — typically the Big 5 (Premier League, La Liga, Bundesliga, Serie A, Ligue 1) plus selected international tournaments. If your project targets a smaller league (e.g., Eredivisie, Liga Portugal, MLS), data availability will be patchy or nonexistent through these sources. Always check coverage before committing to a project scope.
+:::
+
+::: callout-important
+### Scraping Functions Are Currently Unreliable
+
+As of 2026, most **live scraping** functions in worldfootballR (e.g., `fb_player_scouting_report()`, `fb_team_match_log_stats()`) are broken or intermittently blocked by FBref's anti-bot protections. Understat scrapers (`understat_league_season_shots()`, etc.) are more stable but can also fail without warning.
+
+**The reliable standard is to use `load_` functions.** These pull from pre-scraped, cached datasets that are updated regularly and do not trigger rate limits or blocks.
+
+``` r
+# DO NOT rely on this in 2026:
+# fb_player_scouting_report("https://fbref.com/...")
+
+# USE THIS INSTEAD:
+load_fb_big5_advanced_season_stats(season_end_year = 2025)
+```
+
+If a scraping function works today, it may not tomorrow. Build your workflow around `load_` functions for reproducibility.
+:::
+
+### FBref: Using the Loader Functions
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Pull advanced stats for the Big 5 European leagues (2024-25 season)
+big5_stats <- load_fb_big5_advanced_season_stats(
+  season_end_year = 2025,
+  stat_type = "standard"
+)
+
+# Inspect the structure
+glimpse(big5_stats)
+```
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Filter to Premier League forwards and rank by non-penalty goals
+big5_stats |>
+  filter(Comp == "Premier League", Pos == "FW") |>
+  select(Player, Squad, MP_Playing, Gls_Standard, npxG_Expected) |>
+  arrange(desc(Gls_Standard)) |>
+  head(15)
+```
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Available stat types for load_fb_big5_advanced_season_stats():
+# "standard", "shooting", "passing", "passing_types",
+# "gca", "defense", "possession", "playing_time",
+# "misc", "keepers", "keepers_adv"
+
+# Example: Pull defensive stats
+defensive <- load_fb_big5_advanced_season_stats(
+  season_end_year = 2025,
+  stat_type = "defense"
+)
+
+defensive |>
+  filter(Comp == "La Liga") |>
+  select(Player, Squad, Tkl_Tackles, Int, Blocks_Blocks) |>
+  arrange(desc(Tkl_Tackles)) |>
+  head(10)
+```
+
+### Understat: Shot-Level xG Data
+
+Understat's value is its shot-level xG data with match context — useful for building xG timelines, shot maps, and team-level performance trends.
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Pull match-level xG results for a league season
+# Understat covers: EPL, La Liga, Bundesliga, Serie A, Ligue 1, RFPL
+epl_results <- understat_league_match_results(
+  league = "EPL",
+  season_start_year = 2024
+)
+
+# Each row is a match with home/away xG
+epl_results |>
+  select(home_team, away_team, home_goals, away_goals, home_xG, away_xG) |>
+  head(10)
+```
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Pull shot-level data for a specific league season
+epl_shots <- understat_league_season_shots(
+  league = "EPL",
+  season_start_year = 2024
+)
+
+# Each row is a single shot with xG, coordinates, and result
+epl_shots |>
+  select(player, team = h_team, xG, result, X, Y, situation) |>
+  head(10)
+```
+
+::: callout-tip
+Understat's (X, Y) coordinates are normalised to a 0–1 scale (proportion of pitch length and width). To plot them on a standard pitch, multiply X by the pitch length and Y by the pitch width. This is a different coordinate system from StatsBomb's 120×80 grid — always check the documentation before mapping.
+:::
+
+## Career and Portfolio Value
+
+::: {.callout-tip title="Insight: Why This Data Matters for Your Career"}
+Even with a limited number of open seasons and the scraping challenges we have covered, these datasets are **gold for employers**. Here is why:
+
+-   **Complex data wrangling.** StatsBomb's nested JSON structure forces you to demonstrate real data engineering skills — unnesting lists, reshaping wide-to-long, and handling missing values. This is exactly what analysts do on the job.
+-   **Spatial data mastery.** Pitch maps, pass networks, and pressure heatmaps built from (x, y) coordinates show that you can work with spatial data — a transferable skill that applies well beyond football.
+-   **Understanding of modern data engineering hurdles.** Employers know that data access is messy. Showing that you can navigate broken APIs, rate limits, and caching strategies demonstrates professional maturity. A portfolio that uses `load_` functions and documents *why* is more impressive than one that pretends scraping always works.
+-   **Domain storytelling.** Turning raw event data into a clear tactical insight — *"This team's high press collapsed after the 60th minute"* — shows you can communicate with non-technical stakeholders.
+
+A single well-executed StatsBomb pitch map with a clear narrative will stand out more than a dozen generic bar charts. Focus on depth over breadth.
+:::
+
+## Conclusion: Credits and Data Ethics
+
+Open data exists because organisations choose to share it. Respecting their terms of service keeps the ecosystem alive for everyone.
+
+### Mandatory Credits
+
+When you publish work that uses these data sources — whether on GitHub, in a portfolio, or in a presentation — you **must** include proper attribution.
+
+**StatsBomb:**
+
+> Data provided free of charge by [StatsBomb](https://statsbomb.com/). StatsBomb data is subject to the [StatsBomb Public Data User Agreement](https://github.com/statsbomb/open-data/blob/master/LICENSE.pdf).
+
+**FBref / Sports Reference:**
+
+> Data sourced from [FBref.com](https://fbref.com/), provided by [Sports Reference](https://www.sports-reference.com/). Please review the [Sports Reference data use terms](https://www.sports-reference.com/data_use.html).
+
+**Understat:**
+
+> Data sourced from [Understat.com](https://understat.com/). Understat provides xG models and shot data under its own terms of use.
+
+::: callout-tip
+Add these credits to the **README.md** of any GitHub repository that uses this data. It takes 30 seconds and it signals to employers that you understand data governance — a detail that separates professional analysts from hobbyists.
+:::
+
+### A Note on Responsible Use
+
+-   **Do not hammer FBref with rapid automated requests.** This is why scraping functions break — overuse triggers protections that affect the entire community.
+-   **Cache your data locally.** Pull once, save to a `.csv` or `.rds` file, and work from the local copy. This is faster, reproducible, and respectful.
+-   **Check terms before publishing.** Some data providers restrict commercial use or redistribution. When in doubt, link to the source rather than redistributing the raw data.
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Good practice: save pulled data locally so you only scrape once
+# saveRDS(big5_stats, "data/big5_standard_2025.rds")
+# big5_stats <- readRDS("data/big5_standard_2025.rds")
+```

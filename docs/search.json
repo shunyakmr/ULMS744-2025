@@ -1,5 +1,328 @@
 [
   {
+    "objectID": "workbooks/06-football-data.html",
+    "href": "workbooks/06-football-data.html",
+    "title": "Navigating the Football Data Landscape",
+    "section": "",
+    "text": "The sports analytics ecosystem moves fast. Packages break, APIs change, and data providers adjust their terms of service. This workbook maps the football data landscape as it stands in 2026 and gives you a practical, working route into two of the most important open data sources available: Hudl StatsBomb and FBref/Understat via worldfootballR.\nWe will:",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/06-football-data.html#learning-objectives",
+    "href": "workbooks/06-football-data.html#learning-objectives",
+    "title": "Navigating the Football Data Landscape",
+    "section": "1 Learning Objectives",
+    "text": "1 Learning Objectives\nBy the end of this workbook, you will be able to:\n\nAccess granular event data from StatsBomb’s free releases, including shots, passes, and pressures with (x, y) pitch coordinates.\nAccess aggregate season data from FBref/Understat through worldfootballR’s pre-built loader functions.\nExplain the current scraping limitations that affect football data packages and adapt your workflow accordingly.",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/06-football-data.html#setup",
+    "href": "workbooks/06-football-data.html#setup",
+    "title": "Navigating the Football Data Landscape",
+    "section": "2 Setup",
+    "text": "2 Setup\nRun the following in the RStudio Console to install the packages used in this workbook.\n\n\n\nCode\n\nR console\n\n# StatsBomb's official R package\ninstall.packages(\"devtools\")\ndevtools::install_github(\"statsbomb/StatsBombR\")\n\n# worldfootballR — football data from FBref, Transfermarkt, and Understat\ninstall.packages(\"worldfootballR\")\n\n# Core tidyverse for wrangling and visualisation\ninstall.packages(\"tidyverse\")\n\n\n\nLoad the libraries for the session.\n\n\n\nCode\n\nR script\n\n# --- Libraries ----\nlibrary(StatsBombR)\nlibrary(worldfootballR)\nlibrary(tidyverse)",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/06-football-data.html#hudl-statsbomb-granular-play-by-play-data",
+    "href": "workbooks/06-football-data.html#hudl-statsbomb-granular-play-by-play-data",
+    "title": "Navigating the Football Data Landscape",
+    "section": "3 Hudl StatsBomb: Granular Play-by-Play Data",
+    "text": "3 Hudl StatsBomb: Granular Play-by-Play Data\nStatsBomb provides event-level data. Every pass, shot, dribble, pressure, and goalkeeper action is logged with (x, y) pitch coordinates. This is the gold standard for spatial football analysis: pitch maps, expected goals models, passing networks, and pressure heatmaps all start here.\n\n3.1 What Is Available?\nStatsBomb’s Open Data programme releases professional-grade match event data for selected competitions. As of 2026, the major releases include:\n\nLionel Messi’s full career across Barcelona, PSG, and Inter Miami.\nFIFA World Cups (Men’s and Women’s).\nArsenal’s 2003–04 Invincibles season.\nFA Women’s Super League seasons.\nUEFA Euro tournaments.\n\n\n\n\n\n\n\nStatsBomb’s free data is limited to these specific releases. You cannot pull arbitrary league seasons. For full coverage, a commercial licence is required. However, the open data is more than enough for portfolio-quality work.\n\n\n\n\n\n3.2 Pulling StatsBomb Data\nThe workflow follows three steps: browse competitions, select matches, then pull events.\n\n\n\nCode\n\nR script\n\n# Step 1: Browse all available free competitions\ncompetitions &lt;- FreeCompetitions()\n\n# Inspect what is available\ncompetitions |&gt;\n  select(competition_id, competition_name, season_name) |&gt;\n  distinct() |&gt;\n  head(20)\n\n\n\n\n\n\nCode\n\nR script\n\n# Step 2: Filter to a specific competition and pull match list\n# Example: FIFA World Cup 2022\nwc_matches &lt;- FreeMatches(Competitions = 43) # competition_id for Men's World Cup\n\n# Inspect the match list\nwc_matches |&gt;\n  select(\n    match_id,\n    home_team.home_team_name,\n    away_team.away_team_name,\n    match_date\n  ) |&gt;\n  head(10)\n\n\n\n\n\n\nCode\n\nR script\n\n# Step 3: Pull event data for a single match\n# Pick one match_id from the list above\nevents &lt;- get.matchFree(wc_matches[1, ])\n\n# The result is a wide data frame with one row per event\n# Key columns: type.name, location, pass.end_location, shot.statsbomb_xg\nglimpse(events)\n\n\n\n\n\n\nCode\n\nR script\n\n# Step 4: Filter to shots and inspect spatial data\nshots &lt;- events |&gt;\n  filter(type.name == \"Shot\") |&gt;\n  select(\n    player.name,\n    team.name,\n    location,\n    shot.end_location,\n    shot.statsbomb_xg,\n    shot.outcome.name\n  )\n\n# Each 'location' is a list of [x, y] coordinates on a 120x80 pitch\nshots\n\n\n\n\n\n3.3 Why This Matters for Your Portfolio\nStatsBomb data lets you demonstrate that you can:\n\nParse and reshape complex nested JSON structures into tidy data frames.\nWork with spatial coordinates to produce pitch maps and heatmaps.\nBuild analyses around professional metrics like xG (expected goals).\n\nThese are skills that football clubs, agencies, and analytics companies actively recruit for.",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/06-football-data.html#worldfootballr-fbref-understat",
+    "href": "workbooks/06-football-data.html#worldfootballr-fbref-understat",
+    "title": "Navigating the Football Data Landscape",
+    "section": "4 worldfootballR: FBref & Understat",
+    "text": "4 worldfootballR: FBref & Understat\nWhere StatsBomb gives you event-level depth, worldfootballR gives you breadth. It wraps multiple upstream sources — primarily FBref (powered by StatsBomb aggregates) and Understat — into a single R interface for season-wide statistics.\n\n4.1 FBref: Advanced Aggregate Stats\nFBref is the go-to source for detailed per-player and per-team season tables: shooting, passing, possession, defensive actions, and more. The data originates from StatsBomb but is presented in aggregate form (per-90 rates, totals, percentiles) rather than event-level.\n\n\n4.2 Understat: xG-Focused Match and Shot Data\nUnderstat provides its own expected goals (xG) model with match-level and shot-level data. It is a useful complement to FBref when you want shot maps or match-by-match xG timelines without needing the full granularity of StatsBomb events.\n\n\n\n\n\n\nWarningCoverage Is Limited to Top Leagues\n\n\n\nBoth FBref and Understat focus on major European leagues — typically the Big 5 (Premier League, La Liga, Bundesliga, Serie A, Ligue 1) plus selected international tournaments. If your project targets a smaller league (e.g., Eredivisie, Liga Portugal, MLS), data availability will be patchy or nonexistent through these sources. Always check coverage before committing to a project scope.\n\n\n\n\n\n\n\n\nImportantScraping Functions Are Currently Unreliable\n\n\n\nAs of 2026, most live scraping functions in worldfootballR (e.g., fb_player_scouting_report(), fb_team_match_log_stats()) are broken or intermittently blocked by FBref’s anti-bot protections. Understat scrapers (understat_league_season_shots(), etc.) are more stable but can also fail without warning.\nThe reliable standard is to use load_ functions. These pull from pre-scraped, cached datasets that are updated regularly and do not trigger rate limits or blocks.\n# DO NOT rely on this in 2026:\n# fb_player_scouting_report(\"https://fbref.com/...\")\n\n# USE THIS INSTEAD:\nload_fb_big5_advanced_season_stats(season_end_year = 2025)\nIf a scraping function works today, it may not tomorrow. Build your workflow around load_ functions for reproducibility.\n\n\n\n\n4.3 FBref: Using the Loader Functions\n\n\n\nCode\n\nR script\n\n# Pull advanced stats for the Big 5 European leagues (2024-25 season)\nbig5_stats &lt;- load_fb_big5_advanced_season_stats(\n  season_end_year = 2025,\n  stat_type = \"standard\"\n)\n\n# Inspect the structure\nglimpse(big5_stats)\n\n\n\n\n\n\nCode\n\nR script\n\n# Filter to Premier League forwards and rank by non-penalty goals\nbig5_stats |&gt;\n  filter(Comp == \"Premier League\", Pos == \"FW\") |&gt;\n  select(Player, Squad, MP_Playing, Gls_Standard, npxG_Expected) |&gt;\n  arrange(desc(Gls_Standard)) |&gt;\n  head(15)\n\n\n\n\n\n\nCode\n\nR script\n\n# Available stat types for load_fb_big5_advanced_season_stats():\n# \"standard\", \"shooting\", \"passing\", \"passing_types\",\n# \"gca\", \"defense\", \"possession\", \"playing_time\",\n# \"misc\", \"keepers\", \"keepers_adv\"\n\n# Example: Pull defensive stats\ndefensive &lt;- load_fb_big5_advanced_season_stats(\n  season_end_year = 2025,\n  stat_type = \"defense\"\n)\n\ndefensive |&gt;\n  filter(Comp == \"La Liga\") |&gt;\n  select(Player, Squad, Tkl_Tackles, Int, Blocks_Blocks) |&gt;\n  arrange(desc(Tkl_Tackles)) |&gt;\n  head(10)\n\n\n\n\n\n4.4 Understat: Shot-Level xG Data\nUnderstat’s value is its shot-level xG data with match context — useful for building xG timelines, shot maps, and team-level performance trends.\n\n\n\nCode\n\nR script\n\n# Pull match-level xG results for a league season\n# Understat covers: EPL, La Liga, Bundesliga, Serie A, Ligue 1, RFPL\nepl_results &lt;- understat_league_match_results(\n  league = \"EPL\",\n  season_start_year = 2024\n)\n\n# Each row is a match with home/away xG\nepl_results |&gt;\n  select(home_team, away_team, home_goals, away_goals, home_xG, away_xG) |&gt;\n  head(10)\n\n\n\n\n\n\nCode\n\nR script\n\n# Pull shot-level data for a specific league season\nepl_shots &lt;- understat_league_season_shots(\n  league = \"EPL\",\n  season_start_year = 2024\n)\n\n# Each row is a single shot with xG, coordinates, and result\nepl_shots |&gt;\n  select(player, team = h_team, xG, result, X, Y, situation) |&gt;\n  head(10)\n\n\n\n\n\n\n\n\n\nUnderstat’s (X, Y) coordinates are normalised to a 0–1 scale (proportion of pitch length and width). To plot them on a standard pitch, multiply X by the pitch length and Y by the pitch width. This is a different coordinate system from StatsBomb’s 120×80 grid — always check the documentation before mapping.",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/06-football-data.html#career-and-portfolio-value",
+    "href": "workbooks/06-football-data.html#career-and-portfolio-value",
+    "title": "Navigating the Football Data Landscape",
+    "section": "5 Career and Portfolio Value",
+    "text": "5 Career and Portfolio Value\n\n\n\n\n\n\nTipInsight: Why This Data Matters for Your Career\n\n\n\nEven with a limited number of open seasons and the scraping challenges we have covered, these datasets are gold for employers. Here is why:\n\nComplex data wrangling. StatsBomb’s nested JSON structure forces you to demonstrate real data engineering skills — unnesting lists, reshaping wide-to-long, and handling missing values. This is exactly what analysts do on the job.\nSpatial data mastery. Pitch maps, pass networks, and pressure heatmaps built from (x, y) coordinates show that you can work with spatial data — a transferable skill that applies well beyond football.\nUnderstanding of modern data engineering hurdles. Employers know that data access is messy. Showing that you can navigate broken APIs, rate limits, and caching strategies demonstrates professional maturity. A portfolio that uses load_ functions and documents why is more impressive than one that pretends scraping always works.\nDomain storytelling. Turning raw event data into a clear tactical insight — “This team’s high press collapsed after the 60th minute” — shows you can communicate with non-technical stakeholders.\n\nA single well-executed StatsBomb pitch map with a clear narrative will stand out more than a dozen generic bar charts. Focus on depth over breadth.",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/06-football-data.html#conclusion-credits-and-data-ethics",
+    "href": "workbooks/06-football-data.html#conclusion-credits-and-data-ethics",
+    "title": "Navigating the Football Data Landscape",
+    "section": "6 Conclusion: Credits and Data Ethics",
+    "text": "6 Conclusion: Credits and Data Ethics\nOpen data exists because organisations choose to share it. Respecting their terms of service keeps the ecosystem alive for everyone.\n\n6.1 Mandatory Credits\nWhen you publish work that uses these data sources — whether on GitHub, in a portfolio, or in a presentation — you must include proper attribution.\nStatsBomb:\n\nData provided free of charge by StatsBomb. StatsBomb data is subject to the StatsBomb Public Data User Agreement.\n\nFBref / Sports Reference:\n\nData sourced from FBref.com, provided by Sports Reference. Please review the Sports Reference data use terms.\n\nUnderstat:\n\nData sourced from Understat.com. Understat provides xG models and shot data under its own terms of use.\n\n\n\n\n\n\n\nAdd these credits to the README.md of any GitHub repository that uses this data. It takes 30 seconds and it signals to employers that you understand data governance — a detail that separates professional analysts from hobbyists.\n\n\n\n\n\n6.2 A Note on Responsible Use\n\nDo not hammer FBref with rapid automated requests. This is why scraping functions break — overuse triggers protections that affect the entire community.\nCache your data locally. Pull once, save to a .csv or .rds file, and work from the local copy. This is faster, reproducible, and respectful.\nCheck terms before publishing. Some data providers restrict commercial use or redistribution. When in doubt, link to the source rather than redistributing the raw data.\n\n\n\n\nCode\n\nR script\n\n# Good practice: save pulled data locally so you only scrape once\n# saveRDS(big5_stats, \"data/big5_standard_2025.rds\")\n# big5_stats &lt;- readRDS(\"data/big5_standard_2025.rds\")",
+    "crumbs": [
+      "Extra Resources",
+      "Navigating the Football Data Landscape"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html",
+    "href": "workbooks/02-api.html",
+    "title": "2. API & Data Sourcing",
+    "section": "",
+    "text": "Last week, we set up the project and connected it to GitHub. This week we move into the first core analytical task: sourcing and preparing sports data through an API workflow in R.\nWe will use hoopR to pull NBA basketball data. Basketball remains our common seminar example because it gives us rich public data and a clear route into visualisation and dashboard building. The workflow, however, is transferable: in another sport, the package and variables will change, but the project logic will stay the same.\nWe will:",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#recap-last-week",
+    "href": "workbooks/02-api.html#recap-last-week",
+    "title": "2. API & Data Sourcing",
+    "section": "1 Recap: Last Week",
+    "text": "1 Recap: Last Week\nBefore we dive in, let’s quickly review what we set up last week:\n\nR, RStudio and Git are installed and working;\nthe nba-analytics RStudio project exists with folders data/, scripts/, output/ and app/;\nthe project is connected to a GitHub repository;\nyou made and pushed your first commit.\n\n\n\n\n\n\n\nIf anything from last week is incomplete, go back to Workbook 1 and finish the setup before continuing.",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#a-publishing-shortcut-_publish.sh",
+    "href": "workbooks/02-api.html#a-publishing-shortcut-_publish.sh",
+    "title": "2. API & Data Sourcing",
+    "section": "2 A Publishing Shortcut: _publish.sh",
+    "text": "2 A Publishing Shortcut: _publish.sh\nLast week, we committed and pushed work to GitHub using three separate Terminal commands. That works, but typing the same commands every time gets repetitive. Let’s create a small shortcut script that does it all in one step.\n\n2.1 Create the File\nIn the Files pane in RStudio:\n\nclick New File\nchoose Text File\nsave it as _publish.sh in your project root (the same level as nba-analytics.Rproj)\npaste the following into the file and save\n\n\n\n\n_publish.sh\n\n# _publish.sh — A shortcut to save and publish your work to GitHub.\n#\n# Usage (in your R terminal):\n#   ./_publish.sh \"Your commit message here\"\n#\n# Example:\n#   ./_publish.sh \"Add cleaned NBA team and player data\"\n\ngit add .\ngit commit -m \"$1\"\ngit push -u origin main\n\necho \"Done! Your work has been published to GitHub.\"\n\n\n\n\n2.2 How to Use It\nFrom now on, whenever you want to save and publish your work, open the RStudio Terminal and run:\n\n\n\nRStudio Terminal\n\n./_publish.sh \"Your commit message here\"\n\n\nReplace the text inside the quotes with a short description of what you did. For example:\n\n\n\nRStudio Terminal\n\n./_publish.sh \"Add cleaned NBA team and player data\"\n\n\nThat single command will stage all your changes, commit them with your message, and push everything to GitHub. You will use this throughout the rest of the module.\n\n\n\n\n\n\nThe underscore in _publish.sh is intentional — it keeps the file near the top of your file list and signals that it is a helper script, not part of the main project output.\n\n\n\n\n\n\n\n\n\nIf you get a permission error, run chmod +x _publish.sh in your terminal just once, and this should make _publish.sh executable.",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#why-this-matters",
+    "href": "workbooks/02-api.html#why-this-matters",
+    "title": "2. API & Data Sourcing",
+    "section": "3 Why This Matters",
+    "text": "3 Why This Matters\nAnalysts are often judged on whether they can obtain and prepare their own data, not only on whether they can plot a spreadsheet someone else has already cleaned.\nThe workflow for today is:\ndocumentation -&gt; choose parameters -&gt; pull -&gt; inspect -&gt; summarise -&gt; save\nThat sequence is one of the key transferable habits from this module.",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#initial-setup",
+    "href": "workbooks/02-api.html#initial-setup",
+    "title": "2. API & Data Sourcing",
+    "section": "4 Initial Setup",
+    "text": "4 Initial Setup\nLoad the libraries.\n\n\n\nR code\n\nlibrary(tidyverse)\nlibrary(hoopR)",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#sportsdataverse-workflow",
+    "href": "workbooks/02-api.html#sportsdataverse-workflow",
+    "title": "2. API & Data Sourcing",
+    "section": "5 SportsDataverse Workflow",
+    "text": "5 SportsDataverse Workflow\n\n5.1 Reading the Documentation First\nBefore calling any data-sourcing function, you should read its documentation. The documentation tells you what data sources are available, what functions to call, what parameters they accept, and what kind of data they return. This saves time and avoids guesswork.\n\n5.1.1 Start with the Package Website\nEvery SportsDataVerse package has a documentation website. This is the best place to start because it gives you the big picture: what data sources the package can access, what functions are available, and how to get started.\nFor hoopR, the getting-started guide is here: https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html\nFrom that page, you can see the main functions the package offers (e.g. load_nba_team_box(), load_nba_player_box()), what data they return, and how to use them. Browse the package website to discover what is available before you start writing code.\n\n\n5.1.2 Then Check Individual Functions in R\nOnce you know which function you want to use, check its detailed documentation in RStudio by typing ? followed by the function name:\n\n\n\nR console\n\n?load_nba_team_box\n\n\nThis opens the help page. The three sections to focus on are:\n\nUsage — shows the function signature and its default parameter values.\nArguments — lists every parameter, explains what it controls, and tells you what values are valid.\nValue — describes what the function returns (usually a data frame with specific columns).\n\n\n\n5.1.3 What You Learn from the hoopR Docs\nReading the documentation for load_nba_team_box(), you discover:\n\nIt has one key parameter: seasons.\nseasons accepts a numeric vector — you can request a single season (e.g. 2024) or multiple seasons (e.g. 2020:2024).\nThe function returns a data frame where each row is one team’s performance in one game.\n\nKnowing this before you run the code means you can choose sensible parameter values on the first attempt.\n\n\n5.1.4 Example: A Football Package\nThe same documentation habit applies to every sports data package. For example, worldfootballR provides football (soccer) data from sources including FBref and Transfermarkt. If you wanted to pull transfer data from Transfermarkt, you would start with the package documentation:\nhttps://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html\nThat page shows you which functions access Transfermarkt data, what parameters they require, and what the returned data looks like. Once you have identified the function you need, check its details in R:\n\n\n\nR console\n\n?tm_player_market_values\n\n\nThe Arguments section would tell you parameters like:\n\ncountry_name — e.g. \"England\" for the English leagues\nstart_year — the year the season starts, e.g. 2023 for the 2023/24 season\nleague_url — optionally, a direct Transfermarkt league URL\n\nSo a call might look like:\n\n\n\nR code\n\nepl_values &lt;- tm_player_market_values(\n  country_name = \"England\",\n  start_year = 2023\n)\n\n\n\n\n\n\n\n\nYou do not need to memorise every parameter. You need to know where to look: start with the package website to see what is available, then use ?function_name in R to check the details. The documentation is always your first stop.\n\n\n\n\n\n\n5.2 Step 1: Pull Team Box Score Data\nload_nba_team_box() downloads team-level box score data from ESPN via the hoopR API wrapper. Each row in the result represents one team’s performance in one game, with columns for points, shooting percentages, rebounds, assists and more.\n\n\n\nR code\n\nnba_team_box &lt;- load_nba_team_box(seasons = 2024)\n\n\n\n\n\n\n\n\nIn hoopR, seasons = 2024 means the NBA season that ends in 2024, i.e. the 2023/24 season. This convention is common across SportsDataVerse packages.\n\n\n\n\n\n5.3 Step 2: Inspect the Raw Data\nNever summarise a dataset before checking what it contains.\n\n\n\nR code\n\ndim(nba_team_box)\n\n\ndim() returns the number of rows and columns. This tells you how large the dataset is — for example, 2460 46 would mean 2,460 rows and 46 columns.\n\n\n\nR code\n\nnames(nba_team_box)\n\n\nnames() lists every column name. Scan through this to find the variables you care about (team name, score, shooting stats, etc.).\n\n\n\nR code\n\nglimpse(nba_team_box)\n\n\nglimpse() is the most informative single inspection command. It shows each column’s name, type (e.g. &lt;chr&gt;, &lt;dbl&gt;) and first few values — all in one view.\n\n\n\nR code\n\nhead(nba_team_box)\n\n\nhead() shows the first six rows of the data frame, so you can see actual data values in context.\n\n\n\n\n\n\nYou can also inspect a data frame by clicking its name in the Environment panel (top-right in RStudio). This opens a spreadsheet-style viewer where you can scroll through rows and columns, sort by clicking column headers, and search for values. It is a quick way to get a feel for the data before writing any code.\n\n\n\nLook for:\n\none row per team per game;\nthe main team identifier;\nscore and result columns;\nthe shooting, rebounding and possession-related variables you may want later.\n\n\n\n5.4 Step 3: Prepare a Season-Level Team Table\nWe want one row per team, using regular-season games only. To get there, we need to group the game-level rows by team and then summarise each group into a single row of season averages.\n\n\n\n\n\n\nThe variables we use below (e.g. team_score, field_goals_made, total_rebounds) come from inspecting the data in the previous step. You will need to look at what columns are available in your data and decide which ones are useful for your summary. Use names() or the Environment viewer to check what is there.\n\n\n\n\n\n\nR code\n\nnba_regular &lt;- nba_team_box |&gt;\n  filter(season_type == 2)\n\nnba_team_stats &lt;- nba_regular |&gt;\n  group_by(team_short_display_name) |&gt;\n  summarise(\n    games = n(),\n    wins = sum(team_winner == TRUE, na.rm = TRUE),\n    losses = sum(team_winner == FALSE, na.rm = TRUE),\n    avg_pts = round(mean(team_score, na.rm = TRUE), 1),\n    avg_fg_pct = round(\n      mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE),\n      1\n    ),\n    avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),\n    avg_rebounds = round(mean(total_rebounds, na.rm = TRUE), 1),\n    avg_assists = round(mean(assists, na.rm = TRUE), 1),\n    avg_turnovers = round(mean(turnovers, na.rm = TRUE), 1),\n    avg_steals = round(mean(steals, na.rm = TRUE), 1),\n    avg_blocks = round(mean(blocks, na.rm = TRUE), 1),\n    .groups = \"drop\"\n  ) |&gt;\n  mutate(\n    win_pct = round(wins / games * 100, 1)\n  ) |&gt;\n  arrange(desc(win_pct))\n\n\nA few things to note about the code above:\n\ngroup_by(team_short_display_name) splits the data into separate groups, one per team. Everything inside summarise() is then calculated within each group rather than across the whole dataset.\nsummarise() collapses each group into a single row. The columns you create inside it (e.g. games = n(), avg_pts = round(mean(...))) define what the summary table contains.\n.groups = \"drop\" tells R to remove the grouping structure after summarising. Without this, the data frame would remain grouped, which can cause unexpected behaviour in later operations.\nmutate() adds or modifies columns without changing the number of rows. Here we use it to calculate win_pct from the wins and games columns that summarise() just created.\navg_fg_pct is calculated from field_goals_made / field_goals_attempted * 100 because the raw data provides made and attempted counts rather than a pre-calculated percentage.\n\nInspect the cleaned table.\n\n\n\nR code\n\nprint(nba_team_stats, n = 30)\nsummary(nba_team_stats)\ncolSums(is.na(nba_team_stats))\n\n\n\n\n5.5 Step 4: Prepare a Player Table\nWe also need a player-level table for later charts and dashboard views. The same group_by() |&gt; summarise() pattern applies — this time grouping by player name and team.\n\n\n\n\n\n\nAgain, the column names below (e.g. points, rebounds, field_goals_made) come from inspecting the player box score data. Run names(nba_player_box) or click the data frame in the Environment panel to see what columns are available, and choose the ones that are relevant to your analysis.\n\n\n\n\n\n\nR code\n\nnba_player_box &lt;- load_nba_player_box(seasons = 2024)\n\nnba_player_stats &lt;- nba_player_box |&gt;\n  filter(season_type == 2, minutes &gt; 0) |&gt;\n  group_by(athlete_display_name, team_short_display_name) |&gt;\n  summarise(\n    games = n(),\n    avg_pts = round(mean(points, na.rm = TRUE), 1),\n    avg_rebounds = round(mean(rebounds, na.rm = TRUE), 1),\n    avg_assists = round(mean(assists, na.rm = TRUE), 1),\n    avg_fg_pct = round(\n      mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE),\n      1\n    ),\n    avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),\n    avg_minutes = round(mean(minutes, na.rm = TRUE), 1),\n    .groups = \"drop\"\n  ) |&gt;\n  filter(games &gt;= 40) |&gt;\n  arrange(desc(avg_pts))\n\n\n\n\n\nR code\n\nhead(nba_player_stats, 20)\n\n\n\n\n5.6 Step 5: Save Reusable Data Files\n\n5.6.1 What Is an .rds File?\nAn .rds file is R’s native format for saving a single object to disk. It preserves the R object exactly — column types, factor levels, attributes and all. When you load it back with readRDS(), you get the same object you saved.\nWe also save .csv versions because CSV is a universal format that can be opened in Excel, Python, or any other tool. Use .rds for your own R workflow; use .csv when sharing with others.\n\n\n\nR code\n\nsaveRDS(nba_team_stats, \"data/nba_2024_team_stats.rds\")\nwrite_csv(nba_team_stats, \"data/nba_2024_team_stats.csv\")\n\nsaveRDS(nba_player_stats, \"data/nba_2024_player_stats.rds\")\nwrite_csv(nba_player_stats, \"data/nba_2024_player_stats.csv\")\n\n\nCheck that the files exist.\n\n\n\nR code\n\nlist.files(\"data\")\n\n\n\n\n\n\n\n\nSaving prepared data is part of the workflow, not a tidying afterthought. It means you do not need to re-run long API calls every time you want to make a chart.",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#independent-practice-your-own-sport",
+    "href": "workbooks/02-api.html#independent-practice-your-own-sport",
+    "title": "2. API & Data Sourcing",
+    "section": "6 Independent Practice: Your Own Sport",
+    "text": "6 Independent Practice: Your Own Sport\nThe basketball walkthrough above is the shared seminar example, but your individual assignment will ask you to source, clean and present data for a sport of your own choosing. This is a good opportunity to get a head start.\n\n6.1 What to Do\n\nPick a sport and a SportsDataVerse package (or another R package that provides sports data through an API). Some options:\n\n\n\nSport\nPackage\nDocumentation\n\n\n\n\nWNBA / women’s college basketball\nwehoop\nhttps://wehoop.sportsdataverse.org/\n\n\nNFL (American football)\nnflreadr\nhttps://nflreadr.nflverse.com/\n\n\nMLB (baseball)\nbaseballr\nhttps://billpetti.github.io/baseballr/\n\n\nFootball (soccer)\nworldfootballR\nhttps://jaseziv.github.io/worldfootballR/\n\n\nF1 (motorsport)\nf1dataR\nhttps://scasanova.github.io/f1dataR/\n\n\n\nInstall the package if you have not already, and load it.\nRead the documentation for the main data-loading function in that package. Use ?function_name in the Console or browse the package website. Identify:\n\nwhat parameters the function requires;\nwhat values are valid for each parameter;\nwhat kind of data frame it returns.\n\nPull one season of data using the function and your chosen parameters.\nInspect the result using dim(), names(), glimpse() and head().\nSummarise the data into a clean table with one row per team (or per player, driver, etc.), keeping the variables you find most interesting.\nSave both .rds and .csv versions to your data/ folder.\n\n\n\n\n\n\n\nThe individual assignment will ask you to do exactly this kind of work — source data from an API, prepare it, and build outputs from it. The more you practise now, the less you will need to figure out later. Think of this exercise as the first step of your assignment.\n\n\n\n\n\n6.2 Suggestions for Football (worldfootballR)\nIf you are choosing football, the worldfootballR package gives you access to data from FBref and Understat, including advanced stats like expected goals (xG). Note that most live scraping functions are currently unreliable due to anti-bot protections — use the load_ functions (e.g., load_fb_big5_advanced_season_stats()) as the reliable standard, and be aware that coverage is generally limited to the Big 5 European leagues. For a full guide to the football data landscape, including StatsBomb event data and Understat shot-level xG, see the Football Data Landscape workbook.\nBefore pulling data, think about what story your dashboard will tell. The data you pull now shapes the dashboard you build later. Here are four different angles to get you started — each leads to a different kind of dashboard.\n\n\n\n\n\n\nHere are my recommended resources for data visualisation:\n\nFundamentals of Data Visualization by Claus Wilke [link]\nFinancial Times Visual Vocabulary [link]\nR Graph Gallery [link]\nULMS562 Chatper 4 by Shunya Kimura [link] (Python-based but has some useful videos)\n\n\n\n\n\n6.2.1 Angle 1: League Overview — “Who Over- or Under-Performed?”\nStory: Compare all teams in a league on the required measures. Which teams scored more than their xG suggested? Which defences conceded less than expected? A league-wide view is the most direct route to the assignment measures.\nDashboard idea: A league table with the required stats, scatter plots of xG vs actual goals, and bar charts ranking teams.\nFBref’s standard stats table includes columns for goals, assists, xG, xAG, and progressive actions — most of what you need in one call. Inspect the result with glimpse() to see what is there.\n\n\n6.2.2 Angle 2: One Team’s Season — “How Did Their Form Change?”\nStory: Pick a single team and track their results across the season. Did they start strong and fade? Did a change in tactics show up in the xG numbers? This gives you a time-series narrative and works well with line charts and rolling averages.\nDashboard idea: Match-by-match results for the chosen team, with filters or a team selector. Cumulative points, goals scored/conceded over time, and xG trends.\nThis returns one row per match with columns for home/away teams, scores, and xG. From here, you can filter to one team and reshape — just as we did with the NBA team box scores.\n\n\n6.2.3 Angle 3: Player Spotlight — “Who Stood Out?”\nStory: Compare players within a league or a team. Who created the most chances? Who outperformed their xG? A player-level focus lets you tell a scouting-style story and works well with scatter plots and ranked tables.\nDashboard idea: Player ranking tables, scatter plots (e.g. xG vs actual goals, minutes vs goal contributions), with filters for team or position.\nTry different stat_type values — \"standard\", \"shooting\", \"passing\", \"defense\" — to see what player-level data is available. You can pull multiple stat types and join them together.\n\n\n6.2.4 Angle 4: Cross-League Comparison — “How Do Leagues Differ?”\nStory: Pull the same stats for two or more leagues (e.g. WSL and NWSL, or Premier League and La Liga) and compare. Are goals more common in one league? Is xG higher? This creates a comparative narrative and works well with grouped bar charts and faceted plots.\nDashboard idea: Side-by-side league summaries, with tabs or a dropdown to switch between leagues.\n\n\n\n\n\n\nworldfootballR’s live scraping functions (e.g., fb_team_match_log_stats()) can be slow and unreliable — FBref’s anti-bot protections frequently block them. Prefer load_ functions where available. When you do scrape, pull the data once, save it to .rds, and work from the saved file afterwards — exactly the workflow we practised with basketball. See the Football Data Landscape workbook for details.\n\n\n\n\n\n\n6.3 Commit and Push\nOnce you are happy with your work, use your _publish.sh shortcut:\n\n\n\nRStudio Terminal\n\n./_publish.sh \"Add data for [your sport]\"",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#transfer-checkpoint",
+    "href": "workbooks/02-api.html#transfer-checkpoint",
+    "title": "2. API & Data Sourcing",
+    "section": "7 Transfer Checkpoint",
+    "text": "7 Transfer Checkpoint\nThe details are basketball-specific, but the project habit is not. For another sport, the equivalent questions would be:\n\nwhat is the raw event or match-level table?\nwhat should one cleaned team-level row represent?\nwhat should one cleaned player, driver, batter or club row represent?\nwhich variables need to be saved for charting and dashboards later?",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#common-issues",
+    "href": "workbooks/02-api.html#common-issues",
+    "title": "2. API & Data Sourcing",
+    "section": "8 Common Issues",
+    "text": "8 Common Issues\n\n\n\n\n\n\n\nProblem\nSolution\n\n\n\n\nhoopR call fails\nCheck your internet connection and retry\n\n\nReturned data frame is very wide\nUse glimpse() and select() to focus on relevant variables\n\n\nColumn names differ slightly\nCheck names() and adapt the code\n\n\nMissing values appear\nUse na.rm = TRUE and inspect where they occur\n\n\nPackage not found\nRun install.packages(\"package_name\") first\n\n\nDocumentation page is empty\nTry the package website instead of ? — some packages document online only",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "workbooks/02-api.html#before-you-go",
+    "href": "workbooks/02-api.html#before-you-go",
+    "title": "2. API & Data Sourcing",
+    "section": "9 Before You Go",
+    "text": "9 Before You Go\nNice work! 🏀\nToday you:\n\nsourced real NBA data through an API-based workflow;\nlearned how to read package documentation to choose the right parameters;\ninspected and cleaned raw team and player tables;\nbuilt reusable season-level datasets;\nsaved them for visualisation and dashboard work.\n\nNext week we will turn these saved basketball datasets into clear charts, add simple Plotly interactivity, and build the first version of the dashboard app.",
+    "crumbs": [
+      "Reproducible Workflows for Sports Analytics",
+      "2. API & Data Sourcing"
+    ]
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#quick-recap",
+    "href": "slides/w8-slides-lecture.html#quick-recap",
+    "title": "Week 8 Lecture",
+    "section": "Quick Recap",
+    "text": "Quick Recap"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#this-week",
+    "href": "slides/w8-slides-lecture.html#this-week",
+    "title": "Week 8 Lecture",
+    "section": "This Week",
+    "text": "This Week"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#what-is-an-api",
+    "href": "slides/w8-slides-lecture.html#what-is-an-api",
+    "title": "Week 8 Lecture",
+    "section": "What Is an API?",
+    "text": "What Is an API?"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#sportsdataverse",
+    "href": "slides/w8-slides-lecture.html#sportsdataverse",
+    "title": "Week 8 Lecture",
+    "section": "SportsDataVerse",
+    "text": "SportsDataVerse"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#reading-the-documentation",
+    "href": "slides/w8-slides-lecture.html#reading-the-documentation",
+    "title": "Week 8 Lecture",
+    "section": "Reading the Documentation",
+    "text": "Reading the Documentation"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
+    "href": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
+    "title": "Week 8 Lecture",
+    "section": "Good Practice in Data-Sourcing",
+    "text": "Good Practice in Data-Sourcing"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#applying-this-workflow",
+    "href": "slides/w8-slides-lecture.html#applying-this-workflow",
+    "title": "Week 8 Lecture",
+    "section": "Applying This Workflow",
+    "text": "Applying This Workflow"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#version-control",
+    "href": "slides/w8-slides-lecture.html#version-control",
+    "title": "Week 8 Lecture",
+    "section": "Version Control",
+    "text": "Version Control"
+  },
+  {
+    "objectID": "slides/w8-slides-lecture.html#homework",
+    "href": "slides/w8-slides-lecture.html#homework",
+    "title": "Week 8 Lecture",
+    "section": "Homework",
+    "text": "Homework"
+  },
+  {
+    "objectID": "00-index.html#welcome",
+    "href": "00-index.html#welcome",
+    "title": "Sports Analytics in Practice",
+    "section": "Welcome!",
+    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the coding seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.\nThis revised seminar block uses basketball as the common worked example while preparing you to transfer the same workflow to a different sport in the assignment.",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#pre-requisites",
+    "href": "00-index.html#pre-requisites",
+    "title": "Sports Analytics in Practice",
+    "section": "Pre-requisites",
+    "text": "Pre-requisites\nThis module builds directly on the ULMS725 module: Introduction to Programming and Analysis, extending the programming and analytical skills introduced there into more applied contexts.\nStudents are therefore expected to have access to a functioning installation of R (version 4.5+) and to be comfortable with core R workflows. This includes skills such as installing/ using packages, importing/ manipulating datasets and restructuring data for analysis.",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#key-details",
+    "href": "00-index.html#key-details",
+    "title": "Sports Analytics in Practice",
+    "section": "Key Details",
+    "text": "Key Details\nShunya Kimura will be taking Semester 2 Weeks 07 – 11.\nContact: s.kimura@liverpool.ac.uk (book a meeting)\nThe module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he’ll let you know when they take place.\nKeep an eye on the module announcements page for further updates and consult Canvas for all essential module information, including lecture slides/recordings, reading lists and key details about assignments submission etc. This workbook is designed primarily to support the seminar sessions, and it contains the key materials, exercises and guidance that we will work through during seminars.",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#timetable",
+    "href": "00-index.html#timetable",
+    "title": "Sports Analytics in Practice",
+    "section": "Timetable",
+    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nAPI & Data Sourcing\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nInteractive Dashboards with Shinylive I\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive II\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#help-support",
+    "href": "00-index.html#help-support",
+    "title": "Sports Analytics in Practice",
+    "section": "Help & Support",
+    "text": "Help & Support\nFor specific assistance with this module, you can:\n\nRefer to the Canvas assignments tab for queries about module assignments\nAsk a question at the end of lectures or during the seminars\nBook into the Office Hours: [link]",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "00-index.html#acknowledgements",
+    "href": "00-index.html#acknowledgements",
+    "title": "Sports Analytics in Practice",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. Elements of this workbook are partially based on and modified from:\n\nThe ULMS562: Business Analytics for Organisations 2025-2026 workbook by Shunya Kimura\n\nThis year’s workbook also takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
+    "crumbs": [
+      "Module Overview",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "slides/w7-slides-lecture.html#module-overview",
+    "href": "slides/w7-slides-lecture.html#module-overview",
+    "title": "Week 7 Lecture",
+    "section": "Module Overview",
+    "text": "Module Overview"
+  },
+  {
     "objectID": "workbooks/01-setup.html",
     "href": "workbooks/01-setup.html",
     "title": "1. Foundations of Reproducible Analytics",
@@ -85,252 +408,6 @@
     "crumbs": [
       "Reproducible Workflows for Sports Analytics",
       "1. Foundations of Reproducible Analytics"
-    ]
-  },
-  {
-    "objectID": "slides/w7-slides-lecture.html#module-overview",
-    "href": "slides/w7-slides-lecture.html#module-overview",
-    "title": "Week 7 Lecture",
-    "section": "Module Overview",
-    "text": "Module Overview"
-  },
-  {
-    "objectID": "00-index.html#welcome",
-    "href": "00-index.html#welcome",
-    "title": "Sports Analytics in Practice",
-    "section": "Welcome!",
-    "text": "Welcome!\nWelcome to the course website dedicated to the ULMS744 module: Sports Analytics in Practice! On this site, you will find the coding seminar materials. You can navigate to each week’s material by clicking on the specific sidebar menu link. Please do let me know if you are struggling to access anything. Below you will find information related to the organisational aspects of the course. These are also covered in the intro lecture slides.\nThis revised seminar block uses basketball as the common worked example while preparing you to transfer the same workflow to a different sport in the assignment.",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#pre-requisites",
-    "href": "00-index.html#pre-requisites",
-    "title": "Sports Analytics in Practice",
-    "section": "Pre-requisites",
-    "text": "Pre-requisites\nThis module builds directly on the ULMS725 module: Introduction to Programming and Analysis, extending the programming and analytical skills introduced there into more applied contexts.\nStudents are therefore expected to have access to a functioning installation of R (version 4.5+) and to be comfortable with core R workflows. This includes skills such as installing/ using packages, importing/ manipulating datasets and restructuring data for analysis.",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#key-details",
-    "href": "00-index.html#key-details",
-    "title": "Sports Analytics in Practice",
-    "section": "Key Details",
-    "text": "Key Details\nShunya Kimura will be taking Semester 2 Weeks 07 – 11.\nContact: s.kimura@liverpool.ac.uk (book a meeting)\nThe module is also supported by Ayan Orujob who will be taking over the first six weeks. He offers his own office hours for additional support outside of the lectures/seminars, and he’ll let you know when they take place.\nKeep an eye on the module announcements page for further updates and consult Canvas for all essential module information, including lecture slides/recordings, reading lists and key details about assignments submission etc. This workbook is designed primarily to support the seminar sessions, and it contains the key materials, exercises and guidance that we will work through during seminars.",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#timetable",
-    "href": "00-index.html#timetable",
-    "title": "Sports Analytics in Practice",
-    "section": "Timetable",
-    "text": "Timetable\nSeminars for this module run on the highlighted week below. The topics covered over the next nine weeks are:\n\n\n\nNo.\nWeek Beginning\nTopic\n\n\n\n\n\n\nReading week\n\n\n7\n9\\(^{th}\\) Mar.\nFoundations of Reproducible Analytics\n\n\n8\n16\\(^{th}\\) Mar.\nAPI & Data Sourcing\n\n\n\n\nEaster period\n\n\n9\n13\\(^{th}\\) Apr.\nInteractive Dashboards with Shinylive I\n\n\n10\n20\\(^{th}\\)Apr.\nInteractive Dashboards with Shinylive II\n\n\n11\n27\\(^{th}\\) Apr.\nThe Professional Portfolio",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#help-support",
-    "href": "00-index.html#help-support",
-    "title": "Sports Analytics in Practice",
-    "section": "Help & Support",
-    "text": "Help & Support\nFor specific assistance with this module, you can:\n\nRefer to the Canvas assignments tab for queries about module assignments\nAsk a question at the end of lectures or during the seminars\nBook into the Office Hours: [link]",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "00-index.html#acknowledgements",
-    "href": "00-index.html#acknowledgements",
-    "title": "Sports Analytics in Practice",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis workbook is created using the Quarto publishing system. Elements of this workbook are partially based on and modified from:\n\nThe ULMS562: Business Analytics for Organisations 2025-2026 workbook by Shunya Kimura\n\nThis year’s workbook also takes inspiration and design elements from:\n\nThe GEOG0030: Geocomputation workbook by Justin van Dijk\nThe POLS0010: Data Analysis 2019 materials by Tom O’Grady",
-    "crumbs": [
-      "Module Overview",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#quick-recap",
-    "href": "slides/w8-slides-lecture.html#quick-recap",
-    "title": "Week 8 Lecture",
-    "section": "Quick Recap",
-    "text": "Quick Recap"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#this-week",
-    "href": "slides/w8-slides-lecture.html#this-week",
-    "title": "Week 8 Lecture",
-    "section": "This Week",
-    "text": "This Week"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#what-is-an-api",
-    "href": "slides/w8-slides-lecture.html#what-is-an-api",
-    "title": "Week 8 Lecture",
-    "section": "What Is an API?",
-    "text": "What Is an API?"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#sportsdataverse",
-    "href": "slides/w8-slides-lecture.html#sportsdataverse",
-    "title": "Week 8 Lecture",
-    "section": "SportsDataVerse",
-    "text": "SportsDataVerse"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#reading-the-documentation",
-    "href": "slides/w8-slides-lecture.html#reading-the-documentation",
-    "title": "Week 8 Lecture",
-    "section": "Reading the Documentation",
-    "text": "Reading the Documentation"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
-    "href": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
-    "title": "Week 8 Lecture",
-    "section": "Good Practice in Data-Sourcing",
-    "text": "Good Practice in Data-Sourcing"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#applying-this-workflow",
-    "href": "slides/w8-slides-lecture.html#applying-this-workflow",
-    "title": "Week 8 Lecture",
-    "section": "Applying This Workflow",
-    "text": "Applying This Workflow"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#version-control",
-    "href": "slides/w8-slides-lecture.html#version-control",
-    "title": "Week 8 Lecture",
-    "section": "Version Control",
-    "text": "Version Control"
-  },
-  {
-    "objectID": "slides/w8-slides-lecture.html#homework",
-    "href": "slides/w8-slides-lecture.html#homework",
-    "title": "Week 8 Lecture",
-    "section": "Homework",
-    "text": "Homework"
-  },
-  {
-    "objectID": "workbooks/02-api.html",
-    "href": "workbooks/02-api.html",
-    "title": "2. API & Data Sourcing",
-    "section": "",
-    "text": "Last week, we set up the project and connected it to GitHub. This week we move into the first core analytical task: sourcing and preparing sports data through an API workflow in R.\nWe will use hoopR to pull NBA basketball data. Basketball remains our common seminar example because it gives us rich public data and a clear route into visualisation and dashboard building. The workflow, however, is transferable: in another sport, the package and variables will change, but the project logic will stay the same.\nWe will:",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#recap-last-week",
-    "href": "workbooks/02-api.html#recap-last-week",
-    "title": "2. API & Data Sourcing",
-    "section": "1 Recap: Last Week",
-    "text": "1 Recap: Last Week\nBefore we dive in, let’s quickly review what we set up last week:\n\nR, RStudio and Git are installed and working;\nthe nba-analytics RStudio project exists with folders data/, scripts/, output/ and app/;\nthe project is connected to a GitHub repository;\nyou made and pushed your first commit.\n\n\n\n\n\n\n\nIf anything from last week is incomplete, go back to Workbook 1 and finish the setup before continuing.",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#a-publishing-shortcut-_publish.sh",
-    "href": "workbooks/02-api.html#a-publishing-shortcut-_publish.sh",
-    "title": "2. API & Data Sourcing",
-    "section": "2 A Publishing Shortcut: _publish.sh",
-    "text": "2 A Publishing Shortcut: _publish.sh\nLast week, we committed and pushed work to GitHub using three separate Terminal commands. That works, but typing the same commands every time gets repetitive. Let’s create a small shortcut script that does it all in one step.\n\n2.1 Create the File\nIn the Files pane in RStudio:\n\nclick New File\nchoose Text File\nsave it as _publish.sh in your project root (the same level as nba-analytics.Rproj)\npaste the following into the file and save\n\n\n\n\n_publish.sh\n\n# _publish.sh — A shortcut to save and publish your work to GitHub.\n#\n# Usage (in your R terminal):\n#   ./_publish.sh \"Your commit message here\"\n#\n# Example:\n#   ./_publish.sh \"Add cleaned NBA team and player data\"\n\ngit add .\ngit commit -m \"$1\"\ngit push -u origin main\n\necho \"Done! Your work has been published to GitHub.\"\n\n\n\n\n2.2 How to Use It\nFrom now on, whenever you want to save and publish your work, open the RStudio Terminal and run:\n\n\n\nRStudio Terminal\n\n./_publish.sh \"Your commit message here\"\n\n\nReplace the text inside the quotes with a short description of what you did. For example:\n\n\n\nRStudio Terminal\n\n./_publish.sh \"Add cleaned NBA team and player data\"\n\n\nThat single command will stage all your changes, commit them with your message, and push everything to GitHub. You will use this throughout the rest of the module.\n\n\n\n\n\n\nThe underscore in _publish.sh is intentional — it keeps the file near the top of your file list and signals that it is a helper script, not part of the main project output.\n\n\n\n\n\n\n\n\n\nIf you get a permission error, run chmod +x _publish.sh in your terminal just once, and this should make _publish.sh executable.",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#why-this-matters",
-    "href": "workbooks/02-api.html#why-this-matters",
-    "title": "2. API & Data Sourcing",
-    "section": "3 Why This Matters",
-    "text": "3 Why This Matters\nAnalysts are often judged on whether they can obtain and prepare their own data, not only on whether they can plot a spreadsheet someone else has already cleaned.\nThe workflow for today is:\ndocumentation -&gt; choose parameters -&gt; pull -&gt; inspect -&gt; summarise -&gt; save\nThat sequence is one of the key transferable habits from this module.",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#initial-setup",
-    "href": "workbooks/02-api.html#initial-setup",
-    "title": "2. API & Data Sourcing",
-    "section": "4 Initial Setup",
-    "text": "4 Initial Setup\nLoad the libraries.\n\n\n\nR code\n\nlibrary(tidyverse)\nlibrary(hoopR)",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#sportsdataverse-workflow",
-    "href": "workbooks/02-api.html#sportsdataverse-workflow",
-    "title": "2. API & Data Sourcing",
-    "section": "5 SportsDataverse Workflow",
-    "text": "5 SportsDataverse Workflow\n\n5.1 Reading the Documentation First\nBefore calling any data-sourcing function, you should read its documentation. The documentation tells you what data sources are available, what functions to call, what parameters they accept, and what kind of data they return. This saves time and avoids guesswork.\n\n5.1.1 Start with the Package Website\nEvery SportsDataVerse package has a documentation website. This is the best place to start because it gives you the big picture: what data sources the package can access, what functions are available, and how to get started.\nFor hoopR, the getting-started guide is here: https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html\nFrom that page, you can see the main functions the package offers (e.g. load_nba_team_box(), load_nba_player_box()), what data they return, and how to use them. Browse the package website to discover what is available before you start writing code.\n\n\n5.1.2 Then Check Individual Functions in R\nOnce you know which function you want to use, check its detailed documentation in RStudio by typing ? followed by the function name:\n\n\n\nR console\n\n?load_nba_team_box\n\n\nThis opens the help page. The three sections to focus on are:\n\nUsage — shows the function signature and its default parameter values.\nArguments — lists every parameter, explains what it controls, and tells you what values are valid.\nValue — describes what the function returns (usually a data frame with specific columns).\n\n\n\n5.1.3 What You Learn from the hoopR Docs\nReading the documentation for load_nba_team_box(), you discover:\n\nIt has one key parameter: seasons.\nseasons accepts a numeric vector — you can request a single season (e.g. 2024) or multiple seasons (e.g. 2020:2024).\nThe function returns a data frame where each row is one team’s performance in one game.\n\nKnowing this before you run the code means you can choose sensible parameter values on the first attempt.\n\n\n5.1.4 Example: A Football Package\nThe same documentation habit applies to every sports data package. For example, worldfootballR provides football (soccer) data from sources including FBref and Transfermarkt. If you wanted to pull transfer data from Transfermarkt, you would start with the package documentation:\nhttps://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html\nThat page shows you which functions access Transfermarkt data, what parameters they require, and what the returned data looks like. Once you have identified the function you need, check its details in R:\n\n\n\nR console\n\n?tm_player_market_values\n\n\nThe Arguments section would tell you parameters like:\n\ncountry_name — e.g. \"England\" for the English leagues\nstart_year — the year the season starts, e.g. 2023 for the 2023/24 season\nleague_url — optionally, a direct Transfermarkt league URL\n\nSo a call might look like:\n\n\n\nR code\n\nepl_values &lt;- tm_player_market_values(\n  country_name = \"England\",\n  start_year = 2023\n)\n\n\n\n\n\n\n\n\nYou do not need to memorise every parameter. You need to know where to look: start with the package website to see what is available, then use ?function_name in R to check the details. The documentation is always your first stop.\n\n\n\n\n\n\n5.2 Step 1: Pull Team Box Score Data\nload_nba_team_box() downloads team-level box score data from ESPN via the hoopR API wrapper. Each row in the result represents one team’s performance in one game, with columns for points, shooting percentages, rebounds, assists and more.\n\n\n\nR code\n\nnba_team_box &lt;- load_nba_team_box(seasons = 2024)\n\n\n\n\n\n\n\n\nIn hoopR, seasons = 2024 means the NBA season that ends in 2024, i.e. the 2023/24 season. This convention is common across SportsDataVerse packages.\n\n\n\n\n\n5.3 Step 2: Inspect the Raw Data\nNever summarise a dataset before checking what it contains.\n\n\n\nR code\n\ndim(nba_team_box)\n\n\ndim() returns the number of rows and columns. This tells you how large the dataset is — for example, 2460 46 would mean 2,460 rows and 46 columns.\n\n\n\nR code\n\nnames(nba_team_box)\n\n\nnames() lists every column name. Scan through this to find the variables you care about (team name, score, shooting stats, etc.).\n\n\n\nR code\n\nglimpse(nba_team_box)\n\n\nglimpse() is the most informative single inspection command. It shows each column’s name, type (e.g. &lt;chr&gt;, &lt;dbl&gt;) and first few values — all in one view.\n\n\n\nR code\n\nhead(nba_team_box)\n\n\nhead() shows the first six rows of the data frame, so you can see actual data values in context.\n\n\n\n\n\n\nYou can also inspect a data frame by clicking its name in the Environment panel (top-right in RStudio). This opens a spreadsheet-style viewer where you can scroll through rows and columns, sort by clicking column headers, and search for values. It is a quick way to get a feel for the data before writing any code.\n\n\n\nLook for:\n\none row per team per game;\nthe main team identifier;\nscore and result columns;\nthe shooting, rebounding and possession-related variables you may want later.\n\n\n\n5.4 Step 3: Prepare a Season-Level Team Table\nWe want one row per team, using regular-season games only. To get there, we need to group the game-level rows by team and then summarise each group into a single row of season averages.\n\n\n\n\n\n\nThe variables we use below (e.g. team_score, field_goals_made, total_rebounds) come from inspecting the data in the previous step. You will need to look at what columns are available in your data and decide which ones are useful for your summary. Use names() or the Environment viewer to check what is there.\n\n\n\n\n\n\nR code\n\nnba_regular &lt;- nba_team_box |&gt;\n  filter(season_type == 2)\n\nnba_team_stats &lt;- nba_regular |&gt;\n  group_by(team_short_display_name) |&gt;\n  summarise(\n    games = n(),\n    wins = sum(team_winner == TRUE, na.rm = TRUE),\n    losses = sum(team_winner == FALSE, na.rm = TRUE),\n    avg_pts = round(mean(team_score, na.rm = TRUE), 1),\n    avg_fg_pct = round(\n      mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE),\n      1\n    ),\n    avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),\n    avg_rebounds = round(mean(total_rebounds, na.rm = TRUE), 1),\n    avg_assists = round(mean(assists, na.rm = TRUE), 1),\n    avg_turnovers = round(mean(turnovers, na.rm = TRUE), 1),\n    avg_steals = round(mean(steals, na.rm = TRUE), 1),\n    avg_blocks = round(mean(blocks, na.rm = TRUE), 1),\n    .groups = \"drop\"\n  ) |&gt;\n  mutate(\n    win_pct = round(wins / games * 100, 1)\n  ) |&gt;\n  arrange(desc(win_pct))\n\n\nA few things to note about the code above:\n\ngroup_by(team_short_display_name) splits the data into separate groups, one per team. Everything inside summarise() is then calculated within each group rather than across the whole dataset.\nsummarise() collapses each group into a single row. The columns you create inside it (e.g. games = n(), avg_pts = round(mean(...))) define what the summary table contains.\n.groups = \"drop\" tells R to remove the grouping structure after summarising. Without this, the data frame would remain grouped, which can cause unexpected behaviour in later operations.\nmutate() adds or modifies columns without changing the number of rows. Here we use it to calculate win_pct from the wins and games columns that summarise() just created.\navg_fg_pct is calculated from field_goals_made / field_goals_attempted * 100 because the raw data provides made and attempted counts rather than a pre-calculated percentage.\n\nInspect the cleaned table.\n\n\n\nR code\n\nprint(nba_team_stats, n = 30)\nsummary(nba_team_stats)\ncolSums(is.na(nba_team_stats))\n\n\n\n\n5.5 Step 4: Prepare a Player Table\nWe also need a player-level table for later charts and dashboard views. The same group_by() |&gt; summarise() pattern applies — this time grouping by player name and team.\n\n\n\n\n\n\nAgain, the column names below (e.g. points, rebounds, field_goals_made) come from inspecting the player box score data. Run names(nba_player_box) or click the data frame in the Environment panel to see what columns are available, and choose the ones that are relevant to your analysis.\n\n\n\n\n\n\nR code\n\nnba_player_box &lt;- load_nba_player_box(seasons = 2024)\n\nnba_player_stats &lt;- nba_player_box |&gt;\n  filter(season_type == 2, minutes &gt; 0) |&gt;\n  group_by(athlete_display_name, team_short_display_name) |&gt;\n  summarise(\n    games = n(),\n    avg_pts = round(mean(points, na.rm = TRUE), 1),\n    avg_rebounds = round(mean(rebounds, na.rm = TRUE), 1),\n    avg_assists = round(mean(assists, na.rm = TRUE), 1),\n    avg_fg_pct = round(\n      mean(field_goals_made / field_goals_attempted * 100, na.rm = TRUE),\n      1\n    ),\n    avg_3pt_made = round(mean(three_point_field_goals_made, na.rm = TRUE), 1),\n    avg_minutes = round(mean(minutes, na.rm = TRUE), 1),\n    .groups = \"drop\"\n  ) |&gt;\n  filter(games &gt;= 40) |&gt;\n  arrange(desc(avg_pts))\n\n\n\n\n\nR code\n\nhead(nba_player_stats, 20)\n\n\n\n\n5.6 Step 5: Save Reusable Data Files\n\n5.6.1 What Is an .rds File?\nAn .rds file is R’s native format for saving a single object to disk. It preserves the R object exactly — column types, factor levels, attributes and all. When you load it back with readRDS(), you get the same object you saved.\nWe also save .csv versions because CSV is a universal format that can be opened in Excel, Python, or any other tool. Use .rds for your own R workflow; use .csv when sharing with others.\n\n\n\nR code\n\nsaveRDS(nba_team_stats, \"data/nba_2024_team_stats.rds\")\nwrite_csv(nba_team_stats, \"data/nba_2024_team_stats.csv\")\n\nsaveRDS(nba_player_stats, \"data/nba_2024_player_stats.rds\")\nwrite_csv(nba_player_stats, \"data/nba_2024_player_stats.csv\")\n\n\nCheck that the files exist.\n\n\n\nR code\n\nlist.files(\"data\")\n\n\n\n\n\n\n\n\nSaving prepared data is part of the workflow, not a tidying afterthought. It means you do not need to re-run long API calls every time you want to make a chart.",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#independent-practice-your-own-sport",
-    "href": "workbooks/02-api.html#independent-practice-your-own-sport",
-    "title": "2. API & Data Sourcing",
-    "section": "6 Independent Practice: Your Own Sport",
-    "text": "6 Independent Practice: Your Own Sport\nThe basketball walkthrough above is the shared seminar example, but your individual assignment will ask you to source, clean and present data for a sport of your own choosing. This is a good opportunity to get a head start.\n\n6.1 What to Do\n\nPick a sport and a SportsDataVerse package (or another R package that provides sports data through an API). Some options:\n\n\n\nSport\nPackage\nDocumentation\n\n\n\n\nWNBA / women’s college basketball\nwehoop\nhttps://wehoop.sportsdataverse.org/\n\n\nNFL (American football)\nnflreadr\nhttps://nflreadr.nflverse.com/\n\n\nMLB (baseball)\nbaseballr\nhttps://billpetti.github.io/baseballr/\n\n\nFootball (soccer)\nworldfootballR\nhttps://jaseziv.github.io/worldfootballR/\n\n\nF1 (motorsport)\nf1dataR\nhttps://scasanova.github.io/f1dataR/\n\n\n\nInstall the package if you have not already, and load it.\nRead the documentation for the main data-loading function in that package. Use ?function_name in the Console or browse the package website. Identify:\n\nwhat parameters the function requires;\nwhat values are valid for each parameter;\nwhat kind of data frame it returns.\n\nPull one season of data using the function and your chosen parameters.\nInspect the result using dim(), names(), glimpse() and head().\nSummarise the data into a clean table with one row per team (or per player, driver, etc.), keeping the variables you find most interesting.\nSave both .rds and .csv versions to your data/ folder.\n\n\n\n\n\n\n\nThe individual assignment will ask you to do exactly this kind of work — source data from an API, prepare it, and build outputs from it. The more you practise now, the less you will need to figure out later. Think of this exercise as the first step of your assignment.\n\n\n\n\n\n6.2 Suggestions for Football (worldfootballR)\nIf you are choosing football, the worldfootballR package gives you access to rich data from FBref, including advanced stats like expected goals (xG). Women’s leagues are fully supported on FBref and are a great option.\nBefore pulling data, think about what story your dashboard will tell. The data you pull now shapes the dashboard you build later. Here are four different angles to get you started — each leads to a different kind of dashboard.\n\n\n\n\n\n\nHere are my recommended resources for data visualisation:\n\nFundamentals of Data Visualization by Claus Wilke [link]\nFinancial Times Visual Vocabulary [link]\nR Graph Gallery [link]\nULMS562 Chatper 4 by Shunya Kimura [link] (Python-based but has some useful videos)\n\n\n\n\n\n6.2.1 Angle 1: League Overview — “Who Over- or Under-Performed?”\nStory: Compare all teams in a league on the required measures. Which teams scored more than their xG suggested? Which defences conceded less than expected? A league-wide view is the most direct route to the assignment measures.\nDashboard idea: A league table with the required stats, scatter plots of xG vs actual goals, and bar charts ranking teams.\nFBref’s standard stats table includes columns for goals, assists, xG, xAG, and progressive actions — most of what you need in one call. Inspect the result with glimpse() to see what is there.\n\n\n6.2.2 Angle 2: One Team’s Season — “How Did Their Form Change?”\nStory: Pick a single team and track their results across the season. Did they start strong and fade? Did a change in tactics show up in the xG numbers? This gives you a time-series narrative and works well with line charts and rolling averages.\nDashboard idea: Match-by-match results for the chosen team, with filters or a team selector. Cumulative points, goals scored/conceded over time, and xG trends.\nThis returns one row per match with columns for home/away teams, scores, and xG. From here, you can filter to one team and reshape — just as we did with the NBA team box scores.\n\n\n6.2.3 Angle 3: Player Spotlight — “Who Stood Out?”\nStory: Compare players within a league or a team. Who created the most chances? Who outperformed their xG? A player-level focus lets you tell a scouting-style story and works well with scatter plots and ranked tables.\nDashboard idea: Player ranking tables, scatter plots (e.g. xG vs actual goals, minutes vs goal contributions), with filters for team or position.\nTry different stat_type values — \"standard\", \"shooting\", \"passing\", \"defense\" — to see what player-level data is available. You can pull multiple stat types and join them together.\n\n\n6.2.4 Angle 4: Cross-League Comparison — “How Do Leagues Differ?”\nStory: Pull the same stats for two or more leagues (e.g. WSL and NWSL, or Premier League and La Liga) and compare. Are goals more common in one league? Is xG higher? This creates a comparative narrative and works well with grouped bar charts and faceted plots.\nDashboard idea: Side-by-side league summaries, with tabs or a dropdown to switch between leagues.\n\n\n\n\n\n\nworldfootballR pulls data by scraping FBref pages, so calls can be slow (several seconds each). This is normal. Pull the data once, save it to .rds, and work from the saved file afterwards — exactly the workflow we practised with basketball.\n\n\n\n\n\n\n6.3 Commit and Push\nOnce you are happy with your work, use your _publish.sh shortcut:\n\n\n\nRStudio Terminal\n\n./_publish.sh \"Add data for [your sport]\"",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#transfer-checkpoint",
-    "href": "workbooks/02-api.html#transfer-checkpoint",
-    "title": "2. API & Data Sourcing",
-    "section": "7 Transfer Checkpoint",
-    "text": "7 Transfer Checkpoint\nThe details are basketball-specific, but the project habit is not. For another sport, the equivalent questions would be:\n\nwhat is the raw event or match-level table?\nwhat should one cleaned team-level row represent?\nwhat should one cleaned player, driver, batter or club row represent?\nwhich variables need to be saved for charting and dashboards later?",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#common-issues",
-    "href": "workbooks/02-api.html#common-issues",
-    "title": "2. API & Data Sourcing",
-    "section": "8 Common Issues",
-    "text": "8 Common Issues\n\n\n\n\n\n\n\nProblem\nSolution\n\n\n\n\nhoopR call fails\nCheck your internet connection and retry\n\n\nReturned data frame is very wide\nUse glimpse() and select() to focus on relevant variables\n\n\nColumn names differ slightly\nCheck names() and adapt the code\n\n\nMissing values appear\nUse na.rm = TRUE and inspect where they occur\n\n\nPackage not found\nRun install.packages(\"package_name\") first\n\n\nDocumentation page is empty\nTry the package website instead of ? — some packages document online only",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
-    ]
-  },
-  {
-    "objectID": "workbooks/02-api.html#before-you-go",
-    "href": "workbooks/02-api.html#before-you-go",
-    "title": "2. API & Data Sourcing",
-    "section": "9 Before You Go",
-    "text": "9 Before You Go\nNice work! 🏀\nToday you:\n\nsourced real NBA data through an API-based workflow;\nlearned how to read package documentation to choose the right parameters;\ninspected and cleaned raw team and player tables;\nbuilt reusable season-level datasets;\nsaved them for visualisation and dashboard work.\n\nNext week we will turn these saved basketball datasets into clear charts, add simple Plotly interactivity, and build the first version of the dashboard app.",
-    "crumbs": [
-      "Reproducible Workflows for Sports Analytics",
-      "2. API & Data Sourcing"
     ]
   }
 ]

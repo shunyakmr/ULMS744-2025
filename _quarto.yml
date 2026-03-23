@@ -12,7 +12,8 @@ project:
     - workbooks/03-shiny1.qmd
     - workbooks/04-shiny2.qmd
     - workbooks/05-portfolio.qmd
-  
+    - workbooks/06-football-data.qmd
+
 lang: en
 
 execute:
@@ -66,5 +67,8 @@ website:
         - workbooks/03-shiny1.qmd
         - workbooks/04-shiny2.qmd
         - workbooks/05-portfolio.qmd
+      - section: "Extra Resources"
+        contents:
+        - workbooks/06-football-data.qmd
   
 editor: visual

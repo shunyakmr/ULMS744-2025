@@ -369,6 +369,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extra Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workbooks/06-football-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Navigating the Football Data Landscape</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -956,7 +973,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="suggestions-for-football-worldfootballr" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="suggestions-for-football-worldfootballr"><span class="header-section-number">6.2</span> Suggestions for Football (<code>worldfootballR</code>)</h3>
-<p>If you are choosing <strong>football</strong>, the <code>worldfootballR</code> package gives you access to rich data from FBref, including advanced stats like expected goals (xG). Women’s leagues are fully supported on FBref and are a great option.</p>
+<p>If you are choosing <strong>football</strong>, the <code>worldfootballR</code> package gives you access to data from FBref and Understat, including advanced stats like expected goals (xG). Note that most live scraping functions are currently unreliable due to anti-bot protections — use the <code>load_</code> functions (e.g., <code>load_fb_big5_advanced_season_stats()</code>) as the reliable standard, and be aware that coverage is generally limited to the Big 5 European leagues. For a full guide to the football data landscape, including StatsBomb event data and Understat shot-level xG, see the <a href="06-football-data.html">Football Data Landscape workbook</a>.</p>
 <p>Before pulling data, think about what <strong>story your dashboard will tell</strong>. The data you pull now shapes the dashboard you build later. Here are four different angles to get you started — each leads to a different kind of dashboard.</p>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
@@ -1002,7 +1019,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><code>worldfootballR</code> pulls data by scraping FBref pages, so calls can be <strong>slow</strong> (several seconds each). This is normal. Pull the data once, save it to <code>.rds</code>, and work from the saved file afterwards — exactly the workflow we practised with basketball.</p>
+<p><code>worldfootballR</code>’s live scraping functions (e.g., <code>fb_team_match_log_stats()</code>) can be <strong>slow and unreliable</strong> — FBref’s anti-bot protections frequently block them. Prefer <code>load_</code> functions where available. When you do scrape, pull the data once, save it to <code>.rds</code>, and work from the saved file afterwards — exactly the workflow we practised with basketball. See the <a href="06-football-data.html">Football Data Landscape workbook</a> for details.</p>
 </div>
 </div>
 </div>

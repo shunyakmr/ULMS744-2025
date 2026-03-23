@@ -1,5 +1,8 @@
 ---
 title: "Sports Analytics in Practice"
+author:
+  - name: "Shunya Kimura"
+    email: "s.kimura@liverpool.ac.uk"
 ---
 
 ```{r}
