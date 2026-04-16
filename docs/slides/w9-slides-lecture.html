@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <title>Week 8 Lecture</title>
+  <title>Week 9 Lecture</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -193,7 +193,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 8 Lecture</h1>
+  <h1 class="title">Week 9 Lecture</h1>
   <p class="subtitle">Dr Shunya Kimura <br> skimura@liverpool.ac.uk</p>
 
 <div class="quarto-title-authors">
@@ -202,7 +202,7 @@
 </section>
 <section id="sports-analytics-in-practice" class="slide level3 not-bold">
 <h3>Sports Analytics in Practice</h3>
-<h4 id="api-data-sourcing">API &amp; Data Sourcing</h4>
+<h4 id="interactive-dashboards-with-shinylive-i">Interactive Dashboards with Shinylive I</h4>
 
 <img data-src="../images/UoL Zoom Backgrounds_20226.jpg" class="stretch quarto-figure quarto-figure-center"></section>
 <section id="module-outline" class="slide level3">
@@ -213,13 +213,13 @@
       <span style="width:3.2em; font-weight:600; color:#aaa;">W7</span>
       <span>Foundations of Reproducible Analytics</span>
     </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
-      <span style="width:3.2em; font-weight:700; color:#EF426F;">W8</span>
-      <span style="font-weight:600;">API &amp; Data Sourcing</span>
-    </div>
     <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:3.2em; font-weight:600; color:#aaa;">W9</span>
-      <span>Interactive Dashboards with Shinylive I</span>
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W8</span>
+      <span>API &amp; Data Sourcing</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
+      <span style="width:3.2em; font-weight:700; color:#EF426F;">W9</span>
+      <span style="font-weight:600;">Interactive Dashboards with Shinylive I</span>
     </div>
     <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
       <span style="width:3.2em; font-weight:600; color:#aaa;">W10</span>
@@ -235,10 +235,10 @@
 <section id="last-week" class="slide level3">
 <h3>Last Week</h3>
 <ul>
-<li>Installed the package stack for this block.</li>
-<li>Created an RStudio project with a clean folder structure.</li>
-<li>Connected the project to GitHub.</li>
-<li>Made and pushed a first commit.</li>
+<li>Used <code>hoopR</code> to pull NBA team and player data.</li>
+<li>Inspected raw data frames before summarising.</li>
+<li>Built cleaned team-level and player-level tables.</li>
+<li>Saved raw pulls in <code>data/raw/</code> and cleaned files in <code>data/cleaned/</code>.</li>
 </ul>
 </section>
 <section>
@@ -249,8 +249,8 @@
 <section id="go-to-workbook" class="slide level3">
 <h3>Go To Workbook…</h3>
 
-<img data-src="../images/workbook-recap.png" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" class="r-stretch"><aside class="notes">
-<p>Go through recap and setting up the shortcut ./_publish.sh</p>
+<img data-src="../images/workbook-shinyI.png" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" class="r-stretch"><aside class="notes">
+<p>Quickly recap. Then organise the file structure + .gitignore.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -262,344 +262,331 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section></section>
-<section>
-<section id="this-week" class="title-slide slide level2 center">
-<h2>This Week</h2>
-
 </section>
 <section id="our-plan" class="slide level3">
 <h3>Our Plan</h3>
 <ul>
-<li>Understand what an API is and why it matters.</li>
-<li>Use the <code>hoopR</code> package to pull NBA data.</li>
-<li>Inspect, clean and summarise raw data.</li>
-<li>Save prepared datasets for later weeks.</li>
+<li>Understand what R Shiny is.</li>
+<li>Learn the <code>ui</code> / <code>server</code> structure.</li>
+<li>Connect user inputs to chart outputs.</li>
+<li>Build a first local Shiny app from Workbook 3.</li>
 </ul>
 </section></section>
 <section>
-<section id="what-is-an-api" class="title-slide slide level2 center">
-<h2>What Is an API?</h2>
+<section id="what-is-r-shiny" class="title-slide slide level2 center">
+<h2>What Is R Shiny?</h2>
 
 </section>
 <section id="the-short-answer" class="slide level3">
 <h3>The Short Answer</h3>
 <ul>
-<li><strong>API</strong> stands for <strong>Application Programming Interface</strong>.</li>
-<li>It is a structured way for one piece of software to request data from another.</li>
-<li>Instead of downloading a file manually, your R script asks a server to send the data directly.</li>
+<li>Shiny is an R framework for building interactive web apps.</li>
+<li>Users control inputs such as dropdowns, buttons and sliders.</li>
+<li>R responds by updating charts, tables or text.</li>
 </ul>
-</section>
-<section id="why-analysts-care" class="slide level3">
-<h3>Why Analysts Care</h3>
+
+<img data-src="../images/rshiny-intro.png" class="quarto-figure quarto-figure-center r-stretch" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"></section>
+<section id="why-analysts-use-it" class="slide level3">
+<h3>Why Analysts Use It</h3>
 <ul>
-<li>Manual downloads are <strong>not reproducible</strong>. You cannot re-run them automatically.</li>
-<li>APIs give you a <strong>programmatic, repeatable</strong> path to fresh data.</li>
-<li>Most modern sports data platforms expose their data through APIs.</li>
+<li>Users can explore data without editing code.</li>
+<li>One app can replace many repeated charts.</li>
+<li>You can share analysis as a tool, not just a report.</li>
 </ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="../images/shiny-example-1.png" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5); width:95%;"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="../images/shiny-example-2.png" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5); width:95%;"></p>
+</div></div>
 </section>
 <section id="the-mental-model" class="slide level3">
 <h3>The Mental Model</h3>
-<div style="display:flex; flex-direction:column; align-items:center; gap:0.3em; margin-top:1em; font-size:1.05em;">
-
-  <div style="padding:0.5em 2em; background:#264653; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
-    1. Your R script calls a function
-  </div>
-
-  <div style="font-size:1.5em; color:#888;">↓</div>
-
-  <div style="padding:0.5em 2em; background:#2a9d8f; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
-    2. The function sends an API request
-  </div>
-
-  <div style="font-size:1.5em; color:#888;">↓</div>
-
-  <div style="padding:0.5em 2em; background:#e76f51; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
-    3. The server returns the data
-  </div>
-
-  <div style="font-size:1.5em; color:#888;">↓</div>
-
-  <div style="padding:0.5em 2em; background:#EF426F; color:white; border-radius:8px; font-weight:600; text-align:center; width:70%;">
-    4. You get a data frame in R
-  </div>
-
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>user changes input</span>
+<span id="cb1-2"><a></a>  -&gt; server code reacts</span>
+<span id="cb1-3"><a></a>  -&gt; output updates</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The user does not see the R code. They see the app.</p>
 </section>
-<section id="everyday-analogies" class="slide level3">
-<h3>Everyday Analogies</h3>
-<ul>
-<li>A weather app on your phone uses an API to get forecast data.</li>
-<li>When you search for flights, the site queries airline APIs behind the scenes.</li>
-<li>APIs are just <strong>structured conversations</strong> between machines.</li>
-</ul>
+<section id="static-chart-vs-shiny-app" class="slide level3">
+<h3>Static Chart vs Shiny App</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>Static chart:</span>
+<span id="cb2-2"><a></a>  "Here is Rui Hachimura."</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>Shiny app:</span>
+<span id="cb2-5"><a></a>  "Choose any player, and the chart updates."</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
-<section id="sportsdataverse" class="title-slide slide level2 center">
-<h2>SportsDataVerse</h2>
+<section id="anatomy-of-a-shiny-app" class="title-slide slide level2 center">
+<h2>Anatomy of a Shiny App</h2>
 
 </section>
-<section id="what-is-it" class="slide level3">
-<h3>What Is It?</h3>
-<h4 id="httpsr.sportsdataverse.org"><a href="https://r.sportsdataverse.org/" class="uri">https://r.sportsdataverse.org/</a></h4>
-<ul>
-<li><strong>SportsDataVerse</strong> is a collection of open-source R and Python packages for accessing sports data.</li>
-<li>Each package wraps an API for a specific sport or data source.</li>
-<li>The API calls are hidden behind simple R functions.</li>
-</ul>
-</section>
-<section id="key-packages" class="slide level3">
-<h3>Key Packages</h3>
-
-<img data-src="../images/sdv-wall.png" class="r-stretch quarto-figure-left"><p class="caption">R Packages in the SportDataverse</p><div style="width:100%; font-family:Poppins,sans-serif; font-size:0.95em; margin-top:1.5em;">
-
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
-      <span style="width:9em; font-weight:700; color:#EF426F;">hoopR</span>
-      <span>NBA and men's college basketball</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:9em; font-weight:600; color:#aaa;">wehoop</span>
-      <span>WNBA and women's college basketball</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:9em; font-weight:600; color:#aaa;">nflverse</span>
-      <span>NFL play-by-play and roster data</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
-      <span style="width:9em; font-weight:600; color:#aaa;">baseballr</span>
-      <span>MLB Statcast and FanGraphs data</span>
-    </div>
-    <div style="display:flex; padding:0.35em 0; color:#555;">
-      <span style="width:9em; font-weight:600; color:#aaa;">worldfootballR</span>
-      <span>Football (soccer) data from FBref, Transfermarkt, etc.</span>
-    </div>
-
-</div>
-</section>
-<section id="why-hoopr" class="slide level3">
-<h3>Why hoopR?</h3>
-<h4 id="httpshoopr.sportsdataverse.org"><a href="https://hoopr.sportsdataverse.org/" class="uri">https://hoopr.sportsdataverse.org/</a></h4>
-<ul>
-<li>Rich, publicly available NBA data with no authentication required.</li>
-<li>Clean R functions that return ready-to-use data frames.</li>
-<li>The workflow pattern transfers to any sport — only the package and column names change.</li>
-</ul>
-</section></section>
-<section>
-<section id="reading-the-documentation" class="title-slide slide level2 center">
-<h2>Reading the Documentation</h2>
-
-</section>
-<section id="the-documentation-habit" class="slide level3">
-<h3>The Documentation Habit</h3>
-<ul>
-<li>Before you call a function, <strong>read its documentation</strong>.</li>
-<li>The documentation tells you:
-<ul>
-<li>what data sources are accessible;</li>
-<li>what <strong>functions</strong> exist to call them;</li>
-<li>what <strong>parameters</strong> (inputs) each function accepts;</li>
-<li>what kind of data it <strong>returns</strong>.</li>
-</ul></li>
-</ul>
-</section>
-<section id="start-with-the-package-website" class="slide level3">
-<h3>Start with the Package Website</h3>
-<ul>
-<li>Every SportsDataVerse package has a documentation website.</li>
-<li>It gives you the big picture: what data is available, what functions to use, and how to get started.</li>
-<li>For hoopR: <a href="https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html" class="uri">https://hoopr.sportsdataverse.org/articles/getting-started-hoopR.html</a></li>
-</ul>
-</section>
-<section id="then-check-individual-functions-in-r" class="slide level3">
-<h3>Then Check Individual Functions in R</h3>
-<ul>
-<li>Once you know which function you want, use <code>?</code> in the RStudio Console:</li>
-</ul>
+<section id="one-file-appapp.r" class="slide level3">
+<h3>One File: <code>app/app.R</code></h3>
+<p>A basic Shiny app has four parts:</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>R console</strong></pre>
+<pre><strong>app/app.R</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>?load_nba_team_box</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="co"># 1. Load data</span></span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a><span class="co"># 2. Define UI</span></span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a><span class="co"># 3. Define server</span></span>
+<span id="cb3-8"><a></a></span>
+<span id="cb3-9"><a></a><span class="co"># 4. Launch app</span></span>
+<span id="cb3-10"><a></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<ul>
-<li>The help page shows the <strong>Usage</strong>, <strong>Arguments</strong> and <strong>Value</strong> sections.</li>
-<li><strong>Arguments</strong> = the parameters you can set when calling the function.</li>
-<li><strong>Value</strong> = what the function gives back (usually a data frame).</li>
-</ul>
 </section>
-<section id="what-you-learn-from-the-docs" class="slide level3">
-<h3>What You Learn from the Docs</h3>
-<ul>
-<li><code>load_nba_team_box()</code> has one key parameter: <code>seasons</code>.</li>
-<li><code>seasons</code> accepts a <strong>numeric vector</strong> — you can request one season or several.</li>
-<li>The function returns a data frame with <strong>one row per team per game</strong>.</li>
-<li>Knowing this before you run the code saves trial and error.</li>
-</ul>
-</section>
-<section id="the-same-pattern-different-sport" class="slide level3">
-<h3>The Same Pattern, Different Sport</h3>
-<ul>
-<li>For football, the <code>worldfootballR</code> package works the same way.</li>
-<li>Start with the Transfermarkt documentation: <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html" class="uri">https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html</a></li>
-<li>Then check individual functions in R with <code>?tm_player_market_values</code>.</li>
-<li>You would discover parameters like <code>country_name</code>, <code>start_year</code> and <code>league_url</code>.</li>
-<li>The documentation tells you which values are valid for each parameter.</li>
-</ul>
-</section>
-<section id="general-workflow" class="slide level3">
-<h3>General Workflow</h3>
-<div style="display:flex; flex-direction:column; align-items:center; gap:0.2em; margin-top:0.8em; font-size:0.95em;">
-
-  <div style="padding:0.4em 1.5em; background:#264653; color:white; border-radius:8px; text-align:center; width:80%;">
-    1. Browse the <strong>package website</strong> — what data &amp; functions are available?
-  </div>
-
-  <div style="font-size:1.3em; color:#888;">↓</div>
-
-  <div style="padding:0.4em 1.5em; background:#2a9d8f; color:white; border-radius:8px; text-align:center; width:80%;">
-    2. Check <code style="background:rgba(255,255,255,0.2); padding:0.1em 0.3em; border-radius:3px;">?function_name</code> in R — read the <strong>Arguments</strong>
-  </div>
-
-  <div style="font-size:1.3em; color:#888;">↓</div>
-
-  <div style="padding:0.4em 1.5em; background:#e76f51; color:white; border-radius:8px; text-align:center; width:80%;">
-    3. Choose your parameter values (e.g. season, league)
-  </div>
-
-  <div style="font-size:1.3em; color:#888;">↓</div>
-
-  <div style="padding:0.4em 1.5em; background:#EF426F; color:white; border-radius:8px; text-align:center; width:80%;">
-    4. Call the function and inspect the result
-  </div>
-
-</div>
+<section id="the-two-core-objects" class="slide level3">
+<h3>The Two Core Objects</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>ui</span>
+<span id="cb4-2"><a></a>  what the user sees</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a>server</span>
+<span id="cb4-5"><a></a>  what R computes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Keep that split clear.</p>
 </section></section>
 <section>
-<section id="good-practice-in-data-sourcing" class="title-slide slide level2 center">
-<h2>Good Practice in Data-Sourcing</h2>
+<section id="ui" class="title-slide slide level2 center">
+<h2>UI</h2>
 
 </section>
-<section id="pull-inspect-summarise-save" class="slide level3">
-<h3>Pull → Inspect → Summarise → Save</h3>
+<section id="what-the-ui-does" class="slide level3">
+<h3>What the UI Does</h3>
+<p>The UI defines the page.</p>
+<p>It contains:</p>
 <ul>
-<li>This is the core data-sourcing habit for the module.</li>
-<li>It applies to <strong>any</strong> sport and <strong>any</strong> data package.</li>
+<li>inputs, such as <code>selectInput()</code>;</li>
+<li>output placeholders, such as <code>plotOutput()</code>;</li>
+<li>layout, such as <code>fluidPage()</code> or <code>sidebarLayout()</code>.</li>
 </ul>
 </section>
-<section id="step-1-pull" class="slide level3">
-<h3>Step 1: Pull</h3>
-<ul>
-<li>Load your packages and call the data-sourcing function.</li>
-<li>Use the parameters you identified from the documentation.</li>
-<li>The result is a <strong>data frame</strong> — typically one row per event, match, or game.</li>
-</ul>
+<section id="minimal-ui" class="slide level3">
+<h3>Minimal UI</h3>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb5-2"><a></a>  <span class="fu">plotOutput</span>(<span class="st">"zone_bars"</span>)</span>
+<span id="cb5-3"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>This says: put a plot on the page and call it <code>zone_bars</code>.</p>
 </section>
-<section id="step-2-inspect" class="slide level3">
-<h3>Step 2: Inspect</h3>
+<section id="ui-with-a-dropdown" class="slide level3">
+<h3>UI with a Dropdown</h3>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>player_choices <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(shot_zones<span class="sc">$</span>player_name))</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb6-4"><a></a>  <span class="fu">selectInput</span>(</span>
+<span id="cb6-5"><a></a>    <span class="at">inputId =</span> <span class="st">"player"</span>,</span>
+<span id="cb6-6"><a></a>    <span class="at">label =</span> <span class="st">"Player"</span>,</span>
+<span id="cb6-7"><a></a>    <span class="at">choices =</span> player_choices,</span>
+<span id="cb6-8"><a></a>    <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span></span>
+<span id="cb6-9"><a></a>  ),</span>
+<span id="cb6-10"><a></a>  <span class="fu">plotOutput</span>(<span class="st">"zone_bars"</span>)</span>
+<span id="cb6-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The dropdown value is stored as <code>input$player</code>.</p>
+</section>
+<section id="ui-with-layout" class="slide level3">
+<h3>UI with Layout</h3>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb7-2"><a></a>  <span class="fu">titlePanel</span>(<span class="st">"Lakers Evolution Dashboard"</span>),</span>
+<span id="cb7-3"><a></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb7-4"><a></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb7-5"><a></a>      <span class="fu">selectInput</span>(<span class="st">"player"</span>, <span class="st">"Choose a player"</span>, player_choices)</span>
+<span id="cb7-6"><a></a>    ),</span>
+<span id="cb7-7"><a></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb7-8"><a></a>      <span class="fu">plotOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span>
+<span id="cb7-9"><a></a>    )</span>
+<span id="cb7-10"><a></a>  )</span>
+<span id="cb7-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Inputs usually go in the sidebar. Outputs usually go in the main panel.</p>
+</section></section>
+<section>
+<section id="server" class="title-slide slide level2 center">
+<h2>Server</h2>
+
+</section>
+<section id="what-the-server-does" class="slide level3">
+<h3>What the Server Does</h3>
+<p>The server fills the UI placeholders.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a></a>UI:</span>
+<span id="cb8-2"><a></a>  plotOutput("zone_bars")</span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a>Server:</span>
+<span id="cb8-5"><a></a>  output$zone_bars &lt;- renderPlot(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The names must match.</p>
+</section>
+<section id="minimal-server" class="slide level3">
+<h3>Minimal Server</h3>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb9-2"><a></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb9-3"><a></a>    shot_zones <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>      <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb9-6"><a></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>)</span>
+<span id="cb9-7"><a></a>  })</span>
+<span id="cb9-8"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>This proves the plot can live inside Shiny.</p>
+</section>
+<section id="reactive-server" class="slide level3">
+<h3>Reactive Server</h3>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb10-2"><a></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb10-3"><a></a>    shot_zones <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a></a>      <span class="fu">filter</span>(player_name <span class="sc">==</span> input<span class="sc">$</span>player) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb10-6"><a></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>)</span>
+<span id="cb10-7"><a></a>  })</span>
+<span id="cb10-8"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Now the chart changes when the dropdown changes.</p>
+</section></section>
+<section>
+<section id="reactivity" class="title-slide slide level2 center">
+<h2>Reactivity</h2>
+
+</section>
+<section id="the-key-idea" class="slide level3">
+<h3>The Key Idea</h3>
+<p>You do not write:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a></a>when the dropdown changes, redraw the chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Shiny handles that.</p>
+<p>You write code that uses <code>input$player</code>, and Shiny watches it.</p>
+</section>
+<section id="dependency" class="slide level3">
+<h3>Dependency</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a></a>selectInput("player", ...)</span>
+<span id="cb12-2"><a></a>        |</span>
+<span id="cb12-3"><a></a>        v</span>
+<span id="cb12-4"><a></a>input$player</span>
+<span id="cb12-5"><a></a>        |</span>
+<span id="cb12-6"><a></a>        v</span>
+<span id="cb12-7"><a></a>renderPlot({ ... })</span>
+<span id="cb12-8"><a></a>        |</span>
+<span id="cb12-9"><a></a>        v</span>
+<span id="cb12-10"><a></a>plotOutput("zone_bars")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>input$player</code> changes, <code>renderPlot()</code> reruns.</p>
+</section>
+<section id="names-must-match" class="slide level3">
+<h3>Names Must Match</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a></a>selectInput("player", ...)</span>
+<span id="cb13-2"><a></a>input$player</span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a>plotOutput("zone_bars")</span>
+<span id="cb13-5"><a></a>output$zone_bars &lt;- renderPlot(...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Most beginner Shiny bugs are name mismatches.</p>
+</section></section>
+<section>
+<section id="build-it-in-stages" class="title-slide slide level2 center">
+<h2>Build It in Stages</h2>
+
+</section>
+<section id="stage-1-minimal-app" class="slide level3">
+<h3>Stage 1: Minimal App</h3>
 <ul>
-<li>Before doing anything else, check what you received.</li>
+<li>Load <code>shot_zones.rds</code>.</li>
+<li>Show one chart.</li>
+<li>Hard-code one player.</li>
 </ul>
+<p>Goal: prove the app runs.</p>
+</section>
+<section id="stage-2-add-an-input" class="slide level3">
+<h3>Stage 2: Add an Input</h3>
+<ul>
+<li>Create <code>player_choices</code>.</li>
+<li>Add <code>selectInput()</code>.</li>
+<li>Replace <code>"Rui Hachimura"</code> with <code>input$player</code>.</li>
+</ul>
+<p>Goal: make the chart reactive.</p>
+</section>
+<section id="stage-3-add-layout" class="slide level3">
+<h3>Stage 3: Add Layout</h3>
+<ul>
+<li>Add <code>titlePanel()</code>.</li>
+<li>Use <code>sidebarLayout()</code>.</li>
+<li>Put controls in <code>sidebarPanel()</code>.</li>
+<li>Put the chart in <code>mainPanel()</code>.</li>
+</ul>
+<p>Goal: make the app easier to use.</p>
+</section>
+<section id="stage-4-optional-plotly-output" class="slide level3">
+<h3>Stage 4: Optional Plotly Output</h3>
+<p>The same UI/server pairing applies to Plotly.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a></a>plotOutput()    -&gt; renderPlot()</span>
+<span id="cb14-2"><a></a>plotlyOutput()  -&gt; renderPlotly()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The Shiny idea is the same: output placeholder in the UI, render function in the server.</p>
+</section></section>
+<section>
+<section id="running-the-app" class="title-slide slide level2 center">
+<h2>Running the App</h2>
+
+</section>
+<section id="start-the-app" class="slide level3">
+<h3>Start the App</h3>
+<p>From the project root:</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>R code</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">dim</span>(data)       <span class="co"># how many rows and columns?</span></span>
-<span id="cb2-2"><a></a><span class="fu">names</span>(data)     <span class="co"># what are the column names?</span></span>
-<span id="cb2-3"><a></a><span class="fu">glimpse</span>(data)   <span class="co"># what types and values does each column have?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">"app"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<ul>
-<li>You can also click the data frame in the <strong>Environment</strong> panel to browse it visually.</li>
-<li><strong>Never</strong> summarise before you have inspected.</li>
-</ul>
+<p>This opens the local app in the RStudio viewer or browser.</p>
 </section>
-<section id="step-3-summarise" class="slide level3">
-<h3>Step 3: Summarise</h3>
-<ul>
-<li>Filter the data to the subset you need (e.g.&nbsp;regular season, a specific league).</li>
-<li>Use <code>group_by()</code> to split by team, player, driver, etc.</li>
-<li>Use <code>summarise()</code> to collapse each group into one row of aggregated statistics.</li>
-<li>Use <code>mutate()</code> to create new columns from the summary (e.g.&nbsp;win percentage).</li>
-<li>Choose the variables that matter for <strong>your</strong> sport and <strong>your</strong> analysis.</li>
-</ul>
-</section>
-<section id="step-4-save" class="slide level3">
-<h3>Step 4: Save</h3>
-<ul>
-<li>Save your prepared data so you do not need to re-run API calls every time.</li>
-<li>Keep downloaded API returns in <code>data/raw/</code>.</li>
-<li>Keep cleaned, reusable tables in <code>data/cleaned/</code>.</li>
-<li><code>.rds</code> preserves R objects exactly (column types, factor levels, everything).</li>
-<li><code>.csv</code> is universal and can be opened in Excel, Python, or any other tool.</li>
-<li>Use both: <code>.rds</code> for your own workflow, <code>.csv</code> for sharing.</li>
-</ul>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R code</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">saveRDS</span>(raw_data, <span class="st">"data/raw/my_raw_data.rds"</span>)</span>
-<span id="cb3-2"><a></a><span class="fu">write_csv</span>(raw_data, <span class="st">"data/raw/my_raw_data.csv"</span>)</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="fu">saveRDS</span>(my_data, <span class="st">"data/cleaned/my_prepared_data.rds"</span>)</span>
-<span id="cb3-5"><a></a><span class="fu">write_csv</span>(my_data, <span class="st">"data/cleaned/my_prepared_data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<section id="good-development-habit" class="slide level3">
+<h3>Good Development Habit</h3>
+<p>Build one layer at a time.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a></a>minimal app</span>
+<span id="cb16-2"><a></a>  -&gt; dropdown</span>
+<span id="cb16-3"><a></a>  -&gt; reactive chart</span>
+<span id="cb16-4"><a></a>  -&gt; layout</span>
+<span id="cb16-5"><a></a>  -&gt; optional Plotly</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
-<section id="applying-this-workflow" class="title-slide slide level2 center">
-<h2>Applying This Workflow</h2>
-
-</section>
-<section id="the-pattern-is-transferable" class="slide level3">
-<h3>The Pattern Is Transferable</h3>
-<ul>
-<li>The specific functions and column names change from sport to sport.</li>
-<li>The <strong>workflow</strong> does not:
-<ol type="1">
-<li>Read the documentation.</li>
-<li>Choose your parameters.</li>
-<li>Pull → Inspect → Summarise → Save.</li>
-</ol></li>
-<li>For your assignment, you will do exactly this with a sport of your choosing.</li>
-</ul>
-</section></section>
-<section>
-<section id="version-control" class="title-slide slide level2 center">
-<h2>Version Control</h2>
-
-</section>
-<section id="save-and-publish-your-work" class="slide level3">
-<h3>Save and Publish Your Work</h3>
-<ul>
-<li>After each meaningful piece of work, commit and push.</li>
-<li>Use <code>_publish.sh</code> to do it in one step:</li>
-</ul>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>RStudio Terminal</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">./_publish.sh</span> <span class="st">"Your commit message here"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<ul>
-<li>Write a commit message that describes <strong>what</strong> you did, not just “update”.</li>
-</ul>
-</section></section>
-<section>
-<section id="homework" class="title-slide slide level2 center">
-<h2>Homework</h2>
+<section id="practical" class="title-slide slide level2 center">
+<h2>Practical</h2>
 
 </section>
 <section id="go-to-workbook-1" class="slide level3">
 <h3>Go To Workbook…</h3>
 
-<img data-src="../images/workbook-hw.png" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" class="r-stretch"></section>
+<img data-src="../images/workbook-shinyI.png" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" class="r-stretch"></section>
 <section id="questions" class="slide level3">
 <h3>Questions?</h3>
 <div style="position:relative; height:460px;">

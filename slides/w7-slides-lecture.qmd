@@ -3,7 +3,6 @@ format:
   revealjs:
     title: "Week 7 Lecture"
     subtitle: "Dr Shunya Kimura <br> skimura@liverpool.ac.uk"
-    incremental: true
     slide-number: true
     slide-level: 3
     output-file: "w7-slides-lecture.html"

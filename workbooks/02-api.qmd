@@ -26,7 +26,7 @@ We will:
 Before we dive in, let's quickly review what we set up last week:
 
 -   [x] R, RStudio and Git are installed and working;
--   [x] the `nba-analytics` RStudio project exists with folders `data/`, `scripts/`, `output/` and `app/`;
+-   [x] the `nba-analytics` RStudio project exists with folders `data/raw/`, `data/cleaned/`, `scripts/`, `output/` and `app/`;
 -   [x] the project is connected to a GitHub repository;
 -   [x] you made and pushed your first commit.
 
@@ -120,6 +120,16 @@ library(tidyverse)
 library(hoopR)
 ```
 
+Make sure the data folders exist. We will save downloaded API data in `data/raw/` and cleaned, reusable tables in `data/cleaned/`.
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+dir.create("data/raw", recursive = TRUE, showWarnings = FALSE)
+dir.create("data/cleaned", recursive = TRUE, showWarnings = FALSE)
+```
+
 ## SportsDataverse Workflow
 
 ### Reading the Documentation First
@@ -207,6 +217,9 @@ You do not need to memorise every parameter. You need to know **where to look**:
 #| filename: "R code"
 
 nba_team_box <- load_nba_team_box(seasons = 2024)
+
+saveRDS(nba_team_box, "data/raw/nba_2024_team_box.rds")
+write_csv(nba_team_box, "data/raw/nba_2024_team_box.csv")
 ```
 
 ::: callout-note
@@ -337,6 +350,9 @@ Again, the column names below (e.g. `points`, `rebounds`, `field_goals_made`) co
 
 nba_player_box <- load_nba_player_box(seasons = 2024)
 
+saveRDS(nba_player_box, "data/raw/nba_2024_player_box.rds")
+write_csv(nba_player_box, "data/raw/nba_2024_player_box.csv")
+
 nba_player_stats <- nba_player_box |>
   filter(season_type == 2, minutes > 0) |>
   group_by(athlete_display_name, team_short_display_name) |>
@@ -376,11 +392,11 @@ We also save `.csv` versions because CSV is a universal format that can be opene
 #| eval: false
 #| filename: "R code"
 
-saveRDS(nba_team_stats, "data/nba_2024_team_stats.rds")
-write_csv(nba_team_stats, "data/nba_2024_team_stats.csv")
+saveRDS(nba_team_stats, "data/cleaned/nba_2024_team_stats.rds")
+write_csv(nba_team_stats, "data/cleaned/nba_2024_team_stats.csv")
 
-saveRDS(nba_player_stats, "data/nba_2024_player_stats.rds")
-write_csv(nba_player_stats, "data/nba_2024_player_stats.csv")
+saveRDS(nba_player_stats, "data/cleaned/nba_2024_player_stats.rds")
+write_csv(nba_player_stats, "data/cleaned/nba_2024_player_stats.csv")
 ```
 
 Check that the files exist.
@@ -389,7 +405,8 @@ Check that the files exist.
 #| eval: false
 #| filename: "R code"
 
-list.files("data")
+list.files("data/raw")
+list.files("data/cleaned")
 ```
 
 ::: callout-tip
@@ -420,13 +437,13 @@ The basketball walkthrough above is the shared seminar example, but your **indiv
     -   what values are valid for each parameter;
     -   what kind of data frame it returns.
 
-4.  **Pull one season of data** using the function and your chosen parameters.
+4.  **Pull one season of data** using the function and your chosen parameters. Save the downloaded table in `data/raw/` before you clean or summarise it.
 
 5.  **Inspect the result** using `dim()`, `names()`, `glimpse()` and `head()`.
 
 6.  **Summarise the data** into a clean table with one row per team (or per player, driver, etc.), keeping the variables you find most interesting.
 
-7.  **Save** both `.rds` and `.csv` versions to your `data/` folder.
+7.  **Save** both `.rds` and `.csv` versions of the cleaned table to your `data/cleaned/` folder.
 
 ::: callout-important
 The individual assignment will ask you to do exactly this kind of work — source data from an API, prepare it, and build outputs from it. The more you practise now, the less you will need to figure out later. Think of this exercise as the first step of your assignment.
@@ -525,6 +542,6 @@ Today you:
 -   learned how to read package documentation to choose the right parameters;
 -   inspected and cleaned raw team and player tables;
 -   built reusable season-level datasets;
--   saved them for visualisation and dashboard work.
+-   saved raw API pulls in `data/raw/` and cleaned files in `data/cleaned/`.
 
 Next week we will turn these saved basketball datasets into clear charts, add simple Plotly interactivity, and build the first version of the dashboard app.

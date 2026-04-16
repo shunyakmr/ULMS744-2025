@@ -3,7 +3,6 @@ format:
   revealjs:
     title: "Week 8 Lecture"
     subtitle: "Dr Shunya Kimura <br> skimura@liverpool.ac.uk"
-    incremental: true
     slide-number: true
     slide-level: 3
     output-file: "w8-slides-lecture.html"
@@ -290,6 +289,8 @@ glimpse(data)   # what types and values does each column have?
 ### Step 4: Save
 
 -   Save your prepared data so you do not need to re-run API calls every time.
+-   Keep downloaded API returns in `data/raw/`.
+-   Keep cleaned, reusable tables in `data/cleaned/`.
 -   `.rds` preserves R objects exactly (column types, factor levels, everything).
 -   `.csv` is universal and can be opened in Excel, Python, or any other tool.
 -   Use both: `.rds` for your own workflow, `.csv` for sharing.
@@ -298,8 +299,11 @@ glimpse(data)   # what types and values does each column have?
 #| eval: false
 #| filename: "R code"
 
-saveRDS(my_data, "data/my_prepared_data.rds")
-write_csv(my_data, "data/my_prepared_data.csv")
+saveRDS(raw_data, "data/raw/my_raw_data.rds")
+write_csv(raw_data, "data/raw/my_raw_data.csv")
+
+saveRDS(my_data, "data/cleaned/my_prepared_data.rds")
+write_csv(my_data, "data/cleaned/my_prepared_data.csv")
 ```
 
 ## Applying This Workflow

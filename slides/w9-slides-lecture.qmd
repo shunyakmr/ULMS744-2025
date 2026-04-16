@@ -1,0 +1,399 @@
+---
+format:
+  revealjs:
+    title: "Week 9 Lecture"
+    subtitle: "Dr Shunya Kimura <br> skimura@liverpool.ac.uk"
+    slide-number: true
+    slide-level: 3
+    output-file: "w9-slides-lecture.html"
+    theme: ../scss/custom.scss
+    revealjs-plugins:
+      - pointer
+    echo: true
+---
+
+### Sports Analytics in Practice {.not-bold}
+
+#### Interactive Dashboards with Shinylive I
+
+![](/images/UoL%20Zoom%20Backgrounds_20226.jpg){.stretch fig-align="center"}
+
+### Module Outline
+
+```{=html}
+<div style="width:100%; font-family:Poppins,sans-serif; font-size:0.98em; margin-top:2em;">
+
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W7</span>
+      <span>Foundations of Reproducible Analytics</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W8</span>
+      <span>API &amp; Data Sourcing</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#222;">
+      <span style="width:3.2em; font-weight:700; color:#EF426F;">W9</span>
+      <span style="font-weight:600;">Interactive Dashboards with Shinylive I</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W10</span>
+      <span>Interactive Dashboards with Shinylive II</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W11</span>
+      <span>The Professional Portfolio</span>
+    </div>
+
+</div>
+```
+
+### Last Week
+
+-   Used `hoopR` to pull NBA team and player data.
+-   Inspected raw data frames before summarising.
+-   Built cleaned team-level and player-level tables.
+-   Saved raw pulls in `data/raw/` and cleaned files in `data/cleaned/`.
+
+## Quick Recap
+
+### Go To Workbook...
+
+![](/images/workbook-shinyI.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+::: notes
+Quickly recap. Then organise the file structure + .gitignore.
+:::
+
+### Our Plan
+
+-   Understand what R Shiny is.
+-   Learn the `ui` / `server` structure.
+-   Connect user inputs to chart outputs.
+-   Build a first local Shiny app from Workbook 3.
+
+## What Is R Shiny?
+
+### The Short Answer
+
+-   Shiny is an R framework for building interactive web apps.
+-   Users control inputs such as dropdowns, buttons and sliders.
+-   R responds by updating charts, tables or text.
+
+![](/images/rshiny-intro.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);" fig-align="center"}
+
+### Why Analysts Use It
+
+-   Users can explore data without editing code.
+-   One app can replace many repeated charts.
+-   You can share analysis as a tool, not just a report.
+
+::::: columns
+::: {.column width="50%"}
+![](/images/shiny-example-1.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5); width:95%;"}
+:::
+
+::: {.column width="50%"}
+![](/images/shiny-example-2.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5); width:95%;"}
+:::
+:::::
+
+### The Mental Model
+
+``` text
+user changes input
+  -> server code reacts
+  -> output updates
+```
+
+The user does not see the R code. They see the app.
+
+### Static Chart vs Shiny App
+
+``` text
+Static chart:
+  "Here is Rui Hachimura."
+
+Shiny app:
+  "Choose any player, and the chart updates."
+```
+
+## Anatomy of a Shiny App
+
+### One File: `app/app.R`
+
+A basic Shiny app has four parts:
+
+```{r}
+#| eval: false
+#| filename: "app/app.R"
+
+library(shiny)
+
+# 1. Load data
+
+# 2. Define UI
+
+# 3. Define server
+
+# 4. Launch app
+shinyApp(ui = ui, server = server)
+```
+
+### The Two Core Objects
+
+``` text
+ui
+  what the user sees
+
+server
+  what R computes
+```
+
+Keep that split clear.
+
+## UI
+
+### What the UI Does
+
+The UI defines the page.
+
+It contains:
+
+-   inputs, such as `selectInput()`;
+-   output placeholders, such as `plotOutput()`;
+-   layout, such as `fluidPage()` or `sidebarLayout()`.
+
+### Minimal UI
+
+```{r}
+#| eval: false
+#| filename: "app/app.R"
+
+ui <- fluidPage(
+  plotOutput("zone_bars")
+)
+```
+
+This says: put a plot on the page and call it `zone_bars`.
+
+### UI with a Dropdown
+
+```{r}
+#| eval: false
+#| filename: "app/app.R"
+
+player_choices <- sort(unique(shot_zones$player_name))
+
+ui <- fluidPage(
+  selectInput(
+    inputId = "player",
+    label = "Player",
+    choices = player_choices,
+    selected = "Rui Hachimura"
+  ),
+  plotOutput("zone_bars")
+)
+```
+
+The dropdown value is stored as `input$player`.
+
+### UI with Layout
+
+```{r}
+#| eval: false
+#| filename: "app/app.R"
+
+ui <- fluidPage(
+  titlePanel("Lakers Evolution Dashboard"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("player", "Choose a player", player_choices)
+    ),
+    mainPanel(
+      plotOutput("zone_bars", height = "500px")
+    )
+  )
+)
+```
+
+Inputs usually go in the sidebar. Outputs usually go in the main panel.
+
+## Server
+
+### What the Server Does
+
+The server fills the UI placeholders.
+
+``` text
+UI:
+  plotOutput("zone_bars")
+
+Server:
+  output$zone_bars <- renderPlot(...)
+```
+
+The names must match.
+
+### Minimal Server
+
+```{r}
+#| eval: false
+#| filename: "app/app.R"
+
+server <- function(input, output, session) {
+  output$zone_bars <- renderPlot({
+    shot_zones |>
+      filter(player_name == "Rui Hachimura") |>
+      ggplot(aes(x = shot_zone_basic, y = share, fill = era)) +
+      geom_col(position = position_dodge(width = 0.8), width = 0.7)
+  })
+}
+```
+
+This proves the plot can live inside Shiny.
+
+### Reactive Server
+
+```{r}
+#| eval: false
+#| filename: "app/app.R"
+
+server <- function(input, output, session) {
+  output$zone_bars <- renderPlot({
+    shot_zones |>
+      filter(player_name == input$player) |>
+      ggplot(aes(x = shot_zone_basic, y = share, fill = era)) +
+      geom_col(position = position_dodge(width = 0.8), width = 0.7)
+  })
+}
+```
+
+Now the chart changes when the dropdown changes.
+
+## Reactivity
+
+### The Key Idea
+
+You do not write:
+
+``` text
+when the dropdown changes, redraw the chart
+```
+
+Shiny handles that.
+
+You write code that uses `input$player`, and Shiny watches it.
+
+### Dependency
+
+``` text
+selectInput("player", ...)
+        |
+        v
+input$player
+        |
+        v
+renderPlot({ ... })
+        |
+        v
+plotOutput("zone_bars")
+```
+
+If `input$player` changes, `renderPlot()` reruns.
+
+### Names Must Match
+
+``` text
+selectInput("player", ...)
+input$player
+
+plotOutput("zone_bars")
+output$zone_bars <- renderPlot(...)
+```
+
+Most beginner Shiny bugs are name mismatches.
+
+## Build It in Stages
+
+### Stage 1: Minimal App
+
+-   Load `shot_zones.rds`.
+-   Show one chart.
+-   Hard-code one player.
+
+Goal: prove the app runs.
+
+### Stage 2: Add an Input
+
+-   Create `player_choices`.
+-   Add `selectInput()`.
+-   Replace `"Rui Hachimura"` with `input$player`.
+
+Goal: make the chart reactive.
+
+### Stage 3: Add Layout
+
+-   Add `titlePanel()`.
+-   Use `sidebarLayout()`.
+-   Put controls in `sidebarPanel()`.
+-   Put the chart in `mainPanel()`.
+
+Goal: make the app easier to use.
+
+### Stage 4: Optional Plotly Output
+
+The same UI/server pairing applies to Plotly.
+
+``` text
+plotOutput()    -> renderPlot()
+plotlyOutput()  -> renderPlotly()
+```
+
+The Shiny idea is the same: output placeholder in the UI, render function in the server.
+
+## Running the App
+
+### Start the App
+
+From the project root:
+
+```{r}
+#| eval: false
+#| filename: "R code"
+
+shiny::runApp("app")
+```
+
+This opens the local app in the RStudio viewer or browser.
+
+### Good Development Habit
+
+Build one layer at a time.
+
+``` text
+minimal app
+  -> dropdown
+  -> reactive chart
+  -> layout
+  -> optional Plotly
+```
+
+## Practical
+
+### Go To Workbook...
+
+![](/images/workbook-shinyI.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+### Questions?
+
+```{=html}
+<div style="position:relative; height:460px;">
+  <div style="position:absolute; top:58%; left:50%; transform:translate(-50%, -50%); text-align:center; width:70%;">
+    <p style="font-size:1.2em; margin-bottom:0.5em;"><strong>Shunya Kimura</strong></p>
+    <p style="font-size:1em; margin-bottom:0;">s.kimura@liverpool.ac.uk</p>
+  </div>
+  <div style="position:absolute; right:0; bottom:-42px; line-height:0;">
+    <img src="../assets/ULMS744-logo.svg" alt="ULMS744 logo" style="width:220px; max-width:100%;">
+  </div>
+</div>
+```

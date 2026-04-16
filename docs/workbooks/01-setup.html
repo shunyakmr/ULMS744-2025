@@ -579,16 +579,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R console</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"scripts"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"output"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"app"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/raw"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/cleaned"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"scripts"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"output"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"app"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Your project should now look like this:</p>
 <pre class="text"><code>nba-analytics/
 ├── app/
 ├── data/
+│   ├── cleaned/
+│   └── raw/
 ├── output/
 ├── scripts/
 ├── nba-analytics.Rproj
@@ -625,6 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 .Rdata
 .RData
 .Ruserdata
+data/raw/
 .DS_Store
 Thumbs.db
 *.zip
@@ -640,6 +644,7 @@ Thumbs.db
 <li><code>.Rhistory</code> is a record of commands typed in the R console.</li>
 <li><code>.Rdata</code> and <code>.RData</code> are saved R workspace files.</li>
 <li><code>.Ruserdata</code> stores user-specific session settings.</li>
+<li><code>data/raw/</code> stores downloaded data that can be large or regenerated.</li>
 <li><code>.DS_Store</code> is a hidden macOS system file.</li>
 <li><code>Thumbs.db</code> is a hidden Windows system file.</li>
 <li><code>*.zip</code> and <code>*.gz</code> mean any compressed archive with those endings.</li>

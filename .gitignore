@@ -5,6 +5,7 @@
 
 # Data (keep out of version control)
 data/
+data/raw/
 
 # Assignments (private)
 assignments/

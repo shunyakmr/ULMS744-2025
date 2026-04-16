@@ -1,12 +1,17 @@
 project:
   type: website
   output-dir: docs
+  # Run every code chunk from the project root so paths like
+  # "data/cleaned/lakers_shots.rds" work the same in the rendered site
+  # as they do when you type them into the RStudio console.
+  execute-dir: project
   resources:
     - assets/*
   render:
     - 00-index.qmd
     - slides/w7-slides-lecture.qmd
     - slides/w8-slides-lecture.qmd
+    - slides/w9-slides-lecture.qmd
     - workbooks/01-setup.qmd
     - workbooks/02-api.qmd
     - workbooks/03-shiny1.qmd

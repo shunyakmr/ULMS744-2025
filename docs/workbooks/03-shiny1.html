@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -74,6 +109,15 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../site_libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 
 <link rel="stylesheet" href="../assets/styles.css">
@@ -361,9 +405,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#released-during-easter-period" id="toc-released-during-easter-period" class="nav-link active" data-scroll-target="#released-during-easter-period"><span class="header-section-number">1</span> Released During Easter Period…</a></li>
+  <li><a href="#recap-from-api-work-to-dashboard-work" id="toc-recap-from-api-work-to-dashboard-work" class="nav-link active" data-scroll-target="#recap-from-api-work-to-dashboard-work"><span class="header-section-number">1</span> Recap: From API Work to Dashboard Work</a></li>
+  <li><a href="#from-static-charts-to-a-shiny-app" id="toc-from-static-charts-to-a-shiny-app" class="nav-link" data-scroll-target="#from-static-charts-to-a-shiny-app"><span class="header-section-number">2</span> From Static Charts to a Shiny App</a>
+  <ul>
+  <li><a href="#before-we-start-check-the-data-folders" id="toc-before-we-start-check-the-data-folders" class="nav-link" data-scroll-target="#before-we-start-check-the-data-folders"><span class="header-section-number">2.1</span> Before We Start: Check the Data Folders</a></li>
+  <li><a href="#get-the-prepared-data" id="toc-get-the-prepared-data" class="nav-link" data-scroll-target="#get-the-prepared-data"><span class="header-section-number">2.2</span> Get the Prepared Data</a></li>
+  <li><a href="#load-the-data-for-today" id="toc-load-the-data-for-today" class="nav-link" data-scroll-target="#load-the-data-for-today"><span class="header-section-number">2.3</span> Load the Data for Today</a></li>
+  <li><a href="#a-static-bar-chart-with-ggplot2" id="toc-a-static-bar-chart-with-ggplot2" class="nav-link" data-scroll-target="#a-static-bar-chart-with-ggplot2"><span class="header-section-number">2.4</span> A Static Bar Chart with ggplot2</a></li>
+  <li><a href="#make-the-figure-interactive-with-plotly" id="toc-make-the-figure-interactive-with-plotly" class="nav-link" data-scroll-target="#make-the-figure-interactive-with-plotly"><span class="header-section-number">2.5</span> Make the Figure Interactive with Plotly</a></li>
+  <li><a href="#prepare-a-smaller-dataset-for-shiny" id="toc-prepare-a-smaller-dataset-for-shiny" class="nav-link" data-scroll-target="#prepare-a-smaller-dataset-for-shiny"><span class="header-section-number">2.6</span> Prepare a Smaller Dataset for Shiny</a></li>
+  </ul></li>
+  <li><a href="#turn-it-into-a-shiny-app" id="toc-turn-it-into-a-shiny-app" class="nav-link" data-scroll-target="#turn-it-into-a-shiny-app"><span class="header-section-number">3</span> Turn It Into a Shiny App</a>
+  <ul>
+  <li><a href="#what-is-shiny" id="toc-what-is-shiny" class="nav-link" data-scroll-target="#what-is-shiny"><span class="header-section-number">3.1</span> What is Shiny?</a></li>
+  <li><a href="#a-quick-reminder-about-working-directories" id="toc-a-quick-reminder-about-working-directories" class="nav-link" data-scroll-target="#a-quick-reminder-about-working-directories"><span class="header-section-number">3.2</span> A Quick Reminder About Working Directories</a></li>
+  <li><a href="#version-1-a-minimal-app" id="toc-version-1-a-minimal-app" class="nav-link" data-scroll-target="#version-1-a-minimal-app"><span class="header-section-number">3.3</span> Version 1 — A Minimal App</a></li>
+  <li><a href="#version-2-add-a-player-selector" id="toc-version-2-add-a-player-selector" class="nav-link" data-scroll-target="#version-2-add-a-player-selector"><span class="header-section-number">3.4</span> Version 2 — Add a Player Selector</a></li>
+  <li><a href="#version-3-a-cleaner-layout" id="toc-version-3-a-cleaner-layout" class="nav-link" data-scroll-target="#version-3-a-cleaner-layout"><span class="header-section-number">3.5</span> Version 3 — A Cleaner Layout</a></li>
+  <li><a href="#version-4-plotly-inside-shiny" id="toc-version-4-plotly-inside-shiny" class="nav-link" data-scroll-target="#version-4-plotly-inside-shiny"><span class="header-section-number">3.6</span> Version 4 — Plotly Inside Shiny</a></li>
+  </ul></li>
+  <li><a href="#what-to-notice" id="toc-what-to-notice" class="nav-link" data-scroll-target="#what-to-notice"><span class="header-section-number">4</span> What to Notice</a></li>
+  <li><a href="#independent-practice" id="toc-independent-practice" class="nav-link" data-scroll-target="#independent-practice"><span class="header-section-number">5</span> Independent Practice</a></li>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">6</span> Common Issues</a></li>
+  <li><a href="#before-you-go" id="toc-before-you-go" class="nav-link" data-scroll-target="#before-you-go"><span class="header-section-number">7</span> Before You Go</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="../slides/w9-slides-lecture.html"><i class="bi bi-file-slides"></i>Lecture Slides</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -388,8 +454,892 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="released-during-easter-period" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="released-during-easter-period"><span class="header-section-number">1</span> Released During Easter Period…</h2>
+<p>Last week, we used <code>hoopR</code> to source NBA data and save reusable files. This week we move from <strong>data sourcing</strong> into the next part of the workflow: <strong>visualisation and a first interactive dashboard</strong>.</p>
+<p>The worked example is a <strong>Lakers Evolution Dashboard</strong>. On 1 February 2025 the Los Angeles Lakers traded for Luka Dončić. We will use that mid-season change as a natural before/after split and ask a simple, focused question: <em>did each Lakers role player’s shot selection — the mix of zones they shoot from — change between the AD Era and the Luka Era?</em></p>
+<p>We will:</p>
+<ol type="1">
+<li>read a prepared shot file with several Lakers role players across four seasons;</li>
+<li>split those seasons into an <strong>AD Era</strong> (before the trade) and a <strong>Luka Era</strong> (from the trade onwards);</li>
+<li>build a clean <strong>static bar chart</strong> comparing shot-zone shares across the two eras;</li>
+<li>convert the static chart into an <strong>interactive Plotly</strong> chart with hover tooltips;</li>
+<li><strong>pre-aggregate</strong> the data to only what the chart needs, so the Shiny app stays lightweight;</li>
+<li>turn the chart into a <strong>Shiny app</strong>, built up one feature at a time, where the user picks the player.</li>
+</ol>
+<section id="recap-from-api-work-to-dashboard-work" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="recap-from-api-work-to-dashboard-work"><span class="header-section-number">1</span> Recap: From API Work to Dashboard Work</h2>
+<p>Last week’s workflow was:</p>
+<pre class="text"><code>documentation -&gt; pull -&gt; inspect -&gt; clean -&gt; save</code></pre>
+<p>This week we use the file created by that workflow. Rather than asking everyone to re-run NBA API calls in class, we will start from a prepared <code>.rds</code> file. That lets us spend the seminar time on charts, interactivity and app structure.</p>
+<p>The angle for this example is:</p>
+<blockquote class="blockquote">
+<p><strong>Shot-diet lens:</strong> the Luka trade reshaped who the Lakers run their offence through. For each role player, did the <em>mix of zones</em> they shoot from change between the AD Era and the Luka Era?</p>
+</blockquote>
+<p><code>shot_zone_basic</code> is the right column for that question. It is a tidy NBA-Stats label that groups every shot into a familiar court area — <em>Restricted Area</em>, <em>In The Paint (Non-RA)</em>, <em>Mid-Range</em>, <em>Left Corner 3</em>, <em>Right Corner 3</em>, <em>Above the Break 3</em>. If a role player’s shot diet shifts across those zones after the trade, a simple bar chart will show it.</p>
+<p>The Lakers are a useful case study because the trade gives us a natural before/after with the <em>same players</em> on either side. We will look at five role players who spent meaningful time on the Lakers roster around the trade:</p>
+<ul>
+<li>Rui Hachimura</li>
+<li>Austin Reaves</li>
+<li>LeBron James</li>
+<li>Jaxson Hayes</li>
+<li>Dorian Finney-Smith</li>
+</ul>
+<p>To get a more reliable picture of each player’s shot diet — rather than relying on a half-season on either side of the trade — the prepared file pulls <strong>four NBA regular seasons</strong>: 2022/23, 2023/24, 2024/25 and 2025/26. Each player’s <em>AD Era</em> window therefore includes the Lakers seasons they played <strong>before</strong> 1 February 2025, and the <em>Luka Era</em> includes the rest of 2024/25 plus all of 2025/26. If a player wasn’t on the Lakers for a particular season, that season is simply absent from their data.</p>
+<p>The dashboard question is deliberately focused. We are not trying to explain the whole NBA. We are building a small interactive tool that shows how each Lakers role player’s shot selection shifted after Luka arrived.</p>
+</section>
+<section id="from-static-charts-to-a-shiny-app" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="from-static-charts-to-a-shiny-app"><span class="header-section-number">2</span> From Static Charts to a Shiny App</h2>
+<p>By the end of this workbook, you will have:</p>
+<ul>
+<li>read a prepared <code>.rds</code> file with shots from five Lakers role players across four seasons;</li>
+<li>added an <code>era</code> column based on the Luka trade date;</li>
+<li>built a static bar chart comparing each player’s shot distribution across the two eras;</li>
+<li>converted the static chart into a Plotly chart with hover text;</li>
+<li>saved a small pre-aggregated dataset for the app to read;</li>
+<li>built a first Shiny app where a dropdown picks the player;</li>
+<li>added a sidebar layout, cleaner titles and Plotly <em>inside</em> the Shiny app.</li>
+</ul>
+<p>The important sequence is:</p>
+<pre class="text"><code>readRDS() -&gt; derive era -&gt; static bar plot -&gt; Plotly bar plot -&gt; pre-aggregate -&gt; Shiny app</code></pre>
+<p>Each step adds one idea. If a later step breaks, the earlier step still works — which makes debugging much easier.</p>
+<section id="before-we-start-check-the-data-folders" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="before-we-start-check-the-data-folders"><span class="header-section-number">2.1</span> Before We Start: Check the Data Folders</h3>
+<p>Before downloading today’s cleaned Lakers file, tidy the <code>data/</code> folder you created last week. Downloaded API data can become large and change when you re-run calls, so it belongs in <code>data/raw/</code>. Cleaned tables that you use for charts and apps belong in <code>data/cleaned/</code>.</p>
+<p>Start in the <strong>Files</strong> pane in RStudio. It is usually in the bottom-right panel.</p>
+<ol type="1">
+<li>Find your project files in the <strong>Files</strong> pane.</li>
+<li>Click the <code>data</code> folder to open it.</li>
+<li>Click <code>New Folder</code>.</li>
+<li>Type <code>raw</code>.</li>
+<li>Click <code>OK</code> or <code>Create</code>.</li>
+<li>Create a second folder called <code>cleaned</code>.</li>
+</ol>
+<p>You should now have:</p>
+<pre class="text"><code>data/
+  raw/
+  cleaned/</code></pre>
+<p>If you prefer to create the folder with code, this does the same thing:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/raw"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/cleaned"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Next, move any existing files from the top level of <code>data/</code> into the right subfolder.</p>
+<p>In the <strong>Files</strong> pane:</p>
+<ol type="1">
+<li>Stay inside the <code>data</code> folder.</li>
+<li>Tick downloaded API files, such as <code>nba_2024_team_box.rds</code>, and move them into <code>data/raw/</code>.</li>
+<li>Click <code>More</code>.</li>
+<li>Choose <code>Move</code>.</li>
+<li>Select the target folder.</li>
+<li>Click <code>Move</code>.</li>
+</ol>
+<p>Cleaned summary files, such as <code>nba_2024_team_stats.rds</code>, should move into <code>data/cleaned/</code>.</p>
+<p>You can also move the existing files with code:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>items_to_move <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>items_to_move <span class="ot">&lt;-</span> items_to_move[<span class="fu">file.info</span>(items_to_move)<span class="sc">$</span>isdir <span class="sc">==</span> <span class="cn">FALSE</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>raw_files <span class="ot">&lt;-</span> items_to_move[<span class="fu">grepl</span>(<span class="st">"_box</span><span class="sc">\\</span><span class="st">.(rds|csv)$"</span>, <span class="fu">basename</span>(items_to_move))]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cleaned_files <span class="ot">&lt;-</span> items_to_move[<span class="fu">grepl</span>(<span class="st">"_stats</span><span class="sc">\\</span><span class="st">.(rds|csv)$"</span>, <span class="fu">basename</span>(items_to_move))]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(raw_files) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.rename</span>(raw_files, <span class="fu">file.path</span>(<span class="st">"data/raw"</span>, <span class="fu">basename</span>(raw_files)))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(cleaned_files) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.rename</span>(cleaned_files, <span class="fu">file.path</span>(<span class="st">"data/cleaned"</span>, <span class="fu">basename</span>(cleaned_files)))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Now open <code>.gitignore</code> and add this line:</p>
+<pre class="text"><code>data/raw/</code></pre>
+<p>This means Git will ignore the raw downloaded files. That is good practice because raw sports data can be large, slow to regenerate and unnecessary to store in every commit. We will work from a cleaned <code>.rds</code> file instead.</p>
+</section>
+<section id="get-the-prepared-data" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="get-the-prepared-data"><span class="header-section-number">2.2</span> Get the Prepared Data</h3>
+<p>Download the cleaned Lakers shot file from <a href="https://canvas.liverpool.ac.uk/courses/85669/files/13865218?module_item_id=2580816">Canvas</a> and place it in your project folder like this:</p>
+<pre class="text"><code>data/
+  cleaned/
+    lakers_shots.rds</code></pre>
+<p>The file was created using the same technique we covered in <a href="02-api.html">Workbook 2</a>: read the documentation, choose the right parameters, pull the data, inspect the returned columns, clean the table, and save the result. Each row is one field-goal attempt by one of the five Lakers role players during the selected regular seasons.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If you are interested, open the optional section below in your own time. You do not need to run those API calls during the seminar. For today, the practical task starts from the prepared <code>.rds</code> file.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Optional: how this RDS file was created
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The code below shows the data-cleaning route used to create the Canvas file. This is here for transparency, not because you need to repeat it in class.</p>
+<p><strong>Packages and constants</strong></p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hoopR)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>lakers_players <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>player_id, <span class="sc">~</span>player_name,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1629060</span>,    <span class="st">"Rui Hachimura"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1630559</span>,    <span class="st">"Austin Reaves"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2544</span>,       <span class="st">"LeBron James"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1629637</span>,    <span class="st">"Jaxson Hayes"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1627827</span>,    <span class="st">"Dorian Finney-Smith"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>nba_stats_seasons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2022-23"</span>, <span class="st">"2023-24"</span>, <span class="st">"2024-25"</span>, <span class="st">"2025-26"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>lakers_team_id    <span class="ot">&lt;-</span> <span class="dv">1610612747</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Four seasons gives us a more reliable sample on either side of the trade. The <code>lakers_team_id</code> filter (NBA-Stats’ team ID for the Lakers) is passed through to the API call so that, for a player who was traded in and out of Los Angeles, we only keep the shots they took <em>in a Lakers jersey</em>.</p>
+<p><strong>Small helper functions</strong></p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>parse_nba_date <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  x_chr <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  parsed <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">as.Date</span>(<span class="cn">NA</span>), <span class="fu">length</span>(x_chr))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  nba_date <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"^</span><span class="sc">\\</span><span class="st">d{8}$"</span>, x_chr)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  parsed[nba_date]  <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(x_chr[nba_date], <span class="at">format =</span> <span class="st">"%Y%m%d"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  parsed[<span class="sc">!</span>nba_date] <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.Date</span>(x_chr[<span class="sc">!</span>nba_date]))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  parsed</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>get_player_shots <span class="ot">&lt;-</span> <span class="cf">function</span>(player_id, player_name, season_label) {</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    hoopR<span class="sc">::</span><span class="fu">nba_shotchartdetail</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">player_id       =</span> player_id,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">season          =</span> season_label,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">season_type     =</span> <span class="st">"Regular Season"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">team_id         =</span> lakers_team_id,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">context_measure =</span> <span class="st">"FGA"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">NULL</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(res) <span class="sc">||</span> <span class="fu">is.null</span>(res<span class="sc">$</span>Shot_Chart_Detail) <span class="sc">||</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nrow</span>(res<span class="sc">$</span>Shot_Chart_Detail) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  res<span class="sc">$</span>Shot_Chart_Detail <span class="sc">|&gt;</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">season_label =</span> season_label)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>nba_shotchartdetail()</code> returns one player’s shot chart at a time, so we wrap it in a small helper and call it once per player-season combination. The <code>tryCatch(...)</code> plus the <code>NULL</code> return handles the player-seasons where a player wasn’t on the Lakers — the API just gives us back an empty table and we skip it.</p>
+<p><strong>Loop over players and bind</strong></p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>shot_grid <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">expand_grid</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  lakers_players,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_label =</span> nba_stats_seasons</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>lakers_shots_raw <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">pmap</span>(shot_grid, get_player_shots) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">compact</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">bind_rows</span>()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/raw"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lakers_shots_raw, <span class="st">"data/raw/lakers_shots_raw.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>expand_grid()</code> produces every player × season combination. <code>pmap()</code> calls <code>get_player_shots()</code> on each row, <code>compact()</code> drops the empty results (for player-seasons that weren’t on the Lakers), and <code>bind_rows()</code> stacks what’s left.</p>
+<p><strong>Clean and save</strong></p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>luka_trade_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-02-01"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lakers_shots <span class="ot">&lt;-</span> lakers_shots_raw <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(tolower) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    player_id,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    player_name,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    game_id,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">game_date    =</span> <span class="fu">parse_nba_date</span>(game_date),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">season =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(season_label, <span class="dv">1</span>, </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>)) <span class="sc">+</span> <span class="dv">1</span>L,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    season_label,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x            =</span> <span class="fu">as.numeric</span>(loc_x),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y            =</span> <span class="fu">as.numeric</span>(loc_y),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    shot_type,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    action_type,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    shot_zone_basic,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">shot_value     =</span> <span class="fu">if_else</span>(shot_type <span class="sc">==</span> <span class="st">"3PT Field Goal"</span>, <span class="dv">3</span>L, <span class="dv">2</span>L),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">shot_made_flag =</span> <span class="fu">as.integer</span>(shot_made_flag),</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">era =</span> <span class="fu">if_else</span>(game_date <span class="sc">&lt;</span> luka_trade_date, <span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">era =</span> <span class="fu">factor</span>(era, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>))</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/cleaned"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lakers_shots, <span class="st">"data/cleaned/lakers_shots.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The cleaned table has one row per shot. The <code>era</code> column is the key new variable: it splits each player’s season into the AD Era (before 1 February 2025) and the Luka Era (from 1 February 2025 onwards). That single column is what makes the dashboard’s before/after comparison possible.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="load-the-data-for-today" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="load-the-data-for-today"><span class="header-section-number">2.3</span> Load the Data for Today</h3>
+<p>We only need a small set of packages for today’s chart and app.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Read the prepared file, make sure <code>era</code> is in place, and put <code>shot_zone_basic</code> in a sensible left-to-right order (close range → long range).</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>luka_trade_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-02-01"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>zone_order <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Restricted Area"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"In The Paint (Non-RA)"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mid-Range"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Left Corner 3"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Right Corner 3"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Above the Break 3"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>lakers_shots <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/cleaned/lakers_shots.rds"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">game_date =</span> <span class="fu">as.Date</span>(game_date),</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">era =</span> <span class="fu">factor</span>(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">if_else</span>(game_date <span class="sc">&lt;</span> luka_trade_date, <span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>),</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shot_zone_basic <span class="sc">%in%</span> zone_order) <span class="sc">|&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shot_zone_basic =</span> <span class="fu">factor</span>(shot_zone_basic, <span class="at">levels =</span> zone_order))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Two small choices are doing useful work here:</p>
+<ul>
+<li><code>era</code> is a <strong>factor</strong> with explicit level order so the AD Era always appears to the left of the Luka Era in every chart and legend.</li>
+<li><code>shot_zone_basic</code> is also a factor with <code>zone_order</code>. That means bars read naturally from close-range on the left to long-range on the right, no matter which player we plot.</li>
+</ul>
+<p>Check the shape of the data before plotting.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(lakers_shots)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,934
+Columns: 13
+$ player_id       &lt;chr&gt; "1629060", "1629060", "1629060", "1629060", "1629060",…
+$ player_name     &lt;chr&gt; "Rui Hachimura", "Rui Hachimura", "Rui Hachimura", "Ru…
+$ game_id         &lt;chr&gt; "0022200729", "0022200729", "0022200729", "0022200729"…
+$ game_date       &lt;date&gt; 2023-01-25, 2023-01-25, 2023-01-25, 2023-01-25, 2023-…
+$ season_label    &lt;chr&gt; "2022-23", "2022-23", "2022-23", "2022-23", "2022-23",…
+$ x               &lt;dbl&gt; -32, 163, 230, 116, 17, 96, -92, 39, 71, 230, 23, -92,…
+$ y               &lt;dbl&gt; 36, 258, 43, 115, 20, 233, 55, 4, 8, 34, 7, 243, 215, …
+$ shot_type       &lt;chr&gt; "2PT Field Goal", "3PT Field Goal", "3PT Field Goal", …
+$ action_type     &lt;chr&gt; "Running Layup Shot", "Jump Shot", "Jump Shot", "Pullu…
+$ shot_zone_basic &lt;fct&gt; In The Paint (Non-RA), Above the Break 3, Right Corner…
+$ shot_value      &lt;int&gt; 2, 3, 3, 2, 2, 3, 2, 2, 2, 3, 2, 3, 3, 2, 3, 2, 2, 2, …
+$ shot_made_flag  &lt;int&gt; 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, …
+$ era             &lt;fct&gt; AD Era, AD Era, AD Era, AD Era, AD Era, AD Era, AD Era…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(lakers_shots, player_name, era)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   player_name         era          n
+   &lt;chr&gt;               &lt;fct&gt;    &lt;int&gt;
+ 1 Austin Reaves       AD Era    1982
+ 2 Austin Reaves       Luka Era  1235
+ 3 Dorian Finney-Smith AD Era      58
+ 4 Dorian Finney-Smith Luka Era   217
+ 5 Jaxson Hayes        AD Era     252
+ 6 Jaxson Hayes        Luka Era   407
+ 7 LeBron James        AD Era    3259
+ 8 LeBron James        Luka Era  1415
+ 9 Rui Hachimura       AD Era    1306
+10 Rui Hachimura       Luka Era   803</code></pre>
+</div>
+</div>
+<p>Each row is one field-goal attempt. The second table confirms every player has shots in <strong>both</strong> eras — the condition for a meaningful before/after view.</p>
+</section>
+<section id="a-static-bar-chart-with-ggplot2" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="a-static-bar-chart-with-ggplot2"><span class="header-section-number">2.4</span> A Static Bar Chart with ggplot2</h3>
+<p>Before making anything interactive, build the chart as a normal static figure. A static figure is easy to inspect, easy to debug and easy to share in a report.</p>
+<p>We will start with one player — Rui Hachimura — and one question: <em>what share of his shots came from each zone, in each era?</em></p>
+<p><strong>Step 1:</strong> compute the per-era share of shots in each zone.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rui_by_zone <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>rui_by_zone</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   era      shot_zone_basic           n  share
+   &lt;fct&gt;    &lt;fct&gt;                 &lt;int&gt;  &lt;dbl&gt;
+ 1 AD Era   Restricted Area         458 0.351 
+ 2 AD Era   In The Paint (Non-RA)   237 0.181 
+ 3 AD Era   Mid-Range               166 0.127 
+ 4 AD Era   Left Corner 3           118 0.0904
+ 5 AD Era   Right Corner 3           74 0.0567
+ 6 AD Era   Above the Break 3       253 0.194 
+ 7 Luka Era Restricted Area         172 0.214 
+ 8 Luka Era In The Paint (Non-RA)   102 0.127 
+ 9 Luka Era Mid-Range               162 0.202 
+10 Luka Era Left Corner 3            82 0.102 
+11 Luka Era Right Corner 3           78 0.0971
+12 Luka Era Above the Break 3       207 0.258 </code></pre>
+</div>
+</div>
+<p>For each era we count shots per zone, then divide by the era total. The result is a tidy table with one row per (era, zone) pair and a <code>share</code> column ready for plotting.</p>
+<p><strong>Step 2:</strong> turn that table into a clean grouped bar chart.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lakers_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AD Era"</span> <span class="ot">=</span> <span class="st">"#FDB927"</span>, <span class="st">"Luka Era"</span> <span class="ot">=</span> <span class="st">"#552583"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rui_by_zone,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">"Rui Hachimura: shot distribution by zone"</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Share of attempts from each zone, AD Era vs Luka Era"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption  =</span> <span class="st">"Data: NBA Stats. AD Era = before 1 Feb 2025, Luka Era = from 1 Feb 2025."</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position    =</span> <span class="st">"top"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title         =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x        =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output-display">
+<div id="fig-rui-static-bars" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rui-static-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-shiny1_files/figure-html/fig-rui-static-bars-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rui-static-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Rui Hachimura: share of shot attempts by zone, AD Era vs Luka Era.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A few small design choices make the plot read cleanly:</p>
+<ul>
+<li><strong>Lakers colours.</strong> Gold for the AD Era, purple for the Luka Era — instantly readable to a Lakers audience.</li>
+<li><strong>Dodged bars.</strong> <code>position_dodge()</code> puts the two eras side by side within each zone, which is the comparison we want.</li>
+<li><strong>Percentage y-axis.</strong> <code>scales::percent_format()</code> prints <code>25%</code> rather than <code>0.25</code>.</li>
+<li><strong>Minimal theme.</strong> <code>theme_minimal()</code> plus a few tweaks (no vertical gridlines, angled zone labels) keeps the chart tidy without fighting the data.</li>
+</ul>
+<p>The bar chart already tells a story: any zone where the purple bar is taller than the gold one is a zone Rui leans into <em>more</em> after the trade, and vice versa. What we cannot yet do is switch players, or read an exact percentage off a bar. That is where Plotly and Shiny come in.</p>
+</section>
+<section id="make-the-figure-interactive-with-plotly" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="make-the-figure-interactive-with-plotly"><span class="header-section-number">2.5</span> Make the Figure Interactive with Plotly</h3>
+<p>Plotly adds three things you do not get from a static chart:</p>
+<ul>
+<li><strong>hover text</strong>, so the viewer can read the exact share of each bar;</li>
+<li><strong>zoom and pan</strong>, useful when you have lots of categories or values;</li>
+<li><strong>legend toggling</strong>, so you can click a legend entry to hide or show a series.</li>
+</ul>
+<p><code>plotly::ggplotly()</code> will convert the existing <code>ggplot</code> object directly. We add one extra piece inside <code>aes()</code> — a <code>text</code> aesthetic that describes the tooltip — and pass <code>tooltip = "text"</code> to <code>ggplotly()</code> so Plotly uses only that field on hover.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rui_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(rui_by_zone,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">text =</span> <span class="fu">paste0</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                         era, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                         shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"Attempts: "</span>, n, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"Share: "</span>, <span class="fu">round</span>(share <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                       ))) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(rui_plot, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fig-rui-plotly-bars" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rui-plotly-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-f58c6a0b9d49e6f635fe" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f58c6a0b9d49e6f635fe">{"x":{"data":[{"orientation":"v","width":[0.35000000000000009,0.35000000000000009,0.34999999999999964,0.34999999999999964,0.34999999999999964,0.34999999999999964],"base":[0,0,0,0,0,0],"x":[0.80000000000000004,1.8,2.7999999999999998,3.7999999999999998,4.7999999999999998,5.7999999999999998],"y":[0.35068912710566613,0.18147013782542112,0.12710566615620214,0.090352220520673807,0.056661562021439509,0.19372128637059724],"text":["AD Era<br>Restricted Area<br>Attempts: 458<br>Share: 35.1%","AD Era<br>In The Paint (Non-RA)<br>Attempts: 237<br>Share: 18.1%","AD Era<br>Mid-Range<br>Attempts: 166<br>Share: 12.7%","AD Era<br>Left Corner 3<br>Attempts: 118<br>Share: 9%","AD Era<br>Right Corner 3<br>Attempts: 74<br>Share: 5.7%","AD Era<br>Above the Break 3<br>Attempts: 253<br>Share: 19.4%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(253,185,39,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"AD Era","legendgroup":"AD Era","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.35000000000000009,0.34999999999999964,0.34999999999999964,0.34999999999999964,0.34999999999999964,0.34999999999999964],"base":[0,0,0,0,0,0],"x":[1.2,2.2000000000000002,3.2000000000000002,4.2000000000000002,5.2000000000000002,6.2000000000000002],"y":[0.21419676214196762,0.12702366127023662,0.20174346201743462,0.10211706102117062,0.097135740971357409,0.2577833125778331],"text":["Luka Era<br>Restricted Area<br>Attempts: 172<br>Share: 21.4%","Luka Era<br>In The Paint (Non-RA)<br>Attempts: 102<br>Share: 12.7%","Luka Era<br>Mid-Range<br>Attempts: 162<br>Share: 20.2%","Luka Era<br>Left Corner 3<br>Attempts: 82<br>Share: 10.2%","Luka Era<br>Right Corner 3<br>Attempts: 78<br>Share: 9.7%","Luka Era<br>Above the Break 3<br>Attempts: 207<br>Share: 25.8%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(85,37,131,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Luka Era","legendgroup":"Luka Era","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.970112079701121,"r":7.9701120797011216,"b":113.07920561855059,"l":47.023661270236623},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,6.5999999999999996],"tickmode":"array","ticktext":["Restricted Area","In The Paint (Non-RA)","Mid-Range","Left Corner 3","Right Corner 3","Above the Break 3"],"tickvals":[1,2,3,3.9999999999999996,5,6],"categoryorder":"array","categoryarray":["Restricted Area","In The Paint (Non-RA)","Mid-Range","Left Corner 3","Right Corner 3","Above the Break 3"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-20,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919278,"zeroline":false,"anchor":"y","title":{"text":"shot_zone_basic","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.017534456355283307,0.36822358346094941],"tickmode":"array","ticktext":["0%","10%","20%","30%"],"tickvals":[0,0.10000000000000002,0.20000000000000001,0.30000000000000004],"categoryorder":"array","categoryarray":["0%","10%","20%","30%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.9850560398505608,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":12.7521793275218},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.72455564360919278,"zeroline":false,"anchor":"x","title":{"text":"share","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":12.7521793275218},"orientation":"h","x":0.5,"y":1.02,"xanchor":"center","yanchor":"bottom","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"8cd5398b59ed":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"8cd5398b59ed","visdat":{"8cd5398b59ed":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-rui-plotly-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Two lines are doing most of the work:</p>
+<ul>
+<li><code>text = paste0(...)</code> inside <code>aes()</code> defines <em>what the hover shows</em>. ggplot itself ignores the <code>text</code> aesthetic, but <code>ggplotly()</code> picks it up.</li>
+<li><code>ggplotly(..., tooltip = "text")</code> tells Plotly to use only that field for the tooltip, instead of listing every mapped aesthetic.</li>
+</ul>
+<p>The chart is now exploratory: a coach can hover any bar to read the exact share and number of attempts. There is still one problem — the chart only knows about Rui. To compare Austin Reaves, we would have to rerun the code by hand. That is exactly what Shiny is for.</p>
+</section>
+<section id="prepare-a-smaller-dataset-for-shiny" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="prepare-a-smaller-dataset-for-shiny"><span class="header-section-number">2.6</span> Prepare a Smaller Dataset for Shiny</h3>
+<p>Before we move to Shiny, a small but important step: <strong>pre-aggregate the data</strong>.</p>
+<p>The raw <code>lakers_shots</code> table has one row per shot — tens of thousands of rows across four seasons. Our chart does not need any of those rows; it only needs, for each player × era × zone, the <strong>count of attempts</strong> and the <strong>share</strong>. That is 5 players × 2 eras × 6 zones = at most <strong>60 rows</strong> of summary data.</p>
+<p>Why does this matter for Shiny?</p>
+<ul>
+<li><strong>Loading time.</strong> When a user visits the app, Shiny reads the data file into memory. A 100-KB summary loads instantly; a 10-MB shot file is overkill when no individual shot is ever shown.</li>
+<li><strong>Per-click speed.</strong> Every time the user changes the dropdown, the server re-runs. If the aggregation happens inside the app, it runs on every click. If we aggregate ahead of time, the app only has to <code>filter(player_name == input$player)</code>.</li>
+<li><strong>Deployment.</strong> When you share or deploy the app later, only files inside the <code>app/</code> folder travel with it. Smaller files mean a smaller, faster deployment.</li>
+</ul>
+<p>The rule of thumb: <strong>do the heavy lifting before the app, and ship only what the chart needs.</strong></p>
+<p>Compute the summary and save it into <code>app/shot_zones.rds</code>.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>shot_zones <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(player_name, era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(player_name, era) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>shot_zones</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 57 × 5
+   player_name   era      shot_zone_basic           n  share
+   &lt;chr&gt;         &lt;fct&gt;    &lt;fct&gt;                 &lt;int&gt;  &lt;dbl&gt;
+ 1 Austin Reaves AD Era   Restricted Area         426 0.215 
+ 2 Austin Reaves AD Era   In The Paint (Non-RA)   437 0.220 
+ 3 Austin Reaves AD Era   Mid-Range               205 0.103 
+ 4 Austin Reaves AD Era   Left Corner 3            87 0.0439
+ 5 Austin Reaves AD Era   Right Corner 3           72 0.0363
+ 6 Austin Reaves AD Era   Above the Break 3       755 0.381 
+ 7 Austin Reaves Luka Era Restricted Area         279 0.226 
+ 8 Austin Reaves Luka Era In The Paint (Non-RA)   311 0.252 
+ 9 Austin Reaves Luka Era Mid-Range                76 0.0615
+10 Austin Reaves Luka Era Left Corner 3            43 0.0348
+# ℹ 47 more rows</code></pre>
+</div>
+</div>
+<p>Each row is one combination of player, era and zone, with the attempt count and the share within that era. That is the exact shape the chart consumes.</p>
+<p>Create the <code>app/</code> folder if it does not already exist, then write <code>shot_zones.rds</code> into it.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"app"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(shot_zones, <span class="st">"app/shot_zones.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The app will read <strong>this</strong> file — not the original per-shot file. From here on, we can forget about <code>lakers_shots</code> entirely.</p>
+</section>
+</section>
+<section id="turn-it-into-a-shiny-app" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="turn-it-into-a-shiny-app"><span class="header-section-number">3</span> Turn It Into a Shiny App</h2>
+<p>Plotly makes <em>a chart</em> interactive. Shiny makes the <em>whole page</em> reactive: the user clicks something, and R recomputes the chart for them. Instead of writing one chart per player, you write one chart <em>template</em> and let the user choose.</p>
+<p>We will build the app in four small versions. Each version adds one feature. You can copy each version into <code>app/app.R</code>, run it, then copy the next version over the top.</p>
+<section id="what-is-shiny" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="what-is-shiny"><span class="header-section-number">3.1</span> What is Shiny?</h3>
+<p>A Shiny app is just an <code>app.R</code> script with two objects:</p>
+<ul>
+<li>a <strong>UI</strong> (<code>ui</code>), which describes the inputs and outputs — what the user sees on the page;</li>
+<li>a <strong>server</strong> function (<code>server</code>), which describes what R should compute whenever the inputs change.</li>
+</ul>
+<p><code>shiny::runApp("app")</code> launches the script as a small web app in your browser.</p>
+</section>
+<section id="a-quick-reminder-about-working-directories" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="a-quick-reminder-about-working-directories"><span class="header-section-number">3.2</span> A Quick Reminder About Working Directories</h3>
+<p>One quick detour before writing the app. Every R session has a <strong>working directory</strong> — the folder R looks in when you write a relative path like <code>"shot_zones.rds"</code>.</p>
+<ul>
+<li>Opening the <code>.Rproj</code> file sets the working directory to the <strong>project root</strong> (where <code>data/</code> and <code>app/</code> live).</li>
+<li><code>shiny::runApp("app")</code> temporarily changes the working directory into the <code>app/</code> folder for the lifetime of the app.</li>
+</ul>
+<p>That is why the app reads <code>"shot_zones.rds"</code> with no folder prefix: once the app is running, <code>app/</code> <em>is</em> the working directory. The pre-aggregation step above already wrote <code>app/shot_zones.rds</code>, so the app has what it needs. If you ever rebuild <code>shot_zones</code>, rerun the <code>saveRDS(..., "app/shot_zones.rds")</code> line to refresh it.</p>
+<p>Your project should look like this:</p>
+<pre class="text"><code>app/
+  shot_zones.rds
+data/
+  cleaned/
+    lakers_shots.rds
+  raw/
+    lakers_shots_raw.rds</code></pre>
+<p>The raw API pull stays in <code>data/raw/</code> if you generated it yourself. The cleaned per-shot file stays in <code>data/cleaned/</code> as the reusable archive. Only the 60-row summary travels with the app.</p>
+</section>
+<section id="version-1-a-minimal-app" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="version-1-a-minimal-app"><span class="header-section-number">3.3</span> Version 1 — A Minimal App</h3>
+<p>Version 1 is the smallest useful Shiny app: no dropdowns, no title, no layout. Just the bar chart we already built, wrapped in the Shiny page/server machinery.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>lakers_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AD Era"</span> <span class="ot">=</span> <span class="st">"#FDB927"</span>, <span class="st">"Luka Era"</span> <span class="ot">=</span> <span class="st">"#552583"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>shot_zones <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"shot_zones.rds"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">"zone_bars"</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    shot_zones <span class="sc">|&gt;</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Rui Hachimura: shot distribution by zone"</span>,</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Run the app:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R Console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">"app"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Three things to notice:</p>
+<ul>
+<li><code>plotOutput("zone_bars")</code> in the UI is a <strong>placeholder</strong>. It says, “put a plot here, and call it <code>zone_bars</code>”.</li>
+<li><code>output$zone_bars &lt;- renderPlot({ ... })</code> in the server <strong>fills that placeholder</strong> with whatever the block returns.</li>
+<li>The player name is still hard-coded. The app is not yet interactive — we are only reusing Shiny’s page and plot machinery.</li>
+</ul>
+<p>That is Shiny in its simplest form. Everything we add from here on plugs into those same two objects.</p>
+</section>
+<section id="version-2-add-a-player-selector" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="version-2-add-a-player-selector"><span class="header-section-number">3.4</span> Version 2 — Add a Player Selector</h3>
+<p>Now the interesting move: let the user choose the player. We add two things:</p>
+<ol type="1">
+<li>a <code>selectInput()</code> in the UI, called <code>"player"</code>;</li>
+<li>a reference to <code>input$player</code> in the server, where the name used to be hard-coded.</li>
+</ol>
+<p>Only the UI block and a couple of lines in the server change. The rest of the script is identical to Version 1.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R (changes only)</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>player_choices <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(shot_zones<span class="sc">$</span>player_name))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">inputId  =</span> <span class="st">"player"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">label    =</span> <span class="st">"Player"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">choices  =</span> player_choices,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">"zone_bars"</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    shot_zones <span class="sc">|&gt;</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(player_name <span class="sc">==</span> input<span class="sc">$</span>player) <span class="sc">|&gt;</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Run the app again. Changing the dropdown now changes the chart — and the title updates to the selected player too. Two ideas underneath this:</p>
+<ul>
+<li><code>input$player</code> holds the <strong>current value</strong> of the dropdown. Whenever that value changes, Shiny marks any output that reads <code>input$player</code> as <em>stale</em> and re-runs it.</li>
+<li>Building <code>paste0(input$player, ": ...")</code> into the chart title is a small but important touch. A headline that changes with the selection makes the app feel responsive.</li>
+</ul>
+<p>That is reactivity at its simplest: <strong>an output that reads an input automatically re-runs when the input changes</strong>.</p>
+</section>
+<section id="version-3-a-cleaner-layout" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="version-3-a-cleaner-layout"><span class="header-section-number">3.5</span> Version 3 — A Cleaner Layout</h3>
+<p>Version 2 works, but the dropdown sits awkwardly above a huge plot. A typical Shiny layout uses <code>sidebarLayout()</code>: inputs in a narrow sidebar on the left, outputs in the main area on the right. We also add a <code>titlePanel()</code> at the top and a short sentence in the sidebar to explain the chart.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R (UI only)</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Lakers Evolution Dashboard"</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">3</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">inputId  =</span> <span class="st">"player"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">label    =</span> <span class="st">"Choose a player"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">choices  =</span> player_choices,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">p</span>(<span class="st">"Each bar shows the share of that player's attempts from a given zone.</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="st">         Compare the AD Era (before 1 Feb 2025) to the Luka Era (from 1 Feb 2025)."</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">9</span>,</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The server block is unchanged. All we did was rearrange the page.</p>
+<p>This is an important idea. Once reactivity is wired up, <strong>layout work is separate from data work</strong>. You can spend time polishing <code>sidebarLayout()</code>, headings, spacing and explanatory text <em>without</em> touching the server — and without breaking anything.</p>
+</section>
+<section id="version-4-plotly-inside-shiny" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="version-4-plotly-inside-shiny"><span class="header-section-number">3.6</span> Version 4 — Plotly Inside Shiny</h3>
+<p>Swapping the static plot for an interactive Plotly chart inside Shiny takes three small changes:</p>
+<ol type="1">
+<li><code>plotOutput("zone_bars")</code> becomes <code>plotlyOutput("zone_bars")</code>.</li>
+<li><code>renderPlot({ ... })</code> becomes <code>renderPlotly({ ... })</code>.</li>
+<li>Wrap the final <code>ggplot(...)</code> in <code>ggplotly(..., tooltip = "text")</code>, and add a <code>text = ...</code> aesthetic so the tooltip shows the share and number of attempts.</li>
+</ol>
+<p>Here is the full <code>app.R</code> for Version 4:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>lakers_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AD Era"</span> <span class="ot">=</span> <span class="st">"#FDB927"</span>, <span class="st">"Luka Era"</span> <span class="ot">=</span> <span class="st">"#552583"</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>shot_zones <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"shot_zones.rds"</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>player_choices <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(shot_zones<span class="sc">$</span>player_name))</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Lakers Evolution Dashboard"</span>),</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">3</span>,</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">inputId  =</span> <span class="st">"player"</span>,</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">label    =</span> <span class="st">"Choose a player"</span>,</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">choices  =</span> player_choices,</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">p</span>(<span class="st">"Hover over a bar to see the exact share and number of attempts."</span>)</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">9</span>,</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> shot_zones <span class="sc">|&gt;</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(player_name <span class="sc">==</span> input<span class="sc">$</span>player)</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era,</span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(</span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>                       era, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>                       shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Attempts: "</span>, n, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Share: "</span>, <span class="fu">round</span>(share <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span></span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>                     ))) <span class="sc">+</span></span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(input<span class="sc">$</span>player, <span class="st">": shot distribution by zone"</span>),</span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Run the app. The chart is now a Plotly chart <em>inside</em> a Shiny app — the dropdown still changes the player, and every bar is also hoverable.</p>
+<p>That is the full shape of a first Shiny app:</p>
+<pre class="text"><code>input --&gt; server --&gt; ggplot (+ ggplotly) --&gt; plotlyOutput</code></pre>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Shiny has an official “Gallery” where you can get inspirations to improve your outputs! [<a href="https://shiny.posit.co/r/gallery/">link</a>]</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="what-to-notice" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="what-to-notice"><span class="header-section-number">4</span> What to Notice</h2>
+<p>Three ideas underneath the whole workbook are worth flagging:</p>
+<ol type="1">
+<li><strong>Derive the variable you want to compare before plotting.</strong> <code>era</code> is the whole reason this is an <em>evolution</em> dashboard. Everything else is just bars on top of that one derived column.</li>
+<li><strong>Build up in stages.</strong> Static → Plotly → Shiny v1 → v2 → v3 → v4. Each stage added one idea, and each stage was testable on its own.</li>
+<li><strong>Reactivity is simple at its core.</strong> An output that reads <code>input$something</code> re-runs whenever that input changes. That one sentence captures almost all of introductory Shiny.</li>
+</ol>
+</section>
+<section id="independent-practice" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="independent-practice"><span class="header-section-number">5</span> Independent Practice</h2>
+<p>Try these small extensions:</p>
+<ol type="1">
+<li>change the <code>selected</code> player to someone else and re-run the app;</li>
+<li>swap <code>share</code> for the <strong>raw attempt count</strong> (<code>n</code>) on the y-axis, and compare what the two versions emphasise;</li>
+<li>compute <strong>FG% per zone</strong> instead of share — rebuild the pre-aggregation step from <code>lakers_shots</code> using <code>summarise(fg_pct = mean(shot_made_flag))</code>, save that as a new RDS and plot it;</li>
+<li>add a <code>checkboxInput</code> in the UI called <code>"made_only"</code> — you will need to rebuild the pre-aggregation with a <code>made</code> flag so the app can switch between “all shots” and “made only”;</li>
+<li>change the colour palette and the title to match a different team.</li>
+</ol>
+</section>
+<section id="common-issues" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">6</span> Common Issues</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>readRDS()</code> cannot find the file</td>
+<td>Check that the Canvas file is saved in <code>data/cleaned/</code> and that the pre-aggregation step wrote <code>app/shot_zones.rds</code></td>
+</tr>
+<tr class="even">
+<td>App launches but the chart is blank</td>
+<td>Check the player name matches one in the data — <code>input$player</code> is case-sensitive</td>
+</tr>
+<tr class="odd">
+<td>Bars appear in the wrong order</td>
+<td>Re-run the pre-aggregation step — <code>shot_zone_basic</code> needs to be a factor with <code>zone_order</code> as its levels in <code>lakers_shots</code> before you aggregate</td>
+</tr>
+<tr class="even">
+<td>Percentages print as <code>0.25</code></td>
+<td>Add <code>scale_y_continuous(labels = scales::percent_format())</code></td>
+</tr>
+<tr class="odd">
+<td>Colours do not match the Lakers</td>
+<td>Check that <code>lakers_colours</code> is defined and passed via <code>scale_fill_manual()</code></td>
+</tr>
+<tr class="even">
+<td>Plotly chart does not appear in Shiny</td>
+<td>Confirm <code>plotlyOutput()</code> in the UI pairs with <code>renderPlotly()</code> in the server</td>
+</tr>
+<tr class="odd">
+<td>The dropdown is empty</td>
+<td>Check that <code>player_choices</code> is built from the data before the <code>ui</code> block runs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="before-you-go" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="before-you-go"><span class="header-section-number">7</span> Before You Go</h2>
+<p>Great work! ✨</p>
+<p>Today you:</p>
+<ul>
+<li>started from a cleaned <code>.rds</code> file of Lakers shots across four regular seasons;</li>
+<li>split those seasons into an AD Era and a Luka Era around the 1 February 2025 trade;</li>
+<li>built a static bar chart comparing a player’s shot distribution across zones;</li>
+<li>converted the chart into a Plotly chart with hover text;</li>
+<li><strong>pre-aggregated</strong> the data into a 60-row <code>shot_zones.rds</code> so the Shiny app stays lightweight;</li>
+<li>built a first Shiny app in four small stages — minimal, with a selector, with a layout, and finally with Plotly inside Shiny.</li>
+</ul>
+<p>Next week we will turn this app into a more polished dashboard with a richer layout, additional charts and a short automatic commentary panel.</p>
 
 
 </section>

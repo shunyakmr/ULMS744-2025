@@ -132,7 +132,8 @@ Then create the project folders we will use throughout the block (paste below in
 #| eval: false
 #| filename: "R console"
 
-dir.create("data")
+dir.create("data/raw", recursive = TRUE, showWarnings = FALSE)
+dir.create("data/cleaned", recursive = TRUE, showWarnings = FALSE)
 dir.create("scripts")
 dir.create("output")
 dir.create("app")
@@ -144,6 +145,8 @@ Your project should now look like this:
 nba-analytics/
 ├── app/
 ├── data/
+│   ├── cleaned/
+│   └── raw/
 ├── output/
 ├── scripts/
 ├── nba-analytics.Rproj
@@ -186,6 +189,7 @@ In the **Files** pane in RStudio:
 .Rdata
 .RData
 .Ruserdata
+data/raw/
 .DS_Store
 Thumbs.db
 *.zip
@@ -198,6 +202,7 @@ What do these entries mean, and why ignore them?
 -   `.Rhistory` is a record of commands typed in the R console.
 -   `.Rdata` and `.RData` are saved R workspace files.
 -   `.Ruserdata` stores user-specific session settings.
+-   `data/raw/` stores downloaded data that can be large or regenerated.
 -   `.DS_Store` is a hidden macOS system file.
 -   `Thumbs.db` is a hidden Windows system file.
 -   `*.zip` and `*.gz` mean any compressed archive with those endings.
