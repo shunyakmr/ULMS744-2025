@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -361,7 +396,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#released-in-week-9" id="toc-released-in-week-9" class="nav-link active" data-scroll-target="#released-in-week-9"><span class="header-section-number">1</span> Released in Week 9…</a></li>
+  <li><a href="#reading-list" id="toc-reading-list" class="nav-link active" data-scroll-target="#reading-list"><span class="header-section-number">1</span> Reading List</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2</span> Setup</a></li>
+  <li><a href="#three-new-metrics" id="toc-three-new-metrics" class="nav-link" data-scroll-target="#three-new-metrics"><span class="header-section-number">3</span> Three New Metrics</a></li>
+  <li><a href="#prepare-the-cleaned-app-dataset" id="toc-prepare-the-cleaned-app-dataset" class="nav-link" data-scroll-target="#prepare-the-cleaned-app-dataset"><span class="header-section-number">4</span> Prepare the Cleaned App Dataset</a></li>
+  <li><a href="#sketch-the-static-visuals" id="toc-sketch-the-static-visuals" class="nav-link" data-scroll-target="#sketch-the-static-visuals"><span class="header-section-number">5</span> Sketch the Static Visuals</a>
+  <ul>
+  <li><a href="#sketch-1-shot-zone-bar-chart" id="toc-sketch-1-shot-zone-bar-chart" class="nav-link" data-scroll-target="#sketch-1-shot-zone-bar-chart"><span class="header-section-number">5.1</span> Sketch 1: Shot-Zone Bar Chart</a></li>
+  <li><a href="#sketch-2-zone-efficiency-volumes-companion" id="toc-sketch-2-zone-efficiency-volumes-companion" class="nav-link" data-scroll-target="#sketch-2-zone-efficiency-volumes-companion"><span class="header-section-number">5.2</span> Sketch 2: Zone Efficiency (Volume’s Companion)</a></li>
+  <li><a href="#sketch-3-action-families-as-tree-maps" id="toc-sketch-3-action-families-as-tree-maps" class="nav-link" data-scroll-target="#sketch-3-action-families-as-tree-maps"><span class="header-section-number">5.3</span> Sketch 3: Action Families as Tree Maps</a></li>
+  <li><a href="#sketch-4-the-three-headline-numbers-per-era" id="toc-sketch-4-the-three-headline-numbers-per-era" class="nav-link" data-scroll-target="#sketch-4-the-three-headline-numbers-per-era"><span class="header-section-number">5.4</span> Sketch 4: The Three Headline Numbers, Per Era</a></li>
+  </ul></li>
+  <li><a href="#build-the-dashboard-step-by-step" id="toc-build-the-dashboard-step-by-step" class="nav-link" data-scroll-target="#build-the-dashboard-step-by-step"><span class="header-section-number">6</span> Build the Dashboard, Step by Step</a>
+  <ul>
+  <li><a href="#step-0-last-weeks-starting-point" id="toc-step-0-last-weeks-starting-point" class="nav-link" data-scroll-target="#step-0-last-weeks-starting-point"><span class="header-section-number">6.1</span> Step 0 — Last Week’s Starting Point</a></li>
+  <li><a href="#step-1-swap-to-page_sidebar-card" id="toc-step-1-swap-to-page_sidebar-card" class="nav-link" data-scroll-target="#step-1-swap-to-page_sidebar-card"><span class="header-section-number">6.2</span> Step 1 — Swap to <code>page_sidebar()</code> + <code>card()</code></a></li>
+  <li><a href="#step-2-turn-the-card-into-a-tabbed-card" id="toc-step-2-turn-the-card-into-a-tabbed-card" class="nav-link" data-scroll-target="#step-2-turn-the-card-into-a-tabbed-card"><span class="header-section-number">6.3</span> Step 2 — Turn the Card Into a Tabbed Card</a></li>
+  <li><a href="#step-3-add-a-headline-row-of-value-boxes" id="toc-step-3-add-a-headline-row-of-value-boxes" class="nav-link" data-scroll-target="#step-3-add-a-headline-row-of-value-boxes"><span class="header-section-number">6.4</span> Step 3 — Add a Headline Row of Value Boxes</a></li>
+  <li><a href="#step-4-add-the-action-family-tree-map-side-by-side" id="toc-step-4-add-the-action-family-tree-map-side-by-side" class="nav-link" data-scroll-target="#step-4-add-the-action-family-tree-map-side-by-side"><span class="header-section-number">6.5</span> Step 4 — Add the Action-Family Tree Map Side by Side</a></li>
+  <li><a href="#step-5-theme-and-polish" id="toc-step-5-theme-and-polish" class="nav-link" data-scroll-target="#step-5-theme-and-polish"><span class="header-section-number">6.6</span> Step 5 — Theme and Polish</a></li>
+  <li><a href="#the-finished-app.r" id="toc-the-finished-app.r" class="nav-link" data-scroll-target="#the-finished-app.r"><span class="header-section-number">6.7</span> The Finished <code>app.R</code></a></li>
+  </ul></li>
+  <li><a href="#polish-that-pays-off" id="toc-polish-that-pays-off" class="nav-link" data-scroll-target="#polish-that-pays-off"><span class="header-section-number">7</span> Polish That Pays Off</a></li>
+  <li><a href="#what-to-notice" id="toc-what-to-notice" class="nav-link" data-scroll-target="#what-to-notice"><span class="header-section-number">8</span> What to Notice</a></li>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">9</span> Common Issues</a></li>
+  <li><a href="#before-you-go" id="toc-before-you-go" class="nav-link" data-scroll-target="#before-you-go"><span class="header-section-number">10</span> Before You Go</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -388,8 +447,1074 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="released-in-week-9" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="released-in-week-9"><span class="header-section-number">1</span> Released in Week 9…</h2>
+<p>Last week’s Shiny app was functional — a sidebar, a dropdown and a single Plotly bar chart — but it read like <em>one chart with controls</em>, not a dashboard. This week we stay with the same Lakers Evolution story and close that <strong>design gap</strong>. Same data, same before/after question around the 1 February 2025 Luka trade, new layer of polish.</p>
+<p>We will keep the bar chart from last week and add three more angles on the same story:</p>
+<ul>
+<li>an <strong>efficiency companion chart</strong> — the same zones on the x-axis, but now the bars show eFG% instead of attempts — paired with the volume chart inside a tabbed card;</li>
+<li>a <strong>second card</strong> with a single interactive plotly tree map — the original <code>action_type</code> strings nested inside families (Dunk, Layup, Fadeaway, Jump Shot) and eras, tile area = share of that era’s attempts, tile colour = eFG%, detail on hover only;</li>
+<li>three efficiency <strong>metrics</strong> — <code>eFG%</code>, <code>xeFG%</code> and the <code>eFG% − xeFG%</code> differential — shown as headline value boxes that compare the Luka Era to the AD Era at a glance.</li>
+</ul>
+<p>Each visual is <strong>sketched as a static figure first</strong>, then picked up and dropped into the dashboard. The real teaching goal is the layout toolkit that <code>shiny</code> and <code>bslib</code> give us — <code>page_sidebar()</code>, <code>card()</code>, <code>navset_card_tab()</code>, <code>value_box()</code> and <code>layout_columns()</code>. The workflow for today is:</p>
+<pre class="text"><code>clean data -&gt; save final product to app/ -&gt; sketch each chart statically
+                                         -&gt; learn layout patterns
+                                         -&gt; assemble the dashboard</code></pre>
+<p>Only one file ever leaves this workbook — the single cleaned <code>.rds</code> the app reads.</p>
+<section id="reading-list" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="reading-list"><span class="header-section-number">1</span> Reading List</h2>
+<ul>
+<li>Posit Official Layouts Tutorial: [<a href="https://shiny.posit.co/r/layouts/">link</a>]</li>
+<li>Wickham, H. 2021. <em>Mastering Shiny</em>. [<a href="https://mastering-shiny.org/">link</a>]</li>
+<li>The Shiny Cheat Sheet: [<a href="https://shiny.posit.co/r/articles/start/cheatsheet/">link</a>]</li>
+<li><code>bslib</code> dashboards reference: [<a href="https://rstudio.github.io/bslib/articles/dashboards/index.html">link</a>]</li>
+</ul>
+</section>
+<section id="setup" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="setup"><span class="header-section-number">2</span> Setup</h2>
+<p>We keep last week’s stack and add <code>bslib</code> for the layout components, <code>tidyr</code> for the wide-format era table the value boxes read from, and <code>treemapify</code> for the static tree-map sketch. The interactive tree map is built with <code>plotly</code> directly — no extra library needed.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemapify)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="three-new-metrics" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="three-new-metrics"><span class="header-section-number">3</span> Three New Metrics</h2>
+<p>Before we open the app, we add three numbers to the story. Each answers a different question — together, they let us tell shot-making apart from shot-selection.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>eFG%</strong></td>
+<td>Was the shooting actually effective?</td>
+</tr>
+<tr class="even">
+<td><strong>xeFG%</strong></td>
+<td>Were the shots good ones to take? <em>(shot quality)</em></td>
+</tr>
+<tr class="odd">
+<td><strong>eFG% − xeFG%</strong></td>
+<td>Did the player finish them? <em>(shot-making)</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>eFG%</strong> is standard field-goal percentage, but a made 3-pointer counts as 1.5 makes — so a 5/10 shooter who took all 3s lands at 75%, not 50%.</p>
+<p><strong>xeFG%</strong> is the eFG% an <em>average</em> shooter would produce given this player’s exact shot mix. High xeFG% = easy menu (dunks, layups, open 3s). Low xeFG% = hard menu (contested pull-ups, fadeaways).</p>
+<p><strong>The differential</strong> (<code>eFG% − xeFG%</code>) is shot-making stripped of shot-selection. Positive = finishing better than the shot difficulty predicts; negative = worse. Report it in <strong>percentage points (pp)</strong>, not <code>%</code>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How each metric is computed
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>eFG% — Effective Field Goal %</strong></p>
+<p>A made 3 is worth 50% more than a made 2, so eFG% credits it accordingly:</p>
+<pre class="text"><code>eFG% = (FGM + 0.5 × 3PM) / FGA</code></pre>
+<p>In our data we use a compact equivalent that uses <code>shot_value</code> (2 or 3) and <code>shot_made_flag</code> (0 or 1):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>efg <span class="ot">=</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Worked example — a player takes 10 shots (4 RA at 3/4, 4 Mid-Range at 2/4, 2 Above-the-Break 3s at 1/2):</p>
+<pre class="text"><code>numerator   = 3×2 + 2×2 + 1×3 = 13
+denominator = 2 × 10           = 20
+eFG%        = 13 / 20          = 65%</code></pre>
+<p>A perfect 2-point shooter tops out at 100%; a perfect 3-point shooter at 150%.</p>
+<p><strong>xeFG% — Expected eFG%</strong></p>
+<p>Two things set a shot’s difficulty: <code>shot_zone_basic</code> (where) and <code>action_type</code> (how). We compute xeFG% in two steps.</p>
+<p><em>Step 1 — baseline per (zone × action_type).</em> Over every shot in the dataset:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>shot_baseline <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(shot_zone_basic, action_type) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">xefg_baseline =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>One number per combination, e.g.&nbsp;Restricted Area + Dunk Shot ≈ 0.93; Mid-Range + Fadeaway ≈ 0.33.</p>
+<p><em>Step 2 — join and average per player.</em> Attach each shot’s baseline back onto the shot file, then average across the player’s attempts:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>player_xefg <span class="ot">=</span> <span class="fu">mean</span>(xefg_baseline)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because every shot carries its own baseline, the mean is a <strong>shot-weighted average</strong> — shots the player takes often dominate the number.</p>
+<p><strong>Differential — eFG% − xeFG%</strong></p>
+<p>A simple subtraction. For the worked example with xeFG% = 50.4%:</p>
+<pre class="text"><code>differential = 65.0% − 50.4% = +14.6 pp</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reading the three metrics together
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>What each extreme <em>actually tells you</em>:</p>
+<ul>
+<li><strong>eFG% — high</strong>: the player is scoring effectively. Makes are landing, and 3-pointers (if any) are getting the extra credit they deserve.</li>
+<li><strong>eFG% — low</strong>: not enough shots are falling. Could be hard shots, could be poor shot-making — eFG% alone cannot tell you which.</li>
+<li><strong>xeFG% — high</strong>: the player is taking <em>easy</em> shots on average — think dunks, layups, open catch-and-shoot 3s, Restricted Area finishes. Their shot <em>selection</em> looks comfortable.</li>
+<li><strong>xeFG% — low</strong>: the player is taking <em>hard</em> shots on average — contested pull-ups, long 2s, step-back fadeaways. Tough menu.</li>
+<li><strong>Differential — positive (eFG% &gt; xeFG%)</strong>: they are making <strong>more</strong> than the shot difficulty predicts. Either they are a genuinely great finisher/shooter, or they are on a hot stretch.</li>
+<li><strong>Differential — negative (eFG% &lt; xeFG%)</strong>: they are making <strong>less</strong> than the shot difficulty predicts. Cold stretch, poor finishing, or defensive pressure the baseline does not see.</li>
+<li><strong>Differential — near zero</strong>: they are making roughly what the shot difficulty predicts. Their efficiency is explained entirely by <em>what</em> they attempt, not by unusual shot-making.</li>
+</ul>
+<p>And the pairs worth watching:</p>
+<ul>
+<li><strong>High eFG% + high xeFG%</strong> → efficient but on easy shots. Read it as <em>“role player doing their job”</em>, not <em>“star shooter”</em>.</li>
+<li><strong>High eFG% + low xeFG%</strong> → efficient <em>and</em> on hard shots. That is a star-shooter signal — the differential will be large and positive.</li>
+<li><strong>Low eFG% + high xeFG%</strong> → easy shots but still missing them. A red flag — the baseline says those shots should be going in.</li>
+<li><strong>Low eFG% + low xeFG%</strong> → hard shots <em>and</em> not finishing them. Often a shot-selection problem disguised as a shot-making one.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="prepare-the-cleaned-app-dataset" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="prepare-the-cleaned-app-dataset"><span class="header-section-number">4</span> Prepare the Cleaned App Dataset</h2>
+<p>The data-prep step is the same habit as last week: do the heavy lifting here, and ship only what the app needs. The <em>only</em> file we will write into <code>app/</code> is the finished product.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>luka_trade_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-02-01"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>zone_order <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Restricted Area"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"In The Paint (Non-RA)"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mid-Range"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Left Corner 3"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Right Corner 3"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Above the Break 3"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>lakers_shots <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/cleaned/lakers_shots.rds"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">game_date =</span> <span class="fu">as.Date</span>(game_date),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">era =</span> <span class="fu">factor</span>(</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">if_else</span>(game_date <span class="sc">&lt;</span> luka_trade_date, <span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shot_zone_basic <span class="sc">%in%</span> zone_order) <span class="sc">|&gt;</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shot_zone_basic =</span> <span class="fu">factor</span>(shot_zone_basic, <span class="at">levels =</span> zone_order))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>shot_baseline <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(shot_zone_basic, action_type) <span class="sc">|&gt;</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">xefg_baseline =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>lakers_shots <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(shot_baseline, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"shot_zone_basic"</span>, <span class="st">"action_type"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>shot_baseline</code> is the xeFG% an average shooter would produce for each (zone × action_type) combination, computed once from every shot in the dataset. Joining it back onto <code>lakers_shots</code> adds an <code>xefg_baseline</code> column to every row, so the app never has to recompute the baseline.</p>
+<p>Save the finished table into <code>app/</code>.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"app"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(lakers_shots, <span class="st">"app/lakers_shots.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>That is the only file the app will read this week. Your project should now look like this:</p>
+<pre class="text"><code>app/
+  app.R
+  lakers_shots.rds          &lt;- only this file moves to the app folder
+data/
+  cleaned/
+    lakers_shots.rds        &lt;- the original cleaned archive stays here</code></pre>
+</section>
+<section id="sketch-the-static-visuals" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sketch-the-static-visuals"><span class="header-section-number">5</span> Sketch the Static Visuals</h2>
+<p>Every chart the dashboard shows is going to be a chart we have already built and inspected on its own. Four sketches, four charts — two zone views, two action-type views, plus the per-era metric table.</p>
+<section id="sketch-1-shot-zone-bar-chart" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="sketch-1-shot-zone-bar-chart"><span class="header-section-number">5.1</span> Sketch 1: Shot-Zone Bar Chart</h3>
+<p>Reuse the chart from last week. <code>share</code> is the proportion of Rui’s attempts that came from each zone within each era.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lakers_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AD Era"</span> <span class="ot">=</span> <span class="st">"#FDB927"</span>, <span class="st">"Luka Era"</span> <span class="ot">=</span> <span class="st">"#552583"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>rui_by_zone <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rui_by_zone, <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output-display">
+<div id="fig-rui-static-bars" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rui-static-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-shiny2_files/figure-html/fig-rui-static-bars-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rui-static-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Share of attempts per zone, AD Era vs Luka Era.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sketch-2-zone-efficiency-volumes-companion" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="sketch-2-zone-efficiency-volumes-companion"><span class="header-section-number">5.2</span> Sketch 2: Zone Efficiency (Volume’s Companion)</h3>
+<p>Sketch 1 answers <em>where did the shots come from?</em>. The obvious follow-up is <em>how well did they go in?</em>. Notice the code below is almost identical to Sketch 1 — same zones on the x-axis, same era split, same Lakers colours — but the numerator changes from <strong>share of attempts</strong> to <strong>eFG% per zone</strong>. That is the teaching point: once you have built one chart, a close sibling is often ten lines away.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rui_zone_eff <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups  =</span> <span class="st">"drop"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rui_zone_eff, <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> efg, <span class="at">fill =</span> era)) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"eFG%"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output-display">
+<div id="fig-rui-static-zone-eff" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rui-static-zone-eff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-shiny2_files/figure-html/fig-rui-static-zone-eff-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rui-static-zone-eff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: eFG% per zone, AD Era vs Luka Era. Same structure as Sketch 1, different metric.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Paired together, the two charts tell the classic <em>volume + efficiency</em> story:</p>
+<ul>
+<li><strong>Volume chart</strong> — <em>which zones did Rui shoot from, and did the mix change?</em></li>
+<li><strong>Efficiency chart</strong> — <em>did he make more of them from those places?</em></li>
+</ul>
+<p>That pairing is what makes Pattern B (a tabbed card) the natural home for these two later on. Keep the <code>attempts</code> column on <code>rui_zone_eff</code>; we will use it for the Plotly tooltip inside the app.</p>
+</section>
+<section id="sketch-3-action-families-as-tree-maps" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="sketch-3-action-families-as-tree-maps"><span class="header-section-number">5.3</span> Sketch 3: Action Families as Tree Maps</h3>
+<p><code>shot_zone_basic</code> told us <em>where</em>; <code>action_type</code> tells us <em>how</em>. The catch: NBA shot data carries 30+ distinct <code>action_type</code> strings — “Driving Reverse Layup”, “Pullup Jump Shot”, “Alley Oop Dunk”, “Running Fadeaway Shot”… A bar chart across that many categories is unreadable. A <strong>tree map</strong> copes because unimportant categories shrink to thin slivers automatically; the reader’s eye lands on the big tiles first.</p>
+<p>We will keep the <em>original</em> action_type strings as the tile labels — they carry information — and only use the <strong>family</strong> as the subgroup hierarchy above them. Four families, plus an Other bucket for the stragglers:</p>
+<p><strong>Step 1 — the family function.</strong> If a string matches more than one keyword (e.g.&nbsp;“Fadeaway Jump Shot” contains both Fadeaway and Jump), precedence is Dunk → Layup → Fadeaway → Jump. The first match wins.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>action_family_of <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Dunk"</span>,     x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Dunk"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Layup"</span>,    x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Layup"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Fadeaway"</span>, x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Fadeaway"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Jump"</span>,     x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Jump Shot"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                                     <span class="sc">~</span> <span class="st">"Other"</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><strong>Step 2 — the per-era, per-action table.</strong> One row per (era × action_family × action_type) combination.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rui_family <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">action_family =</span> <span class="fu">action_family_of</span>(action_type)) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(era, action_family, action_type) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups  =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> attempts <span class="sc">/</span> <span class="fu">sum</span>(attempts)) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>rui_family</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 78 × 6
+   era    action_family action_type                 attempts   efg proportion
+   &lt;fct&gt;  &lt;chr&gt;         &lt;chr&gt;                          &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1 AD Era Dunk          Alley Oop Dunk Shot                5 1       0.00383 
+ 2 AD Era Dunk          Cutting Dunk Shot                 48 0.938   0.0368  
+ 3 AD Era Dunk          Driving Dunk Shot                 25 0.76    0.0191  
+ 4 AD Era Dunk          Driving Reverse Dunk Shot          2 0.5     0.00153 
+ 5 AD Era Dunk          Dunk Shot                         21 0.857   0.0161  
+ 6 AD Era Dunk          Putback Dunk Shot                  5 1       0.00383 
+ 7 AD Era Dunk          Reverse Dunk Shot                  6 1       0.00459 
+ 8 AD Era Dunk          Running Alley Oop Dunk Shot        4 1       0.00306 
+ 9 AD Era Dunk          Running Dunk Shot                 47 0.894   0.0360  
+10 AD Era Dunk          Running Reverse Dunk Shot          1 0       0.000766
+# ℹ 68 more rows</code></pre>
+</div>
+</div>
+<p>Each row carries <code>attempts</code>, <code>proportion</code> and <code>efg</code>. The tree map sizes tiles by <code>proportion</code> (share <em>within</em> each era) so the two era sub-trees stay comparable even when one has fewer total shots, and colours tiles by <code>efg</code>.</p>
+<p><strong>Step 3 — the static sketch.</strong> <code>treemapify</code> gives ggplot a <code>geom_treemap()</code> we can drop straight onto <code>rui_family</code>. Facet per era so the two halves stay visually separated, and keep the scale-fill gradient on <code>efg</code>.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rui_family,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">area    =</span> proportion,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill    =</span> efg,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">label   =</span> action_type,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">subgroup =</span> action_family)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup_border</span>(<span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(<span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">place =</span> <span class="st">"centre"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">grow =</span> <span class="cn">FALSE</span>, <span class="at">reflow =</span> <span class="cn">TRUE</span>, <span class="at">min.size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">name =</span> <span class="st">"eFG%"</span>) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> era) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output-display">
+<div id="fig-rui-static-treemap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rui-static-treemap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-shiny2_files/figure-html/fig-rui-static-treemap-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rui-static-treemap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Rui Hachimura’s action-type tree map, AD Era vs Luka Era. Tile size = share within era, fill = eFG%.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The static sketch already tells the story: which families dominate each era, and which individual action_types inside them are getting finished. The interactive plotly version in the app will add hover tooltips and drill-down, but the <strong>shape</strong> of the chart is the one you see here.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why a tree map (and why build it interactively)?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>action_type</code> in NBA shot data has a long tail: 30+ distinct strings, most attempted only a handful of times per player. Two common reflexes both fail:</p>
+<ul>
+<li>a <strong>bar chart</strong> with 30 dodged categories crashes the x-axis labels and shrinks the bars we most want to read;</li>
+<li>a <strong>top-N filter</strong> hides exactly the specialised shots that separate one shooter from another (a Step-Back 3, a Turnaround Fadeaway).</li>
+</ul>
+<p>A tree map sidesteps both: tile <strong>area</strong> encodes share of attempts — common shots dominate, rare ones shrink to slivers — and a <strong>subgroup hierarchy</strong> (family → action_type) lets the eye land on a family first. The static sketch above nails the layout; the interactive plotly version in the app adds hover tooltips with attempts, eFG% and the change vs the other era.</p>
+</div>
+</div>
+</div>
+<p><code>rui_family</code> is the only structure the app needs; the plotly code lives with the rest of the dashboard in the next section.</p>
+</section>
+<section id="sketch-4-the-three-headline-numbers-per-era" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="sketch-4-the-three-headline-numbers-per-era"><span class="header-section-number">5.4</span> Sketch 4: The Three Headline Numbers, Per Era</h3>
+<p>The three metrics become <em>a story</em> when we compute them <strong>once per era</strong> and compare. That is the shape the value boxes will end up showing: the Luka Era number as the headline, with a short “▲ +4.1 pp vs AD Era” line underneath. Build the table first.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R code</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rui_era_metrics <span class="ot">&lt;-</span> lakers_shots <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(player_name <span class="sc">==</span> <span class="st">"Rui Hachimura"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">xefg     =</span> <span class="fu">mean</span>(xefg_baseline),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">diff     =</span> efg <span class="sc">-</span> xefg,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups  =</span> <span class="st">"drop"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>rui_era_metrics</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  era      attempts   efg  xefg    diff
+  &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 AD Era       1306 0.585 0.604 -0.0197
+2 Luka Era      803 0.615 0.581  0.0339</code></pre>
+</div>
+</div>
+<p>Three columns matter downstream:</p>
+<ul>
+<li><code>efg</code> — the number the first value box will show.</li>
+<li><code>xefg</code> — the second value box; reads “shot quality”.</li>
+<li><code>diff</code> — the third value box; reads “shot-making above/below expectation”.</li>
+</ul>
+<p>The <strong>delta</strong> shown under each value box is just the Luka row minus the AD row, expressed in percentage points. We will compute it in the app with a short helper. Having the era table in front of you now makes it obvious what those helpers need to produce.</p>
+<p>Four charts, one pattern in common: each was built, inspected and coloured in the workbook before touching Shiny. If any of them looked wrong here, it would be obvious <em>here</em> — not three cards deep in an app.</p>
+</section>
+</section>
+<section id="build-the-dashboard-step-by-step" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="build-the-dashboard-step-by-step"><span class="header-section-number">6</span> Build the Dashboard, Step by Step</h2>
+<p>We do not build the dashboard in one go. We start from last week’s app and add one piece at a time. After each step the app still runs — that way, if something breaks, the cause is the change you <em>just</em> made, not six things bundled together.</p>
+<p>Each step below shows only the <strong>UI</strong> change (the server pieces each step needs appear in the full listing at the end). Drop each step’s code into your own <code>app/app.R</code> and run it before moving on.</p>
+<section id="step-0-last-weeks-starting-point" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="step-0-last-weeks-starting-point"><span class="header-section-number">6.1</span> Step 0 — Last Week’s Starting Point</h3>
+<p>Last week you had a <code>fluidPage()</code> with a sidebar and one Plotly bar chart. Strip it to its bones:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Step 0</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Lakers Evolution Dashboard"</span>),</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">"player"</span>, <span class="st">"Player"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">choices =</span> player_choices, <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"440px"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="step-1-swap-to-page_sidebar-card" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="step-1-swap-to-page_sidebar-card"><span class="header-section-number">6.2</span> Step 1 — Swap to <code>page_sidebar()</code> + <code>card()</code></h3>
+<p><code>bslib</code> replaces <code>fluidPage()</code> + <code>sidebarLayout()</code> with one call that already looks like a dashboard. Frame the chart with <code>card()</code> so it picks up padding, a header and a border for free.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Step 1</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">title   =</span> <span class="st">"Lakers Evolution Dashboard"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">260</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">"player"</span>, <span class="st">"Player"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">choices =</span> player_choices, <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">card</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card_header</span>(<span class="st">"Shot Distribution by Zone"</span>),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"440px"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Same one chart, but the page now has the dashboard look.</p>
+</section>
+<section id="step-2-turn-the-card-into-a-tabbed-card" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="step-2-turn-the-card-into-a-tabbed-card"><span class="header-section-number">6.3</span> Step 2 — Turn the Card Into a Tabbed Card</h3>
+<p>Sketches 1 and 2 are two views of the same question. <code>navset_card_tab()</code> lets the reader flip between them inside a single card.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Step 2</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">navset_card_tab</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Shot Selection by Zone"</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nav_panel</span>(<span class="st">"Volume"</span>,     <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"360px"</span>)),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nav_panel</span>(<span class="st">"Efficiency"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"zone_eff"</span>,  <span class="at">height =</span> <span class="st">"360px"</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><code>full_screen = TRUE</code> adds an expand button. Both outputs still react to the same <code>input$player</code>; the server has no idea the tabs exist.</p>
+</section>
+<section id="step-3-add-a-headline-row-of-value-boxes" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="step-3-add-a-headline-row-of-value-boxes"><span class="header-section-number">6.4</span> Step 3 — Add a Headline Row of Value Boxes</h3>
+<p><code>value_box()</code> is a coloured card built around one big number. <code>layout_columns()</code> places three in a row. Anything after <code>value = ...</code> renders below the number — which is where we slip in the delta line.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Step 3</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout_columns</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="st">"eFG%"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">value    =</span> <span class="fu">textOutput</span>(<span class="st">"efg_value"</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">textOutput</span>(<span class="st">"efg_delta"</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">showcase =</span> bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(<span class="st">"bullseye"</span>),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">theme    =</span> <span class="st">"primary"</span>),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="st">"xeFG% (shot quality)"</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">value    =</span> <span class="fu">textOutput</span>(<span class="st">"xefg_value"</span>),</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">textOutput</span>(<span class="st">"xefg_delta"</span>),</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">showcase =</span> bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(<span class="st">"map"</span>),</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">theme    =</span> <span class="st">"secondary"</span>),</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="st">"eFG% − xeFG% (shot-making)"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">value    =</span> <span class="fu">textOutput</span>(<span class="st">"diff_value"</span>),</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">textOutput</span>(<span class="st">"diff_delta"</span>),</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">showcase =</span> bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(<span class="st">"graph-up"</span>),</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">theme    =</span> <span class="st">"success"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Put this row <em>above</em> the zone card inside <code>page_sidebar()</code>. The server side needs one reactive (the per-era metric table) and six text outputs (three values + three deltas).</p>
+</section>
+<section id="step-4-add-the-action-family-tree-map-side-by-side" class="level3" data-number="6.5">
+<h3 data-number="6.5" class="anchored" data-anchor-id="step-4-add-the-action-family-tree-map-side-by-side"><span class="header-section-number">6.5</span> Step 4 — Add the Action-Family Tree Map Side by Side</h3>
+<p>Wrap the zone tabbed card <strong>and</strong> a new single-chart card in <code>layout_columns(col_widths = c(6, 6))</code> so they share a row.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Step 4</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout_columns</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">navset_card_tab</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Shot Selection by Zone"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nav_panel</span>(<span class="st">"Volume"</span>,     <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nav_panel</span>(<span class="st">"Efficiency"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"zone_eff"</span>,  <span class="at">height =</span> <span class="st">"320px"</span>))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">card</span>(</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card_header</span>(<span class="st">"Action Families — Efficiency"</span>),</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">small</span>(<span class="at">style =</span> <span class="st">"color: #666; padding: 0 0.75rem;"</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Tile size = share of attempts within each era, "</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>               <span class="st">"tile colour = eFG%. Hover for details."</span>),</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotlyOutput</span>(<span class="st">"type_tree_efficiency"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>When the column widths add up to 12, Bootstrap places them side by side.</p>
+</section>
+<section id="step-5-theme-and-polish" class="level3" data-number="6.6">
+<h3 data-number="6.6" class="anchored" data-anchor-id="step-5-theme-and-polish"><span class="header-section-number">6.6</span> Step 5 — Theme and Polish</h3>
+<p>A single <code>bs_theme()</code> propagates the Lakers palette to every component. Narrow the sidebar so the two cards get room, and shrink the value-box typography so the headline row reads as a summary rather than the hero.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Step 5</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>lakers_theme <span class="ot">&lt;-</span> <span class="fu">bs_theme</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">version   =</span> <span class="dv">5</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">primary   =</span> <span class="st">"#552583"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">secondary =</span> <span class="st">"#FDB927"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">success   =</span> <span class="st">"#2E7D32"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_font =</span> <span class="fu">font_google</span>(<span class="st">"Inter"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>vb_title <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.8rem;"</span>,  x)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>vb_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 1.3rem; font-weight: 600;"</span>, x)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>vb_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.75rem;"</span>, x)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>vb_icon  <span class="ot">&lt;-</span> <span class="cf">function</span>(name) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.4rem;"</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>                                     bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(name))</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># in page_sidebar: theme = lakers_theme, sidebar = sidebar(width = 200, ...)</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># in value_box:    wrap title/value/delta/showcase with the helpers above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Set the theme once, pass it via <code>page_sidebar(theme = lakers_theme)</code>, and every <code>value_box(theme = "primary")</code>, active tab and button matches — no <code>tags$style()</code> hacks required.</p>
+</section>
+<section id="the-finished-app.r" class="level3" data-number="6.7">
+<h3 data-number="6.7" class="anchored" data-anchor-id="the-finished-app.r"><span class="header-section-number">6.7</span> The Finished <code>app.R</code></h3>
+<p>Every step above collapses into one file. Copy this into <code>app/app.R</code>:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>app/app.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bslib)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>lakers_colours  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AD Era"</span> <span class="ot">=</span> <span class="st">"#FDB927"</span>, <span class="st">"Luka Era"</span> <span class="ot">=</span> <span class="st">"#552583"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>luka_trade_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-02-01"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>lakers_shots   <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"lakers_shots.rds"</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>player_choices <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(lakers_shots<span class="sc">$</span>player_name))</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>action_family_of <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Dunk"</span>,     x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Dunk"</span>,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Layup"</span>,    x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Layup"</span>,</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Fadeaway"</span>, x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Fadeaway"</span>,</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"Jump"</span>,     x, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Jump Shot"</span>,</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                                     <span class="sc">~</span> <span class="st">"Other"</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>lakers_theme <span class="ot">&lt;-</span> <span class="fu">bs_theme</span>(</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">version   =</span> <span class="dv">5</span>,</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">primary   =</span> <span class="st">"#552583"</span>,</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">secondary =</span> <span class="st">"#FDB927"</span>,</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">success   =</span> <span class="st">"#2E7D32"</span>,</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_font =</span> <span class="fu">font_google</span>(<span class="st">"Inter"</span>)</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>vb_title <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.8rem;"</span>,  x)</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>vb_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 1.3rem; font-weight: 600;"</span>, x)</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>vb_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.75rem;"</span>, x)</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>vb_icon  <span class="ot">&lt;-</span> <span class="cf">function</span>(name) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.4rem;"</span>,</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>                                     bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(name))</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">title   =</span> <span class="st">"Lakers Evolution Dashboard"</span>,</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme   =</span> lakers_theme,</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">"player"</span>, <span class="st">"Player"</span>,</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>                <span class="at">choices  =</span> player_choices,</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>                <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span>),</span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">p</span>(<span class="st">"Value boxes compare the Luka Era to the AD Era.</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a><span class="st">       The left card splits shots by court zone.</span></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a><span class="st">       The right card is an interactive tree map — hover any tile</span></span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a><span class="st">       for attempts, share, eFG% and the change vs the other era."</span>)</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Pattern C: headline numbers with era deltas (slim) ---</span></span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout_columns</span>(</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"eFG% (efficiency)"</span>),</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"efg_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"efg_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"bullseye"</span>),</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"primary"</span>),</span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"xeFG% (shot quality)"</span>),</span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"xefg_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"xefg_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"map"</span>),</span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"secondary"</span>),</span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"eFG% − xeFG% (shot-making)"</span>),</span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"diff_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"diff_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"graph-up"</span>),</span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"success"</span>)</span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Pattern D: two cards side by side ---</span></span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout_columns</span>(</span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>),</span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pattern B: zone — Volume + Efficiency in a tabbed card</span></span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">navset_card_tab</span>(</span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Shot Selection by Zone"</span>,</span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>      <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nav_panel</span>(<span class="st">"Volume"</span>,     <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)),</span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nav_panel</span>(<span class="st">"Efficiency"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"zone_eff"</span>,  <span class="at">height =</span> <span class="st">"320px"</span>))</span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Action families — single-chart card, tree map of original action_types</span></span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card</span>(</span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>      <span class="fu">card_header</span>(<span class="st">"Action Families — Efficiency"</span>),</span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a>      <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a>      tags<span class="sc">$</span><span class="fu">small</span>(<span class="at">style =</span> <span class="st">"color: #666; padding: 0 0.75rem;"</span>,</span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Tile size = share of attempts within each era, "</span>,</span>
+<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"tile colour = eFG%. Hover for details."</span>),</span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotlyOutput</span>(<span class="st">"type_tree_efficiency"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)</span>
+<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>  player_shots <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a>    lakers_shots <span class="sc">|&gt;</span> <span class="fu">filter</span>(player_name <span class="sc">==</span> input<span class="sc">$</span>player)</span>
+<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Era metrics (Sketch 4) ---</span></span>
+<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>  era_metrics <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">efg  =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a>                <span class="at">xefg =</span> <span class="fu">mean</span>(xefg_baseline),</span>
+<span id="cb26-108"><a href="#cb26-108" aria-hidden="true" tabindex="-1"></a>                <span class="at">diff =</span> efg <span class="sc">-</span> xefg,</span>
+<span id="cb26-109"><a href="#cb26-109" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> era,</span>
+<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_from =</span> <span class="fu">c</span>(efg, xefg, diff))</span>
+<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a>  fmt_pct   <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)</span>
+<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a>  fmt_pp    <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="st">"+"</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">" pp"</span>)</span>
+<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a>  fmt_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(luka, ad) {</span>
+<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> luka <span class="sc">-</span> ad</span>
+<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a>    arrow <span class="ot">&lt;-</span> <span class="cf">if</span> (d <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="st">"▲"</span> <span class="cf">else</span> <span class="cf">if</span> (d <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="st">"▼"</span> <span class="cf">else</span> <span class="st">"—"</span></span>
+<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(arrow, <span class="st">" "</span>, <span class="fu">fmt_pp</span>(d), <span class="st">" vs AD ("</span>, <span class="fu">fmt_pct</span>(ad), <span class="st">")"</span>)</span>
+<span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Headline values = Luka Era</span></span>
+<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>efg_value  <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pct</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">efg_Luka Era</span><span class="st">`</span>)  })</span>
+<span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>xefg_value <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pct</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">xefg_Luka Era</span><span class="st">`</span>) })</span>
+<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diff_value <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pp</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">diff_Luka Era</span><span class="st">`</span>)  })</span>
+<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Delta lines = Luka − AD</span></span>
+<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>efg_delta  <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb26-130"><a href="#cb26-130" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">efg_Luka Era</span><span class="st">`</span>,  m<span class="sc">$</span><span class="st">`</span><span class="at">efg_AD Era</span><span class="st">`</span>)</span>
+<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>xefg_delta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">xefg_Luka Era</span><span class="st">`</span>, m<span class="sc">$</span><span class="st">`</span><span class="at">xefg_AD Era</span><span class="st">`</span>)</span>
+<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diff_delta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">diff_Luka Era</span><span class="st">`</span>, m<span class="sc">$</span><span class="st">`</span><span class="at">diff_AD Era</span><span class="st">`</span>)</span>
+<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Volume: share of attempts per zone (Sketch 1) ---</span></span>
+<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a>      <span class="fu">count</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
+<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era,</span>
+<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(era, <span class="st">"&lt;br&gt;"</span>, shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Attempts: "</span>, n, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Share: "</span>, <span class="fu">round</span>(share <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span></span>
+<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
+<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-163"><a href="#cb26-163" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Efficiency: eFG% per zone (Sketch 2) ---</span></span>
+<span id="cb26-164"><a href="#cb26-164" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_eff <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb26-165"><a href="#cb26-165" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-166"><a href="#cb26-166" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb26-167"><a href="#cb26-167" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb26-168"><a href="#cb26-168" aria-hidden="true" tabindex="-1"></a>                <span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb26-169"><a href="#cb26-169" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups  =</span> <span class="st">"drop"</span>)</span>
+<span id="cb26-170"><a href="#cb26-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-171"><a href="#cb26-171" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
+<span id="cb26-172"><a href="#cb26-172" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> efg, <span class="at">fill =</span> era,</span>
+<span id="cb26-173"><a href="#cb26-173" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(era, <span class="st">"&lt;br&gt;"</span>, shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-174"><a href="#cb26-174" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Attempts: "</span>, attempts, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-175"><a href="#cb26-175" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span></span>
+<span id="cb26-176"><a href="#cb26-176" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb26-177"><a href="#cb26-177" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-178"><a href="#cb26-178" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb26-179"><a href="#cb26-179" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"eFG%"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb26-180"><a href="#cb26-180" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb26-181"><a href="#cb26-181" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb26-182"><a href="#cb26-182" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb26-183"><a href="#cb26-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-184"><a href="#cb26-184" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
+<span id="cb26-185"><a href="#cb26-185" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-186"><a href="#cb26-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-187"><a href="#cb26-187" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Action-family long table, one row per (era × family × action_type).</span></span>
+<span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     proportion is the share of attempts *within each era*, so the two</span></span>
+<span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     era sub-trees stay comparable even when one has fewer total shots. ---</span></span>
+<span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a>  family_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a>    <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">action_family =</span> <span class="fu">action_family_of</span>(action_type)) <span class="sc">|&gt;</span></span>
+<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era, action_family, action_type) <span class="sc">|&gt;</span></span>
+<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a>                <span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups  =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">proportion =</span> attempts <span class="sc">/</span> <span class="fu">sum</span>(attempts)) <span class="sc">|&gt;</span></span>
+<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb26-200"><a href="#cb26-200" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-201"><a href="#cb26-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-202"><a href="#cb26-202" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Build one treemap-node table per era: families at the root,</span></span>
+<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     original action_types as leaves. The era label is handled as a</span></span>
+<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     subplot title (not as a tile) so the drill-down starts at family. ---</span></span>
+<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a>  era_tree_nodes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">family_data</span>()</span>
+<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>    wide <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">era_key =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, <span class="st">"ad"</span>, <span class="st">"luka"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(<span class="sc">-</span>era) <span class="sc">|&gt;</span></span>
+<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(<span class="at">id_cols     =</span> <span class="fu">c</span>(action_family, action_type),</span>
+<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a>                  <span class="at">names_from  =</span> era_key,</span>
+<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_from =</span> <span class="fu">c</span>(attempts, proportion, efg))</span>
+<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a>    enriched <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(wide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"action_family"</span>, <span class="st">"action_type"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb26-218"><a href="#cb26-218" aria-hidden="true" tabindex="-1"></a>        <span class="at">other_era        =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>, <span class="st">"AD Era"</span>),</span>
+<span id="cb26-219"><a href="#cb26-219" aria-hidden="true" tabindex="-1"></a>        <span class="at">proportion_other =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>,</span>
+<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">coalesce</span>(proportion_luka, <span class="dv">0</span>),</span>
+<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">coalesce</span>(proportion_ad,   <span class="dv">0</span>)),</span>
+<span id="cb26-222"><a href="#cb26-222" aria-hidden="true" tabindex="-1"></a>        <span class="at">efg_other        =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, efg_luka, efg_ad),</span>
+<span id="cb26-223"><a href="#cb26-223" aria-hidden="true" tabindex="-1"></a>        <span class="at">proportion_delta =</span> proportion <span class="sc">-</span> proportion_other,</span>
+<span id="cb26-224"><a href="#cb26-224" aria-hidden="true" tabindex="-1"></a>        <span class="at">efg_delta        =</span> efg <span class="sc">-</span> efg_other</span>
+<span id="cb26-225"><a href="#cb26-225" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-226"><a href="#cb26-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-227"><a href="#cb26-227" aria-hidden="true" tabindex="-1"></a>    sign_pp <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">if_else</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"+"</span>, <span class="st">""</span>),</span>
+<span id="cb26-228"><a href="#cb26-228" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">" pp"</span>)</span>
+<span id="cb26-229"><a href="#cb26-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-230"><a href="#cb26-230" aria-hidden="true" tabindex="-1"></a>    build_one <span class="ot">&lt;-</span> <span class="cf">function</span>(era_name) {</span>
+<span id="cb26-231"><a href="#cb26-231" aria-hidden="true" tabindex="-1"></a>      e <span class="ot">&lt;-</span> enriched <span class="sc">|&gt;</span> <span class="fu">filter</span>(era <span class="sc">==</span> era_name)</span>
+<span id="cb26-232"><a href="#cb26-232" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">nrow</span>(e) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb26-233"><a href="#cb26-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-234"><a href="#cb26-234" aria-hidden="true" tabindex="-1"></a>      leaves <span class="ot">&lt;-</span> e <span class="sc">|&gt;</span></span>
+<span id="cb26-235"><a href="#cb26-235" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(</span>
+<span id="cb26-236"><a href="#cb26-236" aria-hidden="true" tabindex="-1"></a>          <span class="at">id      =</span> <span class="fu">paste</span>(action_family, action_type, <span class="at">sep =</span> <span class="st">"/"</span>),</span>
+<span id="cb26-237"><a href="#cb26-237" aria-hidden="true" tabindex="-1"></a>          <span class="at">label   =</span> action_type,</span>
+<span id="cb26-238"><a href="#cb26-238" aria-hidden="true" tabindex="-1"></a>          <span class="at">parent  =</span> action_family,</span>
+<span id="cb26-239"><a href="#cb26-239" aria-hidden="true" tabindex="-1"></a>          <span class="at">value   =</span> proportion,</span>
+<span id="cb26-240"><a href="#cb26-240" aria-hidden="true" tabindex="-1"></a>          <span class="at">efg_val =</span> efg,</span>
+<span id="cb26-241"><a href="#cb26-241" aria-hidden="true" tabindex="-1"></a>          <span class="at">hover   =</span> <span class="fu">paste0</span>(</span>
+<span id="cb26-242"><a href="#cb26-242" aria-hidden="true" tabindex="-1"></a>            <span class="st">"&lt;b&gt;"</span>, action_type, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb26-243"><a href="#cb26-243" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Attempts: "</span>, attempts, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-244"><a href="#cb26-244" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Share: "</span>, <span class="fu">round</span>(proportion <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>,</span>
+<span id="cb26-245"><a href="#cb26-245" aria-hidden="true" tabindex="-1"></a>            <span class="st">"  ("</span>, <span class="fu">sign_pp</span>(proportion_delta), <span class="st">" vs other era)&lt;br&gt;"</span>,</span>
+<span id="cb26-246"><a href="#cb26-246" aria-hidden="true" tabindex="-1"></a>            <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>,</span>
+<span id="cb26-247"><a href="#cb26-247" aria-hidden="true" tabindex="-1"></a>            <span class="fu">if_else</span>(<span class="sc">!</span><span class="fu">is.na</span>(efg_delta),</span>
+<span id="cb26-248"><a href="#cb26-248" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">paste0</span>(<span class="st">"  ("</span>, <span class="fu">sign_pp</span>(efg_delta), <span class="st">" vs other era)"</span>),</span>
+<span id="cb26-249"><a href="#cb26-249" aria-hidden="true" tabindex="-1"></a>                    <span class="st">""</span>)</span>
+<span id="cb26-250"><a href="#cb26-250" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb26-251"><a href="#cb26-251" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a>      families <span class="ot">&lt;-</span> e <span class="sc">|&gt;</span></span>
+<span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(action_family) <span class="sc">|&gt;</span></span>
+<span id="cb26-255"><a href="#cb26-255" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">attempts_total   =</span> <span class="fu">sum</span>(attempts),</span>
+<span id="cb26-256"><a href="#cb26-256" aria-hidden="true" tabindex="-1"></a>                  <span class="at">proportion_total =</span> <span class="fu">sum</span>(proportion),</span>
+<span id="cb26-257"><a href="#cb26-257" aria-hidden="true" tabindex="-1"></a>                  <span class="at">efg_val          =</span> <span class="fu">weighted.mean</span>(efg, attempts,</span>
+<span id="cb26-258"><a href="#cb26-258" aria-hidden="true" tabindex="-1"></a>                                                   <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb26-259"><a href="#cb26-259" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.groups          =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-260"><a href="#cb26-260" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(</span>
+<span id="cb26-261"><a href="#cb26-261" aria-hidden="true" tabindex="-1"></a>          <span class="at">id      =</span> action_family,</span>
+<span id="cb26-262"><a href="#cb26-262" aria-hidden="true" tabindex="-1"></a>          <span class="at">label   =</span> action_family,</span>
+<span id="cb26-263"><a href="#cb26-263" aria-hidden="true" tabindex="-1"></a>          <span class="at">parent  =</span> <span class="st">""</span>,</span>
+<span id="cb26-264"><a href="#cb26-264" aria-hidden="true" tabindex="-1"></a>          <span class="at">value   =</span> proportion_total,</span>
+<span id="cb26-265"><a href="#cb26-265" aria-hidden="true" tabindex="-1"></a>          <span class="at">efg_val =</span> efg_val,</span>
+<span id="cb26-266"><a href="#cb26-266" aria-hidden="true" tabindex="-1"></a>          <span class="at">hover   =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;"</span>, action_family, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb26-267"><a href="#cb26-267" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Attempts: "</span>, attempts_total, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-268"><a href="#cb26-268" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Share: "</span>, <span class="fu">round</span>(proportion_total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%&lt;br&gt;"</span>,</span>
+<span id="cb26-269"><a href="#cb26-269" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg_val <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)</span>
+<span id="cb26-270"><a href="#cb26-270" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb26-271"><a href="#cb26-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-272"><a href="#cb26-272" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bind_rows</span>(families, leaves)</span>
+<span id="cb26-273"><a href="#cb26-273" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-274"><a href="#cb26-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-275"><a href="#cb26-275" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">ad =</span> <span class="fu">build_one</span>(<span class="st">"AD Era"</span>), <span class="at">luka =</span> <span class="fu">build_one</span>(<span class="st">"Luka Era"</span>))</span>
+<span id="cb26-276"><a href="#cb26-276" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-277"><a href="#cb26-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-278"><a href="#cb26-278" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Tree map: Efficiency.</span></span>
+<span id="cb26-279"><a href="#cb26-279" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     Two traces (AD Era, Luka Era) side by side with era as the title;</span></span>
+<span id="cb26-280"><a href="#cb26-280" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     tile area = share of attempts within that era;</span></span>
+<span id="cb26-281"><a href="#cb26-281" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     tile colour = eFG% (shared gradient); default labels show on tiles</span></span>
+<span id="cb26-282"><a href="#cb26-282" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     big enough to hold them, full detail is on hover. ---</span></span>
+<span id="cb26-283"><a href="#cb26-283" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>type_tree_efficiency <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb26-284"><a href="#cb26-284" aria-hidden="true" tabindex="-1"></a>    trees <span class="ot">&lt;-</span> <span class="fu">era_tree_nodes</span>()</span>
+<span id="cb26-285"><a href="#cb26-285" aria-hidden="true" tabindex="-1"></a>    <span class="fu">validate</span>(<span class="fu">need</span>(<span class="sc">!</span><span class="fu">is.null</span>(trees<span class="sc">$</span>ad) <span class="sc">||</span> <span class="sc">!</span><span class="fu">is.null</span>(trees<span class="sc">$</span>luka),</span>
+<span id="cb26-286"><a href="#cb26-286" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"No shots to show for this player."</span>))</span>
+<span id="cb26-287"><a href="#cb26-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-288"><a href="#cb26-288" aria-hidden="true" tabindex="-1"></a>    efg_marker <span class="ot">&lt;-</span> <span class="cf">function</span>(efg_vals) <span class="fu">list</span>(</span>
+<span id="cb26-289"><a href="#cb26-289" aria-hidden="true" tabindex="-1"></a>      <span class="at">colors     =</span> efg_vals,</span>
+<span id="cb26-290"><a href="#cb26-290" aria-hidden="true" tabindex="-1"></a>      <span class="at">colorscale =</span> <span class="st">"Viridis"</span>,</span>
+<span id="cb26-291"><a href="#cb26-291" aria-hidden="true" tabindex="-1"></a>      <span class="at">cmin       =</span> <span class="dv">0</span>,</span>
+<span id="cb26-292"><a href="#cb26-292" aria-hidden="true" tabindex="-1"></a>      <span class="at">cmax       =</span> <span class="dv">1</span>,</span>
+<span id="cb26-293"><a href="#cb26-293" aria-hidden="true" tabindex="-1"></a>      <span class="at">showscale  =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-294"><a href="#cb26-294" aria-hidden="true" tabindex="-1"></a>      <span class="at">colorbar   =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"eFG%"</span>),</span>
+<span id="cb26-295"><a href="#cb26-295" aria-hidden="true" tabindex="-1"></a>                        <span class="at">tickformat =</span> <span class="st">".0%"</span>)</span>
+<span id="cb26-296"><a href="#cb26-296" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-297"><a href="#cb26-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-298"><a href="#cb26-298" aria-hidden="true" tabindex="-1"></a>    add_era_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(p, nodes, column) {</span>
+<span id="cb26-299"><a href="#cb26-299" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.null</span>(nodes)) <span class="fu">return</span>(p)</span>
+<span id="cb26-300"><a href="#cb26-300" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_trace</span>(p,</span>
+<span id="cb26-301"><a href="#cb26-301" aria-hidden="true" tabindex="-1"></a>        <span class="at">type          =</span> <span class="st">"treemap"</span>,</span>
+<span id="cb26-302"><a href="#cb26-302" aria-hidden="true" tabindex="-1"></a>        <span class="at">ids           =</span> nodes<span class="sc">$</span>id,</span>
+<span id="cb26-303"><a href="#cb26-303" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels        =</span> nodes<span class="sc">$</span>label,</span>
+<span id="cb26-304"><a href="#cb26-304" aria-hidden="true" tabindex="-1"></a>        <span class="at">parents       =</span> nodes<span class="sc">$</span>parent,</span>
+<span id="cb26-305"><a href="#cb26-305" aria-hidden="true" tabindex="-1"></a>        <span class="at">values        =</span> nodes<span class="sc">$</span>value,</span>
+<span id="cb26-306"><a href="#cb26-306" aria-hidden="true" tabindex="-1"></a>        <span class="at">branchvalues  =</span> <span class="st">"total"</span>,</span>
+<span id="cb26-307"><a href="#cb26-307" aria-hidden="true" tabindex="-1"></a>        <span class="at">textinfo      =</span> <span class="st">"label"</span>,</span>
+<span id="cb26-308"><a href="#cb26-308" aria-hidden="true" tabindex="-1"></a>        <span class="at">text          =</span> nodes<span class="sc">$</span>hover,</span>
+<span id="cb26-309"><a href="#cb26-309" aria-hidden="true" tabindex="-1"></a>        <span class="at">hovertemplate =</span> <span class="st">"%{text}&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb26-310"><a href="#cb26-310" aria-hidden="true" tabindex="-1"></a>        <span class="at">marker        =</span> <span class="fu">efg_marker</span>(nodes<span class="sc">$</span>efg_val),</span>
+<span id="cb26-311"><a href="#cb26-311" aria-hidden="true" tabindex="-1"></a>        <span class="at">domain        =</span> <span class="fu">list</span>(<span class="at">column =</span> column)</span>
+<span id="cb26-312"><a href="#cb26-312" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-313"><a href="#cb26-313" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-314"><a href="#cb26-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-315"><a href="#cb26-315" aria-hidden="true" tabindex="-1"></a>    annotations <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb26-316"><a href="#cb26-316" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;AD Era&lt;/b&gt;"</span>,</span>
+<span id="cb26-317"><a href="#cb26-317" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">0.22</span>, <span class="at">y =</span> <span class="fl">1.0</span>, <span class="at">xref =</span> <span class="st">"paper"</span>, <span class="at">yref =</span> <span class="st">"paper"</span>,</span>
+<span id="cb26-318"><a href="#cb26-318" aria-hidden="true" tabindex="-1"></a>           <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">yanchor =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb26-319"><a href="#cb26-319" aria-hidden="true" tabindex="-1"></a>           <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>)),</span>
+<span id="cb26-320"><a href="#cb26-320" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Luka Era&lt;/b&gt;"</span>,</span>
+<span id="cb26-321"><a href="#cb26-321" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">0.78</span>, <span class="at">y =</span> <span class="fl">1.0</span>, <span class="at">xref =</span> <span class="st">"paper"</span>, <span class="at">yref =</span> <span class="st">"paper"</span>,</span>
+<span id="cb26-322"><a href="#cb26-322" aria-hidden="true" tabindex="-1"></a>           <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">yanchor =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb26-323"><a href="#cb26-323" aria-hidden="true" tabindex="-1"></a>           <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>))</span>
+<span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_ly</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_era_trace</span>(trees<span class="sc">$</span>ad,   <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_era_trace</span>(trees<span class="sc">$</span>luka, <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a>      <span class="fu">layout</span>(</span>
+<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a>        <span class="at">grid        =</span> <span class="fu">list</span>(<span class="at">columns =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">1</span>),</span>
+<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a>        <span class="at">annotations =</span> annotations,</span>
+<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a>        <span class="at">margin      =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">60</span>, <span class="at">l =</span> <span class="dv">5</span>, <span class="at">r =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">5</span>)</span>
+<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-337"><a href="#cb26-337" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Run it.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R Console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">"app"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Each server output maps back to a sketch: <code>zone_bars</code> → Sketch 1, <code>zone_eff</code> → Sketch 2, <code>type_tree_efficiency</code> → Sketch 3 (enriched with a cross-era join so the hover can compare), and the six text outputs (three values + three deltas) all read from the era table in Sketch 4.</p>
+</section>
+</section>
+<section id="polish-that-pays-off" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="polish-that-pays-off"><span class="header-section-number">7</span> Polish That Pays Off</h2>
+<p>The last mile of a dashboard is not about the charts — it is the <em>finishing</em>. A short checklist to run through before calling it done:</p>
+<ul>
+<li><strong>Give every chart a card header or tab title.</strong> <code>"Volume"</code> and <code>"Efficiency"</code> are doing caption work here — short, specific, and they tell the user what is different between the two views.</li>
+<li><strong>Keep the colour story tight.</strong> AD Era gold, Luka Era purple. Use the same mapping in both bar charts, the trend line and — via <code>bs_theme()</code> — the value-box accents.</li>
+<li><strong>Label value boxes for humans.</strong> <code>"eFG% − xeFG%  (shot-making)"</code> is long, but it tells the user what the number means. The delta line below it does the comparison work without a legend.</li>
+<li><strong>Set a narrow sidebar.</strong> <code>sidebar(width = 200)</code> frees horizontal space for the charts — enough for one dropdown and a short caption, no wider.</li>
+<li><strong>Turn on <code>full_screen = TRUE</code></strong> for any card a user might want to stare at.</li>
+<li><strong>Match heights thoughtfully.</strong> Sharing <code>height = "320px"</code> across the two side-by-side cards keeps the page rhythmic — each card is the same size, and neither one dominates.</li>
+<li><strong>Shrink value boxes on data-heavy pages.</strong> A value box defaults to a loud headline size. When the row sits above two tall cards, wrap the title/value/delta in <code>tags$span(style = "font-size: ...")</code> to keep the eye on the charts below.</li>
+<li><strong>Write a short sidebar caption.</strong> One paragraph telling the user what the page shows saves every future visitor a minute of puzzling.</li>
+</ul>
+</section>
+<section id="what-to-notice" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="what-to-notice"><span class="header-section-number">8</span> What to Notice</h2>
+<p>Four ideas underneath the whole workbook are worth flagging:</p>
+<ol type="1">
+<li><strong>Static first, then Shiny.</strong> Every chart in the dashboard existed as a static figure before the app was opened. Debugging charts outside Shiny is much easier than debugging inside.</li>
+<li><strong>Ship only the finished data product.</strong> One file, <code>app/lakers_shots.rds</code>, with every column the app needs. The raw cleaning code stays in the workbook.</li>
+<li><strong>Think in rows of cards.</strong> A dashboard is a grid of components — value boxes, cards, tabs — each doing one job. Layout is a <em>vocabulary</em>, not a one-off choice.</li>
+<li><strong>Consistency tells the story.</strong> Two colours, one font, matching labels across panels. A consistent page feels designed; an inconsistent page feels accidental.</li>
+</ol>
+</section>
+<section id="common-issues" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">9</span> Common Issues</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>page_sidebar()</code> not found</td>
+<td>Install and load <code>bslib</code></td>
+</tr>
+<tr class="even">
+<td><code>bsicons</code> not found</td>
+<td><code>install.packages("bsicons")</code> once, then load it</td>
+</tr>
+<tr class="odd">
+<td>Value boxes show <code>NaN%</code></td>
+<td>The selected player has no shots in one era — add <code>req(all(c("AD Era", "Luka Era") %in% era_metrics()$era))</code> or guard against missing eras in the helpers</td>
+</tr>
+<tr class="even">
+<td>Delta says <code>NA pp</code></td>
+<td>The pivot-wider column names include a space (<code>"efg_Luka Era"</code>) — wrap them in backticks when you index</td>
+</tr>
+<tr class="odd">
+<td>Tree map is empty for a player with no shots</td>
+<td><code>validate(need(...))</code> fires on empty data — not a bug, the player genuinely has zero attempts in the current filter</td>
+</tr>
+<tr class="even">
+<td>Big tiles show a label but small tiles don’t</td>
+<td>That is the plotly treemap default — labels only render where they fit. Hover any tile for the full <code>action_type</code>, attempts, share and eFG%</td>
+</tr>
+<tr class="odd">
+<td>Hover tooltip looks cluttered</td>
+<td>Edit the <code>hover</code> string in <code>tree_nodes()</code> — the lines come from a single <code>paste0()</code> so each row is easy to drop or reorder</td>
+</tr>
+<tr class="even">
+<td>Clicking a tile “zooms in”</td>
+<td>That is the plotly treemap default — the top-left corner shows a breadcrumb; click it to zoom out</td>
+</tr>
+<tr class="odd">
+<td>One era sub-tree is empty</td>
+<td>The player took no shots in that era — common for mid-season arrivals or departures</td>
+</tr>
+<tr class="even">
+<td>Tree-map tiles look the same size in both eras</td>
+<td>Tile area = share of attempts <em>within</em> each era, so a player with 20 AD shots and 200 Luka shots still fills both halves — the <em>delta</em> vs the other era is in the hover</td>
+</tr>
+<tr class="odd">
+<td>Volume and Efficiency tabs look identical</td>
+<td>Check <code>y = share</code> in <code>zone_bars</code> and <code>y = efg</code> in <code>zone_eff</code> — easy to leave both pointing at the same column when copy-pasting</td>
+</tr>
+<tr class="even">
+<td>Card or value-box colours look generic</td>
+<td>Check <code>bs_theme()</code> is passed via <code>page_sidebar(theme = ...)</code> and that themes are named (<code>"primary"</code>, <code>"secondary"</code>, <code>"success"</code>)</td>
+</tr>
+<tr class="odd">
+<td>Value boxes feel too loud at the top of the page</td>
+<td>Wrap the <code>title</code>, <code>value</code> and delta content in <code>tags$span(style = "font-size: ...")</code> — the Polish section of the workbook shows the pattern</td>
+</tr>
+<tr class="even">
+<td>Sidebar is too wide</td>
+<td>Set <code>sidebar(width = 200)</code> (or smaller) — narrow sidebars give the side-by-side cards room</td>
+</tr>
+<tr class="odd">
+<td>Tabs inside a card look like plain tabs</td>
+<td>Use <code>navset_card_tab()</code>, not <code>tabsetPanel()</code> — the former is the carded variant</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="before-you-go" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="before-you-go"><span class="header-section-number">10</span> Before You Go</h2>
+<p>You are almost there! ⚙️</p>
+<p>Today you:</p>
+<ul>
+<li>prepared one cleaned app dataset;</li>
+<li>built zone, efficiency and action-family views;</li>
+<li>added headline value boxes with AD -&gt; Luka deltas;</li>
+<li>used <code>page_sidebar()</code>, <code>card()</code>, <code>navset_card_tab()</code>, <code>value_box()</code> and <code>layout_columns()</code>;</li>
+<li>polished the dashboard with a consistent Lakers theme.</li>
+</ul>
+<p>Next week we shift from <em>building the dashboard</em> to <strong>sharing it</strong> — deployment, GitHub Pages and the final portfolio presentation.</p>
 
 
 </section>
