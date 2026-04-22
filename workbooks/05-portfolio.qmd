@@ -1,5 +1,261 @@
 ---
-title: "5. The Professional Porfolio"
+title: "5. The Professional Portfolio"
+subtitle: "Publishing your Shiny dashboard to GitHub Pages with Shinylive"
+format:
+  html:
+    toc: true
 ---
 
-## Released in Week 10...
+Over the last two weeks you built a Lakers Evolution dashboard — a `page_sidebar()`, a few cards, some value boxes, a tree map. It runs beautifully on your laptop. The problem is that *only* you can see it. A dashboard that lives on your hard drive is a local tool, not a portfolio piece.
+
+This week we close that gap. We will take the finished `app/` folder and publish it as a **live, interactive dashboard anyone can open with a URL** — no server to rent, no account to pay for, no "please install R first". The whole thing runs inside your visitor's browser, hosted for free on **GitHub Pages**.
+
+The tool that makes this possible is [**Shinylive**](https://shinylive.io/r/): a port of R and all its packages to **WebAssembly** (a format that runs inside modern browsers). Shinylive takes your `app/` folder and compiles it into a self-contained set of static files. GitHub Pages is then just a place to drop those files.
+
+::: callout-note
+### Why not shinyapps.io or Posit Connect?
+
+Those services *also* publish Shiny apps, but they run your R code on a remote server — which means quotas, sleeping apps on the free tier, and an account to manage. Shinylive skips the server entirely. Your portfolio page is a plain folder of static files, which GitHub hosts for free and never puts to sleep.
+
+The tradeoff: the first load is slower (the browser has to download R and your packages), and very heavy models or huge datasets don't fit. For a coursework dashboard, this is a non-issue.
+:::
+
+::: callout-warning
+### Prerequisites
+
+This workbook assumes you already have:
+
+-   A working `app/` folder from Workbook 4 with `app.R` and `lakers_shots.rds`.
+-   A **GitHub account** and the `nba-analytics` repo from Workbook 1 linked to a GitHub remote.
+-   Git configured locally (`git push` already works for you).
+
+If any of those are missing, revisit Workbooks 1 and 4 before continuing.
+:::
+
+## Learning Objectives
+
+By the end of this workbook, you will be able to:
+
+-   Explain at a high level **what Shinylive is** and why it lets a Shiny app run without a server.
+-   **Export** your Shiny app to a folder of static files with the `shinylive` R package.
+-   **Publish** that folder to the web using **GitHub Pages**.
+-   **Update** the published dashboard after making changes to your app.
+
+## How the Workflow Fits Together
+
+The sequence for today is short:
+
+``` text
+app/  ->  shinylive::export()  ->  docs/  ->  git push  ->  GitHub Pages URL
+```
+
+One command turns your app into static files. One commit pushes those files to GitHub. One settings toggle tells GitHub to serve them as a website. That is the whole workflow.
+
+## Publishing Your Dashboard
+
+We will move through the whole publishing pipeline in one go: install the export tool, convert the app to static files, write a `README.md` so the repo is readable, publish with `_publish.sh`, and turn on GitHub Pages. At the end you will have a public URL.
+
+### Step 1: Install the `shinylive` Package
+
+`shinylive` is the R package that does the export. Install it once in the R Console:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+install.packages("shinylive")
+```
+
+::: callout-note
+### What is the `shinylive` package actually doing?
+
+When you call `shinylive::export()`, it writes two things into the output folder:
+
+1.  A **copy of your `app/` folder** (the `app.R` and any data files the app reads).
+2.  A bundle of **WebAssembly files** — essentially R itself, plus every package your app uses (`shiny`, `bslib`, `plotly`, `dplyr`, …), compiled so a browser can run them.
+
+When a visitor opens the page, their browser downloads that bundle, starts an R session *inside the tab*, and runs your `app.R` against it. Nothing ever calls back to a server. That is why GitHub Pages — which only serves static files — is enough.
+:::
+
+### Step 2: Export the App to Static Files
+
+GitHub Pages looks, by convention, at a folder called `docs/` on the `main` branch. We will export the app into `docs/` so Pages can serve it directly.
+
+From the R Console, with your project open:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+library(shinylive)
+
+shinylive::export(appdir = "app", destdir = "docs")
+```
+
+A couple of minutes later (it downloads the WebAssembly bundle the first time), `docs/` will fill up with files — most importantly `index.html`, which is the page visitors will actually open.
+
+Your project should now look like this:
+
+``` text
+app/
+  app.R
+  lakers_shots.rds
+docs/
+  index.html          <- the dashboard's entry page
+  edit/               <- a built-in "edit this app" playground
+  shinylive/          <- the R + packages WebAssembly bundle
+```
+
+::: callout-tip
+### Preview the Shinylive build locally
+
+You can sanity-check the exported site on your own machine before pushing it by serving the `docs/` folder with `httpuv`:
+
+```{r}
+#| eval: false
+#| filename: "R console"
+
+httpuv::runStaticServer("docs/", port = 8008)
+```
+
+Then open `http://localhost:8008` in your browser. If the dashboard loads and behaves the way you expect, you are ready to publish.
+
+Never edit files inside `docs/` by hand — it is a *build output*, not source code. If you want to change the app, edit `app/app.R` and re-run `shinylive::export()`.
+:::
+
+### Step 3: Add a `README.md`
+
+The `README.md` is the first thing a visitor sees when they open the repo on GitHub — before any code, before the dashboard itself. A good README takes two minutes to write and makes the repo look like a portfolio piece rather than a coursework dump.
+
+In the **Files** pane in RStudio, click `New File` → `Text File`, save it as `README.md` in your project root (the same level as `nba-analytics.Rproj` and `_publish.sh`), and paste something like this:
+
+```{markdown}
+#| eval: false
+#| filename: "README.md"
+
+# Lakers Evolution Dashboard
+
+An interactive dashboard exploring how the Los Angeles Lakers' shot
+selection and efficiency have changed over recent seasons.
+
+**Live dashboard:** https://YOUR-USERNAME.github.io/nba-analytics/
+
+Built with R, Shiny, and `bslib`, published to GitHub Pages via
+[Shinylive](https://shinylive.io/r/) — the app runs entirely in the
+visitor's browser, with no server.
+
+## Data
+
+Shot-level data pulled from the NBA Stats API via the
+[`hoopR`](https://hoopr.sportsdataverse.org/) package.
+
+## Repository layout
+
+- `app/` — the Shiny app (`app.R` and `lakers_shots.rds`)
+- `docs/` — the Shinylive build served by GitHub Pages
+- `data/` — raw and cleaned data pulled from the API
+```
+
+Replace `YOUR-USERNAME` with your actual GitHub username, and feel free to rewrite the description so it reflects what *your* dashboard actually shows.
+
+::: callout-note
+### Why Markdown, and why `README.md`?
+
+GitHub automatically renders any file called `README.md` at the bottom of the repo's home page. The `.md` extension is **Markdown** — the same lightweight formatting syntax we have been using inside Quarto callouts (`**bold**`, `# Heading`, bullet lists). You already know it.
+:::
+
+### Step 4: Publish with `_publish.sh`
+
+You already have the `_publish.sh` script from Workbook 2. Instead of typing three Git commands by hand, run it from the **RStudio Terminal**:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+./_publish.sh "Add Shinylive build and README for Lakers dashboard"
+```
+
+That stages every change (the new `docs/` folder, the `README.md`, any tweaks to `app/`), commits them with your message, and pushes to GitHub — all in one step.
+
+::: callout-tip
+### `docs/` is big — and that is okay
+
+The WebAssembly bundle includes a full R runtime and every package your app uses, so `docs/` will weigh in at tens of megabytes. GitHub is comfortable with this for a single-app portfolio. If the push feels slow the first time, that is normal — subsequent pushes only ship the files that actually changed.
+:::
+
+### Step 5: Turn On GitHub Pages
+
+The files are on GitHub; they just are not being served yet. To flip that switch:
+
+1.  Open your repo on **github.com** (e.g. `https://github.com/YOUR-USERNAME/nba-analytics`).
+2.  Click **Settings** (top bar of the repo).
+3.  In the left sidebar, click **Pages**.
+4.  Under **Build and deployment**:
+    -   **Source**: *Deploy from a branch*.
+    -   **Branch**: `main`, and the folder dropdown: `/docs`.
+5.  Click **Save**.
+
+Wait 30–60 seconds. Refresh the Pages settings page and you should see a green banner:
+
+> **Your site is live at** `https://YOUR-USERNAME.github.io/nba-analytics/`
+
+Open that URL. Your dashboard is now on the public internet.
+
+::: callout-note
+### Why the URL looks like that
+
+GitHub Pages serves every repo under `https://YOUR-USERNAME.github.io/REPO-NAME/`. The `docs/` folder you pushed becomes the root of that URL. Someone visiting the link is really just downloading `docs/index.html` over HTTPS — the same file you previewed locally.
+:::
+
+### Updating the Dashboard Later
+
+When you change `app.R` or the data file later, the published site does *not* update automatically. The loop is:
+
+1.  Edit `app/app.R` or re-save `app/lakers_shots.rds`.
+2.  In the R Console, re-run the export: `shinylive::export(appdir = "app", destdir = "docs")`.
+3.  In the Terminal, publish:
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+./_publish.sh "Update dashboard: <what changed>"
+```
+
+GitHub Pages redeploys within a minute of the push. Hard-refresh the browser tab (`Ctrl + Shift + R` / `Cmd + Shift + R`) to see the new version — otherwise you may be looking at a cached copy.
+
+## Good Habits for a Portfolio Piece
+
+A handful of small moves make the difference between *a dashboard that works* and *a portfolio piece that reads well*:
+
+-   **Link the live URL in the repo sidebar.** On GitHub, click the ⚙️ next to **About** on the repo home page and paste the Pages URL into the **Website** field. The dashboard is now one click away from the repo.
+-   **Pin the repo on your profile.** On your GitHub profile, *Customize your pins* → tick the `nba-analytics` repo. It will show on your profile grid.
+-   **Keep the commit history clean.** Every push to `main` redeploys the site. A sensible commit message (`"Tighten value-box labels"`) reads better than `"update"` or `"asdf"` when someone scrolls your history.
+-   **Do not commit secrets.** If your app ever reads an API key, load it from an environment variable — never paste it into `app.R`. Shinylive ships *everything* in `app/` to the browser, so a key committed there is a key made public.
+
+## Common Issues
+
+| Problem | Solution |
+|------------------------------------|------------------------------------|
+| `shinylive::export()` errors on "package not found" | The app uses a package that Shinylive does not support in the browser. Check the [supported packages list](https://shinylive.io/r/examples/) and swap or drop the offending one. |
+| Dashboard loads but shows a blank white page | Open the browser console (F12). Most often the app reads a file (`readRDS("lakers_shots.rds")`) that was not copied into `app/`. Move the file into `app/` and re-export. |
+| `404` at the GitHub Pages URL | Either Pages is not enabled yet, the Source is not set to `main` / `/docs`, or the first deploy has not finished. Wait a minute and refresh the Settings → Pages page. |
+| Page loads on localhost but not on GitHub Pages | Check the URL actually points at `/nba-analytics/` (with trailing slash). A missing slash can trip the relative paths Shinylive generates. |
+| Dashboard shows old content after a push | GitHub Pages caches aggressively. Hard-refresh (`Ctrl + Shift + R` / `Cmd + Shift + R`) or open the URL in an incognito window. |
+| First load is slow for visitors | Expected. The browser downloads \~30–50 MB of R + packages the first time. After that it is cached — subsequent visits are fast. |
+| `docs/` is huge and `git push` is slow | Normal for the first push. If it becomes a problem, add a `.nojekyll` file to `docs/` (Shinylive creates one) and avoid committing unrelated large files. |
+| Pushed to `main` but Pages still serves the old site | Check **Settings → Pages** — the deployment log at the bottom shows the latest build status and any error. |
+
+## Before You Go
+
+That's a wrap! 🎉
+
+Today you:
+
+-   exported your Shiny app to static files with `shinylive::export()`;
+-   wrote a `README.md` so the repo reads like a portfolio piece;
+-   published the `docs/` folder to GitHub with `./_publish.sh`;
+-   turned on GitHub Pages and got a public URL for your dashboard;
+-   learned the edit → re-export → publish loop for future updates.
+
+Your Lakers Evolution dashboard — the same code that started as a static bar chart back in Workbook 3 — is now a public portfolio piece with a URL you can paste into a CV, a LinkedIn post, or an application. From a `.rds` file on your laptop to a live interactive site on the open web, all through one repository.

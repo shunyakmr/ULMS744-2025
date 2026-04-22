@@ -364,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../workbooks/05-portfolio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5. The Professional Porfolio</span></a>
+ <span class="menu-text">5. The Professional Portfolio</span></a>
   </div>
 </li>
       </ul>
@@ -1033,18 +1033,17 @@ Figure&nbsp;3: Rui Hachimura’s action-type tree map, AD Era vs Luka Era. Tile 
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">version   =</span> <span class="dv">5</span>,</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">primary   =</span> <span class="st">"#552583"</span>,</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">secondary =</span> <span class="st">"#FDB927"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">success   =</span> <span class="st">"#2E7D32"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_font =</span> <span class="fu">font_google</span>(<span class="st">"Inter"</span>)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>vb_title <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.8rem;"</span>,  x)</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>vb_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 1.3rem; font-weight: 600;"</span>, x)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>vb_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.75rem;"</span>, x)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>vb_icon  <span class="ot">&lt;-</span> <span class="cf">function</span>(name) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.4rem;"</span>,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>                                     bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(name))</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># in page_sidebar: theme = lakers_theme, sidebar = sidebar(width = 200, ...)</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># in value_box:    wrap title/value/delta/showcase with the helpers above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">success   =</span> <span class="st">"#2E7D32"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>vb_title <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.8rem;"</span>,  x)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>vb_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 1.3rem; font-weight: 600;"</span>, x)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>vb_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.75rem;"</span>, x)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>vb_icon  <span class="ot">&lt;-</span> <span class="cf">function</span>(name) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.4rem;"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>                                     bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(name))</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># in page_sidebar: theme = lakers_theme, sidebar = sidebar(width = 200, ...)</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># in value_box:    wrap title/value/delta/showcase with the helpers above</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Set the theme once, pass it via <code>page_sidebar(theme = lakers_theme)</code>, and every <code>value_box(theme = "primary")</code>, active tab and button matches — no <code>tags$style()</code> hacks required.</p>
@@ -1084,316 +1083,315 @@ Figure&nbsp;3: Rui Hachimura’s action-type tree map, AD Era vs Luka Era. Tile 
 <span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">version   =</span> <span class="dv">5</span>,</span>
 <span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">primary   =</span> <span class="st">"#552583"</span>,</span>
 <span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">secondary =</span> <span class="st">"#FDB927"</span>,</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">success   =</span> <span class="st">"#2E7D32"</span>,</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_font =</span> <span class="fu">font_google</span>(<span class="st">"Inter"</span>)</span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>vb_title <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.8rem;"</span>,  x)</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>vb_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 1.3rem; font-weight: 600;"</span>, x)</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>vb_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.75rem;"</span>, x)</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>vb_icon  <span class="ot">&lt;-</span> <span class="cf">function</span>(name) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.4rem;"</span>,</span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>                                     bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(name))</span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">title   =</span> <span class="st">"Lakers Evolution Dashboard"</span>,</span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme   =</span> lakers_theme,</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">"player"</span>, <span class="st">"Player"</span>,</span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>                <span class="at">choices  =</span> player_choices,</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>                <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span>),</span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">p</span>(<span class="st">"Value boxes compare the Luka Era to the AD Era.</span></span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a><span class="st">       The left card splits shots by court zone.</span></span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a><span class="st">       The right card is an interactive tree map — hover any tile</span></span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a><span class="st">       for attempts, share, eFG% and the change vs the other era."</span>)</span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Pattern C: headline numbers with era deltas (slim) ---</span></span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout_columns</span>(</span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"eFG% (efficiency)"</span>),</span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"efg_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"efg_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"bullseye"</span>),</span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"primary"</span>),</span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"xeFG% (shot quality)"</span>),</span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"xefg_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"xefg_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"map"</span>),</span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"secondary"</span>),</span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"eFG% − xeFG% (shot-making)"</span>),</span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"diff_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"diff_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"graph-up"</span>),</span>
-<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"success"</span>)</span>
-<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Pattern D: two cards side by side ---</span></span>
-<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout_columns</span>(</span>
-<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>),</span>
-<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pattern B: zone — Volume + Efficiency in a tabbed card</span></span>
-<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">navset_card_tab</span>(</span>
-<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Shot Selection by Zone"</span>,</span>
-<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>      <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nav_panel</span>(<span class="st">"Volume"</span>,     <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)),</span>
-<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nav_panel</span>(<span class="st">"Efficiency"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"zone_eff"</span>,  <span class="at">height =</span> <span class="st">"320px"</span>))</span>
-<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Action families — single-chart card, tree map of original action_types</span></span>
-<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card</span>(</span>
-<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>      <span class="fu">card_header</span>(<span class="st">"Action Families — Efficiency"</span>),</span>
-<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a>      <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a>      tags<span class="sc">$</span><span class="fu">small</span>(<span class="at">style =</span> <span class="st">"color: #666; padding: 0 0.75rem;"</span>,</span>
-<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Tile size = share of attempts within each era, "</span>,</span>
-<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"tile colour = eFG%. Hover for details."</span>),</span>
-<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotlyOutput</span>(<span class="st">"type_tree_efficiency"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)</span>
-<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>  player_shots <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a>    lakers_shots <span class="sc">|&gt;</span> <span class="fu">filter</span>(player_name <span class="sc">==</span> input<span class="sc">$</span>player)</span>
-<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Era metrics (Sketch 4) ---</span></span>
-<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>  era_metrics <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
-<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">efg  =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
-<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a>                <span class="at">xefg =</span> <span class="fu">mean</span>(xefg_baseline),</span>
-<span id="cb26-108"><a href="#cb26-108" aria-hidden="true" tabindex="-1"></a>                <span class="at">diff =</span> efg <span class="sc">-</span> xefg,</span>
-<span id="cb26-109"><a href="#cb26-109" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> era,</span>
-<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_from =</span> <span class="fu">c</span>(efg, xefg, diff))</span>
-<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a>  fmt_pct   <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)</span>
-<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a>  fmt_pp    <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="st">"+"</span> <span class="cf">else</span> <span class="st">""</span>,</span>
-<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">" pp"</span>)</span>
-<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a>  fmt_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(luka, ad) {</span>
-<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> luka <span class="sc">-</span> ad</span>
-<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a>    arrow <span class="ot">&lt;-</span> <span class="cf">if</span> (d <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="st">"▲"</span> <span class="cf">else</span> <span class="cf">if</span> (d <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="st">"▼"</span> <span class="cf">else</span> <span class="st">"—"</span></span>
-<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(arrow, <span class="st">" "</span>, <span class="fu">fmt_pp</span>(d), <span class="st">" vs AD ("</span>, <span class="fu">fmt_pct</span>(ad), <span class="st">")"</span>)</span>
-<span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Headline values = Luka Era</span></span>
-<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>efg_value  <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pct</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">efg_Luka Era</span><span class="st">`</span>)  })</span>
-<span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>xefg_value <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pct</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">xefg_Luka Era</span><span class="st">`</span>) })</span>
-<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diff_value <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pp</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">diff_Luka Era</span><span class="st">`</span>)  })</span>
-<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Delta lines = Luka − AD</span></span>
-<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>efg_delta  <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb26-130"><a href="#cb26-130" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">efg_Luka Era</span><span class="st">`</span>,  m<span class="sc">$</span><span class="st">`</span><span class="at">efg_AD Era</span><span class="st">`</span>)</span>
-<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>xefg_delta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">xefg_Luka Era</span><span class="st">`</span>, m<span class="sc">$</span><span class="st">`</span><span class="at">xefg_AD Era</span><span class="st">`</span>)</span>
-<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diff_delta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">diff_Luka Era</span><span class="st">`</span>, m<span class="sc">$</span><span class="st">`</span><span class="at">diff_AD Era</span><span class="st">`</span>)</span>
-<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Volume: share of attempts per zone (Sketch 1) ---</span></span>
-<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
-<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a>      <span class="fu">count</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
-<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
-<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>()</span>
-<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
-<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era,</span>
-<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(era, <span class="st">"&lt;br&gt;"</span>, shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
-<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Attempts: "</span>, n, <span class="st">"&lt;br&gt;"</span>,</span>
-<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Share: "</span>, <span class="fu">round</span>(share <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span></span>
-<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
-<span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
-<span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
-<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-163"><a href="#cb26-163" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Efficiency: eFG% per zone (Sketch 2) ---</span></span>
-<span id="cb26-164"><a href="#cb26-164" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_eff <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
-<span id="cb26-165"><a href="#cb26-165" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-166"><a href="#cb26-166" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
-<span id="cb26-167"><a href="#cb26-167" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
-<span id="cb26-168"><a href="#cb26-168" aria-hidden="true" tabindex="-1"></a>                <span class="at">attempts =</span> <span class="fu">n</span>(),</span>
-<span id="cb26-169"><a href="#cb26-169" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups  =</span> <span class="st">"drop"</span>)</span>
-<span id="cb26-170"><a href="#cb26-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-171"><a href="#cb26-171" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
-<span id="cb26-172"><a href="#cb26-172" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> efg, <span class="at">fill =</span> era,</span>
-<span id="cb26-173"><a href="#cb26-173" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(era, <span class="st">"&lt;br&gt;"</span>, shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
-<span id="cb26-174"><a href="#cb26-174" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Attempts: "</span>, attempts, <span class="st">"&lt;br&gt;"</span>,</span>
-<span id="cb26-175"><a href="#cb26-175" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span></span>
-<span id="cb26-176"><a href="#cb26-176" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb26-177"><a href="#cb26-177" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb26-178"><a href="#cb26-178" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
-<span id="cb26-179"><a href="#cb26-179" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"eFG%"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb26-180"><a href="#cb26-180" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
-<span id="cb26-181"><a href="#cb26-181" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb26-182"><a href="#cb26-182" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb26-183"><a href="#cb26-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-184"><a href="#cb26-184" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
-<span id="cb26-185"><a href="#cb26-185" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-186"><a href="#cb26-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-187"><a href="#cb26-187" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Action-family long table, one row per (era × family × action_type).</span></span>
-<span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     proportion is the share of attempts *within each era*, so the two</span></span>
-<span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     era sub-trees stay comparable even when one has fewer total shots. ---</span></span>
-<span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a>  family_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a>    <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">action_family =</span> <span class="fu">action_family_of</span>(action_type)) <span class="sc">|&gt;</span></span>
-<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era, action_family, action_type) <span class="sc">|&gt;</span></span>
-<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">attempts =</span> <span class="fu">n</span>(),</span>
-<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a>                <span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
-<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups  =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
-<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">proportion =</span> attempts <span class="sc">/</span> <span class="fu">sum</span>(attempts)) <span class="sc">|&gt;</span></span>
-<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>()</span>
-<span id="cb26-200"><a href="#cb26-200" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-201"><a href="#cb26-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-202"><a href="#cb26-202" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Build one treemap-node table per era: families at the root,</span></span>
-<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     original action_types as leaves. The era label is handled as a</span></span>
-<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     subplot title (not as a tile) so the drill-down starts at family. ---</span></span>
-<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a>  era_tree_nodes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">family_data</span>()</span>
-<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>    wide <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">era_key =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, <span class="st">"ad"</span>, <span class="st">"luka"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(<span class="sc">-</span>era) <span class="sc">|&gt;</span></span>
-<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(<span class="at">id_cols     =</span> <span class="fu">c</span>(action_family, action_type),</span>
-<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a>                  <span class="at">names_from  =</span> era_key,</span>
-<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_from =</span> <span class="fu">c</span>(attempts, proportion, efg))</span>
-<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a>    enriched <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
-<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(wide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"action_family"</span>, <span class="st">"action_type"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
-<span id="cb26-218"><a href="#cb26-218" aria-hidden="true" tabindex="-1"></a>        <span class="at">other_era        =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>, <span class="st">"AD Era"</span>),</span>
-<span id="cb26-219"><a href="#cb26-219" aria-hidden="true" tabindex="-1"></a>        <span class="at">proportion_other =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>,</span>
-<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">coalesce</span>(proportion_luka, <span class="dv">0</span>),</span>
-<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">coalesce</span>(proportion_ad,   <span class="dv">0</span>)),</span>
-<span id="cb26-222"><a href="#cb26-222" aria-hidden="true" tabindex="-1"></a>        <span class="at">efg_other        =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, efg_luka, efg_ad),</span>
-<span id="cb26-223"><a href="#cb26-223" aria-hidden="true" tabindex="-1"></a>        <span class="at">proportion_delta =</span> proportion <span class="sc">-</span> proportion_other,</span>
-<span id="cb26-224"><a href="#cb26-224" aria-hidden="true" tabindex="-1"></a>        <span class="at">efg_delta        =</span> efg <span class="sc">-</span> efg_other</span>
-<span id="cb26-225"><a href="#cb26-225" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb26-226"><a href="#cb26-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-227"><a href="#cb26-227" aria-hidden="true" tabindex="-1"></a>    sign_pp <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">if_else</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"+"</span>, <span class="st">""</span>),</span>
-<span id="cb26-228"><a href="#cb26-228" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">" pp"</span>)</span>
-<span id="cb26-229"><a href="#cb26-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-230"><a href="#cb26-230" aria-hidden="true" tabindex="-1"></a>    build_one <span class="ot">&lt;-</span> <span class="cf">function</span>(era_name) {</span>
-<span id="cb26-231"><a href="#cb26-231" aria-hidden="true" tabindex="-1"></a>      e <span class="ot">&lt;-</span> enriched <span class="sc">|&gt;</span> <span class="fu">filter</span>(era <span class="sc">==</span> era_name)</span>
-<span id="cb26-232"><a href="#cb26-232" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">nrow</span>(e) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb26-233"><a href="#cb26-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-234"><a href="#cb26-234" aria-hidden="true" tabindex="-1"></a>      leaves <span class="ot">&lt;-</span> e <span class="sc">|&gt;</span></span>
-<span id="cb26-235"><a href="#cb26-235" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(</span>
-<span id="cb26-236"><a href="#cb26-236" aria-hidden="true" tabindex="-1"></a>          <span class="at">id      =</span> <span class="fu">paste</span>(action_family, action_type, <span class="at">sep =</span> <span class="st">"/"</span>),</span>
-<span id="cb26-237"><a href="#cb26-237" aria-hidden="true" tabindex="-1"></a>          <span class="at">label   =</span> action_type,</span>
-<span id="cb26-238"><a href="#cb26-238" aria-hidden="true" tabindex="-1"></a>          <span class="at">parent  =</span> action_family,</span>
-<span id="cb26-239"><a href="#cb26-239" aria-hidden="true" tabindex="-1"></a>          <span class="at">value   =</span> proportion,</span>
-<span id="cb26-240"><a href="#cb26-240" aria-hidden="true" tabindex="-1"></a>          <span class="at">efg_val =</span> efg,</span>
-<span id="cb26-241"><a href="#cb26-241" aria-hidden="true" tabindex="-1"></a>          <span class="at">hover   =</span> <span class="fu">paste0</span>(</span>
-<span id="cb26-242"><a href="#cb26-242" aria-hidden="true" tabindex="-1"></a>            <span class="st">"&lt;b&gt;"</span>, action_type, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
-<span id="cb26-243"><a href="#cb26-243" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Attempts: "</span>, attempts, <span class="st">"&lt;br&gt;"</span>,</span>
-<span id="cb26-244"><a href="#cb26-244" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Share: "</span>, <span class="fu">round</span>(proportion <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>,</span>
-<span id="cb26-245"><a href="#cb26-245" aria-hidden="true" tabindex="-1"></a>            <span class="st">"  ("</span>, <span class="fu">sign_pp</span>(proportion_delta), <span class="st">" vs other era)&lt;br&gt;"</span>,</span>
-<span id="cb26-246"><a href="#cb26-246" aria-hidden="true" tabindex="-1"></a>            <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>,</span>
-<span id="cb26-247"><a href="#cb26-247" aria-hidden="true" tabindex="-1"></a>            <span class="fu">if_else</span>(<span class="sc">!</span><span class="fu">is.na</span>(efg_delta),</span>
-<span id="cb26-248"><a href="#cb26-248" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">paste0</span>(<span class="st">"  ("</span>, <span class="fu">sign_pp</span>(efg_delta), <span class="st">" vs other era)"</span>),</span>
-<span id="cb26-249"><a href="#cb26-249" aria-hidden="true" tabindex="-1"></a>                    <span class="st">""</span>)</span>
-<span id="cb26-250"><a href="#cb26-250" aria-hidden="true" tabindex="-1"></a>          )</span>
-<span id="cb26-251"><a href="#cb26-251" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a>      families <span class="ot">&lt;-</span> e <span class="sc">|&gt;</span></span>
-<span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(action_family) <span class="sc">|&gt;</span></span>
-<span id="cb26-255"><a href="#cb26-255" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">attempts_total   =</span> <span class="fu">sum</span>(attempts),</span>
-<span id="cb26-256"><a href="#cb26-256" aria-hidden="true" tabindex="-1"></a>                  <span class="at">proportion_total =</span> <span class="fu">sum</span>(proportion),</span>
-<span id="cb26-257"><a href="#cb26-257" aria-hidden="true" tabindex="-1"></a>                  <span class="at">efg_val          =</span> <span class="fu">weighted.mean</span>(efg, attempts,</span>
-<span id="cb26-258"><a href="#cb26-258" aria-hidden="true" tabindex="-1"></a>                                                   <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb26-259"><a href="#cb26-259" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.groups          =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-260"><a href="#cb26-260" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(</span>
-<span id="cb26-261"><a href="#cb26-261" aria-hidden="true" tabindex="-1"></a>          <span class="at">id      =</span> action_family,</span>
-<span id="cb26-262"><a href="#cb26-262" aria-hidden="true" tabindex="-1"></a>          <span class="at">label   =</span> action_family,</span>
-<span id="cb26-263"><a href="#cb26-263" aria-hidden="true" tabindex="-1"></a>          <span class="at">parent  =</span> <span class="st">""</span>,</span>
-<span id="cb26-264"><a href="#cb26-264" aria-hidden="true" tabindex="-1"></a>          <span class="at">value   =</span> proportion_total,</span>
-<span id="cb26-265"><a href="#cb26-265" aria-hidden="true" tabindex="-1"></a>          <span class="at">efg_val =</span> efg_val,</span>
-<span id="cb26-266"><a href="#cb26-266" aria-hidden="true" tabindex="-1"></a>          <span class="at">hover   =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;"</span>, action_family, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
-<span id="cb26-267"><a href="#cb26-267" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Attempts: "</span>, attempts_total, <span class="st">"&lt;br&gt;"</span>,</span>
-<span id="cb26-268"><a href="#cb26-268" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Share: "</span>, <span class="fu">round</span>(proportion_total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%&lt;br&gt;"</span>,</span>
-<span id="cb26-269"><a href="#cb26-269" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg_val <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)</span>
-<span id="cb26-270"><a href="#cb26-270" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb26-271"><a href="#cb26-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-272"><a href="#cb26-272" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bind_rows</span>(families, leaves)</span>
-<span id="cb26-273"><a href="#cb26-273" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb26-274"><a href="#cb26-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-275"><a href="#cb26-275" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">ad =</span> <span class="fu">build_one</span>(<span class="st">"AD Era"</span>), <span class="at">luka =</span> <span class="fu">build_one</span>(<span class="st">"Luka Era"</span>))</span>
-<span id="cb26-276"><a href="#cb26-276" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-277"><a href="#cb26-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-278"><a href="#cb26-278" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Tree map: Efficiency.</span></span>
-<span id="cb26-279"><a href="#cb26-279" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     Two traces (AD Era, Luka Era) side by side with era as the title;</span></span>
-<span id="cb26-280"><a href="#cb26-280" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     tile area = share of attempts within that era;</span></span>
-<span id="cb26-281"><a href="#cb26-281" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     tile colour = eFG% (shared gradient); default labels show on tiles</span></span>
-<span id="cb26-282"><a href="#cb26-282" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     big enough to hold them, full detail is on hover. ---</span></span>
-<span id="cb26-283"><a href="#cb26-283" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>type_tree_efficiency <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
-<span id="cb26-284"><a href="#cb26-284" aria-hidden="true" tabindex="-1"></a>    trees <span class="ot">&lt;-</span> <span class="fu">era_tree_nodes</span>()</span>
-<span id="cb26-285"><a href="#cb26-285" aria-hidden="true" tabindex="-1"></a>    <span class="fu">validate</span>(<span class="fu">need</span>(<span class="sc">!</span><span class="fu">is.null</span>(trees<span class="sc">$</span>ad) <span class="sc">||</span> <span class="sc">!</span><span class="fu">is.null</span>(trees<span class="sc">$</span>luka),</span>
-<span id="cb26-286"><a href="#cb26-286" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"No shots to show for this player."</span>))</span>
-<span id="cb26-287"><a href="#cb26-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-288"><a href="#cb26-288" aria-hidden="true" tabindex="-1"></a>    efg_marker <span class="ot">&lt;-</span> <span class="cf">function</span>(efg_vals) <span class="fu">list</span>(</span>
-<span id="cb26-289"><a href="#cb26-289" aria-hidden="true" tabindex="-1"></a>      <span class="at">colors     =</span> efg_vals,</span>
-<span id="cb26-290"><a href="#cb26-290" aria-hidden="true" tabindex="-1"></a>      <span class="at">colorscale =</span> <span class="st">"Viridis"</span>,</span>
-<span id="cb26-291"><a href="#cb26-291" aria-hidden="true" tabindex="-1"></a>      <span class="at">cmin       =</span> <span class="dv">0</span>,</span>
-<span id="cb26-292"><a href="#cb26-292" aria-hidden="true" tabindex="-1"></a>      <span class="at">cmax       =</span> <span class="dv">1</span>,</span>
-<span id="cb26-293"><a href="#cb26-293" aria-hidden="true" tabindex="-1"></a>      <span class="at">showscale  =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb26-294"><a href="#cb26-294" aria-hidden="true" tabindex="-1"></a>      <span class="at">colorbar   =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"eFG%"</span>),</span>
-<span id="cb26-295"><a href="#cb26-295" aria-hidden="true" tabindex="-1"></a>                        <span class="at">tickformat =</span> <span class="st">".0%"</span>)</span>
-<span id="cb26-296"><a href="#cb26-296" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-297"><a href="#cb26-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-298"><a href="#cb26-298" aria-hidden="true" tabindex="-1"></a>    add_era_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(p, nodes, column) {</span>
-<span id="cb26-299"><a href="#cb26-299" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.null</span>(nodes)) <span class="fu">return</span>(p)</span>
-<span id="cb26-300"><a href="#cb26-300" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_trace</span>(p,</span>
-<span id="cb26-301"><a href="#cb26-301" aria-hidden="true" tabindex="-1"></a>        <span class="at">type          =</span> <span class="st">"treemap"</span>,</span>
-<span id="cb26-302"><a href="#cb26-302" aria-hidden="true" tabindex="-1"></a>        <span class="at">ids           =</span> nodes<span class="sc">$</span>id,</span>
-<span id="cb26-303"><a href="#cb26-303" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels        =</span> nodes<span class="sc">$</span>label,</span>
-<span id="cb26-304"><a href="#cb26-304" aria-hidden="true" tabindex="-1"></a>        <span class="at">parents       =</span> nodes<span class="sc">$</span>parent,</span>
-<span id="cb26-305"><a href="#cb26-305" aria-hidden="true" tabindex="-1"></a>        <span class="at">values        =</span> nodes<span class="sc">$</span>value,</span>
-<span id="cb26-306"><a href="#cb26-306" aria-hidden="true" tabindex="-1"></a>        <span class="at">branchvalues  =</span> <span class="st">"total"</span>,</span>
-<span id="cb26-307"><a href="#cb26-307" aria-hidden="true" tabindex="-1"></a>        <span class="at">textinfo      =</span> <span class="st">"label"</span>,</span>
-<span id="cb26-308"><a href="#cb26-308" aria-hidden="true" tabindex="-1"></a>        <span class="at">text          =</span> nodes<span class="sc">$</span>hover,</span>
-<span id="cb26-309"><a href="#cb26-309" aria-hidden="true" tabindex="-1"></a>        <span class="at">hovertemplate =</span> <span class="st">"%{text}&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
-<span id="cb26-310"><a href="#cb26-310" aria-hidden="true" tabindex="-1"></a>        <span class="at">marker        =</span> <span class="fu">efg_marker</span>(nodes<span class="sc">$</span>efg_val),</span>
-<span id="cb26-311"><a href="#cb26-311" aria-hidden="true" tabindex="-1"></a>        <span class="at">domain        =</span> <span class="fu">list</span>(<span class="at">column =</span> column)</span>
-<span id="cb26-312"><a href="#cb26-312" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb26-313"><a href="#cb26-313" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb26-314"><a href="#cb26-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-315"><a href="#cb26-315" aria-hidden="true" tabindex="-1"></a>    annotations <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb26-316"><a href="#cb26-316" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;AD Era&lt;/b&gt;"</span>,</span>
-<span id="cb26-317"><a href="#cb26-317" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">0.22</span>, <span class="at">y =</span> <span class="fl">1.0</span>, <span class="at">xref =</span> <span class="st">"paper"</span>, <span class="at">yref =</span> <span class="st">"paper"</span>,</span>
-<span id="cb26-318"><a href="#cb26-318" aria-hidden="true" tabindex="-1"></a>           <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">yanchor =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb26-319"><a href="#cb26-319" aria-hidden="true" tabindex="-1"></a>           <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>)),</span>
-<span id="cb26-320"><a href="#cb26-320" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Luka Era&lt;/b&gt;"</span>,</span>
-<span id="cb26-321"><a href="#cb26-321" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">0.78</span>, <span class="at">y =</span> <span class="fl">1.0</span>, <span class="at">xref =</span> <span class="st">"paper"</span>, <span class="at">yref =</span> <span class="st">"paper"</span>,</span>
-<span id="cb26-322"><a href="#cb26-322" aria-hidden="true" tabindex="-1"></a>           <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">yanchor =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb26-323"><a href="#cb26-323" aria-hidden="true" tabindex="-1"></a>           <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>))</span>
-<span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_ly</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_era_trace</span>(trees<span class="sc">$</span>ad,   <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_era_trace</span>(trees<span class="sc">$</span>luka, <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a>      <span class="fu">layout</span>(</span>
-<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a>        <span class="at">grid        =</span> <span class="fu">list</span>(<span class="at">columns =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">1</span>),</span>
-<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a>        <span class="at">annotations =</span> annotations,</span>
-<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a>        <span class="at">margin      =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">60</span>, <span class="at">l =</span> <span class="dv">5</span>, <span class="at">r =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">5</span>)</span>
-<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-337"><a href="#cb26-337" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">success   =</span> <span class="st">"#2E7D32"</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>vb_title <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.8rem;"</span>,  x)</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>vb_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 1.3rem; font-weight: 600;"</span>, x)</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>vb_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(x) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.75rem;"</span>, x)</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>vb_icon  <span class="ot">&lt;-</span> <span class="cf">function</span>(name) tags<span class="sc">$</span><span class="fu">span</span>(<span class="at">style =</span> <span class="st">"font-size: 0.4rem;"</span>,</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>                                     bsicons<span class="sc">::</span><span class="fu">bs_icon</span>(name))</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">page_sidebar</span>(</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">title   =</span> <span class="st">"Lakers Evolution Dashboard"</span>,</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme   =</span> lakers_theme,</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">selectInput</span>(<span class="st">"player"</span>, <span class="st">"Player"</span>,</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>                <span class="at">choices  =</span> player_choices,</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>                <span class="at">selected =</span> <span class="st">"Rui Hachimura"</span>),</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">p</span>(<span class="st">"Value boxes compare the Luka Era to the AD Era.</span></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="st">       The left card splits shots by court zone.</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a><span class="st">       The right card is an interactive tree map — hover any tile</span></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a><span class="st">       for attempts, share, eFG% and the change vs the other era."</span>)</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Pattern C: headline numbers with era deltas (slim) ---</span></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout_columns</span>(</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"eFG% (efficiency)"</span>),</span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"efg_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"efg_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"bullseye"</span>),</span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"primary"</span>),</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"xeFG% (shot quality)"</span>),</span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"xefg_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"xefg_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"map"</span>),</span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"secondary"</span>),</span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">value_box</span>(<span class="at">title    =</span> <span class="fu">vb_title</span>(<span class="st">"eFG% − xeFG% (shot-making)"</span>),</span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>              <span class="at">value    =</span> <span class="fu">vb_value</span>(<span class="fu">textOutput</span>(<span class="st">"diff_value"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>              <span class="fu">vb_delta</span>(<span class="fu">textOutput</span>(<span class="st">"diff_delta"</span>, <span class="at">inline =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>              <span class="at">showcase =</span> <span class="fu">vb_icon</span>(<span class="st">"graph-up"</span>),</span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>              <span class="at">theme    =</span> <span class="st">"success"</span>)</span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Pattern D: two cards side by side ---</span></span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout_columns</span>(</span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_widths =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>),</span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pattern B: zone — Volume + Efficiency in a tabbed card</span></span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">navset_card_tab</span>(</span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Shot Selection by Zone"</span>,</span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>      <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nav_panel</span>(<span class="st">"Volume"</span>,     <span class="fu">plotlyOutput</span>(<span class="st">"zone_bars"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)),</span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nav_panel</span>(<span class="st">"Efficiency"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"zone_eff"</span>,  <span class="at">height =</span> <span class="st">"320px"</span>))</span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Action families — single-chart card, tree map of original action_types</span></span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">card</span>(</span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>      <span class="fu">card_header</span>(<span class="st">"Action Families — Efficiency"</span>),</span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>      <span class="at">full_screen =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a>      tags<span class="sc">$</span><span class="fu">small</span>(<span class="at">style =</span> <span class="st">"color: #666; padding: 0 0.75rem;"</span>,</span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Tile size = share of attempts within each era, "</span>,</span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"tile colour = eFG%. Hover for details."</span>),</span>
+<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotlyOutput</span>(<span class="st">"type_tree_efficiency"</span>, <span class="at">height =</span> <span class="st">"320px"</span>)</span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a>  player_shots <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>    lakers_shots <span class="sc">|&gt;</span> <span class="fu">filter</span>(player_name <span class="sc">==</span> input<span class="sc">$</span>player)</span>
+<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Era metrics (Sketch 4) ---</span></span>
+<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a>  era_metrics <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">efg  =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a>                <span class="at">xefg =</span> <span class="fu">mean</span>(xefg_baseline),</span>
+<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a>                <span class="at">diff =</span> efg <span class="sc">-</span> xefg,</span>
+<span id="cb26-108"><a href="#cb26-108" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-109"><a href="#cb26-109" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> era,</span>
+<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_from =</span> <span class="fu">c</span>(efg, xefg, diff))</span>
+<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a>  fmt_pct   <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)</span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a>  fmt_pp    <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">0</span>) <span class="st">"+"</span> <span class="cf">else</span> <span class="st">""</span>,</span>
+<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">" pp"</span>)</span>
+<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a>  fmt_delta <span class="ot">&lt;-</span> <span class="cf">function</span>(luka, ad) {</span>
+<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> luka <span class="sc">-</span> ad</span>
+<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a>    arrow <span class="ot">&lt;-</span> <span class="cf">if</span> (d <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="st">"▲"</span> <span class="cf">else</span> <span class="cf">if</span> (d <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="st">"▼"</span> <span class="cf">else</span> <span class="st">"—"</span></span>
+<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(arrow, <span class="st">" "</span>, <span class="fu">fmt_pp</span>(d), <span class="st">" vs AD ("</span>, <span class="fu">fmt_pct</span>(ad), <span class="st">")"</span>)</span>
+<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Headline values = Luka Era</span></span>
+<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>efg_value  <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pct</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">efg_Luka Era</span><span class="st">`</span>)  })</span>
+<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>xefg_value <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pct</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">xefg_Luka Era</span><span class="st">`</span>) })</span>
+<span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diff_value <span class="ot">&lt;-</span> <span class="fu">renderText</span>({ <span class="fu">fmt_pp</span>(<span class="fu">era_metrics</span>()<span class="sc">$</span><span class="st">`</span><span class="at">diff_Luka Era</span><span class="st">`</span>)  })</span>
+<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Delta lines = Luka − AD</span></span>
+<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>efg_delta  <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">efg_Luka Era</span><span class="st">`</span>,  m<span class="sc">$</span><span class="st">`</span><span class="at">efg_AD Era</span><span class="st">`</span>)</span>
+<span id="cb26-130"><a href="#cb26-130" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>xefg_delta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">xefg_Luka Era</span><span class="st">`</span>, m<span class="sc">$</span><span class="st">`</span><span class="at">xefg_AD Era</span><span class="st">`</span>)</span>
+<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diff_delta <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">era_metrics</span>(); <span class="fu">fmt_delta</span>(m<span class="sc">$</span><span class="st">`</span><span class="at">diff_Luka Era</span><span class="st">`</span>, m<span class="sc">$</span><span class="st">`</span><span class="at">diff_AD Era</span><span class="st">`</span>)</span>
+<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Volume: share of attempts per zone (Sketch 1) ---</span></span>
+<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_bars <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a>      <span class="fu">count</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
+<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> share, <span class="at">fill =</span> era,</span>
+<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(era, <span class="st">"&lt;br&gt;"</span>, shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Attempts: "</span>, n, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Share: "</span>, <span class="fu">round</span>(share <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span></span>
+<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Share of attempts"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
+<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Efficiency: eFG% per zone (Sketch 2) ---</span></span>
+<span id="cb26-163"><a href="#cb26-163" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>zone_eff <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb26-164"><a href="#cb26-164" aria-hidden="true" tabindex="-1"></a>    plot_data <span class="ot">&lt;-</span> <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-165"><a href="#cb26-165" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era, shot_zone_basic) <span class="sc">|&gt;</span></span>
+<span id="cb26-166"><a href="#cb26-166" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb26-167"><a href="#cb26-167" aria-hidden="true" tabindex="-1"></a>                <span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb26-168"><a href="#cb26-168" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups  =</span> <span class="st">"drop"</span>)</span>
+<span id="cb26-169"><a href="#cb26-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-170"><a href="#cb26-170" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data,</span>
+<span id="cb26-171"><a href="#cb26-171" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> shot_zone_basic, <span class="at">y =</span> efg, <span class="at">fill =</span> era,</span>
+<span id="cb26-172"><a href="#cb26-172" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> <span class="fu">paste0</span>(era, <span class="st">"&lt;br&gt;"</span>, shot_zone_basic, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-173"><a href="#cb26-173" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Attempts: "</span>, attempts, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-174"><a href="#cb26-174" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span></span>
+<span id="cb26-175"><a href="#cb26-175" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb26-176"><a href="#cb26-176" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-177"><a href="#cb26-177" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> lakers_colours) <span class="sc">+</span></span>
+<span id="cb26-178"><a href="#cb26-178" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"eFG%"</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb26-179"><a href="#cb26-179" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb26-180"><a href="#cb26-180" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb26-181"><a href="#cb26-181" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb26-182"><a href="#cb26-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-183"><a href="#cb26-183" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>(gg, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span>
+<span id="cb26-184"><a href="#cb26-184" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-185"><a href="#cb26-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-186"><a href="#cb26-186" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Action-family long table, one row per (era × family × action_type).</span></span>
+<span id="cb26-187"><a href="#cb26-187" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     proportion is the share of attempts *within each era*, so the two</span></span>
+<span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     era sub-trees stay comparable even when one has fewer total shots. ---</span></span>
+<span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a>  family_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a>    <span class="fu">player_shots</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">action_family =</span> <span class="fu">action_family_of</span>(action_type)) <span class="sc">|&gt;</span></span>
+<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era, action_family, action_type) <span class="sc">|&gt;</span></span>
+<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a>                <span class="at">efg      =</span> <span class="fu">sum</span>(shot_made_flag <span class="sc">*</span> shot_value) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">n</span>()),</span>
+<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a>                <span class="at">.groups  =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(era) <span class="sc">|&gt;</span></span>
+<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">proportion =</span> attempts <span class="sc">/</span> <span class="fu">sum</span>(attempts)) <span class="sc">|&gt;</span></span>
+<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>()</span>
+<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-200"><a href="#cb26-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-201"><a href="#cb26-201" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Build one treemap-node table per era: families at the root,</span></span>
+<span id="cb26-202"><a href="#cb26-202" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     original action_types as leaves. The era label is handled as a</span></span>
+<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     subplot title (not as a tile) so the drill-down starts at family. ---</span></span>
+<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a>  era_tree_nodes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">family_data</span>()</span>
+<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a>    wide <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">era_key =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, <span class="st">"ad"</span>, <span class="st">"luka"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(<span class="sc">-</span>era) <span class="sc">|&gt;</span></span>
+<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(<span class="at">id_cols     =</span> <span class="fu">c</span>(action_family, action_type),</span>
+<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a>                  <span class="at">names_from  =</span> era_key,</span>
+<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_from =</span> <span class="fu">c</span>(attempts, proportion, efg))</span>
+<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a>    enriched <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(wide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"action_family"</span>, <span class="st">"action_type"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a>        <span class="at">other_era        =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, <span class="st">"Luka Era"</span>, <span class="st">"AD Era"</span>),</span>
+<span id="cb26-218"><a href="#cb26-218" aria-hidden="true" tabindex="-1"></a>        <span class="at">proportion_other =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>,</span>
+<span id="cb26-219"><a href="#cb26-219" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">coalesce</span>(proportion_luka, <span class="dv">0</span>),</span>
+<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">coalesce</span>(proportion_ad,   <span class="dv">0</span>)),</span>
+<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a>        <span class="at">efg_other        =</span> <span class="fu">if_else</span>(era <span class="sc">==</span> <span class="st">"AD Era"</span>, efg_luka, efg_ad),</span>
+<span id="cb26-222"><a href="#cb26-222" aria-hidden="true" tabindex="-1"></a>        <span class="at">proportion_delta =</span> proportion <span class="sc">-</span> proportion_other,</span>
+<span id="cb26-223"><a href="#cb26-223" aria-hidden="true" tabindex="-1"></a>        <span class="at">efg_delta        =</span> efg <span class="sc">-</span> efg_other</span>
+<span id="cb26-224"><a href="#cb26-224" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-225"><a href="#cb26-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-226"><a href="#cb26-226" aria-hidden="true" tabindex="-1"></a>    sign_pp <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">if_else</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"+"</span>, <span class="st">""</span>),</span>
+<span id="cb26-227"><a href="#cb26-227" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">round</span>(x <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">" pp"</span>)</span>
+<span id="cb26-228"><a href="#cb26-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-229"><a href="#cb26-229" aria-hidden="true" tabindex="-1"></a>    build_one <span class="ot">&lt;-</span> <span class="cf">function</span>(era_name) {</span>
+<span id="cb26-230"><a href="#cb26-230" aria-hidden="true" tabindex="-1"></a>      e <span class="ot">&lt;-</span> enriched <span class="sc">|&gt;</span> <span class="fu">filter</span>(era <span class="sc">==</span> era_name)</span>
+<span id="cb26-231"><a href="#cb26-231" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">nrow</span>(e) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb26-232"><a href="#cb26-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-233"><a href="#cb26-233" aria-hidden="true" tabindex="-1"></a>      leaves <span class="ot">&lt;-</span> e <span class="sc">|&gt;</span></span>
+<span id="cb26-234"><a href="#cb26-234" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(</span>
+<span id="cb26-235"><a href="#cb26-235" aria-hidden="true" tabindex="-1"></a>          <span class="at">id      =</span> <span class="fu">paste</span>(action_family, action_type, <span class="at">sep =</span> <span class="st">"/"</span>),</span>
+<span id="cb26-236"><a href="#cb26-236" aria-hidden="true" tabindex="-1"></a>          <span class="at">label   =</span> action_type,</span>
+<span id="cb26-237"><a href="#cb26-237" aria-hidden="true" tabindex="-1"></a>          <span class="at">parent  =</span> action_family,</span>
+<span id="cb26-238"><a href="#cb26-238" aria-hidden="true" tabindex="-1"></a>          <span class="at">value   =</span> proportion,</span>
+<span id="cb26-239"><a href="#cb26-239" aria-hidden="true" tabindex="-1"></a>          <span class="at">efg_val =</span> efg,</span>
+<span id="cb26-240"><a href="#cb26-240" aria-hidden="true" tabindex="-1"></a>          <span class="at">hover   =</span> <span class="fu">paste0</span>(</span>
+<span id="cb26-241"><a href="#cb26-241" aria-hidden="true" tabindex="-1"></a>            <span class="st">"&lt;b&gt;"</span>, action_type, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb26-242"><a href="#cb26-242" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Attempts: "</span>, attempts, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-243"><a href="#cb26-243" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Share: "</span>, <span class="fu">round</span>(proportion <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>,</span>
+<span id="cb26-244"><a href="#cb26-244" aria-hidden="true" tabindex="-1"></a>            <span class="st">"  ("</span>, <span class="fu">sign_pp</span>(proportion_delta), <span class="st">" vs other era)&lt;br&gt;"</span>,</span>
+<span id="cb26-245"><a href="#cb26-245" aria-hidden="true" tabindex="-1"></a>            <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>,</span>
+<span id="cb26-246"><a href="#cb26-246" aria-hidden="true" tabindex="-1"></a>            <span class="fu">if_else</span>(<span class="sc">!</span><span class="fu">is.na</span>(efg_delta),</span>
+<span id="cb26-247"><a href="#cb26-247" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">paste0</span>(<span class="st">"  ("</span>, <span class="fu">sign_pp</span>(efg_delta), <span class="st">" vs other era)"</span>),</span>
+<span id="cb26-248"><a href="#cb26-248" aria-hidden="true" tabindex="-1"></a>                    <span class="st">""</span>)</span>
+<span id="cb26-249"><a href="#cb26-249" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb26-250"><a href="#cb26-250" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb26-251"><a href="#cb26-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a>      families <span class="ot">&lt;-</span> e <span class="sc">|&gt;</span></span>
+<span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(action_family) <span class="sc">|&gt;</span></span>
+<span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">attempts_total   =</span> <span class="fu">sum</span>(attempts),</span>
+<span id="cb26-255"><a href="#cb26-255" aria-hidden="true" tabindex="-1"></a>                  <span class="at">proportion_total =</span> <span class="fu">sum</span>(proportion),</span>
+<span id="cb26-256"><a href="#cb26-256" aria-hidden="true" tabindex="-1"></a>                  <span class="at">efg_val          =</span> <span class="fu">weighted.mean</span>(efg, attempts,</span>
+<span id="cb26-257"><a href="#cb26-257" aria-hidden="true" tabindex="-1"></a>                                                   <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb26-258"><a href="#cb26-258" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.groups          =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-259"><a href="#cb26-259" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(</span>
+<span id="cb26-260"><a href="#cb26-260" aria-hidden="true" tabindex="-1"></a>          <span class="at">id      =</span> action_family,</span>
+<span id="cb26-261"><a href="#cb26-261" aria-hidden="true" tabindex="-1"></a>          <span class="at">label   =</span> action_family,</span>
+<span id="cb26-262"><a href="#cb26-262" aria-hidden="true" tabindex="-1"></a>          <span class="at">parent  =</span> <span class="st">""</span>,</span>
+<span id="cb26-263"><a href="#cb26-263" aria-hidden="true" tabindex="-1"></a>          <span class="at">value   =</span> proportion_total,</span>
+<span id="cb26-264"><a href="#cb26-264" aria-hidden="true" tabindex="-1"></a>          <span class="at">efg_val =</span> efg_val,</span>
+<span id="cb26-265"><a href="#cb26-265" aria-hidden="true" tabindex="-1"></a>          <span class="at">hover   =</span> <span class="fu">paste0</span>(<span class="st">"&lt;b&gt;"</span>, action_family, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb26-266"><a href="#cb26-266" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Attempts: "</span>, attempts_total, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb26-267"><a href="#cb26-267" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Share: "</span>, <span class="fu">round</span>(proportion_total <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%&lt;br&gt;"</span>,</span>
+<span id="cb26-268"><a href="#cb26-268" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"eFG%: "</span>, <span class="fu">round</span>(efg_val <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)</span>
+<span id="cb26-269"><a href="#cb26-269" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb26-270"><a href="#cb26-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-271"><a href="#cb26-271" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bind_rows</span>(families, leaves)</span>
+<span id="cb26-272"><a href="#cb26-272" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-273"><a href="#cb26-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-274"><a href="#cb26-274" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">ad =</span> <span class="fu">build_one</span>(<span class="st">"AD Era"</span>), <span class="at">luka =</span> <span class="fu">build_one</span>(<span class="st">"Luka Era"</span>))</span>
+<span id="cb26-275"><a href="#cb26-275" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-276"><a href="#cb26-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-277"><a href="#cb26-277" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Tree map: Efficiency.</span></span>
+<span id="cb26-278"><a href="#cb26-278" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     Two traces (AD Era, Luka Era) side by side with era as the title;</span></span>
+<span id="cb26-279"><a href="#cb26-279" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     tile area = share of attempts within that era;</span></span>
+<span id="cb26-280"><a href="#cb26-280" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     tile colour = eFG% (shared gradient); default labels show on tiles</span></span>
+<span id="cb26-281"><a href="#cb26-281" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     big enough to hold them, full detail is on hover. ---</span></span>
+<span id="cb26-282"><a href="#cb26-282" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>type_tree_efficiency <span class="ot">&lt;-</span> <span class="fu">renderPlotly</span>({</span>
+<span id="cb26-283"><a href="#cb26-283" aria-hidden="true" tabindex="-1"></a>    trees <span class="ot">&lt;-</span> <span class="fu">era_tree_nodes</span>()</span>
+<span id="cb26-284"><a href="#cb26-284" aria-hidden="true" tabindex="-1"></a>    <span class="fu">validate</span>(<span class="fu">need</span>(<span class="sc">!</span><span class="fu">is.null</span>(trees<span class="sc">$</span>ad) <span class="sc">||</span> <span class="sc">!</span><span class="fu">is.null</span>(trees<span class="sc">$</span>luka),</span>
+<span id="cb26-285"><a href="#cb26-285" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"No shots to show for this player."</span>))</span>
+<span id="cb26-286"><a href="#cb26-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-287"><a href="#cb26-287" aria-hidden="true" tabindex="-1"></a>    efg_marker <span class="ot">&lt;-</span> <span class="cf">function</span>(efg_vals) <span class="fu">list</span>(</span>
+<span id="cb26-288"><a href="#cb26-288" aria-hidden="true" tabindex="-1"></a>      <span class="at">colors     =</span> efg_vals,</span>
+<span id="cb26-289"><a href="#cb26-289" aria-hidden="true" tabindex="-1"></a>      <span class="at">colorscale =</span> <span class="st">"Viridis"</span>,</span>
+<span id="cb26-290"><a href="#cb26-290" aria-hidden="true" tabindex="-1"></a>      <span class="at">cmin       =</span> <span class="dv">0</span>,</span>
+<span id="cb26-291"><a href="#cb26-291" aria-hidden="true" tabindex="-1"></a>      <span class="at">cmax       =</span> <span class="dv">1</span>,</span>
+<span id="cb26-292"><a href="#cb26-292" aria-hidden="true" tabindex="-1"></a>      <span class="at">showscale  =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-293"><a href="#cb26-293" aria-hidden="true" tabindex="-1"></a>      <span class="at">colorbar   =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"eFG%"</span>),</span>
+<span id="cb26-294"><a href="#cb26-294" aria-hidden="true" tabindex="-1"></a>                        <span class="at">tickformat =</span> <span class="st">".0%"</span>)</span>
+<span id="cb26-295"><a href="#cb26-295" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-296"><a href="#cb26-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-297"><a href="#cb26-297" aria-hidden="true" tabindex="-1"></a>    add_era_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(p, nodes, column) {</span>
+<span id="cb26-298"><a href="#cb26-298" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">is.null</span>(nodes)) <span class="fu">return</span>(p)</span>
+<span id="cb26-299"><a href="#cb26-299" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_trace</span>(p,</span>
+<span id="cb26-300"><a href="#cb26-300" aria-hidden="true" tabindex="-1"></a>        <span class="at">type          =</span> <span class="st">"treemap"</span>,</span>
+<span id="cb26-301"><a href="#cb26-301" aria-hidden="true" tabindex="-1"></a>        <span class="at">ids           =</span> nodes<span class="sc">$</span>id,</span>
+<span id="cb26-302"><a href="#cb26-302" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels        =</span> nodes<span class="sc">$</span>label,</span>
+<span id="cb26-303"><a href="#cb26-303" aria-hidden="true" tabindex="-1"></a>        <span class="at">parents       =</span> nodes<span class="sc">$</span>parent,</span>
+<span id="cb26-304"><a href="#cb26-304" aria-hidden="true" tabindex="-1"></a>        <span class="at">values        =</span> nodes<span class="sc">$</span>value,</span>
+<span id="cb26-305"><a href="#cb26-305" aria-hidden="true" tabindex="-1"></a>        <span class="at">branchvalues  =</span> <span class="st">"total"</span>,</span>
+<span id="cb26-306"><a href="#cb26-306" aria-hidden="true" tabindex="-1"></a>        <span class="at">textinfo      =</span> <span class="st">"label"</span>,</span>
+<span id="cb26-307"><a href="#cb26-307" aria-hidden="true" tabindex="-1"></a>        <span class="at">text          =</span> nodes<span class="sc">$</span>hover,</span>
+<span id="cb26-308"><a href="#cb26-308" aria-hidden="true" tabindex="-1"></a>        <span class="at">hovertemplate =</span> <span class="st">"%{text}&lt;extra&gt;&lt;/extra&gt;"</span>,</span>
+<span id="cb26-309"><a href="#cb26-309" aria-hidden="true" tabindex="-1"></a>        <span class="at">marker        =</span> <span class="fu">efg_marker</span>(nodes<span class="sc">$</span>efg_val),</span>
+<span id="cb26-310"><a href="#cb26-310" aria-hidden="true" tabindex="-1"></a>        <span class="at">domain        =</span> <span class="fu">list</span>(<span class="at">column =</span> column)</span>
+<span id="cb26-311"><a href="#cb26-311" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-312"><a href="#cb26-312" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-313"><a href="#cb26-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-314"><a href="#cb26-314" aria-hidden="true" tabindex="-1"></a>    annotations <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb26-315"><a href="#cb26-315" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;AD Era&lt;/b&gt;"</span>,</span>
+<span id="cb26-316"><a href="#cb26-316" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">0.22</span>, <span class="at">y =</span> <span class="fl">1.0</span>, <span class="at">xref =</span> <span class="st">"paper"</span>, <span class="at">yref =</span> <span class="st">"paper"</span>,</span>
+<span id="cb26-317"><a href="#cb26-317" aria-hidden="true" tabindex="-1"></a>           <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">yanchor =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb26-318"><a href="#cb26-318" aria-hidden="true" tabindex="-1"></a>           <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>)),</span>
+<span id="cb26-319"><a href="#cb26-319" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"&lt;b&gt;Luka Era&lt;/b&gt;"</span>,</span>
+<span id="cb26-320"><a href="#cb26-320" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">0.78</span>, <span class="at">y =</span> <span class="fl">1.0</span>, <span class="at">xref =</span> <span class="st">"paper"</span>, <span class="at">yref =</span> <span class="st">"paper"</span>,</span>
+<span id="cb26-321"><a href="#cb26-321" aria-hidden="true" tabindex="-1"></a>           <span class="at">xanchor =</span> <span class="st">"center"</span>, <span class="at">yanchor =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb26-322"><a href="#cb26-322" aria-hidden="true" tabindex="-1"></a>           <span class="at">showarrow =</span> <span class="cn">FALSE</span>, <span class="at">font =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">13</span>))</span>
+<span id="cb26-323"><a href="#cb26-323" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_ly</span>() <span class="sc">|&gt;</span></span>
+<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_era_trace</span>(trees<span class="sc">$</span>ad,   <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_era_trace</span>(trees<span class="sc">$</span>luka, <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a>      <span class="fu">layout</span>(</span>
+<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a>        <span class="at">grid        =</span> <span class="fu">list</span>(<span class="at">columns =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">1</span>),</span>
+<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a>        <span class="at">annotations =</span> annotations,</span>
+<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a>        <span class="at">margin      =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">60</span>, <span class="at">l =</span> <span class="dv">5</span>, <span class="at">r =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">5</span>)</span>
+<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Run it.</p>
@@ -1946,8 +1944,8 @@ Figure&nbsp;3: Rui Hachimura’s action-type tree map, AD Era vs Luka Era. Tile 
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../workbooks/05-portfolio.html" class="pagination-link" aria-label="5. The Professional Porfolio">
-        <span class="nav-page-text">5. The Professional Porfolio</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../workbooks/05-portfolio.html" class="pagination-link" aria-label="5. The Professional Portfolio">
+        <span class="nav-page-text">5. The Professional Portfolio</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

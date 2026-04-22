@@ -524,8 +524,7 @@ lakers_theme <- bs_theme(
   version   = 5,
   primary   = "#552583",
   secondary = "#FDB927",
-  success   = "#2E7D32",
-  base_font = font_google("Inter")
+  success   = "#2E7D32"
 )
 
 vb_title <- function(x) tags$span(style = "font-size: 0.8rem;",  x)
@@ -575,8 +574,7 @@ lakers_theme <- bs_theme(
   version   = 5,
   primary   = "#552583",
   secondary = "#FDB927",
-  success   = "#2E7D32",
-  base_font = font_google("Inter")
+  success   = "#2E7D32"
 )
 
 vb_title <- function(x) tags$span(style = "font-size: 0.8rem;",  x)

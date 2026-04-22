@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -250,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="../workbooks/05-portfolio.html">5. The Professional Porfolio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="../workbooks/05-portfolio.html">5. The Professional Portfolio</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -329,7 +364,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../workbooks/05-portfolio.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">5. The Professional Porfolio</span></a>
+ <span class="menu-text">5. The Professional Portfolio</span></a>
   </div>
 </li>
       </ul>
@@ -367,7 +402,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#released-in-week-10" id="toc-released-in-week-10" class="nav-link active" data-scroll-target="#released-in-week-10"><span class="header-section-number">1</span> Released in Week 10…</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">1</span> Learning Objectives</a></li>
+  <li><a href="#how-the-workflow-fits-together" id="toc-how-the-workflow-fits-together" class="nav-link" data-scroll-target="#how-the-workflow-fits-together"><span class="header-section-number">2</span> How the Workflow Fits Together</a></li>
+  <li><a href="#publishing-your-dashboard" id="toc-publishing-your-dashboard" class="nav-link" data-scroll-target="#publishing-your-dashboard"><span class="header-section-number">3</span> Publishing Your Dashboard</a>
+  <ul>
+  <li><a href="#step-1-install-the-shinylive-package" id="toc-step-1-install-the-shinylive-package" class="nav-link" data-scroll-target="#step-1-install-the-shinylive-package"><span class="header-section-number">3.1</span> Step 1: Install the <code>shinylive</code> Package</a></li>
+  <li><a href="#step-2-export-the-app-to-static-files" id="toc-step-2-export-the-app-to-static-files" class="nav-link" data-scroll-target="#step-2-export-the-app-to-static-files"><span class="header-section-number">3.2</span> Step 2: Export the App to Static Files</a></li>
+  <li><a href="#step-3-add-a-readme.md" id="toc-step-3-add-a-readme.md" class="nav-link" data-scroll-target="#step-3-add-a-readme.md"><span class="header-section-number">3.3</span> Step 3: Add a <code>README.md</code></a></li>
+  <li><a href="#step-4-publish-with-_publish.sh" id="toc-step-4-publish-with-_publish.sh" class="nav-link" data-scroll-target="#step-4-publish-with-_publish.sh"><span class="header-section-number">3.4</span> Step 4: Publish with <code>_publish.sh</code></a></li>
+  <li><a href="#step-5-turn-on-github-pages" id="toc-step-5-turn-on-github-pages" class="nav-link" data-scroll-target="#step-5-turn-on-github-pages"><span class="header-section-number">3.5</span> Step 5: Turn On GitHub Pages</a></li>
+  <li><a href="#updating-the-dashboard-later" id="toc-updating-the-dashboard-later" class="nav-link" data-scroll-target="#updating-the-dashboard-later"><span class="header-section-number">3.6</span> Updating the Dashboard Later</a></li>
+  </ul></li>
+  <li><a href="#good-habits-for-a-portfolio-piece" id="toc-good-habits-for-a-portfolio-piece" class="nav-link" data-scroll-target="#good-habits-for-a-portfolio-piece"><span class="header-section-number">4</span> Good Habits for a Portfolio Piece</a></li>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">5</span> Common Issues</a></li>
+  <li><a href="#before-you-go" id="toc-before-you-go" class="nav-link" data-scroll-target="#before-you-go"><span class="header-section-number">6</span> Before You Go</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -375,9 +423,10 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="../workbooks/05-portfolio.html">5. The Professional Porfolio</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="../workbooks/05-portfolio.html">5. The Professional Portfolio</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">5. The Professional Porfolio</h1>
+<h1 class="title">5. The Professional Portfolio</h1>
+<p class="subtitle lead">Publishing your Shiny dashboard to GitHub Pages with Shinylive</p>
 </div>
 
 
@@ -394,8 +443,330 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="released-in-week-10" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="released-in-week-10"><span class="header-section-number">1</span> Released in Week 10…</h2>
+<p>Over the last two weeks you built a Lakers Evolution dashboard — a <code>page_sidebar()</code>, a few cards, some value boxes, a tree map. It runs beautifully on your laptop. The problem is that <em>only</em> you can see it. A dashboard that lives on your hard drive is a local tool, not a portfolio piece.</p>
+<p>This week we close that gap. We will take the finished <code>app/</code> folder and publish it as a <strong>live, interactive dashboard anyone can open with a URL</strong> — no server to rent, no account to pay for, no “please install R first”. The whole thing runs inside your visitor’s browser, hosted for free on <strong>GitHub Pages</strong>.</p>
+<p>The tool that makes this possible is <a href="https://shinylive.io/r/"><strong>Shinylive</strong></a>: a port of R and all its packages to <strong>WebAssembly</strong> (a format that runs inside modern browsers). Shinylive takes your <code>app/</code> folder and compiles it into a self-contained set of static files. GitHub Pages is then just a place to drop those files.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why not shinyapps.io or Posit Connect?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Those services <em>also</em> publish Shiny apps, but they run your R code on a remote server — which means quotas, sleeping apps on the free tier, and an account to manage. Shinylive skips the server entirely. Your portfolio page is a plain folder of static files, which GitHub hosts for free and never puts to sleep.</p>
+<p>The tradeoff: the first load is slower (the browser has to download R and your packages), and very heavy models or huge datasets don’t fit. For a coursework dashboard, this is a non-issue.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Prerequisites
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This workbook assumes you already have:</p>
+<ul>
+<li>A working <code>app/</code> folder from Workbook 4 with <code>app.R</code> and <code>lakers_shots.rds</code>.</li>
+<li>A <strong>GitHub account</strong> and the <code>nba-analytics</code> repo from Workbook 1 linked to a GitHub remote.</li>
+<li>Git configured locally (<code>git push</code> already works for you).</li>
+</ul>
+<p>If any of those are missing, revisit Workbooks 1 and 4 before continuing.</p>
+</div>
+</div>
+<section id="learning-objectives" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning Objectives</h2>
+<p>By the end of this workbook, you will be able to:</p>
+<ul>
+<li>Explain at a high level <strong>what Shinylive is</strong> and why it lets a Shiny app run without a server.</li>
+<li><strong>Export</strong> your Shiny app to a folder of static files with the <code>shinylive</code> R package.</li>
+<li><strong>Publish</strong> that folder to the web using <strong>GitHub Pages</strong>.</li>
+<li><strong>Update</strong> the published dashboard after making changes to your app.</li>
+</ul>
+</section>
+<section id="how-the-workflow-fits-together" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="how-the-workflow-fits-together"><span class="header-section-number">2</span> How the Workflow Fits Together</h2>
+<p>The sequence for today is short:</p>
+<pre class="text"><code>app/  -&gt;  shinylive::export()  -&gt;  docs/  -&gt;  git push  -&gt;  GitHub Pages URL</code></pre>
+<p>One command turns your app into static files. One commit pushes those files to GitHub. One settings toggle tells GitHub to serve them as a website. That is the whole workflow.</p>
+</section>
+<section id="publishing-your-dashboard" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="publishing-your-dashboard"><span class="header-section-number">3</span> Publishing Your Dashboard</h2>
+<p>We will move through the whole publishing pipeline in one go: install the export tool, convert the app to static files, write a <code>README.md</code> so the repo is readable, publish with <code>_publish.sh</code>, and turn on GitHub Pages. At the end you will have a public URL.</p>
+<section id="step-1-install-the-shinylive-package" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="step-1-install-the-shinylive-package"><span class="header-section-number">3.1</span> Step 1: Install the <code>shinylive</code> Package</h3>
+<p><code>shinylive</code> is the R package that does the export. Install it once in the R Console:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shinylive"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What is the <code>shinylive</code> package actually doing?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you call <code>shinylive::export()</code>, it writes two things into the output folder:</p>
+<ol type="1">
+<li>A <strong>copy of your <code>app/</code> folder</strong> (the <code>app.R</code> and any data files the app reads).</li>
+<li>A bundle of <strong>WebAssembly files</strong> — essentially R itself, plus every package your app uses (<code>shiny</code>, <code>bslib</code>, <code>plotly</code>, <code>dplyr</code>, …), compiled so a browser can run them.</li>
+</ol>
+<p>When a visitor opens the page, their browser downloads that bundle, starts an R session <em>inside the tab</em>, and runs your <code>app.R</code> against it. Nothing ever calls back to a server. That is why GitHub Pages — which only serves static files — is enough.</p>
+</div>
+</div>
+</section>
+<section id="step-2-export-the-app-to-static-files" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="step-2-export-the-app-to-static-files"><span class="header-section-number">3.2</span> Step 2: Export the App to Static Files</h3>
+<p>GitHub Pages looks, by convention, at a folder called <code>docs/</code> on the <code>main</code> branch. We will export the app into <code>docs/</code> so Pages can serve it directly.</p>
+<p>From the R Console, with your project open:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinylive)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>shinylive<span class="sc">::</span><span class="fu">export</span>(<span class="at">appdir =</span> <span class="st">"app"</span>, <span class="at">destdir =</span> <span class="st">"docs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>A couple of minutes later (it downloads the WebAssembly bundle the first time), <code>docs/</code> will fill up with files — most importantly <code>index.html</code>, which is the page visitors will actually open.</p>
+<p>Your project should now look like this:</p>
+<pre class="text"><code>app/
+  app.R
+  lakers_shots.rds
+docs/
+  index.html          &lt;- the dashboard's entry page
+  edit/               &lt;- a built-in "edit this app" playground
+  shinylive/          &lt;- the R + packages WebAssembly bundle</code></pre>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Preview the Shinylive build locally
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can sanity-check the exported site on your own machine before pushing it by serving the <code>docs/</code> folder with <code>httpuv</code>:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R console</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>httpuv<span class="sc">::</span><span class="fu">runStaticServer</span>(<span class="st">"docs/"</span>, <span class="at">port =</span> <span class="dv">8008</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Then open <code>http://localhost:8008</code> in your browser. If the dashboard loads and behaves the way you expect, you are ready to publish.</p>
+<p>Never edit files inside <code>docs/</code> by hand — it is a <em>build output</em>, not source code. If you want to change the app, edit <code>app/app.R</code> and re-run <code>shinylive::export()</code>.</p>
+</div>
+</div>
+</section>
+<section id="step-3-add-a-readme.md" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="step-3-add-a-readme.md"><span class="header-section-number">3.3</span> Step 3: Add a <code>README.md</code></h3>
+<p>The <code>README.md</code> is the first thing a visitor sees when they open the repo on GitHub — before any code, before the dashboard itself. A good README takes two minutes to write and makes the repo look like a portfolio piece rather than a coursework dump.</p>
+<p>In the <strong>Files</strong> pane in RStudio, click <code>New File</code> → <code>Text File</code>, save it as <code>README.md</code> in your project root (the same level as <code>nba-analytics.Rproj</code> and <code>_publish.sh</code>), and paste something like this:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>README.md</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Lakers Evolution Dashboard</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>An interactive dashboard exploring how the Los Angeles Lakers' shot</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>selection and efficiency have changed over recent seasons.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>**Live dashboard:** https://YOUR-USERNAME.github.io/nba-analytics/</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Built with R, Shiny, and <span class="in">`bslib`</span>, published to GitHub Pages via</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Shinylive</span><span class="co">](https://shinylive.io/r/)</span> — the app runs entirely in the</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>visitor's browser, with no server.</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>Shot-level data pulled from the NBA Stats API via the</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">`hoopR`</span><span class="co">](https://hoopr.sportsdataverse.org/)</span> package.</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Repository layout</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`app/`</span> — the Shiny app (<span class="in">`app.R`</span> and <span class="in">`lakers_shots.rds`</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`docs/`</span> — the Shinylive build served by GitHub Pages</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/`</span> — raw and cleaned data pulled from the API</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Replace <code>YOUR-USERNAME</code> with your actual GitHub username, and feel free to rewrite the description so it reflects what <em>your</em> dashboard actually shows.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why Markdown, and why <code>README.md</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GitHub automatically renders any file called <code>README.md</code> at the bottom of the repo’s home page. The <code>.md</code> extension is <strong>Markdown</strong> — the same lightweight formatting syntax we have been using inside Quarto callouts (<code>**bold**</code>, <code># Heading</code>, bullet lists). You already know it.</p>
+</div>
+</div>
+</section>
+<section id="step-4-publish-with-_publish.sh" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="step-4-publish-with-_publish.sh"><span class="header-section-number">3.4</span> Step 4: Publish with <code>_publish.sh</code></h3>
+<p>You already have the <code>_publish.sh</code> script from Workbook 2. Instead of typing three Git commands by hand, run it from the <strong>RStudio Terminal</strong>:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./_publish.sh</span> <span class="st">"Add Shinylive build and README for Lakers dashboard"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>That stages every change (the new <code>docs/</code> folder, the <code>README.md</code>, any tweaks to <code>app/</code>), commits them with your message, and pushes to GitHub — all in one step.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span><code>docs/</code> is big — and that is okay
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The WebAssembly bundle includes a full R runtime and every package your app uses, so <code>docs/</code> will weigh in at tens of megabytes. GitHub is comfortable with this for a single-app portfolio. If the push feels slow the first time, that is normal — subsequent pushes only ship the files that actually changed.</p>
+</div>
+</div>
+</section>
+<section id="step-5-turn-on-github-pages" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="step-5-turn-on-github-pages"><span class="header-section-number">3.5</span> Step 5: Turn On GitHub Pages</h3>
+<p>The files are on GitHub; they just are not being served yet. To flip that switch:</p>
+<ol type="1">
+<li>Open your repo on <strong>github.com</strong> (e.g.&nbsp;<code>https://github.com/YOUR-USERNAME/nba-analytics</code>).</li>
+<li>Click <strong>Settings</strong> (top bar of the repo).</li>
+<li>In the left sidebar, click <strong>Pages</strong>.</li>
+<li>Under <strong>Build and deployment</strong>:
+<ul>
+<li><strong>Source</strong>: <em>Deploy from a branch</em>.</li>
+<li><strong>Branch</strong>: <code>main</code>, and the folder dropdown: <code>/docs</code>.</li>
+</ul></li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p>Wait 30–60 seconds. Refresh the Pages settings page and you should see a green banner:</p>
+<blockquote class="blockquote">
+<p><strong>Your site is live at</strong> <code>https://YOUR-USERNAME.github.io/nba-analytics/</code></p>
+</blockquote>
+<p>Open that URL. Your dashboard is now on the public internet.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why the URL looks like that
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GitHub Pages serves every repo under <code>https://YOUR-USERNAME.github.io/REPO-NAME/</code>. The <code>docs/</code> folder you pushed becomes the root of that URL. Someone visiting the link is really just downloading <code>docs/index.html</code> over HTTPS — the same file you previewed locally.</p>
+</div>
+</div>
+</section>
+<section id="updating-the-dashboard-later" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="updating-the-dashboard-later"><span class="header-section-number">3.6</span> Updating the Dashboard Later</h3>
+<p>When you change <code>app.R</code> or the data file later, the published site does <em>not</em> update automatically. The loop is:</p>
+<ol type="1">
+<li>Edit <code>app/app.R</code> or re-save <code>app/lakers_shots.rds</code>.</li>
+<li>In the R Console, re-run the export: <code>shinylive::export(appdir = "app", destdir = "docs")</code>.</li>
+<li>In the Terminal, publish:</li>
+</ol>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./_publish.sh</span> <span class="st">"Update dashboard: &lt;what changed&gt;"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>GitHub Pages redeploys within a minute of the push. Hard-refresh the browser tab (<code>Ctrl + Shift + R</code> / <code>Cmd + Shift + R</code>) to see the new version — otherwise you may be looking at a cached copy.</p>
+</section>
+</section>
+<section id="good-habits-for-a-portfolio-piece" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="good-habits-for-a-portfolio-piece"><span class="header-section-number">4</span> Good Habits for a Portfolio Piece</h2>
+<p>A handful of small moves make the difference between <em>a dashboard that works</em> and <em>a portfolio piece that reads well</em>:</p>
+<ul>
+<li><strong>Link the live URL in the repo sidebar.</strong> On GitHub, click the ⚙️ next to <strong>About</strong> on the repo home page and paste the Pages URL into the <strong>Website</strong> field. The dashboard is now one click away from the repo.</li>
+<li><strong>Pin the repo on your profile.</strong> On your GitHub profile, <em>Customize your pins</em> → tick the <code>nba-analytics</code> repo. It will show on your profile grid.</li>
+<li><strong>Keep the commit history clean.</strong> Every push to <code>main</code> redeploys the site. A sensible commit message (<code>"Tighten value-box labels"</code>) reads better than <code>"update"</code> or <code>"asdf"</code> when someone scrolls your history.</li>
+<li><strong>Do not commit secrets.</strong> If your app ever reads an API key, load it from an environment variable — never paste it into <code>app.R</code>. Shinylive ships <em>everything</em> in <code>app/</code> to the browser, so a key committed there is a key made public.</li>
+</ul>
+</section>
+<section id="common-issues" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">5</span> Common Issues</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>shinylive::export()</code> errors on “package not found”</td>
+<td>The app uses a package that Shinylive does not support in the browser. Check the <a href="https://shinylive.io/r/examples/">supported packages list</a> and swap or drop the offending one.</td>
+</tr>
+<tr class="even">
+<td>Dashboard loads but shows a blank white page</td>
+<td>Open the browser console (F12). Most often the app reads a file (<code>readRDS("lakers_shots.rds")</code>) that was not copied into <code>app/</code>. Move the file into <code>app/</code> and re-export.</td>
+</tr>
+<tr class="odd">
+<td><code>404</code> at the GitHub Pages URL</td>
+<td>Either Pages is not enabled yet, the Source is not set to <code>main</code> / <code>/docs</code>, or the first deploy has not finished. Wait a minute and refresh the Settings → Pages page.</td>
+</tr>
+<tr class="even">
+<td>Page loads on localhost but not on GitHub Pages</td>
+<td>Check the URL actually points at <code>/nba-analytics/</code> (with trailing slash). A missing slash can trip the relative paths Shinylive generates.</td>
+</tr>
+<tr class="odd">
+<td>Dashboard shows old content after a push</td>
+<td>GitHub Pages caches aggressively. Hard-refresh (<code>Ctrl + Shift + R</code> / <code>Cmd + Shift + R</code>) or open the URL in an incognito window.</td>
+</tr>
+<tr class="even">
+<td>First load is slow for visitors</td>
+<td>Expected. The browser downloads ~30–50 MB of R + packages the first time. After that it is cached — subsequent visits are fast.</td>
+</tr>
+<tr class="odd">
+<td><code>docs/</code> is huge and <code>git push</code> is slow</td>
+<td>Normal for the first push. If it becomes a problem, add a <code>.nojekyll</code> file to <code>docs/</code> (Shinylive creates one) and avoid committing unrelated large files.</td>
+</tr>
+<tr class="even">
+<td>Pushed to <code>main</code> but Pages still serves the old site</td>
+<td>Check <strong>Settings → Pages</strong> — the deployment log at the bottom shows the latest build status and any error.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="before-you-go" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="before-you-go"><span class="header-section-number">6</span> Before You Go</h2>
+<p>That’s a wrap! 🎉</p>
+<p>Today you:</p>
+<ul>
+<li>exported your Shiny app to static files with <code>shinylive::export()</code>;</li>
+<li>wrote a <code>README.md</code> so the repo reads like a portfolio piece;</li>
+<li>published the <code>docs/</code> folder to GitHub with <code>./_publish.sh</code>;</li>
+<li>turned on GitHub Pages and got a public URL for your dashboard;</li>
+<li>learned the edit → re-export → publish loop for future updates.</li>
+</ul>
+<p>Your Lakers Evolution dashboard — the same code that started as a static bar chart back in Workbook 3 — is now a public portfolio piece with a URL you can paste into a CV, a LinkedIn post, or an application. From a <code>.rds</code> file on your laptop to a live interactive site on the open web, all through one repository.</p>
 
 
 </section>
