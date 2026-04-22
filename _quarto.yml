@@ -18,6 +18,7 @@ project:
     - workbooks/04-shiny2.qmd
     - workbooks/05-portfolio.qmd
     - workbooks/06-football-data.qmd
+    - workbooks/07-claude-code.qmd
 
 lang: en
 
@@ -75,5 +76,6 @@ website:
       - section: "Extra Resources"
         contents:
         - workbooks/06-football-data.qmd
+        - workbooks/07-claude-code.qmd
   
 editor: visual

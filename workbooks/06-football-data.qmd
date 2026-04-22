@@ -3,7 +3,6 @@ title: "Navigating the Football Data Landscape"
 subtitle: "Leveraging StatsBombR and worldfootballR in 2026"
 format:
   html:
-    code-fold: true
     toc: true
 ---
 
@@ -78,59 +77,109 @@ StatsBomb's free data is limited to these specific releases. You cannot pull arb
 
 ### Pulling StatsBomb Data
 
-The workflow follows three steps: browse competitions, select matches, then pull events.
+The workflow follows four steps: load the libraries, browse the available competitions, pick a competition/season, pull its match list, then pull events for a single match.
+
+#### Load the libraries
+
+`StatsBombR` provides the open data download functions. `tidyverse` gives us `dplyr` for filtering and selecting, plus the pipe (`|>`) for chaining steps together.
 
 ```{r}
 #| eval: false
 #| filename: "R script"
 
-# Step 1: Browse all available free competitions
+library(StatsBombR)
+library(tidyverse)
+```
+
+#### Browse the available competitions
+
+`FreeCompetitions()` calls the StatsBomb open-data servers and returns a data frame with one row per competition × season combination that is currently free to use. The table has many columns; here we keep only the identifiers and names, drop duplicates with `distinct()`, and sort alphabetically so the list is easy to scan.
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# FreeCompetitions() downloads the list of open-data competitions from StatsBomb.
 competitions <- FreeCompetitions()
 
-# Inspect what is available
-competitions |>
-  select(competition_id, competition_name, season_name) |>
+# Inspect the competitions and seasons available.
+# Use View(available_competitions) in RStudio for a spreadsheet-style view.
+available_competitions <- competitions |>
+  select(competition_id, competition_name, season_id, season_name) |>
   distinct() |>
-  head(20)
+  arrange(competition_name, season_name)
+
+available_competitions
 ```
+
+#### Select a competition and season
+
+Once you know what is available, filter the `competitions` table down to the specific competition and season(s) you want to analyse. We use named variables (`target_competition_name`, `target_seasons`) so the choice is easy to change later. The `if` block gives a clear error message if the filter returns nothing — usually caused by a typo in the competition or season name.
 
 ```{r}
 #| eval: false
 #| filename: "R script"
 
-# Step 2: Filter to a specific competition and pull match list
-# Example: FIFA World Cup 2022
-wc_matches <- FreeMatches(Competitions = 43) # competition_id for Men's World Cup
+# Change these values if you want to use a different competition.
+target_competition_name <- "La Liga"
+target_seasons <- c("2020/2021")
 
-# Inspect the match list
-wc_matches |>
-  select(
-    match_id,
-    home_team.home_team_name,
-    away_team.away_team_name,
-    match_date
-  ) |>
-  head(10)
+selected_competition <- competitions |>
+  filter(
+    competition_name == target_competition_name,
+    season_name %in% target_seasons
+  )
+
+# Stop early with a useful message if the competition/season filter is wrong.
+if (nrow(selected_competition) == 0) {
+  stop("No competition found. Check target_competition_name and target_seasons.")
+}
 ```
+
+#### Download the match list
+
+`FreeMatches()` takes the competition/season data frame from the previous step and returns every match in those seasons, one row per match. We convert `match_date` to a proper `Date` type and sort chronologically so the earliest fixtures appear first.
 
 ```{r}
 #| eval: false
 #| filename: "R script"
 
-# Step 3: Pull event data for a single match
-# Pick one match_id from the list above
-events <- get.matchFree(wc_matches[1, ])
+matches <- FreeMatches(Competitions = selected_competition) |>
+  mutate(match_date = as.Date(match_date)) |>
+  arrange(match_date)
 
-# The result is a wide data frame with one row per event
+# Inspect the match list in the RStudio viewer.
+matches
+```
+
+#### Download event data for one match
+
+`get.matchFree()` takes a single-row data frame (one match) and returns its full event log: every pass, shot, dribble, pressure, and so on, with `(x, y)` pitch coordinates where relevant. We use `slice(1)` here to pick the first match in the list as an example — swap in any `match_id` from the table above when you want to analyse a different game.
+
+```{r}
+#| eval: false
+#| filename: "R script"
+
+# Use the first match as an example. You can replace this with any match_id
+# from the table above.
+selected_match <- matches |>
+  slice(1)
+
+events <- get.matchFree(selected_match)
+
+# Event data is the main StatsBomb event-by-event table.
 # Key columns: type.name, location, pass.end_location, shot.statsbomb_xg
 glimpse(events)
 ```
 
+#### Filter to shots and inspect spatial data
+
+Event data is long and wide: one row per event, with many columns that are only populated for certain event types (e.g. `shot.*` columns are only filled when `type.name == "Shot"`). Filtering to shots is a typical first step for building shot maps or exploring xG.
+
 ```{r}
 #| eval: false
 #| filename: "R script"
 
-# Step 4: Filter to shots and inspect spatial data
 shots <- events |>
   filter(type.name == "Shot") |>
   select(
@@ -142,7 +191,7 @@ shots <- events |>
     shot.outcome.name
   )
 
-# Each 'location' is a list of [x, y] coordinates on a 120x80 pitch
+# Each 'location' is a list of [x, y] coordinates on a 120x80 pitch.
 shots
 ```
 
@@ -194,6 +243,15 @@ If a scraping function works today, it may not tomorrow. Build your workflow aro
 
 ### FBref: Using the Loader Functions
 
+#### 1. Pull a season of advanced stats
+
+`load_fb_big5_advanced_season_stats()` is a pre-built loader: instead of scraping FBref live, it pulls from a regularly updated cached dataset, which is why it is reliable. Two arguments matter:
+
+-   `season_end_year` — the calendar year the season *ends* in. For the 2024/25 season, use `2025`.
+-   `stat_type` — which stat table to return (shooting, passing, defence, etc.). We start with `"standard"` (goals, assists, minutes, xG).
+
+`glimpse()` gives a quick column-by-column preview, which is useful because these tables often have 40+ columns with suffixes like `_Standard` or `_Expected` that indicate which FBref section the stat came from.
+
 ```{r}
 #| eval: false
 #| filename: "R script"
@@ -208,6 +266,10 @@ big5_stats <- load_fb_big5_advanced_season_stats(
 glimpse(big5_stats)
 ```
 
+#### 2. Filter and rank players
+
+Once the data is in memory, the usual `dplyr` verbs apply. Here we narrow to Premier League forwards, keep only the columns we care about, and sort by non-penalty goals. `MP_Playing` is minutes-played-adjusted match count; `npxG_Expected` is the FBref naming convention for non-penalty expected goals.
+
 ```{r}
 #| eval: false
 #| filename: "R script"
@@ -219,6 +281,10 @@ big5_stats |>
   arrange(desc(Gls_Standard)) |>
   head(15)
 ```
+
+#### 3. Switch to a different stat type
+
+The same loader returns completely different tables depending on `stat_type`. Swap the argument value to pull shooting, passing, possession, defensive, or goalkeeping stats — each comes with its own set of columns. Here we pull defensive stats and rank La Liga players by tackles.
 
 ```{r}
 #| eval: false
@@ -246,6 +312,10 @@ defensive |>
 
 Understat's value is its shot-level xG data with match context — useful for building xG timelines, shot maps, and team-level performance trends.
 
+#### 1. Pull match-level xG results
+
+`understat_league_match_results()` returns one row per match in the chosen league season, including goals scored and Understat's own xG values for each side. The `league` argument takes a short code (`"EPL"`, `"La_liga"`, `"Bundesliga"`, `"Serie_A"`, `"Ligue_1"`, `"RFPL"`) and `season_start_year` takes the year the season *starts* in — so the 2024/25 season is `2024`.
+
 ```{r}
 #| eval: false
 #| filename: "R script"
@@ -262,6 +332,10 @@ epl_results |>
   select(home_team, away_team, home_goals, away_goals, home_xG, away_xG) |>
   head(10)
 ```
+
+#### 2. Pull shot-level data
+
+`understat_league_season_shots()` goes one level deeper: one row per shot, with its xG value, outcome, pitch coordinates, and `situation` (open play, set piece, counter-attack, etc.). This is the table you want for shot maps or for rebuilding season-level xG trends from the ground up. Note the `team = h_team` inside `select()` — we rename the home-team column to `team` on the way through to make the output easier to read.
 
 ```{r}
 #| eval: false

@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../workbooks/02-api.html" rel="next">
-<link href="../00-index.html" rel="prev">
+<link href="../workbooks/06-football-data.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -285,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">1. Foundations of Reproducible Analytics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/06-football-data.html">Extra Resources</a></li><li class="breadcrumb-item"><a href="../workbooks/07-claude-code.html">Setting Up Claude Code (and Codex)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -339,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workbooks/01-setup.html" class="sidebar-item-text sidebar-link active">
+  <a href="../workbooks/01-setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Foundations of Reproducible Analytics</span></a>
   </div>
 </li>
@@ -386,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../workbooks/07-claude-code.html" class="sidebar-item-text sidebar-link">
+  <a href="../workbooks/07-claude-code.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Setting Up Claude Code (and Codex)</span></a>
   </div>
 </li>
@@ -402,32 +401,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link active" data-scroll-target="#key-terms"><span class="header-section-number">1</span> Key Terms</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters"><span class="header-section-number">2</span> Why This Matters</a></li>
-  <li><a href="#pre-class-checklist" id="toc-pre-class-checklist" class="nav-link" data-scroll-target="#pre-class-checklist"><span class="header-section-number">3</span> Pre-Class Checklist</a></li>
-  <li><a href="#initial-setup" id="toc-initial-setup" class="nav-link" data-scroll-target="#initial-setup"><span class="header-section-number">4</span> Initial Setup</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">1</span> Learning Objectives</a></li>
+  <li><a href="#step-1-install-node.js" id="toc-step-1-install-node.js" class="nav-link" data-scroll-target="#step-1-install-node.js"><span class="header-section-number">2</span> Step 1: Install Node.js</a>
   <ul>
-  <li><a href="#step-1-install-the-core-packages" id="toc-step-1-install-the-core-packages" class="nav-link" data-scroll-target="#step-1-install-the-core-packages"><span class="header-section-number">4.1</span> Step 1: Install the Core Packages</a></li>
-  <li><a href="#step-2-create-the-project" id="toc-step-2-create-the-project" class="nav-link" data-scroll-target="#step-2-create-the-project"><span class="header-section-number">4.2</span> Step 2: Create the Project</a></li>
-  <li><a href="#step-3-create-a-simple-readme" id="toc-step-3-create-a-simple-readme" class="nav-link" data-scroll-target="#step-3-create-a-simple-readme"><span class="header-section-number">4.3</span> Step 3: Create a Simple README</a></li>
-  <li><a href="#step-4-check-.gitignore" id="toc-step-4-check-.gitignore" class="nav-link" data-scroll-target="#step-4-check-.gitignore"><span class="header-section-number">4.4</span> Step 4: Check <code>.gitignore</code></a></li>
-  <li><a href="#step-5-create-the-github-repository" id="toc-step-5-create-the-github-repository" class="nav-link" data-scroll-target="#step-5-create-the-github-repository"><span class="header-section-number">4.5</span> Step 5: Create the GitHub Repository</a></li>
-  <li><a href="#step-6-authenticate-and-connect" id="toc-step-6-authenticate-and-connect" class="nav-link" data-scroll-target="#step-6-authenticate-and-connect"><span class="header-section-number">4.6</span> Step 6: Authenticate and Connect</a></li>
-  <li><a href="#step-7-make-your-first-commit" id="toc-step-7-make-your-first-commit" class="nav-link" data-scroll-target="#step-7-make-your-first-commit"><span class="header-section-number">4.7</span> Step 7: Make Your First Commit</a></li>
+  <li><a href="#windows-macos" id="toc-windows-macos" class="nav-link" data-scroll-target="#windows-macos"><span class="header-section-number">2.1</span> Windows / macOS</a></li>
+  <li><a href="#check-that-it-worked" id="toc-check-that-it-worked" class="nav-link" data-scroll-target="#check-that-it-worked"><span class="header-section-number">2.2</span> Check that it worked</a></li>
   </ul></li>
-  <li><a href="#independent-practice" id="toc-independent-practice" class="nav-link" data-scroll-target="#independent-practice"><span class="header-section-number">5</span> Independent Practice</a></li>
-  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">6</span> Common Issues</a></li>
-  <li><a href="#before-you-go" id="toc-before-you-go" class="nav-link" data-scroll-target="#before-you-go"><span class="header-section-number">7</span> Before You Go</a></li>
+  <li><a href="#step-2-install-claude-code" id="toc-step-2-install-claude-code" class="nav-link" data-scroll-target="#step-2-install-claude-code"><span class="header-section-number">3</span> Step 2: Install Claude Code</a>
+  <ul>
+  <li><a href="#first-launch-and-login" id="toc-first-launch-and-login" class="nav-link" data-scroll-target="#first-launch-and-login"><span class="header-section-number">3.1</span> First launch and login</a></li>
+  </ul></li>
+  <li><a href="#step-3-optional-install-codex" id="toc-step-3-optional-install-codex" class="nav-link" data-scroll-target="#step-3-optional-install-codex"><span class="header-section-number">4</span> Step 3 (Optional): Install Codex</a></li>
+  <li><a href="#useful-things-to-know" id="toc-useful-things-to-know" class="nav-link" data-scroll-target="#useful-things-to-know"><span class="header-section-number">5</span> Useful Things to Know</a>
+  <ul>
+  <li><a href="#interrupting-the-assistant-ctrl-c" id="toc-interrupting-the-assistant-ctrl-c" class="nav-link" data-scroll-target="#interrupting-the-assistant-ctrl-c"><span class="header-section-number">5.1</span> Interrupting the assistant: <code>Ctrl + C</code></a></li>
+  <li><a href="#exiting-cleanly" id="toc-exiting-cleanly" class="nav-link" data-scroll-target="#exiting-cleanly"><span class="header-section-number">5.2</span> Exiting cleanly</a></li>
+  <li><a href="#slash-commands" id="toc-slash-commands" class="nav-link" data-scroll-target="#slash-commands"><span class="header-section-number">5.3</span> Slash commands</a></li>
+  <li><a href="#always-launch-from-the-project-root" id="toc-always-launch-from-the-project-root" class="nav-link" data-scroll-target="#always-launch-from-the-project-root"><span class="header-section-number">5.4</span> Always launch from the project root</a></li>
+  <li><a href="#review-before-accepting-edits" id="toc-review-before-accepting-edits" class="nav-link" data-scroll-target="#review-before-accepting-edits"><span class="header-section-number">5.5</span> Review before accepting edits</a></li>
+  </ul></li>
+  <li><a href="#recommended-rstudio-setup" id="toc-recommended-rstudio-setup" class="nav-link" data-scroll-target="#recommended-rstudio-setup"><span class="header-section-number">6</span> Recommended RStudio Setup</a>
+  <ul>
+  <li><a href="#changing-the-pane-layout" id="toc-changing-the-pane-layout" class="nav-link" data-scroll-target="#changing-the-pane-layout"><span class="header-section-number">6.1</span> Changing the pane layout</a></li>
+  <li><a href="#using-the-layout-with-claude-code" id="toc-using-the-layout-with-claude-code" class="nav-link" data-scroll-target="#using-the-layout-with-claude-code"><span class="header-section-number">6.2</span> Using the layout with Claude Code</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7</span> Summary</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="../slides/w7-slides-lecture.html"><i class="bi bi-file-slides"></i>Lecture Slides</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/shunyakmr/ULMS744-2025/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">Reproducible Workflows for Sports Analytics</a></li><li class="breadcrumb-item"><a href="../workbooks/01-setup.html">1. Foundations of Reproducible Analytics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../workbooks/06-football-data.html">Extra Resources</a></li><li class="breadcrumb-item"><a href="../workbooks/07-claude-code.html">Setting Up Claude Code (and Codex)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1. Foundations of Reproducible Analytics</h1>
+<h1 class="title">Setting Up Claude Code (and Codex)</h1>
+<p class="subtitle lead">A basic guide to running an AI coding assistant in your terminal</p>
 </div>
 
 
@@ -444,276 +453,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this five-week seminar block, we will build a complete sports analytics workflow in public, using <strong>NBA basketball as the shared worked example</strong>. By the end of the block, you will have a live dashboard on GitHub Pages and a repository that shows your project process clearly.</p>
-<p>This week is about foundations. We are not analysing data yet. We are making sure your tools, folders and version control are in place so that the later analytical work runs smoothly.</p>
-<p>We will:</p>
-<ol type="1">
-<li>install the package stack for the seminar block;</li>
-<li>create a clean RStudio project;</li>
-<li>connect that project to GitHub;</li>
-<li>make and push a first commit.</li>
-</ol>
+<p>AI coding assistants that live inside your terminal have become a standard part of the modern data-science workflow. This workbook walks you through installing <strong>Claude Code</strong> — Anthropic’s official CLI — and points out that the setup is essentially the same for <strong>OpenAI’s Codex CLI</strong>, which is a direct alternative. By the end you will be able to open a terminal in any project folder, type a single command, and start working with an AI assistant that can read and edit your files.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A paid subscription is required
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both Claude Code and Codex require a <strong>paid subscription</strong> to the underlying provider to use them for real work:</p>
+<ul>
+<li><strong>Claude Code</strong> needs a <a href="https://www.anthropic.com/pricing">Claude paid plan</a> (Pro or higher) or an Anthropic API account with billing set up.</li>
+<li><strong>Codex CLI</strong> needs a <a href="https://openai.com/chatgpt/pricing/">ChatGPT paid plan</a> (Plus or higher) or an OpenAI API account with billing set up.</li>
+</ul>
+<p>Free-tier accounts will not let you sign in to the CLI. Make sure you have an active subscription before following the install steps below.</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The seminar example is basketball, but the workflow is broader than basketball. Good setup, good file structure and good version control are transferable to any sport analytics project.</p>
+<p>You only need to do this setup once per machine. After that, starting Claude Code in a new project is a single command.</p>
 </div>
 </div>
 </div>
-<section id="key-terms" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="key-terms"><span class="header-section-number">1</span> Key Terms</h2>
-<p>Before we start, it helps to separate three terms that sound similar but do different jobs.</p>
-<ul>
-<li><strong>Git</strong> is the version-control software installed on your computer. It tracks changes to files over time.</li>
-<li><strong>GitHub</strong> is the website that hosts Git repositories online, so you can back up your work, share it, and submit it publicly.</li>
-<li><strong>GitHub Pages</strong> is GitHub’s web publishing service. Later in the module, you will use it to publish a website version of your project, such as a dashboard or portfolio page.</li>
-</ul>
-<p>In short: Git tracks your work locally, GitHub stores and shares it online, and GitHub Pages turns part of that online repository into a website.</p>
-</section>
-<section id="why-this-matters" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="why-this-matters"><span class="header-section-number">2</span> Why This Matters</h2>
-<p>Analysts do not work in isolated scripts. They work in projects that need to be:</p>
-<ul>
-<li>reproducible;</li>
-<li>easy to revisit;</li>
-<li>easy to share;</li>
-<li>easy to extend into reports, dashboards and published outputs.</li>
-</ul>
-<p>Git and GitHub are therefore part of the analytical workflow, not an optional extra.</p>
-</section>
-<section id="pre-class-checklist" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="pre-class-checklist"><span class="header-section-number">3</span> Pre-Class Checklist</h2>
-<p>Before the seminar, make sure that:</p>
-<ul class="task-list">
-<li><label><input type="checkbox" checked=""><strong>R 4.5</strong> or later is installed;</label></li>
-<li><label><input type="checkbox" checked=""><strong>RStudio</strong> opens normally;</label></li>
-<li><label><input type="checkbox" checked=""><strong>Git</strong> is installed on your machine [<a href="https://git-scm.com/install/">link</a>];</label></li>
-<li><label><input type="checkbox" checked="">in RStudio, <code>Tools -&gt; Global Options -&gt; Git/SVN</code> shows a detected Git executable;</label></li>
-<li><label><input type="checkbox" checked="">you have a GitHub account;</label></li>
-<li><label><input type="checkbox" checked="">you can access the internet from your machine.</label></li>
-</ul>
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>As a student, you can apply to <strong>GitHub Education</strong>. Follow the application steps at this link: [<a href="https://docs.github.com/en/education/about-github-education/github-education-for-students/apply-to-github-education-as-a-student">link</a>]. This will grant you access to additional features that may become useful later in the module.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="initial-setup" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="initial-setup"><span class="header-section-number">4</span> Initial Setup</h2>
-<section id="step-1-install-the-core-packages" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="step-1-install-the-core-packages"><span class="header-section-number">4.1</span> Step 1: Install the Core Packages</h3>
-<p>Run the following in the RStudio Console.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R console</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"hoopR"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"sportyR"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggrepel"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shinylive"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gitcreds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>Then verify that the key packages load.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R console</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hoopR)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sportyR)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>If package installation fails, read the error carefully before retrying. Most problems come from a missing system dependency, a permissions issue, or an interrupted download.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="step-2-create-the-project" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="step-2-create-the-project"><span class="header-section-number">4.2</span> Step 2: Create the Project</h3>
-<p>An <strong>RStudio Project</strong> keeps all of the files for one piece of work together in one folder. The file with the <code>.Rproj</code> extension stores the project settings, and opening that file tells RStudio, “this is the working directory for this project”.</p>
-<p>Create a new RStudio project:</p>
-<ol type="1">
-<li><code>File -&gt; New Project -&gt; New Directory -&gt; New Project</code></li>
-<li>project name: <code>nba-analytics</code></li>
-<li>tick <code>Create a git repository</code></li>
-<li>for the location, choose your <strong>OneDrive</strong> folder</li>
-<li>inside OneDrive, create a folder called <code>ULMS744</code> if you do not already have one</li>
-<li>create <code>nba-analytics</code> inside that <code>ULMS744</code> folder</li>
-</ol>
-<p>So the project should live in a location similar to:</p>
-<pre class="text"><code>OneDrive/
-└── ULMS744/
-    └── nba-analytics/</code></pre>
-<p>This matters because you need a folder structure you can find quickly, back up easily, and reuse throughout the module.</p>
-<p>Let’s go through how to open this project together. First, quit your session by going to <code>File -&gt; Close Project</code>. Whenever you want to start your new R session, go to <code>File -&gt; Open Project</code> and then navigate to the folder where you saved your project. Once you open that folder, click the <code>.Rproj</code> file (in our case, you should see a file called <code>nba-analytics.Rproj</code> in the folder). Now we’re ready!</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Once you open a project, you should see the <strong>file panel</strong> update automatically.</p>
-</div>
-</div>
-</div>
-<p>Then create the project folders we will use throughout the block (paste below in the RStudio Console).</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R console</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/raw"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data/cleaned"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"scripts"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"output"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"app"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>Your project should now look like this:</p>
-<pre class="text"><code>nba-analytics/
-├── app/
-├── data/
-│   ├── cleaned/
-│   └── raw/
-├── output/
-├── scripts/
-├── nba-analytics.Rproj
-└── .gitignore</code></pre>
-</section>
-<section id="step-3-create-a-simple-readme" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="step-3-create-a-simple-readme"><span class="header-section-number">4.3</span> Step 3: Create a Simple README</h3>
-<p>A <code>README.md</code> file is the short front-page description of a project. When someone opens your repository on GitHub, the README is usually the first thing they see. It should explain, in plain language, what the project is and what it is for.</p>
-<p>In the <strong>Files</strong> pane in RStudio:</p>
-<ol type="1">
-<li>click <code>New File</code></li>
-<li>choose <code>Text File</code></li>
-<li>save it as <code>README.md</code></li>
-<li>copy and paste the text below into the file</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># NBA Analytics Workflow</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>A seminar project for ULMS744: Sports Analytics in Practice.</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>This project uses NBA basketball as a worked example to build a reproducible sports analytics workflow in R.</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Tools used: tidyverse, hoopR, sportyR, plotly, Shiny, and Shinylive.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="step-4-check-.gitignore" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="step-4-check-.gitignore"><span class="header-section-number">4.4</span> Step 4: Check <code>.gitignore</code></h3>
-<p>The <code>.gitignore</code> file tells Git which files it should <strong>not</strong> track. This is useful for temporary files, machine-specific files, and files that would create clutter or problems if uploaded to GitHub.</p>
-<p>In the <strong>Files</strong> pane in RStudio:</p>
-<ol type="1">
-<li>click <code>Open File</code></li>
-<li>choose <code>.gitignore</code></li>
-<li>copy and paste the text below into the file</li>
-</ol>
-<pre class="text"><code>.Rhistory
-.Rdata
-.RData
-.Ruserdata
-data/raw/
-.DS_Store
-Thumbs.db
-*.zip
-*.gz</code></pre>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>What do these entries mean, and why ignore them?</p>
-<ul>
-<li><code>.Rhistory</code> is a record of commands typed in the R console.</li>
-<li><code>.Rdata</code> and <code>.RData</code> are saved R workspace files.</li>
-<li><code>.Ruserdata</code> stores user-specific session settings.</li>
-<li><code>data/raw/</code> stores downloaded data that can be large or regenerated.</li>
-<li><code>.DS_Store</code> is a hidden macOS system file.</li>
-<li><code>Thumbs.db</code> is a hidden Windows system file.</li>
-<li><code>*.zip</code> and <code>*.gz</code> mean any compressed archive with those endings.</li>
-</ul>
-<p>We ignore these files because they are usually temporary, computer-specific, or not part of the main project deliverable. Keeping them out of the repository makes the project cleaner and reduces the chance of uploading unnecessary files to GitHub.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="step-5-create-the-github-repository" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="step-5-create-the-github-repository"><span class="header-section-number">4.5</span> Step 5: Create the GitHub Repository</h3>
-<p><strong>GitHub</strong> is a website that hosts Git repositories online. It gives you a <strong>remote repository</strong>, meaning a copy of your project that lives on the web rather than only on your own computer.</p>
-<p>A <strong>repository</strong> or <strong>repo</strong> is the full project folder that Git tracks over time, including its files and version history.</p>
-<p>On GitHub:</p>
-<ol type="1">
-<li>create a new repository called <code>nba-analytics</code> [<a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository">how-to guide</a>];</li>
-<li>make it <code>Public</code>;</li>
-<li>do <strong>not</strong> add a README or <code>.gitignore</code> on GitHub.</li>
-</ol>
-<p>At this point you will have:</p>
-<ul>
-<li>a <strong>local repository</strong> on your computer inside your RStudio project folder;</li>
-<li>a <strong>remote repository</strong> on GitHub.</li>
-</ul>
-<p>The local repository is where you do the work. The remote repository is the online copy that you push to GitHub so it can be backed up, shared, and submitted as part of your portfolio.</p>
-</section>
-<section id="step-6-authenticate-and-connect" class="level3" data-number="4.6">
-<h3 data-number="4.6" class="anchored" data-anchor-id="step-6-authenticate-and-connect"><span class="header-section-number">4.6</span> Step 6: Authenticate and Connect</h3>
-<p>Create a Personal Access Token:</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R console</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>This will open GitHub in your browser so that you can create a <strong>Personal Access Token (PAT)</strong>. A PAT is like a password that allows RStudio and Git to talk securely to your GitHub account.</p>
-<p>After GitHub shows you the token:</p>
-<ol type="1">
-<li>copy the token immediately;</li>
-<li>return to RStudio;</li>
-<li>run the command below in the <strong>Console</strong>;</li>
-<li>paste the token when R asks for it;</li>
-<li>press Enter.</li>
-</ol>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R console</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>This stores the token securely on your computer so that Git can authenticate when you push to GitHub.</p>
-<p>Then open the <strong>Terminal</strong> tab inside RStudio and add the remote repository, replacing <code>YOUR-USERNAME</code>.</p>
 <div class="callout callout-style-simple callout-important">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>For command-line steps in this workbook, use the <strong>Terminal tab inside RStudio</strong>.</p>
+<p>All command-line steps in this workbook use the <strong>Terminal tab inside RStudio</strong> (not the R Console). If you are unsure where that is:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/terminal.png" class="img-fluid figure-img"></p>
@@ -723,122 +498,240 @@ Thumbs.db
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>RStudio Terminal</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/YOUR-USERNAME/nba-analytics.git</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>This command links your local repository to the remote repository on GitHub. After that, your local project and the online project can talk to each other.</p>
-</section>
-<section id="step-7-make-your-first-commit" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="step-7-make-your-first-commit"><span class="header-section-number">4.7</span> Step 7: Make Your First Commit</h3>
-<p>In Git, <strong>staging</strong> means telling Git, “these are the files I want to include in my next save point”. You can think of the staging area as a waiting area for changes that are ready to be recorded.</p>
-<p>A <strong>commit</strong> is that recorded save point. It is a snapshot of your project at a particular moment, together with a short message explaining what you did.</p>
-<p>For this first commit, you want to include the files you have just created for the project setup.</p>
-<p>Then commit with the message:</p>
-<pre class="text"><code>Initial project setup</code></pre>
-<p>In simple terms, the workflow is:</p>
-<ol type="1">
-<li><strong>stage</strong> the files, meaning choose what will go into the snapshot;</li>
-<li><strong>commit</strong> the files, meaning save that snapshot into the Git history;</li>
-<li><strong>push</strong> the commit, meaning send that saved snapshot to GitHub.</li>
-</ol>
-<p>In the <strong>RStudio Terminal</strong>, the commands for your first commit are:</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>RStudio Terminal</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial project setup"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>What each command does:</p>
+<section id="learning-objectives" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning Objectives</h2>
+<p>By the end of this workbook, you will be able to:</p>
 <ul>
-<li><code>git add .</code> stages all current files in the project folder for the next commit.</li>
-<li><code>git commit -m "Initial project setup"</code> creates the snapshot and gives it a message.</li>
-<li><code>git push -u origin main</code> uploads that commit to GitHub and connects your local <code>main</code> branch to the remote one.</li>
+<li><strong>Install Node.js</strong> and confirm it is working from the terminal.</li>
+<li><strong>Install Claude Code</strong> (and optionally Codex) via <code>npm</code>.</li>
+<li><strong>Launch the assistant</strong> inside a project folder and know the basic shortcuts for interrupting and exiting.</li>
+<li><strong>Configure your RStudio layout</strong> so the terminal and source editor sit side-by-side in a way that works well with an AI assistant.</li>
 </ul>
-<p>Push to GitHub and verify that the repository is visible online. Once this is done, you have created both the local project history and the remote online copy of that history.</p>
+</section>
+<section id="step-1-install-node.js" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="step-1-install-node.js"><span class="header-section-number">2</span> Step 1: Install Node.js</h2>
+<p>Both Claude Code and Codex are distributed as Node.js packages, so you need Node installed first.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What is Node.js? What is a “package”?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Node.js</strong> is a program that runs JavaScript code outside of a web browser — on your laptop, directly from the terminal. Think of it as the equivalent of R itself: a runtime that executes code written in a specific language.</p>
+<p><strong>npm</strong> (Node Package Manager) comes bundled with Node.js. It is the JavaScript world’s equivalent of <code>install.packages()</code> in R — a tool for downloading and installing reusable pieces of software called <strong>packages</strong>.</p>
+<p>A <strong>Node.js package</strong> is just a bundle of JavaScript code that someone else has written and published so others can install it with one command. Claude Code and Codex are both published as packages, which is why installing them is a single <code>npm install</code> line rather than a multi-step setup.</p>
+<p>In short: Node.js runs the code, npm installs the code, and Claude Code is the code.</p>
+</div>
+</div>
+<section id="windows-macos" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="windows-macos"><span class="header-section-number">2.1</span> Windows / macOS</h3>
+<p>Go to <a href="https://nodejs.org/" class="uri">https://nodejs.org/</a> and download the <strong>LTS</strong> (Long Term Support) installer for your operating system. Run it and accept the defaults — there is nothing unusual to configure.</p>
+</section>
+<section id="check-that-it-worked" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="check-that-it-worked"><span class="header-section-number">2.2</span> Check that it worked</h3>
+<p>Open a fresh terminal (in RStudio: <strong>Tools → Terminal → New Terminal</strong>, or any system terminal) and run:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">--version</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>You should see two version numbers printed back (for example <code>v20.11.0</code> and <code>10.2.4</code>). If you get “command not found”, close and reopen the terminal — the installer updates your <code>PATH</code> and the old terminal will not have picked it up yet.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If you are on Windows and the command is still not found after reopening the terminal, restart your computer. This forces every shell to re-read the updated <code>PATH</code>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-2-install-claude-code" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="step-2-install-claude-code"><span class="header-section-number">3</span> Step 2: Install Claude Code</h2>
+<p>With Node installed, install Claude Code globally via <code>npm</code>:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The <code>-g</code> flag installs the <code>claude</code> command system-wide so you can run it from any folder.</p>
+<p>Verify the install:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<section id="first-launch-and-login" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="first-launch-and-login"><span class="header-section-number">3.1</span> First launch and login</h3>
+<p>Navigate into a project folder and start Claude Code:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> path/to/your/project</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What does <code>cd</code> do?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>cd</code> stands for <strong>change directory</strong>. It is the terminal equivalent of double-clicking into a folder in Finder or File Explorer — it moves your current working location to the folder you specify. For example, <code>cd ~/Documents/nba-analytics</code> moves you into the <code>nba-analytics</code> project folder.</p>
+<p>This matters because <strong>Claude Code only sees the folder you launch it from</strong>. Once you run <code>claude</code> inside a project folder, that folder becomes the assistant’s entire world: it can read, edit, and reason about any file inside it (and its subfolders), but it cannot see anything outside. If you launch <code>claude</code> from the wrong folder — say, your home directory — it will not know about your project files at all.</p>
+<p>In short: <code>cd</code> first, then <code>claude</code>. The assistant understands everything within the folder you started it in.</p>
+</div>
+</div>
+<p>On the very first run, Claude Code will open a browser window and ask you to sign in with your Anthropic account. After that, subsequent launches use the saved credentials — no login prompt required.</p>
+</section>
+</section>
+<section id="step-3-optional-install-codex" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="step-3-optional-install-codex"><span class="header-section-number">4</span> Step 3 (Optional): Install Codex</h2>
+<p><a href="https://github.com/openai/codex">Codex CLI</a> is OpenAI’s equivalent of Claude Code. The install flow is essentially identical — same Node.js prerequisite, same <code>npm</code> global install pattern:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @openai/codex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Launch it with:</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStudio Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">codex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Codex will prompt you to sign in with an OpenAI account on first run. You can have both Claude Code and Codex installed side-by-side and switch between them depending on which model you prefer for a given task.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The rest of this workbook focuses on Claude Code, but every tip below (shortcuts, RStudio layout) applies just as well to Codex. The two tools behave very similarly.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="useful-things-to-know" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="useful-things-to-know"><span class="header-section-number">5</span> Useful Things to Know</h2>
+<p>A handful of keyboard shortcuts and small habits make a big difference once you start using the CLI day-to-day.</p>
+<section id="interrupting-the-assistant-ctrl-c" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="interrupting-the-assistant-ctrl-c"><span class="header-section-number">5.1</span> Interrupting the assistant: <code>Ctrl + C</code></h3>
+<p>If Claude is in the middle of a long response or running a tool you didn’t mean to trigger, press <strong><code>Ctrl + C</code></strong> to interrupt. The assistant stops immediately and returns control to the prompt. This is the single most important shortcut to remember.</p>
+<ul>
+<li>Pressing <code>Ctrl + C</code> <strong>once</strong> interrupts the current action.</li>
+<li>Pressing <code>Ctrl + C</code> <strong>twice in a row</strong> exits Claude Code entirely.</li>
+</ul>
+</section>
+<section id="exiting-cleanly" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="exiting-cleanly"><span class="header-section-number">5.2</span> Exiting cleanly</h3>
+<p>Type <code>/exit</code> and press Enter, or press <code>Ctrl + D</code> on an empty line. Both close the session cleanly.</p>
+</section>
+<section id="slash-commands" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="slash-commands"><span class="header-section-number">5.3</span> Slash commands</h3>
+<p>Typing <code>/</code> at the start of a prompt shows a menu of built-in commands. Useful ones to know:</p>
+<ul>
+<li><code>/help</code> — list all available commands.</li>
+<li><code>/clear</code> — reset the conversation context (start fresh without restarting the CLI).</li>
+<li><code>/cost</code> — show how much the current session has cost so far.</li>
+<li><code>/exit</code> — quit.</li>
+</ul>
+</section>
+<section id="always-launch-from-the-project-root" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="always-launch-from-the-project-root"><span class="header-section-number">5.4</span> Always launch from the project root</h3>
+<p>Claude Code treats the folder you launched it from as the project root. Launching from the wrong folder means the assistant cannot see the files you expect.</p>
+<p>In RStudio, the easiest way to do this is to <strong>set your working directory first, then launch Claude from that same folder</strong>:</p>
+<ol type="1">
+<li>In RStudio, go to <strong>Session → Set Working Directory → Choose Directory…</strong> (or open your <code>.Rproj</code> file, which sets it automatically) and point it at your project folder.</li>
+<li>Open the <strong>Terminal</strong> tab. It will already be pointed at that working directory, so you don’t need to <code>cd</code> anywhere.</li>
+<li>Type <code>claude</code> and press Enter.</li>
+</ol>
+<p>That way your R Console and Claude Code are both operating on the same project folder, and Claude sees exactly the files you are working with.</p>
+</section>
+<section id="review-before-accepting-edits" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="review-before-accepting-edits"><span class="header-section-number">5.5</span> Review before accepting edits</h3>
+<p>When Claude proposes a file edit, it shows a diff and asks for confirmation. Read the diff — don’t just press “yes”. This is the single biggest difference between using an AI assistant well and letting it silently break your code.</p>
+</section>
+</section>
+<section id="recommended-rstudio-setup" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="recommended-rstudio-setup"><span class="header-section-number">6</span> Recommended RStudio Setup</h2>
+<p>Claude Code runs in a terminal. RStudio has a built-in terminal pane, so you can keep everything inside one window. The default RStudio layout puts the terminal in a small tab next to the Console, which is cramped. A much better layout splits the window into <strong>two source columns</strong>: one for your <code>.R</code> / <code>.qmd</code> files, and one for the terminal where Claude is running.</p>
+<section id="changing-the-pane-layout" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="changing-the-pane-layout"><span class="header-section-number">6.1</span> Changing the pane layout</h3>
+<p>Open <strong>Tools → Global Options → Pane Layout</strong>. You should see a dialog similar to this:</p>
 <div class="quarto-figure quarto-figure-center" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);">
 <figure class="figure">
-<p><img src="../images/github-page-initial.png" class="img-fluid figure-img"></p>
-<figcaption>Your new repository should now look like this.</figcaption>
+<p><img src="../images/Rstudio-panel-setting.png" class="img-fluid figure-img"></p>
+<figcaption>RStudio Pane Layout settings</figcaption>
 </figure>
 </div>
-</section>
-</section>
-<section id="independent-practice" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="independent-practice"><span class="header-section-number">5</span> Independent Practice</h2>
-<p>Complete the following:</p>
+<p>Configure it as follows:</p>
 <ol type="1">
-<li>create <code>scripts/00-setup.R</code>;</li>
-<li>add the <code>library()</code> calls for the main packages;</li>
-<li>commit and push that file.</li>
+<li>Click <strong>Add Column</strong> at the top left. This gives you a second Source column.</li>
+<li>Set the two top panes to <strong>Source</strong> (left) and <strong>Console</strong> (right), as shown in the screenshot.</li>
+<li>Tick <strong>Sidebar on Right</strong> and move Environment, History, Files, Plots, Packages, Help, Viewer, etc. into the right-hand sidebar.</li>
+<li>Click <strong>Apply</strong>, then <strong>OK</strong>.</li>
 </ol>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>scripts/00-setup.R</strong></pre>
+</section>
+<section id="using-the-layout-with-claude-code" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="using-the-layout-with-claude-code"><span class="header-section-number">6.2</span> Using the layout with Claude Code</h3>
+<p>Once the layout is applied:</p>
+<ol type="1">
+<li>Open your project in RStudio (<strong>File → Open Project</strong>).</li>
+<li>In the left Source column, open the <code>.R</code> or <code>.qmd</code> files you are working on.</li>
+<li>In the Console area on the right, switch to the <strong>Terminal</strong> tab (or open one with <code>Shift + Alt + T</code>).</li>
+<li>In that terminal, run <code>claude</code>.</li>
+</ol>
+<p>You now have your code on the left, Claude Code on the right, and everything else (plots, files, help) tucked into the sidebar. Edits that Claude makes appear in the open source files immediately — RStudio will prompt you to reload the file if it has changed on disk.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hoopR)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sportyR)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinylive)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout-body-container">
+<p>If you prefer, you can also run Claude Code in a standalone terminal (Windows Terminal, iTerm2, etc.) next to the RStudio window. The layout advice above is for people who want a single unified window.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="common-issues" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">6</span> Common Issues</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Problem</th>
-<th>Solution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Git pane not visible</td>
-<td>Check <code>Tools -&gt; Global Options -&gt; Git/SVN</code> and confirm Git is installed</td>
-</tr>
-<tr class="even">
-<td><code>fatal: not a git repository</code></td>
-<td>Recreate the project with <code>Create a git repository</code> ticked, or run <code>git init</code> in the project</td>
-</tr>
-<tr class="odd">
-<td>Push rejected</td>
-<td>Check the remote URL and PAT</td>
-</tr>
-<tr class="even">
-<td>Package install fails</td>
-<td>Restart R and retry; check for operating-system-specific setup issues</td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="before-you-go" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="before-you-go"><span class="header-section-number">7</span> Before You Go</h2>
-<p>Well done for getting through to the end! 🚀</p>
-<p>Today you:</p>
+<section id="summary" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="summary"><span class="header-section-number">7</span> Summary</h2>
 <ul>
-<li>installed the course package stack;</li>
-<li>created the shared project structure;</li>
-<li>connected the project to GitHub;</li>
-<li>made the first public commit.</li>
+<li>Install <strong>Node.js LTS</strong> from <a href="https://nodejs.org/" class="uri">https://nodejs.org/</a>.</li>
+<li>Install Claude Code with <code>npm install -g @anthropic-ai/claude-code</code>, launch with <code>claude</code>.</li>
+<li>Codex is the OpenAI equivalent — same install pattern, <code>npm install -g @openai/codex</code>, launch with <code>codex</code>.</li>
+<li>Remember <code>Ctrl + C</code> to interrupt and <code>/exit</code> to quit.</li>
+<li>Set up an RStudio pane layout with a second Source column so your editor and the Claude terminal sit side-by-side.</li>
 </ul>
-<p>Next week we will use <code>hoopR</code> to source real NBA data, inspect it, and save cleaned datasets for later visualisation and dashboard work.</p>
+<p>With this setup in place, every subsequent project just needs <code>cd project-folder</code> and <code>claude</code> — nothing more.</p>
 
 
 </section>
@@ -1259,14 +1152,11 @@ Thumbs.db
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../00-index.html" class="pagination-link" aria-label="Welcome">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
+      <a href="../workbooks/06-football-data.html" class="pagination-link" aria-label="Navigating the Football Data Landscape">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Navigating the Football Data Landscape</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../workbooks/02-api.html" class="pagination-link" aria-label="2. API &amp; Data Sourcing">
-        <span class="nav-page-text">2. API &amp; Data Sourcing</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

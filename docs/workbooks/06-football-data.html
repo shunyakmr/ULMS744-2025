@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../workbooks/07-claude-code.html" rel="next">
 <link href="../workbooks/05-portfolio.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -383,6 +384,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Navigating the Football Data Landscape</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../workbooks/07-claude-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setting Up Claude Code (and Codex)</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -400,15 +407,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#hudl-statsbomb-granular-play-by-play-data" id="toc-hudl-statsbomb-granular-play-by-play-data" class="nav-link" data-scroll-target="#hudl-statsbomb-granular-play-by-play-data"><span class="header-section-number">3</span> Hudl StatsBomb: Granular Play-by-Play Data</a>
   <ul>
   <li><a href="#what-is-available" id="toc-what-is-available" class="nav-link" data-scroll-target="#what-is-available"><span class="header-section-number">3.1</span> What Is Available?</a></li>
-  <li><a href="#pulling-statsbomb-data" id="toc-pulling-statsbomb-data" class="nav-link" data-scroll-target="#pulling-statsbomb-data"><span class="header-section-number">3.2</span> Pulling StatsBomb Data</a></li>
+  <li><a href="#pulling-statsbomb-data" id="toc-pulling-statsbomb-data" class="nav-link" data-scroll-target="#pulling-statsbomb-data"><span class="header-section-number">3.2</span> Pulling StatsBomb Data</a>
+  <ul class="collapse">
+  <li><a href="#load-the-libraries" id="toc-load-the-libraries" class="nav-link" data-scroll-target="#load-the-libraries"><span class="header-section-number">3.2.1</span> Load the libraries</a></li>
+  <li><a href="#browse-the-available-competitions" id="toc-browse-the-available-competitions" class="nav-link" data-scroll-target="#browse-the-available-competitions"><span class="header-section-number">3.2.2</span> Browse the available competitions</a></li>
+  <li><a href="#select-a-competition-and-season" id="toc-select-a-competition-and-season" class="nav-link" data-scroll-target="#select-a-competition-and-season"><span class="header-section-number">3.2.3</span> Select a competition and season</a></li>
+  <li><a href="#download-the-match-list" id="toc-download-the-match-list" class="nav-link" data-scroll-target="#download-the-match-list"><span class="header-section-number">3.2.4</span> Download the match list</a></li>
+  <li><a href="#download-event-data-for-one-match" id="toc-download-event-data-for-one-match" class="nav-link" data-scroll-target="#download-event-data-for-one-match"><span class="header-section-number">3.2.5</span> Download event data for one match</a></li>
+  <li><a href="#filter-to-shots-and-inspect-spatial-data" id="toc-filter-to-shots-and-inspect-spatial-data" class="nav-link" data-scroll-target="#filter-to-shots-and-inspect-spatial-data"><span class="header-section-number">3.2.6</span> Filter to shots and inspect spatial data</a></li>
+  </ul></li>
   <li><a href="#why-this-matters-for-your-portfolio" id="toc-why-this-matters-for-your-portfolio" class="nav-link" data-scroll-target="#why-this-matters-for-your-portfolio"><span class="header-section-number">3.3</span> Why This Matters for Your Portfolio</a></li>
   </ul></li>
   <li><a href="#worldfootballr-fbref-understat" id="toc-worldfootballr-fbref-understat" class="nav-link" data-scroll-target="#worldfootballr-fbref-understat"><span class="header-section-number">4</span> worldfootballR: FBref &amp; Understat</a>
   <ul>
   <li><a href="#fbref-advanced-aggregate-stats" id="toc-fbref-advanced-aggregate-stats" class="nav-link" data-scroll-target="#fbref-advanced-aggregate-stats"><span class="header-section-number">4.1</span> FBref: Advanced Aggregate Stats</a></li>
   <li><a href="#understat-xg-focused-match-and-shot-data" id="toc-understat-xg-focused-match-and-shot-data" class="nav-link" data-scroll-target="#understat-xg-focused-match-and-shot-data"><span class="header-section-number">4.2</span> Understat: xG-Focused Match and Shot Data</a></li>
-  <li><a href="#fbref-using-the-loader-functions" id="toc-fbref-using-the-loader-functions" class="nav-link" data-scroll-target="#fbref-using-the-loader-functions"><span class="header-section-number">4.3</span> FBref: Using the Loader Functions</a></li>
-  <li><a href="#understat-shot-level-xg-data" id="toc-understat-shot-level-xg-data" class="nav-link" data-scroll-target="#understat-shot-level-xg-data"><span class="header-section-number">4.4</span> Understat: Shot-Level xG Data</a></li>
+  <li><a href="#fbref-using-the-loader-functions" id="toc-fbref-using-the-loader-functions" class="nav-link" data-scroll-target="#fbref-using-the-loader-functions"><span class="header-section-number">4.3</span> FBref: Using the Loader Functions</a>
+  <ul class="collapse">
+  <li><a href="#pull-a-season-of-advanced-stats" id="toc-pull-a-season-of-advanced-stats" class="nav-link" data-scroll-target="#pull-a-season-of-advanced-stats"><span class="header-section-number">4.3.1</span> 1. Pull a season of advanced stats</a></li>
+  <li><a href="#filter-and-rank-players" id="toc-filter-and-rank-players" class="nav-link" data-scroll-target="#filter-and-rank-players"><span class="header-section-number">4.3.2</span> 2. Filter and rank players</a></li>
+  <li><a href="#switch-to-a-different-stat-type" id="toc-switch-to-a-different-stat-type" class="nav-link" data-scroll-target="#switch-to-a-different-stat-type"><span class="header-section-number">4.3.3</span> 3. Switch to a different stat type</a></li>
+  </ul></li>
+  <li><a href="#understat-shot-level-xg-data" id="toc-understat-shot-level-xg-data" class="nav-link" data-scroll-target="#understat-shot-level-xg-data"><span class="header-section-number">4.4</span> Understat: Shot-Level xG Data</a>
+  <ul class="collapse">
+  <li><a href="#pull-match-level-xg-results" id="toc-pull-match-level-xg-results" class="nav-link" data-scroll-target="#pull-match-level-xg-results"><span class="header-section-number">4.4.1</span> 1. Pull match-level xG results</a></li>
+  <li><a href="#pull-shot-level-data" id="toc-pull-shot-level-data" class="nav-link" data-scroll-target="#pull-shot-level-data"><span class="header-section-number">4.4.2</span> 2. Pull shot-level data</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#career-and-portfolio-value" id="toc-career-and-portfolio-value" class="nav-link" data-scroll-target="#career-and-portfolio-value"><span class="header-section-number">5</span> Career and Portfolio Value</a></li>
   <li><a href="#conclusion-credits-and-data-ethics" id="toc-conclusion-credits-and-data-ethics" class="nav-link" data-scroll-target="#conclusion-credits-and-data-ethics"><span class="header-section-number">6</span> Conclusion: Credits and Data Ethics</a>
@@ -474,8 +498,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Run the following in the RStudio Console to install the packages used in this workbook.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R console</strong></pre>
 </div>
@@ -488,14 +510,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Core tidyverse for wrangling and visualisation</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </div>
 <p>Load the libraries for the session.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
@@ -503,7 +522,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(StatsBombR)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(worldfootballR)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </div>
 </section>
@@ -533,89 +551,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pulling-statsbomb-data" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="pulling-statsbomb-data"><span class="header-section-number">3.2</span> Pulling StatsBomb Data</h3>
-<p>The workflow follows three steps: browse competitions, select matches, then pull events.</p>
+<p>The workflow follows four steps: load the libraries, browse the available competitions, pick a competition/season, pull its match list, then pull events for a single match.</p>
+<section id="load-the-libraries" class="level4" data-number="3.2.1">
+<h4 data-number="3.2.1" class="anchored" data-anchor-id="load-the-libraries"><span class="header-section-number">3.2.1</span> Load the libraries</h4>
+<p><code>StatsBombR</code> provides the open data download functions. <code>tidyverse</code> gives us <code>dplyr</code> for filtering and selecting, plus the pipe (<code>|&gt;</code>) for chaining steps together.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Browse all available free competitions</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>competitions <span class="ot">&lt;-</span> <span class="fu">FreeCompetitions</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect what is available</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>competitions <span class="sc">|&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(competition_id, competition_name, season_name) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(StatsBombR)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="browse-the-available-competitions" class="level4" data-number="3.2.2">
+<h4 data-number="3.2.2" class="anchored" data-anchor-id="browse-the-available-competitions"><span class="header-section-number">3.2.2</span> Browse the available competitions</h4>
+<p><code>FreeCompetitions()</code> calls the StatsBomb open-data servers and returns a data frame with one row per competition × season combination that is currently free to use. The table has many columns; here we keep only the identifiers and names, drop duplicates with <code>distinct()</code>, and sort alphabetically so the list is easy to scan.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Filter to a specific competition and pull match list</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: FIFA World Cup 2022</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>wc_matches <span class="ot">&lt;-</span> <span class="fu">FreeMatches</span>(<span class="at">Competitions =</span> <span class="dv">43</span>) <span class="co"># competition_id for Men's World Cup</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the match list</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>wc_matches <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    match_id,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    home_team.home_team_name,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    away_team.away_team_name,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    match_date</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FreeCompetitions() downloads the list of open-data competitions from StatsBomb.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>competitions <span class="ot">&lt;-</span> <span class="fu">FreeCompetitions</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the competitions and seasons available.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use View(available_competitions) in RStudio for a spreadsheet-style view.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>available_competitions <span class="ot">&lt;-</span> competitions <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(competition_id, competition_name, season_id, season_name) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(competition_name, season_name)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>available_competitions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="select-a-competition-and-season" class="level4" data-number="3.2.3">
+<h4 data-number="3.2.3" class="anchored" data-anchor-id="select-a-competition-and-season"><span class="header-section-number">3.2.3</span> Select a competition and season</h4>
+<p>Once you know what is available, filter the <code>competitions</code> table down to the specific competition and season(s) you want to analyse. We use named variables (<code>target_competition_name</code>, <code>target_seasons</code>) so the choice is easy to change later. The <code>if</code> block gives a clear error message if the filter returns nothing — usually caused by a typo in the competition or season name.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Pull event data for a single match</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick one match_id from the list above</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="fu">get.matchFree</span>(wc_matches[<span class="dv">1</span>, ])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change these values if you want to use a different competition.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>target_competition_name <span class="ot">&lt;-</span> <span class="st">"La Liga"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>target_seasons <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020/2021"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The result is a wide data frame with one row per event</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Key columns: type.name, location, pass.end_location, shot.statsbomb_xg</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(events)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>selected_competition <span class="ot">&lt;-</span> competitions <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    competition_name <span class="sc">==</span> target_competition_name,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    season_name <span class="sc">%in%</span> target_seasons</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop early with a useful message if the competition/season filter is wrong.</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">nrow</span>(selected_competition) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"No competition found. Check target_competition_name and target_seasons."</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="download-the-match-list" class="level4" data-number="3.2.4">
+<h4 data-number="3.2.4" class="anchored" data-anchor-id="download-the-match-list"><span class="header-section-number">3.2.4</span> Download the match list</h4>
+<p><code>FreeMatches()</code> takes the competition/season data frame from the previous step and returns every match in those seasons, one row per match. We convert <code>match_date</code> to a proper <code>Date</code> type and sort chronologically so the earliest fixtures appear first.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Filter to shots and inspect spatial data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>shots <span class="ot">&lt;-</span> events <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type.name <span class="sc">==</span> <span class="st">"Shot"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    player.name,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    team.name,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    location,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    shot.end_location,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    shot.statsbomb_xg,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    shot.outcome.name</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Each 'location' is a list of [x, y] coordinates on a 120x80 pitch</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>shots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>matches <span class="ot">&lt;-</span> <span class="fu">FreeMatches</span>(<span class="at">Competitions =</span> selected_competition) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">match_date =</span> <span class="fu">as.Date</span>(match_date)) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(match_date)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the match list in the RStudio viewer.</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>matches</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="download-event-data-for-one-match" class="level4" data-number="3.2.5">
+<h4 data-number="3.2.5" class="anchored" data-anchor-id="download-event-data-for-one-match"><span class="header-section-number">3.2.5</span> Download event data for one match</h4>
+<p><code>get.matchFree()</code> takes a single-row data frame (one match) and returns its full event log: every pass, shot, dribble, pressure, and so on, with <code>(x, y)</code> pitch coordinates where relevant. We use <code>slice(1)</code> here to pick the first match in the list as an example — swap in any <code>match_id</code> from the table above when you want to analyse a different game.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R script</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the first match as an example. You can replace this with any match_id</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from the table above.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>selected_match <span class="ot">&lt;-</span> matches <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="fu">get.matchFree</span>(selected_match)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Event data is the main StatsBomb event-by-event table.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Key columns: type.name, location, pass.end_location, shot.statsbomb_xg</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(events)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="filter-to-shots-and-inspect-spatial-data" class="level4" data-number="3.2.6">
+<h4 data-number="3.2.6" class="anchored" data-anchor-id="filter-to-shots-and-inspect-spatial-data"><span class="header-section-number">3.2.6</span> Filter to shots and inspect spatial data</h4>
+<p>Event data is long and wide: one row per event, with many columns that are only populated for certain event types (e.g.&nbsp;<code>shot.*</code> columns are only filled when <code>type.name == "Shot"</code>). Filtering to shots is a typical first step for building shot maps or exploring xG.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R script</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>shots <span class="ot">&lt;-</span> events <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type.name <span class="sc">==</span> <span class="st">"Shot"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    player.name,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    team.name,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    location,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    shot.end_location,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    shot.statsbomb_xg,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    shot.outcome.name</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Each 'location' is a list of [x, y] coordinates on a 120x80 pitch.</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>shots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
 </section>
 <section id="why-this-matters-for-your-portfolio" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="why-this-matters-for-your-portfolio"><span class="header-section-number">3.3</span> Why This Matters for Your Portfolio</h3>
@@ -663,120 +721,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <p>As of 2026, most <strong>live scraping</strong> functions in worldfootballR (e.g., <code>fb_player_scouting_report()</code>, <code>fb_team_match_log_stats()</code>) are broken or intermittently blocked by FBref’s anti-bot protections. Understat scrapers (<code>understat_league_season_shots()</code>, etc.) are more stable but can also fail without warning.</p>
 <p><strong>The reliable standard is to use <code>load_</code> functions.</strong> These pull from pre-scraped, cached datasets that are updated regularly and do not trigger rate limits or blocks.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT rely on this in 2026:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fb_player_scouting_report("https://fbref.com/...")</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># USE THIS INSTEAD:</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load_fb_big5_advanced_season_stats</span>(<span class="at">season_end_year =</span> <span class="dv">2025</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT rely on this in 2026:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fb_player_scouting_report("https://fbref.com/...")</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># USE THIS INSTEAD:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load_fb_big5_advanced_season_stats</span>(<span class="at">season_end_year =</span> <span class="dv">2025</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If a scraping function works today, it may not tomorrow. Build your workflow around <code>load_</code> functions for reproducibility.</p>
 </div>
 </div>
 </section>
 <section id="fbref-using-the-loader-functions" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="fbref-using-the-loader-functions"><span class="header-section-number">4.3</span> FBref: Using the Loader Functions</h3>
+<section id="pull-a-season-of-advanced-stats" class="level4" data-number="4.3.1">
+<h4 data-number="4.3.1" class="anchored" data-anchor-id="pull-a-season-of-advanced-stats"><span class="header-section-number">4.3.1</span> 1. Pull a season of advanced stats</h4>
+<p><code>load_fb_big5_advanced_season_stats()</code> is a pre-built loader: instead of scraping FBref live, it pulls from a regularly updated cached dataset, which is why it is reliable. Two arguments matter:</p>
+<ul>
+<li><code>season_end_year</code> — the calendar year the season <em>ends</em> in. For the 2024/25 season, use <code>2025</code>.</li>
+<li><code>stat_type</code> — which stat table to return (shooting, passing, defence, etc.). We start with <code>"standard"</code> (goals, assists, minutes, xG).</li>
+</ul>
+<p><code>glimpse()</code> gives a quick column-by-column preview, which is useful because these tables often have 40+ columns with suffixes like <code>_Standard</code> or <code>_Expected</code> that indicate which FBref section the stat came from.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull advanced stats for the Big 5 European leagues (2024-25 season)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>big5_stats <span class="ot">&lt;-</span> <span class="fu">load_fb_big5_advanced_season_stats</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_end_year =</span> <span class="dv">2025</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat_type =</span> <span class="st">"standard"</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the structure</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(big5_stats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull advanced stats for the Big 5 European leagues (2024-25 season)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>big5_stats <span class="ot">&lt;-</span> <span class="fu">load_fb_big5_advanced_season_stats</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_end_year =</span> <span class="dv">2025</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat_type =</span> <span class="st">"standard"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the structure</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(big5_stats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="filter-and-rank-players" class="level4" data-number="4.3.2">
+<h4 data-number="4.3.2" class="anchored" data-anchor-id="filter-and-rank-players"><span class="header-section-number">4.3.2</span> 2. Filter and rank players</h4>
+<p>Once the data is in memory, the usual <code>dplyr</code> verbs apply. Here we narrow to Premier League forwards, keep only the columns we care about, and sort by non-penalty goals. <code>MP_Playing</code> is minutes-played-adjusted match count; <code>npxG_Expected</code> is the FBref naming convention for non-penalty expected goals.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to Premier League forwards and rank by non-penalty goals</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>big5_stats <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Comp <span class="sc">==</span> <span class="st">"Premier League"</span>, Pos <span class="sc">==</span> <span class="st">"FW"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Player, Squad, MP_Playing, Gls_Standard, npxG_Expected) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Gls_Standard)) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to Premier League forwards and rank by non-penalty goals</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>big5_stats <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Comp <span class="sc">==</span> <span class="st">"Premier League"</span>, Pos <span class="sc">==</span> <span class="st">"FW"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Player, Squad, MP_Playing, Gls_Standard, npxG_Expected) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Gls_Standard)) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="switch-to-a-different-stat-type" class="level4" data-number="4.3.3">
+<h4 data-number="4.3.3" class="anchored" data-anchor-id="switch-to-a-different-stat-type"><span class="header-section-number">4.3.3</span> 3. Switch to a different stat type</h4>
+<p>The same loader returns completely different tables depending on <code>stat_type</code>. Swap the argument value to pull shooting, passing, possession, defensive, or goalkeeping stats — each comes with its own set of columns. Here we pull defensive stats and rank La Liga players by tackles.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Available stat types for load_fb_big5_advanced_season_stats():</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "standard", "shooting", "passing", "passing_types",</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># "gca", "defense", "possession", "playing_time",</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># "misc", "keepers", "keepers_adv"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Pull defensive stats</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>defensive <span class="ot">&lt;-</span> <span class="fu">load_fb_big5_advanced_season_stats</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_end_year =</span> <span class="dv">2025</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat_type =</span> <span class="st">"defense"</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>defensive <span class="sc">|&gt;</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Comp <span class="sc">==</span> <span class="st">"La Liga"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Player, Squad, Tkl_Tackles, Int, Blocks_Blocks) <span class="sc">|&gt;</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Tkl_Tackles)) <span class="sc">|&gt;</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Available stat types for load_fb_big5_advanced_season_stats():</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "standard", "shooting", "passing", "passing_types",</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># "gca", "defense", "possession", "playing_time",</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># "misc", "keepers", "keepers_adv"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Pull defensive stats</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>defensive <span class="ot">&lt;-</span> <span class="fu">load_fb_big5_advanced_season_stats</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_end_year =</span> <span class="dv">2025</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat_type =</span> <span class="st">"defense"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>defensive <span class="sc">|&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Comp <span class="sc">==</span> <span class="st">"La Liga"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Player, Squad, Tkl_Tackles, Int, Blocks_Blocks) <span class="sc">|&gt;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Tkl_Tackles)) <span class="sc">|&gt;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
 </section>
 <section id="understat-shot-level-xg-data" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="understat-shot-level-xg-data"><span class="header-section-number">4.4</span> Understat: Shot-Level xG Data</h3>
 <p>Understat’s value is its shot-level xG data with match context — useful for building xG timelines, shot maps, and team-level performance trends.</p>
+<section id="pull-match-level-xg-results" class="level4" data-number="4.4.1">
+<h4 data-number="4.4.1" class="anchored" data-anchor-id="pull-match-level-xg-results"><span class="header-section-number">4.4.1</span> 1. Pull match-level xG results</h4>
+<p><code>understat_league_match_results()</code> returns one row per match in the chosen league season, including goals scored and Understat’s own xG values for each side. The <code>league</code> argument takes a short code (<code>"EPL"</code>, <code>"La_liga"</code>, <code>"Bundesliga"</code>, <code>"Serie_A"</code>, <code>"Ligue_1"</code>, <code>"RFPL"</code>) and <code>season_start_year</code> takes the year the season <em>starts</em> in — so the 2024/25 season is <code>2024</code>.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull match-level xG results for a league season</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Understat covers: EPL, La Liga, Bundesliga, Serie A, Ligue 1, RFPL</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>epl_results <span class="ot">&lt;-</span> <span class="fu">understat_league_match_results</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">league =</span> <span class="st">"EPL"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_start_year =</span> <span class="dv">2024</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Each row is a match with home/away xG</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>epl_results <span class="sc">|&gt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(home_team, away_team, home_goals, away_goals, home_xG, away_xG) <span class="sc">|&gt;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull match-level xG results for a league season</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Understat covers: EPL, La Liga, Bundesliga, Serie A, Ligue 1, RFPL</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>epl_results <span class="ot">&lt;-</span> <span class="fu">understat_league_match_results</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">league =</span> <span class="st">"EPL"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_start_year =</span> <span class="dv">2024</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Each row is a match with home/away xG</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>epl_results <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(home_team, away_team, home_goals, away_goals, home_xG, away_xG) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="pull-shot-level-data" class="level4" data-number="4.4.2">
+<h4 data-number="4.4.2" class="anchored" data-anchor-id="pull-shot-level-data"><span class="header-section-number">4.4.2</span> 2. Pull shot-level data</h4>
+<p><code>understat_league_season_shots()</code> goes one level deeper: one row per shot, with its xG value, outcome, pitch coordinates, and <code>situation</code> (open play, set piece, counter-attack, etc.). This is the table you want for shot maps or for rebuilding season-level xG trends from the ground up. Note the <code>team = h_team</code> inside <code>select()</code> — we rename the home-team column to <code>team</code> on the way through to make the output easier to read.</p>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull shot-level data for a specific league season</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>epl_shots <span class="ot">&lt;-</span> <span class="fu">understat_league_season_shots</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">league =</span> <span class="st">"EPL"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_start_year =</span> <span class="dv">2024</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Each row is a single shot with xG, coordinates, and result</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>epl_shots <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(player, <span class="at">team =</span> h_team, xG, result, X, Y, situation) <span class="sc">|&gt;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull shot-level data for a specific league season</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>epl_shots <span class="ot">&lt;-</span> <span class="fu">understat_league_season_shots</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">league =</span> <span class="st">"EPL"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">season_start_year =</span> <span class="dv">2024</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Each row is a single shot with xG, coordinates, and result</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>epl_shots <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(player, <span class="at">team =</span> h_team, xG, result, X, Y, situation) <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-tip">
@@ -789,6 +856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="career-and-portfolio-value" class="level2" data-number="5">
@@ -852,15 +920,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell">
 <div class="code-with-filename">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-with-filename-file">
 <pre><strong>R script</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good practice: save pulled data locally so you only scrape once</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(big5_stats, "data/big5_standard_2025.rds")</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># big5_stats &lt;- readRDS("data/big5_standard_2025.rds")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good practice: save pulled data locally so you only scrape once</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(big5_stats, "data/big5_standard_2025.rds")</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># big5_stats &lt;- readRDS("data/big5_standard_2025.rds")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 
@@ -1289,6 +1354,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../workbooks/07-claude-code.html" class="pagination-link" aria-label="Setting Up Claude Code (and Codex)">
+        <span class="nav-page-text">Setting Up Claude Code (and Codex)</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
