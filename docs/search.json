@@ -341,67 +341,74 @@
     ]
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#quick-recap",
-    "href": "slides/w8-slides-lecture.html#quick-recap",
-    "title": "Week 8 Lecture",
+    "objectID": "slides/w9-slides-lecture.html#quick-recap",
+    "href": "slides/w9-slides-lecture.html#quick-recap",
+    "title": "Week 9 Lecture",
     "section": "Quick Recap",
     "text": "Quick Recap"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#this-week",
-    "href": "slides/w8-slides-lecture.html#this-week",
-    "title": "Week 8 Lecture",
-    "section": "This Week",
-    "text": "This Week"
+    "objectID": "slides/w9-slides-lecture.html#what-is-r-shiny",
+    "href": "slides/w9-slides-lecture.html#what-is-r-shiny",
+    "title": "Week 9 Lecture",
+    "section": "What Is R Shiny?",
+    "text": "What Is R Shiny?"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#what-is-an-api",
-    "href": "slides/w8-slides-lecture.html#what-is-an-api",
-    "title": "Week 8 Lecture",
-    "section": "What Is an API?",
-    "text": "What Is an API?"
+    "objectID": "slides/w9-slides-lecture.html#anatomy-of-a-shiny-app",
+    "href": "slides/w9-slides-lecture.html#anatomy-of-a-shiny-app",
+    "title": "Week 9 Lecture",
+    "section": "Anatomy of a Shiny App",
+    "text": "Anatomy of a Shiny App"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#sportsdataverse",
-    "href": "slides/w8-slides-lecture.html#sportsdataverse",
-    "title": "Week 8 Lecture",
-    "section": "SportsDataVerse",
-    "text": "SportsDataVerse"
+    "objectID": "slides/w9-slides-lecture.html#ui",
+    "href": "slides/w9-slides-lecture.html#ui",
+    "title": "Week 9 Lecture",
+    "section": "UI",
+    "text": "UI"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#reading-the-documentation",
-    "href": "slides/w8-slides-lecture.html#reading-the-documentation",
-    "title": "Week 8 Lecture",
-    "section": "Reading the Documentation",
-    "text": "Reading the Documentation"
+    "objectID": "slides/w9-slides-lecture.html#server",
+    "href": "slides/w9-slides-lecture.html#server",
+    "title": "Week 9 Lecture",
+    "section": "Server",
+    "text": "Server"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
-    "href": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
-    "title": "Week 8 Lecture",
-    "section": "Good Practice in Data-Sourcing",
-    "text": "Good Practice in Data-Sourcing"
+    "objectID": "slides/w9-slides-lecture.html#reactivity",
+    "href": "slides/w9-slides-lecture.html#reactivity",
+    "title": "Week 9 Lecture",
+    "section": "Reactivity",
+    "text": "Reactivity"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#applying-this-workflow",
-    "href": "slides/w8-slides-lecture.html#applying-this-workflow",
-    "title": "Week 8 Lecture",
-    "section": "Applying This Workflow",
-    "text": "Applying This Workflow"
+    "objectID": "slides/w9-slides-lecture.html#build-it-in-stages",
+    "href": "slides/w9-slides-lecture.html#build-it-in-stages",
+    "title": "Week 9 Lecture",
+    "section": "Build It in Stages",
+    "text": "Build It in Stages"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#version-control",
-    "href": "slides/w8-slides-lecture.html#version-control",
-    "title": "Week 8 Lecture",
-    "section": "Version Control",
-    "text": "Version Control"
+    "objectID": "slides/w9-slides-lecture.html#running-the-app",
+    "href": "slides/w9-slides-lecture.html#running-the-app",
+    "title": "Week 9 Lecture",
+    "section": "Running the App",
+    "text": "Running the App"
   },
   {
-    "objectID": "slides/w8-slides-lecture.html#homework",
-    "href": "slides/w8-slides-lecture.html#homework",
-    "title": "Week 8 Lecture",
-    "section": "Homework",
-    "text": "Homework"
+    "objectID": "slides/w9-slides-lecture.html#practical",
+    "href": "slides/w9-slides-lecture.html#practical",
+    "title": "Week 9 Lecture",
+    "section": "Practical",
+    "text": "Practical"
+  },
+  {
+    "objectID": "slides/w7-slides-lecture.html#module-overview",
+    "href": "slides/w7-slides-lecture.html#module-overview",
+    "title": "Week 7 Lecture",
+    "section": "Module Overview",
+    "text": "Module Overview"
   },
   {
     "objectID": "00-index.html#welcome",
@@ -470,72 +477,121 @@
     ]
   },
   {
-    "objectID": "slides/w7-slides-lecture.html#module-overview",
-    "href": "slides/w7-slides-lecture.html#module-overview",
-    "title": "Week 7 Lecture",
-    "section": "Module Overview",
-    "text": "Module Overview"
-  },
-  {
-    "objectID": "slides/w9-slides-lecture.html#quick-recap",
-    "href": "slides/w9-slides-lecture.html#quick-recap",
-    "title": "Week 9 Lecture",
+    "objectID": "slides/w8-slides-lecture.html#quick-recap",
+    "href": "slides/w8-slides-lecture.html#quick-recap",
+    "title": "Week 8 Lecture",
     "section": "Quick Recap",
     "text": "Quick Recap"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#what-is-r-shiny",
-    "href": "slides/w9-slides-lecture.html#what-is-r-shiny",
-    "title": "Week 9 Lecture",
-    "section": "What Is R Shiny?",
-    "text": "What Is R Shiny?"
+    "objectID": "slides/w8-slides-lecture.html#this-week",
+    "href": "slides/w8-slides-lecture.html#this-week",
+    "title": "Week 8 Lecture",
+    "section": "This Week",
+    "text": "This Week"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#anatomy-of-a-shiny-app",
-    "href": "slides/w9-slides-lecture.html#anatomy-of-a-shiny-app",
-    "title": "Week 9 Lecture",
-    "section": "Anatomy of a Shiny App",
-    "text": "Anatomy of a Shiny App"
+    "objectID": "slides/w8-slides-lecture.html#what-is-an-api",
+    "href": "slides/w8-slides-lecture.html#what-is-an-api",
+    "title": "Week 8 Lecture",
+    "section": "What Is an API?",
+    "text": "What Is an API?"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#ui",
-    "href": "slides/w9-slides-lecture.html#ui",
-    "title": "Week 9 Lecture",
-    "section": "UI",
-    "text": "UI"
+    "objectID": "slides/w8-slides-lecture.html#sportsdataverse",
+    "href": "slides/w8-slides-lecture.html#sportsdataverse",
+    "title": "Week 8 Lecture",
+    "section": "SportsDataVerse",
+    "text": "SportsDataVerse"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#server",
-    "href": "slides/w9-slides-lecture.html#server",
-    "title": "Week 9 Lecture",
-    "section": "Server",
-    "text": "Server"
+    "objectID": "slides/w8-slides-lecture.html#reading-the-documentation",
+    "href": "slides/w8-slides-lecture.html#reading-the-documentation",
+    "title": "Week 8 Lecture",
+    "section": "Reading the Documentation",
+    "text": "Reading the Documentation"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#reactivity",
-    "href": "slides/w9-slides-lecture.html#reactivity",
-    "title": "Week 9 Lecture",
-    "section": "Reactivity",
-    "text": "Reactivity"
+    "objectID": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
+    "href": "slides/w8-slides-lecture.html#good-practice-in-data-sourcing",
+    "title": "Week 8 Lecture",
+    "section": "Good Practice in Data-Sourcing",
+    "text": "Good Practice in Data-Sourcing"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#build-it-in-stages",
-    "href": "slides/w9-slides-lecture.html#build-it-in-stages",
-    "title": "Week 9 Lecture",
-    "section": "Build It in Stages",
-    "text": "Build It in Stages"
+    "objectID": "slides/w8-slides-lecture.html#applying-this-workflow",
+    "href": "slides/w8-slides-lecture.html#applying-this-workflow",
+    "title": "Week 8 Lecture",
+    "section": "Applying This Workflow",
+    "text": "Applying This Workflow"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#running-the-app",
-    "href": "slides/w9-slides-lecture.html#running-the-app",
-    "title": "Week 9 Lecture",
-    "section": "Running the App",
-    "text": "Running the App"
+    "objectID": "slides/w8-slides-lecture.html#version-control",
+    "href": "slides/w8-slides-lecture.html#version-control",
+    "title": "Week 8 Lecture",
+    "section": "Version Control",
+    "text": "Version Control"
   },
   {
-    "objectID": "slides/w9-slides-lecture.html#practical",
-    "href": "slides/w9-slides-lecture.html#practical",
-    "title": "Week 9 Lecture",
+    "objectID": "slides/w8-slides-lecture.html#homework",
+    "href": "slides/w8-slides-lecture.html#homework",
+    "title": "Week 8 Lecture",
+    "section": "Homework",
+    "text": "Homework"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#quick-recap",
+    "href": "slides/w10-slides-lecture.html#quick-recap",
+    "title": "Week 10 Lecture",
+    "section": "Quick Recap",
+    "text": "Quick Recap"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#the-problem",
+    "href": "slides/w10-slides-lecture.html#the-problem",
+    "title": "Week 10 Lecture",
+    "section": "The Problem",
+    "text": "The Problem"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#shinylive",
+    "href": "slides/w10-slides-lecture.html#shinylive",
+    "title": "Week 10 Lecture",
+    "section": "Shinylive",
+    "text": "Shinylive"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#github-pages",
+    "href": "slides/w10-slides-lecture.html#github-pages",
+    "title": "Week 10 Lecture",
+    "section": "GitHub Pages",
+    "text": "GitHub Pages"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#putting-it-together",
+    "href": "slides/w10-slides-lecture.html#putting-it-together",
+    "title": "Week 10 Lecture",
+    "section": "Putting It Together",
+    "text": "Putting It Together"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#a-portfolio-not-just-a-link",
+    "href": "slides/w10-slides-lecture.html#a-portfolio-not-just-a-link",
+    "title": "Week 10 Lecture",
+    "section": "A Portfolio, Not Just a Link",
+    "text": "A Portfolio, Not Just a Link"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#summary",
+    "href": "slides/w10-slides-lecture.html#summary",
+    "title": "Week 10 Lecture",
+    "section": "Summary",
+    "text": "Summary"
+  },
+  {
+    "objectID": "slides/w10-slides-lecture.html#practical",
+    "href": "slides/w10-slides-lecture.html#practical",
+    "title": "Week 10 Lecture",
     "section": "Practical",
     "text": "Practical"
   },

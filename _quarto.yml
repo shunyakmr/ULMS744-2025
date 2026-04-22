@@ -12,6 +12,7 @@ project:
     - slides/w7-slides-lecture.qmd
     - slides/w8-slides-lecture.qmd
     - slides/w9-slides-lecture.qmd
+    - slides/w10-slides-lecture.qmd
     - workbooks/01-setup.qmd
     - workbooks/02-api.qmd
     - workbooks/03-shiny1.qmd

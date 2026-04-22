@@ -1,0 +1,316 @@
+---
+format:
+  revealjs:
+    title: "Week 10 Lecture"
+    subtitle: "Dr Shunya Kimura <br> skimura@liverpool.ac.uk"
+    slide-number: true
+    slide-level: 3
+    output-file: "w10-slides-lecture.html"
+    theme: ../scss/custom.scss
+    revealjs-plugins:
+      - pointer
+    echo: true
+---
+
+### Sports Analytics in Practice {.not-bold}
+
+#### The Professional Portfolio
+
+![](/images/UoL%20Zoom%20Backgrounds_20226.jpg){.stretch fig-align="center"}
+
+### Module Outline
+
+```{=html}
+<div style="width:100%; font-family:Poppins,sans-serif; font-size:0.98em; margin-top:2em;">
+
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W7</span>
+      <span>Foundations of Reproducible Analytics</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W8</span>
+      <span>API &amp; Data Sourcing</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W9</span>
+      <span>Interactive Dashboards with Shinylive I</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; border-bottom:1px solid #ddd; color:#555;">
+      <span style="width:3.2em; font-weight:600; color:#aaa;">W10</span>
+      <span>Interactive Dashboards with Shinylive II</span>
+    </div>
+    <div style="display:flex; padding:0.35em 0; color:#222;">
+      <span style="width:3.2em; font-weight:700; color:#EF426F;">W11</span>
+      <span style="font-weight:600;">The Professional Portfolio</span>
+    </div>
+
+</div>
+```
+
+### Last Week
+
+-   Extended the Lakers app with value boxes and a tree map.
+-   Used `bslib` themes and `page_sidebar()` for layout.
+-   Wired Plotly charts into the reactive server.
+-   Finished a working `app/` folder on our laptops.
+
+## Quick Recap
+
+### Go To Workbook...
+
+![](/images/workbook-github.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+::: notes
+Quickly recap last week, then frame today as the "publish" step.
+:::
+
+### Our Plan
+
+-   Understand what a **portfolio piece** really needs.
+-   Learn what **Shinylive** is and why it matters.
+-   Learn what **GitHub Pages** is and how it serves a site.
+-   See how the two fit together into one publishing workflow.
+
+## The Problem
+
+### A Dashboard No One Can See
+
+``` text
+app/app.R
+  runs beautifully
+  on your laptop
+```
+
+A local app is a tool for you.\
+A portfolio piece is a tool others can open.
+
+### What "Publishing" Usually Means
+
+-   Rent a server.
+-   Install R on it.
+-   Keep it running.
+-   Pay for it.
+
+For a coursework dashboard, this is too much.
+
+::: notes
+Quick aside on what a **server** actually is. A server is just another computer — one that is always on, always connected to the internet, and whose job is to *wait for requests* and *send back responses*. When you open a website, your laptop (the "client") asks a server somewhere for the page; the server runs whatever code it needs to and sends the result back.
+
+For a normal Shiny app, the server has to have R installed, keep an R session alive for each visitor, and re-run parts of your `app.R` whenever someone interacts with a dropdown. That is powerful, but it costs money, it has to be maintained, and on free tiers it "sleeps" after inactivity and takes ages to wake up.
+
+The whole point of today is that we are going to get rid of that server entirely — the visitor's own browser becomes the computer that runs R.
+:::
+
+### What We Want Instead
+
+``` text
+one URL
+  -> anyone, anywhere
+  -> opens the dashboard
+  -> no install, no account
+```
+
+Free, always on, no server to babysit.
+
+## Shinylive
+
+### The Short Answer
+
+-   Shinylive is a port of R to **WebAssembly**.
+-   WebAssembly runs inside modern browsers.
+-   So R itself can run inside a browser tab.
+-   Your Shiny app runs there too — no server needed.
+
+### WebAssembly in One Line
+
+``` text
+WebAssembly
+  = a compact format
+    that browsers can execute
+    almost as fast as native code
+```
+
+It lets the browser do what used to need a server.
+
+::: notes
+Quick aside on what **WebAssembly** (often shortened to *Wasm*) actually is. For a long time, the only language a browser could run was JavaScript — so if you wanted interactivity on a web page, it had to be written in JavaScript. WebAssembly changes that. It is a low-level format that browsers understand natively, and crucially, other languages (C, C++, Rust, Python, and yes, R) can be *compiled* into it.
+
+Think of it as a universal translation layer: the browser does not know R, but it knows WebAssembly, so someone compiled R *into* WebAssembly once, and now every browser on Earth can run R without installing anything.
+
+It runs nearly as fast as a normal desktop program, inside a safe sandbox (it cannot touch your files or your system). That combination — fast, safe, and already installed in every modern browser — is what makes Shinylive possible. Without WebAssembly, we would still need a server to run R.
+:::
+
+### How Shinylive Changes the Picture
+
+``` text
+Traditional Shiny:
+  user -> browser -> server running R
+
+Shinylive:
+  user -> browser (running R inside it)
+```
+
+The server disappears.
+
+### What `shinylive::export()` Produces
+
+-   A copy of your `app/` folder.
+-   A bundle of **R + every package** compiled to WebAssembly.
+-   An `index.html` that glues it all together.
+
+It is just a folder of static files.
+
+### The Tradeoffs
+
+-   First load is slower — the browser downloads R.
+-   Very heavy models or huge data do not fit.
+-   No access to secrets, databases, or private APIs.
+
+For a coursework dashboard, none of this matters.
+
+## GitHub Pages
+
+### The Short Answer
+
+-   GitHub Pages serves static files from a repo.
+-   Point it at a folder, and that folder becomes a website.
+-   Free, HTTPS by default, no account beyond GitHub.
+
+::: notes
+Be clear on **why we still need GitHub Pages at all**. Shinylive turned our app into a folder of static files, but a folder sitting on your laptop is still invisible to everyone else. Someone on the internet cannot type `C:\Users\you\nba-analytics\docs` into their browser — they need a URL, and a URL has to point at a computer that is always online and willing to send those files to anyone who asks.
+
+That is the one thing we still need a "server" for — not to *run* R, just to *hand out the files*. GitHub Pages is exactly that: a free file-handing-out service that you already have access to because your code is on GitHub anyway. You push the `docs/` folder, flip a switch, and GitHub gives you a public URL.
+
+So the division of labour is: **GitHub Pages delivers the files; the visitor's browser runs R.** Neither side has to do the other's job, which is why the whole thing can be free.
+:::
+
+### The Mental Model
+
+``` text
+repo on GitHub
+  -> pick a branch
+  -> pick a folder
+  -> GitHub serves it at a URL
+```
+
+That is the whole service.
+
+### The URL Pattern
+
+``` text
+https://USERNAME.github.io/REPO-NAME/
+```
+
+-   `USERNAME` — your GitHub account.
+-   `REPO-NAME` — the repo you enabled Pages on.
+-   The folder becomes the site root.
+
+### Why Static Files Are Enough
+
+-   The browser does all the work (thanks to Shinylive).
+-   GitHub Pages never has to run R.
+-   It just hands over files over HTTPS.
+
+``` text
+static hosting + WebAssembly
+  = interactive app, no server
+```
+
+## Putting It Together
+
+### The Workflow
+
+``` text
+app/
+  -> shinylive::export()
+  -> docs/
+  -> push to GitHub
+  -> GitHub Pages
+  -> public URL
+```
+
+One export. One push. One settings toggle.
+
+### Why `docs/`
+
+-   GitHub Pages can serve from `/` or `/docs` on the `main` branch.
+-   Using `/docs` keeps **source** (`app/`) separate from **build output** (`docs/`).
+-   Treat `docs/` as generated — never edit by hand.
+
+### The Update Loop
+
+``` text
+edit app/app.R
+  -> re-run shinylive::export()
+  -> publish
+  -> Pages redeploys
+```
+
+The published site never updates on its own.
+
+## A Portfolio, Not Just a Link
+
+### What Makes It a Portfolio Piece
+
+-   A clear **`README.md`** at the top of the repo.
+-   The **live URL** linked in the repo's About sidebar.
+-   A **pinned repo** on your GitHub profile.
+-   **Sensible commit messages** — they are part of the story.
+
+### Why the README Matters
+
+-   It is the first thing a recruiter or tutor reads.
+-   Explains *what* the dashboard is and *who* it is for.
+-   Links to the live URL in one click.
+-   Signals that you care about how your work is presented.
+
+### A Note on Secrets
+
+``` text
+Shinylive ships everything
+  in app/ to the browser.
+```
+
+-   Never commit API keys into `app.R`.
+-   Never commit private data you do not own.
+-   If the browser can read it, the world can read it.
+
+## Summary
+
+### From Script to Artefact
+
+``` text
+week 7:  scripts
+week 8:  API pulls
+week 9:  local Shiny app
+week 10: richer Shiny app
+week 11: live, public dashboard
+```
+
+The last step is what turns coursework into evidence.
+
+### What You Will Be Able to Say
+
+-   "Here is a live dashboard I built — URL."
+-   "The code is on GitHub — repo link."
+-   "It runs entirely in the browser."
+
+## Practical
+
+### Go To Workbook...
+
+![](/images/workbook-github.png){style="box-shadow: 5px 5px 10px rgba(0,0,0,0.5);"}
+
+### Questions?
+
+```{=html}
+<div style="position:relative; height:460px;">
+  <div style="position:absolute; top:58%; left:50%; transform:translate(-50%, -50%); text-align:center; width:70%;">
+    <p style="font-size:1.2em; margin-bottom:0.5em;"><strong>Shunya Kimura</strong></p>
+    <p style="font-size:1em; margin-bottom:0;">s.kimura@liverpool.ac.uk</p>
+  </div>
+  <div style="position:absolute; right:0; bottom:-42px; line-height:0;">
+    <img src="../assets/ULMS744-logo.svg" alt="ULMS744 logo" style="width:220px; max-width:100%;">
+  </div>
+</div>
+```

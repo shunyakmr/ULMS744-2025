@@ -3,7 +3,11 @@ title: "5. The Professional Portfolio"
 subtitle: "Publishing your Shiny dashboard to GitHub Pages with Shinylive"
 format:
   html:
-    toc: true
+    other-links:
+      - text: Lecture Slides
+        icon: file-slides
+        href: ../slides/w10-slides-lecture.html
+    format-links: false
 ---
 
 Over the last two weeks you built a Lakers Evolution dashboard — a `page_sidebar()`, a few cards, some value boxes, a tree map. It runs beautifully on your laptop. The problem is that *only* you can see it. A dashboard that lives on your hard drive is a local tool, not a portfolio piece.
