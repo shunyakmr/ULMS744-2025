@@ -20,6 +20,7 @@ project:
     - workbooks/05-portfolio.qmd
     - workbooks/06-football-data.qmd
     - workbooks/07-claude-code.qmd
+    - workbooks/08-quarto-pdf.qmd
 
 lang: en
 
@@ -78,5 +79,6 @@ website:
         contents:
         - workbooks/06-football-data.qmd
         - workbooks/07-claude-code.qmd
+        - workbooks/08-quarto-pdf.qmd
   
 editor: visual

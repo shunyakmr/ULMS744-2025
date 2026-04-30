@@ -1,0 +1,392 @@
+---
+title: "An Authoring Framework with Quarto"
+subtitle: "Writing your case study report"
+engine: knitr
+---
+
+This workbook is your introduction to **Quarto**, the tool for turning your R analyses into clean, properly typeset reports. We start from scratch: what a Quarto file is, how it differs from the `.R` scripts you already know, and how to render one as both a webpage and a PDF.
+
+::: callout-note
+### Source
+
+Most of what follows is distilled from the official **Quarto Guide** \[[link](https://quarto.org/docs/guide/)\]. Treat that site as your reference whenever you need more depth than this workbook provides.
+:::
+
+::: callout-important
+### Why this matters for the case study
+
+Your **Individual Case Study Assignment** \[[brief](../assignments/ind-case-study-report.qmd)\] asks for *two* deliverables: a public **dashboard** on GitHub Pages (the one you built in [Workbook 5](05-portfolio.qmd)) and a **PDF report** that documents the data, methodology, and findings around it. Every example in this workbook is framed around producing exactly that report — title page with the live dashboard URL, captioned figures, cited literature, hidden code, the lot.
+:::
+
+## Learning Objectives
+
+By the end of this workbook, you will be able to:
+
+-   **Explain what a `.qmd` file is** and how it differs from the `.R` scripts you have been writing so far.
+-   **Create and render** a Quarto document as both HTML and PDF.
+-   **Switch between the Source and Visual editors** in RStudio and use the Visual Editor as a Word-like writing surface for prose-heavy documents.
+-   **Insert citations from a DOI** so your bibliography updates itself.
+-   **Cross-reference figures, tables, and equations** so that "see Figure 3" stays correct even when you rearrange sections.
+-   **Render LaTeX math** inline and as display equations.
+-   **Hide code, warnings, and messages** so the rendered PDF reads like a scientific paper, not a notebook.
+-   **Re-render the entire PDF** after a single data change, and explain the difference between the **Typst** and **LaTeX** PDF engines.
+
+## Quarto Basics
+
+### What is a `.qmd` file?
+
+Up until now you have only worked with `.R` scripts: plain files of R code, where every line is either a command R will run or a `#` comment that R will ignore. That is great for analysis, but it cannot produce a written report.
+
+A **Quarto document** (`.qmd`) is a different kind of file. It mixes three things in one place:
+
+1.  **Prose** — your introduction, methods, discussion, written in normal English using a lightweight formatting syntax called **markdown** (or, as you'll see shortly, edited visually like a Word document).
+
+2.  **Code chunks** — fenced blocks of R code that look like this:
+
+    ```{{r}}
+    mean(shots$shot_made_flag)
+    ```
+
+    When you render the document, Quarto runs the R code inside the chunk and drops the output (a number, a table, a plot) straight into the finished report.
+
+3.  **A YAML header** at the top of the file (between the two `---` lines) that tells Quarto things like the title, author, and what kind of output to produce (HTML, PDF, Word, slides...).
+
+    **YAML** ("YAML Ain't Markup Language", pronounced *yamel*) is just a simple, human-readable way of writing key/value settings — `key: value`, one per line, with indentation for nesting.
+
+The big idea: instead of running `.R` code and then *separately* writing up the results in Word, you write *one* `.qmd` file that contains the analysis and the prose together. When you click **Render**, Quarto runs the code, captures the outputs, and weaves them into a finished document.
+
+::: callout-note
+### `.R` vs `.qmd` — when to use which
+
+-   **`.R` script** — pure code. Use it for setup scripts, data cleaning pipelines, anything that is *only* code and is not meant to be read by a human as a document.
+-   **`.qmd` document** — code + prose + outputs. Use it for any deliverable: a report, a coursework submission, a dissertation chapter, an opposition scout, this workbook itself.
+
+You will still write `.R` files. Quarto does not replace them — it gives you a place to *talk about* the work that they do.
+:::
+
+#### Creating your first `.qmd`
+
+In RStudio, go to **File → New File → Quarto Document...**. A dialog appears. Give it a title, leave the default **HTML** output, and click **Create**.
+
+RStudio will open a new file that already has a YAML header, a heading, and a sample code chunk. Save it (`Ctrl/Cmd + S`) inside your dashboard project — for example, alongside your `app/` folder, as `report.qmd` — and click the **Render** button at the top of the editor. After a few seconds an HTML preview appears in the Viewer pane. That is your first Quarto document, and it lives in the same repo as the dashboard it will describe.
+
+Now we are ready to push the same file to PDF.
+
+### From HTML to PDF
+
+The default `.qmd` you just created has a YAML header that looks something like this:
+
+``` yaml
+format: html
+```
+
+Switching to PDF is a one-line change. Replace the `html` block with `pdf`, so the header for your case study report becomes:
+
+``` yaml
+---
+title: "Shot Selection and Efficiency: A Case Study of the 2023/24 Lakers"
+author: "Your Name (Student ID)"
+date: today
+format:
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+**Live dashboard:** <https://YOUR-USERNAME.github.io/nba-analytics/>
+
+**Repository:** <https://github.com/YOUR-USERNAME/nba-analytics>
+```
+
+The two URLs at the bottom are exactly the ones the assignment brief asks for on the title page — the dashboard you deployed in [Workbook 5](05-portfolio.qmd), and the GitHub repo backing it.
+
+::: callout-note
+### Decoding the bits you have not seen before
+
+-   **`toc: true`** — adds a **table of contents** to the start of the document, auto-generated from your headings. Set it to `false` if you do not want one.
+-   **`number-sections: true`** — numbers your section headings (1, 1.1, 2, 2.1, ...) automatically.
+-   **`**Live dashboard:**`** — the pair of asterisks around the text is **markdown for bold**. Anything wrapped in `**...**` renders in **bold**, and anything wrapped in `*...*` renders in *italics*. (In the Visual Editor you just press `Ctrl/Cmd + B` or `Ctrl/Cmd + I` and it inserts the asterisks for you.)
+:::
+
+Hit **Render**. The first time you do this Quarto will offer to install a small LaTeX distribution called **TinyTeX** for you. Accept it.
+
+```{bash}
+#| eval: false
+#| filename: "RStudio Terminal"
+
+quarto install tinytex
+```
+
+That's it — your first `.qmd` file is now producing a real PDF.
+
+::: callout-tip
+You can keep both formats active at once. Listing `html` and `pdf` under `format:` lets you render either with the dropdown next to the **Render** button.
+:::
+
+### The Visual Editor: a "Word-like" experience
+
+The biggest psychological barrier to writing a long document in Quarto is staring at raw markdown. RStudio solves this with the **Visual Editor**.
+
+In the top-right of any open `.qmd` file you will see two buttons: **Source** and **Visual**. Click **Visual**.
+
+What you get is a WYSIWYG writing surface that looks and behaves much like Word or Google Docs:
+
+-   Bold, italic, headings, and lists from the toolbar (or `Ctrl/Cmd + B`, `Ctrl/Cmd + I`).
+-   A proper **Insert** menu for figures, tables, citations, cross-references, and equations.
+-   Copy-paste from Word and webpages preserves formatting sensibly.
+-   Tables can be edited as tables, not as pipe-and-dash markdown.
+
+The file on disk is still plain markdown — Visual mode is just a different lens on the same source. You can flip back to Source mode any time to see exactly what was written.
+
+::: callout-note
+### When to use which
+
+-   **Visual mode** for the prose-heavy work: introduction, methods, discussion, references.
+-   **Source mode** when you are editing YAML, code chunks, or fiddling with markdown that the visual editor does not handle cleanly.
+:::
+
+### Headings
+
+Headings give your report its structure — and feed both the table of contents and the auto-numbering you turned on with `number-sections: true`.
+
+There are two ways to write them, depending on which editor you are in:
+
+-   **Source mode** uses `#` characters at the start of a line:
+
+    ``` markdown
+    # Section heading (level 1)
+    ## Subsection heading (level 2)
+    ### Sub-subsection heading (level 3)
+    ```
+
+    More hashes = deeper level. Levels 1–4 cover everything you will need.
+
+-   **Visual mode** uses a slash command. Type `/` on a blank line and a small menu pops up; choose **Heading 1**, **Heading 2**, **Heading 3**... and the line is converted. Behind the scenes Visual mode is just inserting the right number of `#` characters into the source.
+
+Pick whichever feels more natural and use it consistently. The `number-sections: true` option in your YAML will then number them 1, 1.1, 1.1.1 in the rendered PDF automatically.
+
+## Citations
+
+### Bibliographies
+
+Quarto handles bibliographies in a way that is genuinely faster than Word + EndNote.
+
+#### Insert a citation from a DOI
+
+In the Visual Editor, place your cursor where the citation should go and press `Ctrl/Cmd + Shift + F8` (or **Insert → Citation...**).
+
+In the dialog, paste the DOI of a paper your case study report cites — for example, `10.1080/24748668.2015.11868790`, an *International Journal of Performance Analysis in Sport* article on shot location and shooting efficiency — and click **Insert**. Quarto will:
+
+1.  Look up the article on Crossref.
+2.  Append a properly formatted BibTeX entry to a `references.bib` file in your project.
+3.  Insert an `[@key]` citation at your cursor.
+4.  Add a **References** section at the end of the rendered PDF.
+
+You never touch the bibliography file by hand.
+
+::: callout-tip
+### Optional: connect a Zotero library
+
+If you already keep references in **Zotero**, Quarto can read directly from it — the same `Ctrl/Cmd + Shift + F8` dialog gains a **My Library** tab showing every reference in your Zotero collection. Pick one, click **Insert**, done.
+
+Quick setup: install the *Better BibTeX* extension in Zotero, then in RStudio go to **Tools → Global Options → R Markdown → Citations** and tick **Use Zotero for citations**.
+
+For the full walk-through (including group libraries and web-API access), see the official Quarto documentation: \[[link](https://quarto.org/docs/visual-editor/technical.html#citations-from-zotero)\].
+:::
+
+#### Choosing a citation style
+
+The assignment brief asks for "a consistent style throughout (Harvard, APA, or similar)". Pick one and follow these three steps:
+
+1.  Go to the [Zotero Style Repository](https://www.zotero.org/styles) (or the [CSL styles GitHub repo](https://github.com/citation-style-language/styles/tree/master)) and search for your style — e.g., *APA 7th edition*, *Harvard - Cite Them Right*, *Vancouver*.
+2.  Download the `.csl` file and save it into your **project working directory** — the same folder as your `report.qmd`, sitting next to `references.bib`.
+3.  Add a `csl:` line to the YAML header pointing at the file you just saved:
+
+``` yaml
+bibliography: references.bib
+csl: apa.csl
+```
+
+Re-render. Every citation in the report now formats in your chosen style. Switching styles later is just downloading a different `.csl` file and updating that one YAML line.
+
+### Cross-references and equations
+
+The case study brief says: *"All figures and tables must be captioned and explicitly referenced in the text (e.g., as shown in Figure 3)."* Doing this by hand breaks the moment you reorder anything. Quarto handles it with **cross-references**.
+
+#### Figures
+
+Give a code chunk a `label:` starting with `fig-` and a `fig-cap:`. The figure below is the kind of static "headline" chart that complements the interactive view on your dashboard:
+
+```{{r}}
+#| label: fig-shot-chart
+#| fig-cap: "Static shot map for the Los Angeles Lakers, 2023/24 NBA regular season. The interactive version is available on the dashboard at https://YOUR-USERNAME.github.io/nba-analytics/."
+
+library(ggplot2)
+shots <- readRDS("data/cleaned/lakers_shots.rds")
+
+ggplot(shots, aes(x = x, y = y, colour = shot_made_flag)) +
+  geom_point(alpha = 0.5) +
+  coord_fixed()
+```
+
+Then refer to it in your prose as `@fig-shot-chart` — for example, *"as shown in @fig-shot-chart, attempts cluster around the rim and the corner three"*. Quarto renders this as "Figure 1" (or whatever number it ends up being) and keeps the link live.
+
+#### Tables
+
+The same pattern works for tables — use a `tbl-` prefix. A typical case study report includes a summary table of the data underpinning the dashboard:
+
+```{{r}}
+#| label: tbl-shot-summary
+#| tbl-cap: "Shot attempts and field-goal percentage by quarter, Los Angeles Lakers, 2023/24 NBA regular season."
+
+library(dplyr)
+
+shot_summary <- shots |>
+  group_by(season) |>
+  summarise(
+    attempts = n(),
+    fg_pct   = round(mean(shot_made_flag), 3)
+  )
+knitr::kable(shot_summary)
+```
+
+Reference it in the prose as `@tbl-shot-summary`.
+
+#### LaTeX math
+
+If your case study uses a metric like expected goals, expected points, or any rating system, you will want to write the formula down properly. Inline math sits between single dollar signs:
+
+``` markdown
+A player's season expected-points total is $\sum_{i=1}^{n} xP_i$, summed over every shot.
+```
+
+Display math sits between double dollar signs. For example, a logistic shot-quality model — the kind you might describe in your methodology section — written as a labelled equation:
+
+``` markdown
+$$
+xP_i = \frac{1}{1 + e^{-(\beta_0 + \beta_1 \cdot \text{distance}_i + \beta_2 \cdot \text{angle}_i)}}
+$$ {#eq-shot-quality}
+```
+
+The `{#eq-shot-quality}` label means you can write `@eq-shot-quality` in the prose and Quarto will render "Equation 1".
+
+::: callout-tip
+The Visual Editor has an **Insert → Equation** menu that opens a dedicated equation editor. You do not have to memorise LaTeX syntax to use it.
+:::
+
+## Code chunk options for clean reports
+
+The default behaviour of a Quarto code chunk — show the code, show any warnings, show package startup messages — is great for a lab notebook and terrible for a case study report. The marker wants to read your *findings*, not pages of `library()` calls. Three chunk options get you to a "code-free" report.
+
+### `echo`, `warning`, `message`
+
+```{{r}}
+#| echo: false      # hide the code itself
+#| warning: false   # hide warnings
+#| message: false   # hide package startup chatter
+
+library(tidyverse)
+shots <- readRDS("data/cleaned/lakers_shots.rds")
+summary_table <- shots |>
+  group_by(period) |>
+  summarise(fg_pct = mean(shot_made_flag))
+```
+
+The output (table, plot, value) still appears in the PDF — only the code and its noise are hidden.
+
+### Set defaults for the whole document
+
+Putting these in the YAML header applies them to every chunk so you don't have to repeat yourself:
+
+``` yaml
+execute:
+  echo: false
+  warning: false
+  message: false
+```
+
+Override per-chunk only when you want to. This single block is the difference between a 40-page document full of grey code blocks and a 20-page case study that reads like a piece of professional analysis (which is exactly what the marking rubric rewards).
+
+### Inline code for in-text values
+
+Anywhere in your prose you can write:
+
+``` default
+Across the 2023/24 regular season the Lakers attempted
+`{{r}} nrow(shots)` shots at an overall field-goal percentage
+of `{{r}} round(mean(shots$shot_made_flag), 3)`.
+```
+
+The bits between backticks beginning with `{r}` (use a single pair of curly braces in your real document — the doubled braces above are just so this workbook displays the example without executing it) are **inline R expressions**. Quarto evaluates them at render time and substitutes the results into your sentence.
+
+The rendered PDF reads "Across the 2023/24 regular season the Lakers attempted 6841 shots at an overall field-goal percentage of 0.471." — and those numbers are recomputed every time you render. No more pasting figures from the console into the manuscript, and no more discovering that the number in your abstract disagrees with the number in your results section.
+
+## The reproducible workflow in action
+
+Here is the demonstration that makes the whole exercise worthwhile. Imagine the scenario every student faces the night before submission: you spot a small data issue — a duplicated game, an updated season total, a corrected play-by-play file — and need to fix it everywhere.
+
+1.  Open `report.qmd` in RStudio.
+2.  Update the underlying data — for example, re-pull `data/cleaned/lakers_shots.rds` from your scraping script, or correct a single bad row.
+3.  Click **Render**.
+
+Watch what updates without you touching anything:
+
+-   The shot map in `@fig-shot-chart` redraws with the corrected data.
+-   The quarter-by-quarter table in `@tbl-shot-summary` recomputes its FG%.
+-   The inline values (total shots and overall FG%) update automatically inside the prose.
+-   Any total in the display equation re-evaluates against the new sample.
+-   Figure, table, and equation numbers stay correct because cross-references are resolved at render time.
+-   The bibliography re-formats from `references.bib`.
+
+This is what "reproducible report" means in practice: there is no separate "writing-up" step that can drift out of sync with the analysis. The document *is* the analysis. The same machinery that powers your case study report would power a weekly opposition report at a club, a recruitment scout for a director of football, or a dissertation chapter — they all benefit equally when the data refreshes.
+
+## Typst vs LaTeX
+
+Quarto can produce PDFs through two engines, and you choose between them in the YAML header.
+
+### LaTeX (the traditional route)
+
+``` yaml
+format:
+  pdf:
+    documentclass: report
+    geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+    toc: true
+    number-sections: true
+```
+
+-   **Pros:** the academic standard. Every journal template you will ever be asked to use is LaTeX. Maximum control over typography and layout.
+-   **Cons:** slow to compile (10–60 seconds for a long document is normal). The error messages are famously cryptic. Requires the `tinytex` install.
+
+### Typst (the new alternative)
+
+``` yaml
+format:
+  typst:
+    toc: true
+    number-sections: true
+```
+
+-   **Pros:** fast — typically 5–10× faster than LaTeX on the same document. Modern, readable error messages. No separate install needed; Quarto bundles it.
+-   **Cons:** newer, so fewer ready-made journal templates. Some advanced LaTeX-only features (specific `\usepackage{...}` tricks, certain BibTeX styles) are not yet supported.
+
+::: callout-tip
+### Practical recommendation
+
+-   Use **Typst** for drafting, internal reports, dissertations, and anything where you control the final layout. The compile-loop speedup alone is worth it.
+-   Use **LaTeX** when you are submitting to a journal that requires a specific `.cls` template, or when you need to match an institutional thesis style precisely.
+
+The good news: switching between them is a YAML edit. The body of your `.qmd` — citations, cross-references, math, code chunks — does not change.
+
+**A note on `documentclass:`** — that line in the LaTeX YAML tells LaTeX *what kind of document* to typeset. It points at a `.cls` (class) file that decides things like default font sizes, margin widths, where the title goes, whether chapters are a thing, and the overall look of the page. The most common values you will meet are:
+
+-   `article` — short reports, journal-style papers, anything one-piece.
+-   `report` — longer multi-chapter documents (dissertations, technical reports). Adds a chapter level and a dedicated title page.
+-   `book` — full books, with chapters split across left/right pages.
+:::
+
+## Before You Go
+
+🎉 **Well done — that's the end of the module.**
+
+If you have made it here, take a moment to look back at how far you have come. You have pulled data from APIs, wrangled it into shape, built a fully interactive Shinylive dashboard, deployed it to the public web on GitHub Pages, and — with this workbook — learned how to wrap the whole thing in a reproducible PDF report. That is a complete, end-to-end professional sports-analytics workflow!
