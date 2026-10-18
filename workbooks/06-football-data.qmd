@@ -408,3 +408,13 @@ Add these credits to the **README.md** of any GitHub repository that uses this d
 # saveRDS(big5_stats, "data/big5_standard_2025.rds")
 # big5_stats <- readRDS("data/big5_standard_2025.rds")
 ```
+
+
+### 2026 Update: FBref Opta Data Changes & Keyless Open Alternatives
+
+In January 2026, FBref removed its Opta-supplied advanced event tables (passing types, shot creation, defensive actions, and xG), which causes several `worldfootballR` advanced table functions to return empty results for current seasons.
+
+If you need current-season match results, minute-by-minute goal timing distributions, Dixon–Coles match probabilities, or 10,000-run Monte Carlo season projections across **93 leagues** (including the English Premier League, EFL Championship, League One, League Two, and National League) without web scraping or API keys:
+
+- **Football Charts Open Data (CC-BY-4.0):** [https://www.football-charts.com/data](https://www.football-charts.com/data)
+- **Football Charts Keyless JSON API:** [https://www.football-charts.com/developers](https://www.football-charts.com/developers) (e.g., `https://www.football-charts.com/api/public/v1/meta/leagues` directly in R via `jsonlite::fromJSON()`)

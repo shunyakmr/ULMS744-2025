@@ -937,6 +937,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </section>
+<section id="update-fbref-opta-data-changes-keyless-open-alternatives" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="update-fbref-opta-data-changes-keyless-open-alternatives"><span class="header-section-number">6.6.3</span> 2026 Update: FBref Opta Data Changes &amp; Keyless Open Alternatives</h3>
+<p>In January 2026, FBref removed its Opta-supplied advanced event tables (passing types, shot creation, defensive actions, and xG), which causes several <code>worldfootballR</code> advanced table functions to return empty results for current seasons.</p>
+<p>If you need current-season match results, minute-by-minute goal timing distributions, Dixon–Coles match probabilities, or 10,000-run Monte Carlo season projections across <strong>93 leagues</strong> (including the English Premier League, EFL Championship, League One, League Two, and National League) without web scraping or API keys:</p>
+<ul>
+<li><strong>Football Charts Open Data (CC-BY-4.0):</strong> <a href="https://www.football-charts.com/data">https://www.football-charts.com/data</a></li>
+<li><strong>Football Charts Keyless JSON API:</strong> <a href="https://www.football-charts.com/developers">https://www.football-charts.com/developers</a> (e.g., <code>https://www.football-charts.com/api/public/v1/meta/leagues</code> directly in R via <code>jsonlite::fromJSON()</code>)</li>
+</ul>
+</section>
 </section>
 
 </main> <!-- /main -->
